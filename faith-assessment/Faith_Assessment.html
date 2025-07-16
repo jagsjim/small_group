@@ -1,0 +1,1189 @@
+        .short-text::placeholder {
+            color: #7f8c8d;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .fill-blank::placeholder {
+            color: #95a5a6;
+            font-style: italic;
+            font-weight: normal;
+        }<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Faith Assessment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .disclaimer {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            color: #856404;
+        }
+
+        .disclaimer h3 {
+            margin-bottom: 10px;
+            color: #b8860b;
+        }
+
+        .question-block {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #3498db;
+        }
+
+        .question-number {
+            color: #3498db;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .main-question {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            color: #2c3e50;
+        }
+
+        .sub-question {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            color: #2c3e50;
+            padding: 20px;
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            border-left: 6px solid #2980b9;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
+        }
+
+        .verse {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-style: italic;
+            color: #2c3e50;
+        }
+
+        .verse-ref {
+            font-weight: bold;
+            color: #2980b9;
+            margin-top: 8px;
+            font-style: normal;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-option:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        .radio-option input[type="radio"] {
+            margin: 4px 12px 0 0;
+            transform: scale(1.2);
+            flex-shrink: 0;
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .fill-blank {
+            border-bottom: 3px solid #3498db;
+            min-width: 200px;
+            padding: 10px 8px;
+            margin: 0 8px;
+            background: #f8f9fa;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .fill-blank:focus {
+            outline: none;
+            border-bottom-color: #e74c3c;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+        }
+
+        .short-text {
+            width: 100%;
+            max-width: 550px;
+            padding: 18px;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            font-size: 16px;
+            margin: 15px 0;
+            min-height: 60px;
+            line-height: 1.5;
+            background: #fdfdfd;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .short-text:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .warning-question {
+            border-left-color: #e74c3c;
+            background: #fdf2f2;
+        }
+
+        .warning-question .verse {
+            background: #fdf2f2;
+            border-left-color: #e74c3c;
+        }
+
+        .reflection-prompt {
+            background: #e8f5e8;
+            border: 2px solid #27ae60;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            color: #1e8449;
+        }
+
+        .reflection-prompt h3 {
+            margin-bottom: 10px;
+            color: #229954;
+        }
+
+        .save-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+
+        .progress {
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .save-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Personal Faith Assessment</h1>
+            <p style="font-size: 18px; margin-bottom: 10px;">An honest examination of your relationship with Jesus</p>
+            <p style="font-size: 16px; opacity: 0.9;">"Examine yourselves to see whether you are in the faith; test yourselves." - 2 Corinthians 13:5</p>
+        </div>
+
+        <div class="disclaimer">
+            <h3>🔒 This is completely private</h3>
+            <p><strong>No one will see your answers.</strong> This assessment is between you and God. Be completely honest - it's the only way this will help you.</p>
+            
+            <p style="margin-top: 15px;"><strong>🛡️ IMPORTANT REMINDER:</strong> This assessment is NOT about earning salvation through good performance. Salvation is by grace alone, through faith alone, in Christ alone.</p>
+            
+            <p style="margin-top: 10px;">If this assessment reveals areas of concern, that's GOOD - it means the Holy Spirit may be working in your heart. This could reveal that you need true salvation for the first time, OR that you have a wrong understanding of what biblical Christianity actually looks like.</p>
+            
+            <p style="margin-top: 10px;"><strong>You cannot fix yourself or make yourself more saved.</strong> Only God can change hearts. The goal isn't to make you feel like a failure, but to help you see whether your heart has been truly transformed by God's grace, and whether you understand what genuine faith looks like.</p>
+            
+            <p style="margin-top: 10px;"><strong>If you realize you need a heart change, cry out to Jesus - He loves to save!</strong></p>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- Question 1: Conversion Moment -->
+        <div class="question-block">
+            <div class="question-number">Question 1</div>
+            <div class="main-question">Can you describe the specific moment you were truly converted to Christ?</div>
+            
+            <div class="verse">
+                "Yet to all who did receive him, to those who believed in his name, he gave the right to become children of God—children born not of natural descent, nor of human decision or a husband's will, but born of God."
+                <div class="verse-ref">- John 1:12-13</div>
+            </div>
+
+            <div class="sub-question">When it happened, what specific sin did you repent of?</div>
+            <input type="text" class="short-text" placeholder="Be specific...">
+
+            <div class="sub-question">What changed about you in the weeks following your conversion that others would have noticed?</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q1b" value="visible">
+                    <span>There were clear, visible changes in my behavior and priorities</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q1b" value="internal">
+                    <span>The changes were mostly internal - others might not have noticed</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q1b" value="none">
+                    <span>Honestly, I can't think of any significant changes</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q1b" value="unsure">
+                    <span>I'm not sure I can pinpoint a specific conversion moment</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 2: True Love for God -->
+        <div class="question-block">
+            <div class="question-number">Question 2</div>
+            <div class="main-question">If God never gave you another blessing and your life got harder because of following Him, would you still want Him?</div>
+            
+            <div class="verse">
+                "Though he slay me, yet will I hope in him; I will surely defend my ways to his face."
+                <div class="verse-ref">- Job 13:15</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q2" value="yes">
+                    <span>Yes, I love God for who He is, not just what He does for me</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q2" value="maybe">
+                    <span>I think so, but I'm honestly not sure</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q2" value="no">
+                    <span>Probably not - I need His help and blessings to keep going</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q2" value="never-thought">
+                    <span>I've never really thought about this before</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 3: Prayer Life -->
+        <div class="question-block">
+            <div class="question-number">Question 3</div>
+            <div class="main-question">When was the last time you spent 15 minutes in prayer that included genuine conversation with God?</div>
+            
+            <div class="verse">
+                "Be joyful in hope, patient in affliction, faithful in prayer."
+                <div class="verse-ref">- Romans 12:12</div>
+            </div>
+
+            <div class="sub-question">By "genuine conversation" I mean: not just asking for things, but also repenting, praising God for who He is, and listening for His voice.</div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q3" value="regular">
+                    <span>Within the past week - I regularly have real conversations with God</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q3" value="occasional">
+                    <span>Within the past month - it happens occasionally</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q3" value="rare">
+                    <span>It's been several months, or I can't remember when</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q3" value="never">
+                    <span>I don't think I've ever done this - my prayers are mostly asking for things for family/friends</span>
+                </label>
+            </div>
+
+            <div class="sub-question">What does your typical prayer time look like?</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q3b" value="varied">
+                    <span>Varied conversations - sometimes praise, sometimes confession, sometimes just enjoying God's presence</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q3b" value="requests">
+                    <span>Mostly asking God to help family, friends, and myself with various needs</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q3b" value="same">
+                    <span>Pretty much the same generic prayers every day</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q3b" value="crisis">
+                    <span>I mainly pray when there's a crisis or emergency</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 4: View of God -->
+        <div class="question-block warning-question">
+            <div class="question-number">Question 4</div>
+            <div class="main-question">In your daily life, do you treat God more like:</div>
+            
+            <div class="verse">
+                "Why do you call me, 'Lord, Lord,' and do not do what I say?"
+                <div class="verse-ref">- Luke 6:46</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q4" value="king">
+                    <span>A King who must be obeyed - His commands are not suggestions</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q4" value="manager">
+                    <span>An absentee manager - present but not really involved in daily decisions</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q4" value="grandpa">
+                    <span>A kindly grandpa who winks at sin and doesn't really expect much</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q4" value="advisor">
+                    <span>Someone who gives good suggestions that I can disregard when convenient</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 5: Grace vs Obedience -->
+        <div class="question-block warning-question">
+            <div class="question-number">Question 5</div>
+            <div class="main-question">Do you ever use God's grace as an excuse to avoid obedience in your daily decisions?</div>
+            
+            <div class="verse">
+                "What shall we say, then? Shall we go on sinning so that grace may increase? By no means! We are those who have died to sin; how can we live in it any longer?"
+                <div class="verse-ref">- Romans 6:1-2</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q5" value="grace-motivates">
+                    <span>No - God's grace motivates me to obey Him more, not less</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q5" value="sometimes-excuse">
+                    <span>Sometimes I think "God will forgive me" when I'm tempted to disobey</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q5" value="often-excuse">
+                    <span>I often rely on grace to cover my disobedience rather than changing my behavior</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q5" value="grace-safety-net">
+                    <span>I basically treat grace like a safety net that lets me live however I want</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 6: Spiritual Hunger -->
+        <div class="question-block">
+            <div class="question-number">Question 6</div>
+            <div class="main-question">How satisfied are you with your current spiritual state?</div>
+            
+            <div class="verse">
+                "Blessed are those who hunger and thirst for righteousness, for they will be filled."
+                <div class="verse-ref">- Matthew 5:6 (NIV)</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q6" value="hungry">
+                    <span>I'm desperately hungry for more of God and never feel like I have enough</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q6" value="satisfied">
+                    <span>I'm pretty satisfied with where I am spiritually</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q6" value="arrived">
+                    <span>I feel like I've "arrived" and don't need much more growth</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q6" value="apathetic">
+                    <span>I don't really care much about spiritual growth</span>
+                </label>
+            </div>
+
+            <div class="sub-question">If you're satisfied with your current spiritual state, how do you explain Jesus saying we should "hunger and thirst for righteousness"?</div>
+            <input type="text" class="short-text" placeholder="Your explanation...">
+        </div>
+
+        <!-- Question 7: Bible Reading Reality Check -->
+        <div class="question-block">
+            <div class="question-number">Question 7</div>
+            <div class="main-question">In the past month, how much time have you actually spent reading your Bible?</div>
+            
+            <div class="verse">
+                "Like newborn babies, crave pure spiritual milk, so that by it you may grow up in your salvation, now that you have tasted that the Lord is good."
+                <div class="verse-ref">- 1 Peter 2:2-3 (NIV)</div>
+            </div>
+
+            <div class="sub-question">Total hours in the past month (be honest):</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q7a" value="regular">
+                    <span>5+ hours (reading regularly, not just in crisis)</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q7a" value="some">
+                    <span>2-4 hours (occasional reading)</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q7a" value="little">
+                    <span>Less than 1 hour (mostly just church or crisis)</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q7a" value="none">
+                    <span>Basically none outside of church</span>
+                </label>
+            </div>
+
+            <div class="sub-question">Compared to time spent on entertainment/social media, you spend:</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q7b" value="more">
+                    <span>More time in God's Word than entertainment</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q7b" value="equal">
+                    <span>About equal time</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q7b" value="less">
+                    <span>Much more time on entertainment than Bible reading</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 8: Costly Obedience -->
+        <div class="question-block">
+            <div class="question-number">Question 8</div>
+            <div class="main-question">Over the past year, how many times have you chosen to obey God when it cost you something?</div>
+            
+            <div class="verse">
+                "Then he said to them all: 'Whoever wants to be my disciple must deny himself and take up his cross daily and follow me.'"
+                <div class="verse-ref">- Luke 9:23 (NIV)</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q8" value="many">
+                    <span>I can think of multiple specific examples where obedience cost me money, comfort, or reputation</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q8" value="few">
+                    <span>I can think of 1-2 examples, but they weren't very costly</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q8" value="none">
+                    <span>I honestly can't think of any times following Jesus cost me something</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q8" value="unsure">
+                    <span>I'm not sure what would count as "costly" obedience</span>
+                </label>
+            </div>
+
+            <div class="sub-question">If following Jesus hasn't cost you anything, how do you explain Jesus saying we must "take up our cross"?</div>
+            <input type="text" class="short-text" placeholder="Your honest answer...">
+        </div>
+
+        <!-- Question 9: Sin and Repentance -->
+        <div class="question-block">
+            <div class="question-number">Question 9</div>
+            <div class="main-question">Can you name a specific sin you've genuinely repented of in the past 6 months?</div>
+            
+            <div class="verse">
+                "Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death."
+                <div class="verse-ref">- 2 Corinthians 7:10 (NIV)</div>
+            </div>
+
+            <div class="sub-question">By "genuinely repented" I mean: felt awful about it, confessed it to God, and actually stopped doing it.</div>
+            
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q9" value="yes">
+                    <span>Yes, I can think of specific sins I've truly repented of recently</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q9" value="felt-bad">
+                    <span>I've felt bad about things, but I'm still doing most of them</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q9" value="no-conviction">
+                    <span>I honestly can't think of anything God has convicted me about lately</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q9" value="no-sin">
+                    <span>I don't think I've committed any significant sins recently</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 10: Fellowship -->
+        <div class="question-block">
+            <div class="question-number">Question 10</div>
+            <div class="main-question">How many hours per month do you spend in genuine fellowship with other believers?</div>
+            
+            <div class="verse">
+                "And let us consider how we may spur one another on toward love and good deeds, not giving up meeting together, as some are in the habit of doing, but encouraging one another—and all the more as you see the Day approaching."
+                <div class="verse-ref">- Hebrews 10:24-25 (NIV)</div>
+            </div>
+
+            <div class="sub-question">(Not just sitting in church, but actually talking and building relationships)</div>
+            
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q10" value="regular">
+                    <span>10+ hours - I regularly spend time with other believers</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q10" value="some">
+                    <span>3-9 hours - occasional fellowship</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q10" value="little">
+                    <span>1-2 hours - mostly just church handshakes</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q10" value="none">
+                    <span>Basically none - I avoid Christian fellowship</span>
+                </label>
+            </div>
+
+            <div class="sub-question">If this is less than you spend watching TV, what does that say about your love for God's people?</div>
+            <input type="text" class="short-text" placeholder="Your honest reflection...">
+        </div>
+
+        <!-- Question 11: Time and Money -->
+        <div class="question-block">
+            <div class="question-number">Question 11</div>
+            <div class="main-question">Looking at your calendar and bank statements from the past 3 months, what do your actual choices reveal?</div>
+            
+            <div class="verse">
+                "For where your treasure is, there your heart will be also."
+                <div class="verse-ref">- Matthew 6:21 (NIV)</div>
+            </div>
+
+            <div class="sub-question">Time spent on entertainment vs. serving others/spiritual growth:</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q11a" value="more-serving">
+                    <span>I spend more time serving others and growing spiritually</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q11a" value="equal">
+                    <span>About equal time between entertainment and spiritual activities</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q11a" value="more-entertainment">
+                    <span>Honestly, much more time goes to entertainment</span>
+                </label>
+            </div>
+
+            <div class="sub-question">What are your thoughts about charity and/or tithing?</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q11b" value="generous-heart">
+                    <span>I give generously and joyfully, wanting to honor God with my resources</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q11b" value="minimum">
+                    <span>I wonder how little I can give and still be in God's good graces</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q11b" value="obligation">
+                    <span>I give because I feel I have to, but it's not joyful</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q11b" value="little-none">
+                    <span>I give very little or nothing - I need my money for other things</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 12: What Actually Makes You Happy -->
+        <div class="question-block">
+            <div class="question-number">Question 12</div>
+            <div class="main-question">If someone followed you around for a month and watched what actually makes you happy, what would they conclude you worship?</div>
+            
+            <div class="verse">
+                "Do not love the world or anything in the world. If anyone loves the world, love for the Father is not in them."
+                <div class="verse-ref">- 1 John 2:15 (NIV)</div>
+            </div>
+
+            <div class="sub-question">What brings you the most visible joy and excitement? (Check all that apply)</div>
+            <div class="checkbox-group">
+                <label class="checkbox-option">
+                    <input type="checkbox" name="q12" value="god">
+                    <span>Worship, prayer, and spiritual growth</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="q12" value="entertainment">
+                    <span>Entertainment, sports, movies, social media</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="q12" value="money">
+                    <span>Shopping, financial gains, possessions</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="q12" value="people">
+                    <span>People's approval and praise</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="q12" value="comfort">
+                    <span>Comfort, food, relaxation</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="q12" value="serving">
+                    <span>Serving others and seeing them helped</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 13: Others' Perspective -->
+        <div class="question-block">
+            <div class="question-number">Question 13</div>
+            <div class="main-question">If your family/coworkers were asked anonymously, "Is [your name] becoming more loving and Christ-like?" what would they honestly say?</div>
+            
+            <div class="verse">
+                "By this everyone will know that you are my disciples, if you love one another."
+                <div class="verse-ref">- John 13:35 (NIV)</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q13" value="yes">
+                    <span>They would definitely say I'm growing in love and kindness</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q13" value="maybe">
+                    <span>They might say I'm a good person, but not necessarily growing</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q13" value="no">
+                    <span>Honestly, they probably wouldn't see me as particularly loving or Christ-like</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q13" value="unsure">
+                    <span>I have no idea what they'd say</span>
+                </label>
+            </div>
+
+            <div class="sub-question">Do you have the courage to actually ask someone who knows you well?</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q13b" value="yes">
+                    <span>Yes, I would be willing to ask for honest feedback</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q13b" value="no">
+                    <span>No, I'm afraid of what they might say</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 14: Evidence -->
+        <div class="question-block warning-question">
+            <div class="question-number">Question 14</div>
+            <div class="main-question">If someone examined your life for evidence you're truly saved, what would they most likely find?</div>
+            
+            <div class="verse">
+                "By their fruit you will recognize them. Do people pick grapes from thornbushes, or figs from thistles?"
+                <div class="verse-ref">- Matthew 7:16 (NIV)</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q14" value="clear-fruit">
+                    <span>Clear evidence of spiritual fruit: love, joy, peace, changed priorities, and growing Christ-likeness</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q14" value="some-fruit">
+                    <span>Some evidence, but mixed with a lot of unchanged areas and worldly priorities</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q14" value="little-fruit">
+                    <span>Very little evidence - I mostly look and act like my non-Christian friends</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q14" value="no-fruit">
+                    <span>Honestly, they probably wouldn't find much evidence at all</span>
+                </label>
+            </div>
+
+            <div class="sub-question">Complete this sentence: "The main difference between me and my non-Christian friends is..."</div>
+            <input type="text" class="short-text" placeholder="Be brutally honest...">
+        </div>
+
+        <!-- Question 15: Response to Correction -->
+        <div class="question-block">
+            <div class="question-number">Question 15</div>
+            <div class="main-question">Think of the last 3 times someone corrected or criticized you. What was your actual response?</div>
+            
+            <div class="verse">
+                "Whoever heeds life-giving correction will be at home among the wise. Those who disregard discipline despise themselves, but the one who heeds correction gains understanding."
+                <div class="verse-ref">- Proverbs 15:31-32 (NIV)</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q15" value="grateful">
+                    <span>I was genuinely grateful and examined myself honestly</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q15" value="defensive">
+                    <span>I immediately got defensive, though I later thought about it</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q15" value="angry">
+                    <span>I got angry and rejected what they were saying</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q15" value="dismiss">
+                    <span>I dismissed it as them being judgmental or wrong</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 16: Spiritual Dryness Response -->
+        <div class="question-block warning-question">
+            <div class="question-number">Question 16</div>
+            <div class="main-question">During your last spiritual "dry spell," what specific actions did you take?</div>
+            
+            <div class="verse">
+                "They went out from us, but they did not really belong to us. For if they had belonged to us, they would have remained with us; but their going showed that none of them belonged to us."
+                <div class="verse-ref">- 1 John 2:19 (NIV)</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q16" value="fought">
+                    <span>I fought to get back to God - prayed more, read Scripture, sought help</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q16" value="waited">
+                    <span>I just waited for the feeling to come back</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q16" value="drifted">
+                    <span>I drifted away and didn't really try to get back to God</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q16" value="no-dry">
+                    <span>I don't think I've ever had a "dry spell"</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 17: Current Conviction -->
+        <div class="question-block">
+            <div class="question-number">Question 17</div>
+            <div class="main-question">What sin is God currently convicting you about that you're still choosing to do?</div>
+            
+            <div class="verse">
+                "No one who is born of God will continue to sin, because God's seed remains in them; they cannot go on sinning, because they have been born of God."
+                <div class="verse-ref">- 1 John 3:9 (NIV)</div>
+            </div>
+
+            <div class="sub-question">Fill in the blank: "I know God wants me to stop ________________, but I keep doing it."</div>
+            <input type="text" class="fill-blank" placeholder="Be honest...">
+
+            <div class="sub-question">If you can't think of anything, when was the last time God's Spirit made you uncomfortable about something in your life?</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q17b" value="recent">
+                    <span>Within the past month</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q17b" value="months">
+                    <span>Several months ago</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q17b" value="long">
+                    <span>It's been over a year</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q17b" value="never">
+                    <span>I can't remember the Spirit ever making me uncomfortable</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 18: Spiritual Growth -->
+        <div class="question-block">
+            <div class="question-number">Question 18</div>
+            <div class="main-question">Ask someone who's known you for 5+ years: "Am I more like Jesus now than 5 years ago?"</div>
+            
+            <div class="verse">
+                "But grow in the grace and knowledge of our Lord and Savior Jesus Christ. To him be glory both now and forever! Amen."
+                <div class="verse-ref">- 2 Peter 3:18 (NIV)</div>
+            </div>
+
+            <div class="sub-question">What would they honestly say?</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q18" value="definitely">
+                    <span>They would definitely say I'm more Christ-like now</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q18" value="maybe">
+                    <span>They might say I'm basically the same person</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q18" value="no">
+                    <span>They might say I've gotten worse in some ways</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q18" value="wont-ask">
+                    <span>I wouldn't dare ask them this question</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 19: Assurance -->
+        <div class="question-block warning-question">
+            <div class="question-number">Question 19</div>
+            <div class="main-question">If you died tonight and God asked, "Why should I let you into heaven?" what would your honest answer be?</div>
+            
+            <div class="verse">
+                "I write these things to you who believe in the name of the Son of God so that you may know that you have eternal life."
+                <div class="verse-ref">- 1 John 5:13 (NIV)</div>
+            </div>
+
+            <div class="sub-question">Your answer would start with:</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q19" value="christ-alone">
+                    <span>"Because Jesus died for my sins and I trust in Him alone"</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q19" value="prayer">
+                    <span>"Because I prayed a prayer and asked Jesus into my heart"</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q19" value="good-person">
+                    <span>"Because I'm a good person and I believe in You"</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q19" value="combination">
+                    <span>Some combination of what I've done and what Christ did</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Question 20: Final Reflection -->
+        <div class="question-block warning-question">
+            <div class="question-number">Question 20</div>
+            <div class="main-question">After taking this assessment, do you have any doubts about whether you've truly been born again?</div>
+            
+            <div class="verse">
+                "Examine yourselves to see whether you are in the faith; test yourselves. Do you not realize that Christ Jesus is in you—unless, of course, you fail the test?"
+                <div class="verse-ref">- 2 Corinthians 13:5 (NIV)</div>
+            </div>
+
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q20" value="confident">
+                    <span>I'm confident I'm truly saved - this confirmed my faith</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q20" value="some-doubts">
+                    <span>I have some doubts and need to examine my heart more</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q20" value="serious-doubts">
+                    <span>I have serious doubts about whether I'm truly saved</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q20" value="realize">
+                    <span>I realize I may never have been truly born again</span>
+                </label>
+            </div>
+
+            <div class="sub-question">If you have doubts, what are you going to do about it?</div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="q20b" value="seek-christ">
+                    <span>Cry out to Christ for true salvation</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q20b" value="seek-help">
+                    <span>Seek help from a mature Christian or pastor</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q20b" value="ignore">
+                    <span>Try to ignore these doubts</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="q20b" value="nothing">
+                    <span>I don't know what to do</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="reflection-prompt">
+            <h3>🙏 Final Reflection</h3>
+            <p>Take a moment to pray and ask God to show you the truth about your spiritual condition. Remember, if you have any doubts, that's not necessarily bad - it might be God drawing you to true salvation for the first time, or to a deeper relationship with Him.</p>
+            
+            <p style="margin-top: 15px;"><strong>If you realize you may not be truly saved:</strong> Don't despair! God loves you and wants to save you. Confess your sin, turn from it, and trust in Jesus Christ as your Lord and Savior. He died for your sins and rose again to give you eternal life.</p>
+            
+            <p style="margin-top: 15px;"><strong>If this confirmed your faith:</strong> Praise God! Continue to grow in grace and help others come to know the real Jesus.</p>
+            
+            <div style="margin-top: 25px; padding: 20px; background: #ffeaa7; border: 2px solid #fdcb6e; border-radius: 10px; color: #2d3436;">
+                <h3 style="color: #d63031; margin-bottom: 15px;">⚡ THE URGENCY OF NOW</h3>
+                
+                <p style="font-style: italic; margin-bottom: 15px;">
+                    "Seek the Lord while he may be found; call on him while he is near." - Isaiah 55:6<br>
+                    "I tell you, now is the time of God's favor, now is the day of salvation." - 2 Corinthians 6:2 (NIV)
+                </p>
+                
+                <p><strong>If this assessment has revealed that you may not be truly saved, don't wait.</strong> Tomorrow is not promised, and the Spirit's conviction you feel right now may not always be there.</p>
+                
+                <p style="margin-top: 15px;"><strong>Take action today:</strong></p>
+                <ul style="margin: 10px 0; padding-left: 30px;">
+                    <li>Reach out to a pastor or mature Christian who is genuinely attempting to live their life for Christ</li>
+                    <li>Visit a Bible-believing church and ask to speak with someone about salvation</li>
+                    <li>Don't let pride, embarrassment, or the busyness of life keep you from eternal life</li>
+                </ul>
+                
+                <p style="margin-top: 15px;"><strong>The same urgency applies if you're already saved but realize you've been living in compromise.</strong> God is calling you back to genuine relationship with Him - respond while His Spirit is speaking to your heart.</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="save-btn" onclick="saveResponses()">💾 Save My Responses</button>
+
+    <script>
+        let totalQuestions = 20;
+        let answeredQuestions = 0;
+
+        function updateProgress() {
+            const percentage = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+
+        // Track responses for radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Count unique answered radio groups
+                const radioGroups = new Set();
+                document.querySelectorAll('input[type="radio"]:checked').forEach(checked => {
+                    radioGroups.add(checked.name);
+                });
+                
+                // Count filled inputs
+                const filledInputs = Array.from(document.querySelectorAll('input[type="text"]')).filter(input => input.value.trim().length > 0).length;
+                
+                answeredQuestions = radioGroups.size + Math.floor(filledInputs / 3); // Rough estimate since some questions have multiple inputs
+                updateProgress();
+            });
+        });
+
+        // Track responses for text inputs
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.addEventListener('input', function() {
+                // Count unique answered radio groups
+                const radioGroups = new Set();
+                document.querySelectorAll('input[type="radio"]:checked').forEach(checked => {
+                    radioGroups.add(checked.name);
+                });
+                
+                // Count filled inputs
+                const filledInputs = Array.from(document.querySelectorAll('input[type="text"]')).filter(input => input.value.trim().length > 0).length;
+                
+                answeredQuestions = radioGroups.size + Math.floor(filledInputs / 3);
+                updateProgress();
+            });
+        });
+
+        function saveResponses() {
+            let responses = 'Personal Faith Assessment - My Responses:\n';
+            responses += '================================================\n\n';
+            
+            // Get all question blocks
+            const questionBlocks = document.querySelectorAll('.question-block');
+            
+            questionBlocks.forEach((block, index) => {
+                const questionNum = index + 1;
+                const mainQuestion = block.querySelector('.main-question').textContent;
+                
+                responses += `Question ${questionNum}:\n${mainQuestion}\n\n`;
+                
+                // Check for radio buttons
+                const radioButtons = block.querySelectorAll('input[type="radio"]:checked');
+                radioButtons.forEach(radio => {
+                    const label = radio.closest('.radio-option').querySelector('span').textContent;
+                    responses += `Answer: ${label}\n`;
+                });
+                
+                // Check for text inputs
+                const textInputs = block.querySelectorAll('input[type="text"]');
+                textInputs.forEach(input => {
+                    if (input.value.trim()) {
+                        responses += `Response: ${input.value.trim()}\n`;
+                    }
+                });
+                
+                // Check for checkboxes
+                const checkboxes = block.querySelectorAll('input[type="checkbox"]:checked');
+                if (checkboxes.length > 0) {
+                    responses += 'Selected: ';
+                    checkboxes.forEach((checkbox, i) => {
+                        if (i > 0) responses += ', ';
+                        responses += checkbox.nextSibling.textContent.trim();
+                    });
+                    responses += '\n';
+                }
+                
+                responses += '\n---\n\n';
+            });
+            
+            responses += `Completed on: ${new Date().toLocaleDateString()}\n`;
+            responses += 'Remember: This assessment is between you and God. Take any concerns to Him in prayer.';
+            
+            // Save to clipboard
+            navigator.clipboard.writeText(responses).then(() => {
+                alert('📋 Your responses have been saved to your clipboard! You can paste them into a document or notes app for your records.');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = responses;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('📋 Your responses have been saved to your clipboard!');
+            });
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>

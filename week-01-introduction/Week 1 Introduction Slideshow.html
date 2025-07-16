@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bible Study Introduction - Original Content</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            overflow: hidden;
+            background: #1a1a1a;
+            color: #ffffff;
+            touch-action: pan-y;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide h1 {
+            font-size: 36pt;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        
+        .slide h2 {
+            font-size: 32pt;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 600;
+        }
+        
+        .slide h3 {
+            font-size: 28pt;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            font-weight: 600;
+        }
+        
+        .slide p {
+            font-size: 24pt;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        
+        .scripture {
+            font-size: 22pt;
+            font-style: italic;
+            color: #ffeb3b;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            line-height: 1.4;
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 18pt;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24pt;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+        
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        /* Gradient backgrounds */
+        .bg-gradient-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .bg-gradient-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .bg-gradient-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .bg-gradient-4 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .bg-gradient-5 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .bg-gradient-6 {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+        
+        @media (max-width: 600px) {
+            .slide h1 {
+                font-size: 32pt;
+            }
+            
+            .slide h2 {
+                font-size: 28pt;
+            }
+            
+            .slide h3 {
+                font-size: 24pt;
+            }
+            
+            .slide p {
+                font-size: 20pt;
+            }
+            
+            .scripture {
+                font-size: 18pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide active bg-gradient-1">
+            <h1>Welcome to Our Bible Study!</h1>
+            <p>I'd like to open in prayer first...</p>
+            <div class="slide-number">1/33</div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="slide bg-gradient-2">
+            <p>Before we begin the video, I wanted to share my vision for this study group and let you know what I believe at my core.</p>
+            <div class="slide-number">2/33</div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="slide bg-gradient-3">
+            <p>My hope is simple – that each time we meet, we all walk away knowing God a little better. I want His light to shine on those corners of our lives where we might not be giving Him our best.</p>
+            <div class="slide-number">3/33</div>
+        </div>
+        
+        <!-- Slide 4 -->
+        <div class="slide bg-gradient-4">
+            <div class="scripture">
+                "Therefore, I urge you, brothers and sisters, in view of God's mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship." - Romans 12:1 (NIV)
+            </div>
+            <p>This isn't about giving God just a piece of ourselves—it's about offering our whole lives to Him.</p>
+            <div class="slide-number">4/33</div>
+        </div>
+        
+        <!-- Slide 5 -->
+        <div class="slide bg-gradient-5">
+            <p>These meetings are meant to be a source of encouragement and inspiration, not just a place where we confront areas of disobedience. While God's truth may challenge us, His ultimate goal is always to build us up and draw us closer to Him.</p>
+            <div class="slide-number">5/33</div>
+        </div>
+        
+        <!-- Slide 6 -->
+        <div class="slide bg-gradient-6">
+            <p>We come together to lift each other up in our faith journey and to spur one another on toward love and good deeds, as Hebrews 10:24-25 encourages us.</p>
+            <div class="slide-number">6/33</div>
+        </div>
+        
+        <!-- Slide 7 -->
+        <div class="slide bg-gradient-1">
+            <p>I know we're all juggling busy schedules, so instead of assigning reading between meetings, we'll watch a sermon together, discuss it, and explore some prepared questions.</p>
+            <div class="slide-number">7/33</div>
+        </div>
+        
+        <!-- Slide 8 -->
+        <div class="slide bg-gradient-2">
+            <p>Most sermons are under an hour, and I'll do my best to wrap things up by 9. We'll start and end each session with prayer, and it would be great if different people could lead these prayers.</p>
+            <div class="slide-number">8/33</div>
+        </div>
+        
+        <!-- Slide 9 -->
+        <div class="slide bg-gradient-3">
+            <p>This helps us all get more comfortable praying out loud. No pressure if you're not ready yet, but I encourage everyone to give it a try when you feel comfortable.</p>
+            <div class="slide-number">9/33</div>
+        </div>
+        
+        <!-- Slide 10 -->
+        <div class="slide bg-gradient-4">
+            <p>I'll preview each sermon beforehand to make sure the content is biblically sound. I'm not a trained theologian though, so I ask for your grace and prayers as I facilitate.</p>
+            <div class="slide-number">10/33</div>
+        </div>
+        
+        <!-- Slide 11 -->
+        <div class="slide bg-gradient-5">
+            <p>Please ask questions when something isn't clear, and don't hesitate to speak up if you disagree with something. Just remember that our disagreements should be grounded in Scripture rather than our feelings or opinions.</p>
+            <div class="slide-number">11/33</div>
+        </div>
+        
+        <!-- Slide 12 -->
+        <div class="slide bg-gradient-6">
+            <div class="scripture">
+                "The heart is deceitful above all things, and desperately sick; who can understand it?" - Jeremiah 17:9 (ESV)
+            </div>
+            <div class="slide-number">12/33</div>
+        </div>
+        
+        <!-- Slide 13 -->
+        <div class="slide bg-gradient-1">
+            <h2>My Core Beliefs:</h2>
+            <div class="slide-number">13/33</div>
+        </div>
+        
+        <!-- Slide 14 -->
+        <div class="slide bg-gradient-2">
+            <h3>The Bible is God's Inerrant Word</h3>
+            <p>Scripture is completely trustworthy and incapable of being wrong.</p>
+            <div class="scripture">
+                "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness." (2 Timothy 3:16, NIV)
+            </div>
+            <div class="slide-number">14/33</div>
+        </div>
+        
+        <!-- Slide 15 -->
+        <div class="slide bg-gradient-3">
+            <h3>Salvation Comes Through Faith Alone</h3>
+            <p>We are saved by God's grace through faith – it's His gift and doesn't depend on our works.</p>
+            <div class="slide-number">15/33</div>
+        </div>
+        
+        <!-- Slide 16 -->
+        <div class="slide bg-gradient-4">
+            <div class="scripture">
+                "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast." (Ephesians 2:8-9, NIV)
+            </div>
+            <div class="slide-number">16/33</div>
+        </div>
+        
+        <!-- Slide 17 -->
+        <div class="slide bg-gradient-5">
+            <h3>True Salvation Requires Repentance</h3>
+            <div class="scripture">
+                "The time has come. The kingdom of God has come near. Repent and believe the good news!" (Mark 1:15, NIV)
+            </div>
+            <div class="slide-number">17/33</div>
+        </div>
+        
+        <!-- Slide 18 -->
+        <div class="slide bg-gradient-6">
+            <p>Repentance isn't just saying "sorry" – it's actively turning FROM your sin and turning TOWARDS Christ. You can't do one without the other.</p>
+            <div class="slide-number">18/33</div>
+        </div>
+        
+        <!-- Slide 19 -->
+        <div class="slide bg-gradient-1">
+            <p>Both faith and repentance are necessary:</p>
+            <div class="scripture">
+                "Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins.'" (Acts 2:38, NIV)
+            </div>
+            <div class="slide-number">19/33</div>
+        </div>
+        
+        <!-- Slide 20 -->
+        <div class="slide bg-gradient-2">
+            <h3>Understanding the Difference Between Knowing & Believing</h3>
+            <p>Many Christians inadvertently confuse merely knowing facts about God with truly believing in Him.</p>
+            <div class="slide-number">20/33</div>
+        </div>
+        
+        <!-- Slide 21 -->
+        <div class="slide bg-gradient-3">
+            <div class="scripture">
+                "You believe that there is one God. Good! Even the demons believe that—and shudder." James 2:19 (NIV)
+            </div>
+            <p>True belief goes beyond intellectual agreement to wholehearted trust and obedience.</p>
+            <div class="slide-number">21/33</div>
+        </div>
+        
+        <!-- Slide 22 -->
+        <div class="slide bg-gradient-4">
+            <p>Head knowledge without heart transformation and obedient action misses the full richness of faith.</p>
+            <div class="scripture">
+                "Not everyone who says to me, 'Lord, Lord,' will enter the kingdom of heaven, but only the one who does the will of my Father who is in heaven." (Matthew 7:21, NIV)
+            </div>
+            <div class="slide-number">22/33</div>
+        </div>
+        
+        <!-- Slide 23 -->
+        <div class="slide bg-gradient-5">
+            <h3>Genuine Faith Produces Good Works</h3>
+            <div class="scripture">
+                "Faith by itself, if it is not accompanied by action, is dead." (James 2:17, NIV)
+            </div>
+            <div class="slide-number">23/33</div>
+        </div>
+        
+        <!-- Slide 24 -->
+        <div class="slide bg-gradient-6">
+            <p>We were created for this purpose:</p>
+            <div class="scripture">
+                "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do." (Ephesians 2:10, NIV)
+            </div>
+            <div class="slide-number">24/33</div>
+        </div>
+        
+        <!-- Slide 25 -->
+        <div class="slide bg-gradient-1">
+            <h3>We Must Test Our Faith</h3>
+            <div class="scripture">
+                "Examine yourselves to see whether you are in the faith; test yourselves." (2 Corinthians 13:5, NIV)
+            </div>
+            <div class="slide-number">25/33</div>
+        </div>
+        
+        <!-- Slide 26 -->
+        <div class="slide bg-gradient-2">
+            <p>The entire book of 1 John gives us ways to test if our faith is genuine. We need to be aware of false conversions – the devil loves to twist scriptures like Romans 10:9, making people think that merely confessing with your mouth is enough.</p>
+            <div class="slide-number">26/33</div>
+        </div>
+        
+        <!-- Slide 27 -->
+        <div class="slide bg-gradient-3">
+            <p>Simply saying the sinner's prayer once isn't biblical salvation if it doesn't lead to a transformed life where Christ is Lord.</p>
+            <div class="slide-number">27/33</div>
+        </div>
+        
+        <!-- Slide 28 -->
+        <div class="slide bg-gradient-4">
+            <h3>True Believers Cannot Lose Salvation</h3>
+            <div class="scripture">
+                "Who will bring any charge against those whom God has chosen?... Who shall separate us from the love of Christ?... Neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord." (Romans 8:33, 35, 39, NIV)
+            </div>
+            <div class="slide-number">28/33</div>
+        </div>
+        
+        <!-- Slide 29 -->
+        <div class="slide bg-gradient-5">
+            <p>However, some who think they're saved may not be:</p>
+            <div class="scripture">
+                "Then I will tell them plainly, 'I never knew you. Away from me, you evildoers!'" (Matthew 7:23, NIV)
+            </div>
+            <div class="slide-number">29/33</div>
+        </div>
+        
+        <!-- Slide 30 -->
+        <div class="slide bg-gradient-6">
+            <h3>Understanding Grace and Mercy</h3>
+            <p>Grace means receiving what we don't deserve (salvation), while mercy means not getting what we do deserve (punishment).</p>
+            <div class="slide-number">30/33</div>
+        </div>
+        
+        <!-- Slide 31 -->
+        <div class="slide bg-gradient-1">
+            <h3>We Are Called to Love One Another</h3>
+            <div class="scripture">
+                "A new command I give you: Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples, if you love one another." (John 13:34-35, NIV)
+            </div>
+            <div class="slide-number">31/33</div>
+        </div>
+        
+        <!-- Slide 32 -->
+        <div class="slide bg-gradient-2">
+            <h3>True Love Speaks Truth</h3>
+            <div class="scripture">
+                "Instead, speaking the truth in love, we will grow to become in every respect the mature body of him who is the head, that is, Christ." (Ephesians 4:15, NIV)
+            </div>
+            <p>In a world that often misunderstands grace and mercy, real love means caring enough to speak truth.</p>
+            <div class="slide-number">32/33</div>
+        </div>
+        
+        <!-- Slide 33 -->
+        <div class="slide bg-gradient-3">
+            <h2>Tonight's Session</h2>
+            <p>I've chosen a shorter video for tonight since we have other things to cover. It's called "Are You Really a Christian?" Some of the sermons we'll watch will challenge us, and this is one of them. I thought it would be good to start by building a strong foundation on God's truth.</p>
+            <div class="slide-number">33/33</div>
+        </div>
+    </div>
+    
+    <button class="nav-button prev" onclick="changeSlide(-1)">‹</button>
+    <button class="nav-button next" onclick="changeSlide(1)">›</button>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
+        }
+        
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe left, go to next slide
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe right, go to previous slide
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+    </script>
+</body>
+</html>
