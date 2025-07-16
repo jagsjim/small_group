@@ -6,84 +6,92 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      font-size: 22px;
-      line-height: 1.6;
-      color: #333;
+      font-size: 24px;
+      line-height: 1.7;
       background-color: #f9f9f9;
+      color: #333;
       margin: 0;
-      padding: 20px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 24px;
+      width: 100%;
     }
 
     h1 {
-      text-align: center;
-      font-size: 32px;
+      font-size: 40px;
       color: #2c3e50;
-      margin-bottom: 20px;
-      border-bottom: 3px solid #3498db;
-      padding-bottom: 15px;
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 4px solid #3498db;
+      padding-bottom: 20px;
     }
 
     .disclaimer {
       background-color: #fff3cd;
       border-left: 6px solid #ffeeba;
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 6px;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 30px;
     }
 
-    .disclaimer strong {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 1.2em;
+    .assessment-link {
+      text-align: center;
+      margin: 30px 0;
     }
 
-    .assessment-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 40px;
-      gap: 15px;
-    }
-
-    .assessment-buttons a {
-      background-color: #4CAF50;
+    .assessment-link a {
+      background-color: #28a745;
       color: white;
-      padding: 14px 24px;
+      padding: 16px 30px;
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 22px;
+      display: inline-block;
+      width: 90%;
+      max-width: 400px;
     }
 
-    .assessment-buttons a.download {
-      background-color: #2980b9;
+    .assessment-link a:hover {
+      background-color: #1e7e34;
     }
 
-    .assessment-buttons a:hover {
-      opacity: 0.9;
+    .nav {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .nav a {
+      background-color: #444;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 22px;
+    }
+
+    .nav a:hover {
+      background-color: #222;
     }
 
     @media (max-width: 480px) {
       body {
-        padding: 15px;
-        font-size: 20px;
+        font-size: 22px;
+        padding: 20px;
       }
 
       h1 {
-        font-size: 26px;
+        font-size: 32px;
       }
 
-      .assessment-buttons a {
-        font-size: 18px;
-        padding: 12px 18px;
+      .assessment-link a,
+      .nav a {
+        font-size: 20px;
+        padding: 14px 24px;
       }
     }
   </style>
 </head>
 <body>
+
   <h1>Faith Assessment</h1>
 
   <div class="disclaimer">
@@ -92,12 +100,16 @@
     <p>If this assessment reveals areas of concern, that's GOOD—it may mean the Holy Spirit is working in your heart. It could reveal that you need true salvation for the first time, or that you have a wrong understanding of what biblical Christianity actually looks like.</p>
     <p>You cannot fix yourself or make yourself more saved. Only God can change hearts. The goal isn't to make you feel like a failure, but to help you see whether your heart has been truly transformed by God's grace and whether you understand what genuine faith looks like.</p>
     <p>If you realize you need a heart change, cry out to Jesus—He loves to save!</p>
-    <p><em>Note:</em> The multiple-choice answers might not fully capture everyone's exact thoughts or beliefs. That's totally normal. These tools are like a rough sketch, not a detailed portrait. Just pick the closest answer that fits your view.</p>
+    <p><em>Note:</em> The multiple-choice answers might not fully capture everyone's exact thoughts or beliefs. That’s totally normal. These tools are like a rough sketch, not a detailed portrait. Just pick the closest answer that fits your view.</p>
   </div>
 
-  <div class="assessment-buttons">
-    <a href="Faith_Assessment.html" target="_blank">📄 Take the Faith Assessment</a>
-    <a href="Faith_Assessment.html" download class="download">⬇️ Download Assessment</a>
+  <div class="assessment-link">
+    <a href="Faith_Assessment.html" target="_blank">📋 Take the Faith Assessment</a>
   </div>
+
+  <div class="nav">
+    <a href="../index.html">🏠 Back to Main Page</a>
+  </div>
+
 </body>
 </html>

@@ -6,66 +6,113 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      font-size: 22px;
-      line-height: 1.6;
+      font-size: 24px;
+      line-height: 1.8;
       color: #1a1a1a;
       background-color: #ffffff;
       margin: 0;
-      padding: 20px;
-      max-width: 5.4in;
-      margin: 0 auto;
+      padding: 24px;
+      width: 100%;
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 40px;
       color: #2c3e50;
       text-align: center;
-      margin-bottom: 10px;
-      border-bottom: 3px solid #3498db;
-      padding-bottom: 15px;
+      margin-bottom: 30px;
+      border-bottom: 4px solid #3498db;
+      padding-bottom: 20px;
     }
 
     ul {
-      margin: 20px 0;
-      padding-left: 25px;
+      list-style-type: none;
+      padding-left: 0;
+      margin: 30px 0;
     }
 
     li {
-      margin-bottom: 15px;
-      line-height: 1.6;
+      margin-bottom: 22px;
+      font-size: 26px;
     }
 
     a {
       text-decoration: none;
       color: #3498db;
       font-weight: bold;
+      padding: 12px 16px;
+      display: inline-block;
+      background-color: #ecf6ff;
+      border-left: 6px solid #3498db;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 600px;
     }
 
     a:hover {
-      text-decoration: underline;
+      background-color: #dceeff;
+    }
+
+    .nav {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .nav a {
+      background-color: #34495e;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .nav a:hover {
+      background-color: #2c3e50;
     }
 
     @media (max-width: 480px) {
       body {
-        padding: 15px;
-        font-size: 21px;
+        font-size: 22px;
+        padding: 20px;
       }
 
       h1 {
-        font-size: 28px;
+        font-size: 32px;
+      }
+
+      li {
+        font-size: 24px;
+      }
+
+      a {
+        font-size: 22px;
+        padding: 14px 18px;
+      }
+
+      .nav a {
+        font-size: 20px;
+        padding: 12px 20px;
       }
     }
   </style>
 </head>
 <body>
+
   <h1>Bible Study: Weekly Materials</h1>
+
   <ul>
-    <li><a href="./faith-assessment/">Faith Assessment</a></li>
-    <li><a href="./week-01-introduction/">Week 01: Introduction</a></li>
-    <li><a href="./week-02-enjoy-god/">Week 02: What Is It Like to Enjoy God? – John Piper</a></li>
-    <li><a href="./week-03-forgiveness/">Week 03: Forgiveness – Voddie Baucham</a></li>
-    <li><a href="./week-04-true-salvation/">Week 04: True Salvation – Lesson</a></li>
-    <li><a href="./week-05-why-the-bible/">Week 05: Why You Can Believe the Bible - Voddie Baucham</a></li>
+    <li><a href="./faith-assessment/">📋 Faith Assessment</a></li>
+    <li><a href="./week-01-introduction/">📖 Week 01: Introduction</a></li>
+    <li><a href="./week-02-enjoy-god/">💬 Week 02: What Is It Like to Enjoy God? – John Piper</a></li>
+    <li><a href="./week-03-forgiveness/">❤️ Week 03: Forgiveness – Voddie Baucham</a></li>
+    <li><a href="./week-04-true-salvation/">🔥 Week 04: True Salvation – Lesson</a></li>
+    <li><a href="./week-05-why-the-bible/">📚 Week 05: Why You Can Believe the Bible – Voddie Baucham</a></li>
   </ul>
+
+  <div class="nav">
+    <a href="./">🏠 Home</a>
+  </div>
+
 </body>
 </html>

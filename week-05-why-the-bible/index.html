@@ -6,92 +6,107 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      font-size: 22px;
-      line-height: 1.6;
+      font-size: 24px;
+      line-height: 1.7;
       background-color: #f9f9f9;
       color: #333;
       margin: 0;
-      padding: 20px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 24px;
+      width: 100%;
     }
 
     h1 {
-      text-align: center;
-      font-size: 32px;
+      font-size: 40px;
       color: #2c3e50;
-      margin-bottom: 20px;
-      border-bottom: 3px solid #3498db;
-      padding-bottom: 15px;
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 4px solid #3498db;
+      padding-bottom: 20px;
     }
 
     .resource {
       margin: 30px 0;
-      padding: 20px;
+      padding: 24px;
       background-color: #ffffff;
       border-left: 6px solid #4CAF50;
-      border-radius: 6px;
+      border-radius: 8px;
     }
 
     .resource h3 {
-      margin-top: 0;
-      font-size: 26px;
+      font-size: 28px;
       color: #34495e;
+      margin-top: 0;
     }
 
     .buttons {
       margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
     }
 
     .buttons a {
-      display: inline-block;
-      margin-right: 12px;
-      margin-bottom: 10px;
-      padding: 12px 20px;
-      text-decoration: none;
+      background-color: #3498db;
       color: white;
-      border-radius: 6px;
+      padding: 16px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 22px;
       font-weight: bold;
-      font-size: 18px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
     }
 
-    .view {
-      background-color: #007BFF;
-    }
-
-    .view:hover {
-      background-color: #0056b3;
-    }
-
-    .download {
+    .buttons a.download {
       background-color: #28a745;
     }
 
-    .download:hover {
+    .buttons a.download:hover {
       background-color: #1e7e34;
+    }
+
+    .buttons a:hover {
+      background-color: #2c3e50;
+    }
+
+    .nav {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .nav a {
+      background-color: #444;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 22px;
+    }
+
+    .nav a:hover {
+      background-color: #222;
     }
 
     @media (max-width: 480px) {
       body {
-        font-size: 20px;
-        padding: 15px;
+        font-size: 22px;
+        padding: 20px;
       }
 
       h1 {
-        font-size: 26px;
+        font-size: 32px;
       }
 
       .resource h3 {
-        font-size: 22px;
+        font-size: 24px;
       }
 
-      .buttons a {
-        font-size: 16px;
-        padding: 10px 16px;
-        display: block;
-        width: 100%;
-        text-align: center;
+      .buttons a,
+      .nav a {
+        font-size: 20px;
+        padding: 14px 24px;
       }
     }
   </style>
@@ -103,9 +118,13 @@
   <div class="resource">
     <h3>📝 Week 5 Study Guide</h3>
     <div class="buttons">
-      <a href="week-05-study-guide.html" class="view" target="_blank">🔍 View</a>
-      <a href="week-05-study-guide.html" class="download" download>⬇️ Download</a>
+      <a href="week-05-study-guide.html" target="_blank">🔍 View Study Guide</a>
+      <a href="week-05-study-guide.html" class="download" download>⬇️ Download Study Guide</a>
     </div>
+  </div>
+
+  <div class="nav">
+    <a href="../index.html">🏠 Back to Main Page</a>
   </div>
 
 </body>
