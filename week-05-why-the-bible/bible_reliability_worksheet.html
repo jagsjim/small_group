@@ -72,16 +72,17 @@
         
         .fill-blank {
             display: inline-block;
-            min-width: 150px;
+            min-width: 180px;
             border-bottom: 2px solid #4299e1;
-            margin: 0 5px;
+            margin: 0 8px;
             position: relative;
+            padding-right: 40px;
         }
         
         .fill-blank input {
             border: none;
             background: none;
-            width: 100%;
+            width: calc(100% - 35px);
             font-size: 18px;
             padding: 5px;
             color: #2c5282;
@@ -89,9 +90,21 @@
             outline: none;
         }
         
+        .fill-blank input.correct {
+            color: #065f46;
+            background-color: #d1fae5;
+            border-radius: 5px;
+        }
+        
+        .fill-blank input.incorrect {
+            color: #991b1b;
+            background-color: #fee2e2;
+            border-radius: 5px;
+        }
+        
         .hint-btn {
             position: absolute;
-            right: -30px;
+            right: 5px;
             top: 50%;
             transform: translateY(-50%);
             background: #fbbf24;
@@ -103,6 +116,18 @@
             font-size: 14px;
             color: white;
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .hint-btn.tapped-once {
+            background: #f59e0b;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.1); }
+            100% { transform: translateY(-50%) scale(1); }
         }
         
         .correct {
@@ -393,27 +418,28 @@
             <h2><span class="emoji">✏️</span> Complete the Statement</h2>
             <p style="font-size: 18px; margin-bottom: 20px;">Fill in the blanks to complete this powerful truth about the Bible:</p>
             
-            <p style="font-size: 18px; line-height: 2.5;">
+            <p style="font-size: 18px; line-height: 3;">
                 The Bible is a <span class="fill-blank">
                     <input type="text" data-answer="reliable" placeholder="___________">
                     <button class="hint-btn" onclick="showHint(this)">?</button>
-                </span> collection of 
+                </span> collection of <br>
                 <span class="fill-blank">
                     <input type="text" data-answer="historical" placeholder="___________">
                     <button class="hint-btn" onclick="showHint(this)">?</button>
-                </span> documents written by 
+                </span> documents written by <br>
                 <span class="fill-blank">
                     <input type="text" data-answer="eyewitnesses" placeholder="___________">
                     <button class="hint-btn" onclick="showHint(this)">?</button>
-                </span> during the lifetime of other eyewitnesses. They report 
-                <span class="fill-blank">
+                </span> during the lifetime of other eyewitnesses. <br><br>
+                They report <span class="fill-blank">
                     <input type="text" data-answer="supernatural" placeholder="___________">
                     <button class="hint-btn" onclick="showHint(this)">?</button>
-                </span> events that took place in fulfillment of specific 
+                </span> events <br>
+                that took place in fulfillment of specific <br>
                 <span class="fill-blank">
                     <input type="text" data-answer="prophecies" placeholder="___________">
                     <button class="hint-btn" onclick="showHint(this)">?</button>
-                </span> and claim that their writings are 
+                </span> and claim that their writings are <br>
                 <span class="fill-blank">
                     <input type="text" data-answer="divine" placeholder="___________">
                     <button class="hint-btn" onclick="showHint(this)">?</button>
@@ -559,38 +585,78 @@
         }
         
         // Fill in the blanks with hint system
+        let hintTaps = {};
+        
         function showHint(btn) {
             const input = btn.previousElementSibling;
             const answer = input.dataset.answer;
-            input.value = answer.substring(0, 3) + '...';
-            input.focus();
+            const inputId = input.dataset.answer; // Use answer as unique ID
+            
+            if (!hintTaps[inputId]) {
+                hintTaps[inputId] = 0;
+            }
+            
+            hintTaps[inputId]++;
+            
+            if (hintTaps[inputId] === 1) {
+                // First tap: show hint
+                input.value = answer.substring(0, 3) + '...';
+                btn.classList.add('tapped-once');
+                btn.textContent = '✓';
+                input.focus();
+            } else if (hintTaps[inputId] >= 2) {
+                // Second tap: fill in complete answer
+                input.value = answer;
+                input.classList.add('correct');
+                input.classList.remove('incorrect');
+                btn.style.display = 'none';
+                
+                // Check if all blanks are filled
+                checkAllBlanks();
+            }
         }
         
-        // Check fill in the blanks
+        // Check if all blanks are correctly filled
+        function checkAllBlanks() {
+            const allInputs = document.querySelectorAll('.fill-blank input');
+            const allCorrect = Array.from(allInputs).every(inp => 
+                inp.value.toLowerCase().trim() === inp.dataset.answer.toLowerCase()
+            );
+            
+            if (allCorrect) {
+                document.getElementById('fill-feedback').className = 'feedback-message success';
+                document.getElementById('fill-feedback').textContent = '✅ Excellent! You\'ve memorized the complete statement!';
+                completedSections.add('fill');
+                updateProgress();
+            }
+        }
+        
+        // Check fill in the blanks with color coding
         document.querySelectorAll('.fill-blank input').forEach(input => {
             input.addEventListener('input', function() {
                 const answer = this.dataset.answer.toLowerCase();
                 const userAnswer = this.value.toLowerCase().trim();
                 
+                // Reset hint taps when user types
+                const inputId = this.dataset.answer;
+                hintTaps[inputId] = 0;
+                const btn = this.nextElementSibling;
+                btn.classList.remove('tapped-once');
+                btn.textContent = '?';
+                btn.style.display = 'block';
+                
                 if (userAnswer === answer) {
                     this.classList.add('correct');
                     this.classList.remove('incorrect');
-                    
-                    // Check if all blanks are filled correctly
-                    const allInputs = document.querySelectorAll('.fill-blank input');
-                    const allCorrect = Array.from(allInputs).every(inp => 
-                        inp.value.toLowerCase().trim() === inp.dataset.answer.toLowerCase()
-                    );
-                    
-                    if (allCorrect) {
-                        document.getElementById('fill-feedback').className = 'feedback-message success';
-                        document.getElementById('fill-feedback').textContent = '✅ Excellent! You\'ve got it!';
-                        completedSections.add('fill');
-                        updateProgress();
-                    }
-                } else if (userAnswer.length >= 3) {
+                    btn.style.display = 'none';
+                    checkAllBlanks();
+                } else if (userAnswer.length >= answer.length) {
+                    // Only mark incorrect if they've typed enough characters
                     this.classList.add('incorrect');
                     this.classList.remove('correct');
+                } else {
+                    // Still typing
+                    this.classList.remove('incorrect', 'correct');
                 }
             });
         });
