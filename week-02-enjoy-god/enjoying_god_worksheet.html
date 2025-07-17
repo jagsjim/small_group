@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is It Like to Enjoy God? - Interactive Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 15px;
+            color: #444;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.8;
+        }
+
+        .activity {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            border-left: 6px solid #007bff;
+        }
+
+        .activity h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-description {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .instruction-box {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: none;
+        }
+
+        .instruction-box h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .instruction-box p {
+            color: #34495e;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin: 18px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #28a745);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Slider Activity */
+        .slider-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+        }
+
+        .slider-question {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .slider-track {
+            position: relative;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .slider-thumb {
+            position: absolute;
+            top: -8px;
+            width: 24px;
+            height: 24px;
+            background: #007bff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .slider-feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            font-size: 15px;
+        }
+
+        /* Analogy Builder */
+        .analogy-builder {
+            background: #fff3cd;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .analogy-prompt {
+            font-size: 16px;
+            color: #856404;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .analogy-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ffeaa7;
+            border-radius: 8px;
+            font-size: 15px;
+            margin: 8px 0;
+        }
+
+        .analogy-input:focus {
+            border-color: #f39c12;
+            outline: none;
+        }
+
+        .analogy-result {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #bee5eb;
+            display: none;
+        }
+
+        /* Priority Sorter */
+        .priority-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .priority-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            cursor: move;
+            font-size: 15px;
+            position: relative;
+            touch-action: none;
+            user-select: none;
+        }
+
+        .priority-item.dragging {
+            opacity: 0.5;
+            transform: scale(1.02);
+        }
+
+        .priority-item.drop-target {
+            border-color: #007bff;
+            background: #e3f2fd;
+        }
+
+        .drag-handle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #6c757d;
+        }
+
+        /* Timeline Builder */
+        .timeline-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #fff;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            position: relative;
+        }
+
+        .timeline-step.completed {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #6c757d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-number.active {
+            background: #007bff;
+        }
+
+        .step-number.completed {
+            background: #28a745;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-question {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .step-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        /* Category Sorter */
+        .category-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .category-box {
+            padding: 15px;
+            border: 2px dashed #6c757d;
+            border-radius: 10px;
+            min-height: 120px;
+            text-align: center;
+        }
+
+        .category-box h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #495057;
+        }
+
+        .category-box.god-gifts {
+            background: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .category-box.gods-person {
+            background: #f3e5f5;
+            border-color: #9c27b0;
+        }
+
+        .draggable-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .draggable-item {
+            padding: 10px;
+            background: #fff;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            cursor: move;
+            font-size: 14px;
+            text-align: center;
+            touch-action: none;
+        }
+
+        .draggable-item.placed {
+            opacity: 0.6;
+        }
+
+        /* Voice Note Style */
+        .voice-note {
+            background: #f8f9fa;
+            border-left: 4px solid #17a2b8;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+
+        .voice-note::before {
+            content: "🎙️";
+            position: absolute;
+            top: 15px;
+            left: -15px;
+            background: #17a2b8;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        .voice-note h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .voice-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #bee5eb;
+            border-radius: 8px;
+            font-size: 15px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .voice-textarea:focus {
+            border-color: #17a2b8;
+            outline: none;
+        }
+
+        /* Interactive Quote Builder */
+        .quote-builder {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .quote-template {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #6f4e37;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .quote-blank {
+            display: inline-block;
+            min-width: 100px;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.8);
+            border: none;
+            border-bottom: 2px solid #d4a574;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 4px;
+            margin: 0 3px;
+        }
+
+        .quote-blank:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Feedback Styles */
+        .feedback {
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.encouraging {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .feedback.thinking {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .activity {
+                padding: 15px;
+            }
+            
+            .category-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .slider-thumb {
+                width: 28px;
+                height: 28px;
+                top: -10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Enjoying God 🌟</h1>
+            <p>An Interactive Learning Journey</p>
+        </div>
+
+        <div class="instruction-box">
+            <h3>Welcome Friend! 😊</h3>
+            <p>This worksheet helps you discover what it means to enjoy God as a Person, not just obey Him out of duty. Go at your own pace and be honest in your responses!</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <!-- Activity 1: Interactive Quote Builder -->
+        <div class="activity">
+            <h3>✍️ Complete the Key Quote</h3>
+            <div class="activity-description">Fill in John Piper's central message about God and our joy:</div>
+            
+            <div class="quote-builder">
+                <div class="quote-template">
+                    "God is most <input type="text" class="quote-blank" data-answer="glorified" placeholder="___"> 
+                    in you when you are most <input type="text" class="quote-blank" data-answer="satisfied" placeholder="___"> 
+                    in Him."
+                </div>
+                <div class="feedback" id="quote-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Activity 2: Duty vs Delight Slider -->
+        <div class="activity">
+            <h3>⚖️ Where Are You Right Now?</h3>
+            <div class="activity-description">Honestly assess your current approach to God by moving the slider:</div>
+            
+            <div class="slider-container">
+                <div class="slider-question">How do you typically approach God?</div>
+                <div class="slider-track" id="slider1">
+                    <div class="slider-thumb" id="thumb1"></div>
+                </div>
+                <div class="slider-labels">
+                    <span>Pure Duty<br/>"I have to"</span>
+                    <span>Mixed<br/>"Some of both"</span>
+                    <span>Pure Delight<br/>"I want to"</span>
+                </div>
+                <div class="slider-feedback" id="slider1-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Activity 3: Build Your Own Analogy -->
+        <div class="activity">
+            <h3>🔨 Analogy Builder</h3>
+            <div class="activity-description">Create your own analogy to explain what it means to enjoy God:</div>
+            
+            <div class="analogy-builder">
+                <div class="analogy-prompt">Think of something you truly enjoy. How is enjoying God similar?</div>
+                
+                <input type="text" class="analogy-input" id="enjoyThing" placeholder="Something I really enjoy is...">
+                <input type="text" class="analogy-input" id="whyEnjoy" placeholder="I enjoy it because...">
+                <input type="text" class="analogy-input" id="godConnection" placeholder="Similarly, I can enjoy God because...">
+                
+                <div class="analogy-result" id="analogyResult">
+                    <strong>Your Analogy:</strong>
+                    <p id="analogyText"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity 4: Job's Story Timeline -->
+        <div class="activity">
+            <h3>📖 Job's Journey: What Really Mattered?</h3>
+            <div class="activity-description">Walk through Job's story and discover what he truly treasured:</div>
+            
+            <div class="timeline-steps">
+                <div class="timeline-step" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-question">Job had everything: kids, wealth, health. What did Satan claim about Job's love for God?</div>
+                        <input type="text" class="step-input" placeholder="Satan said Job only loved God because...">
+                    </div>
+                </div>
+                
+                <div class="timeline-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-question">Job lost his children and wealth. What was his response?</div>
+                        <input type="text" class="step-input" placeholder="Job said...">
+                    </div>
+                </div>
+                
+                <div class="timeline-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-question">What did Job prove about loving God vs. loving God's gifts?</div>
+                        <input type="text" class="step-input" placeholder="Job showed that...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity 5: God's Gifts vs God's Person Sorter -->
+        <div class="activity">
+            <h3>🎁 Sort the Difference</h3>
+            <div class="activity-description">Drag each item to the correct category - God's gifts or God Himself:</div>
+            
+            <div class="draggable-items">
+                <div class="draggable-item" draggable="true" data-category="gifts">Health</div>
+                <div class="draggable-item" draggable="true" data-category="person">His Love</div>
+                <div class="draggable-item" draggable="true" data-category="gifts">Job Success</div>
+                <div class="draggable-item" draggable="true" data-category="person">His Wisdom</div>
+                <div class="draggable-item" draggable="true" data-category="gifts">Good Friends</div>
+                <div class="draggable-item" draggable="true" data-category="person">His Character</div>
+            </div>
+            
+            <div class="category-container">
+                <div class="category-box god-gifts" data-category="gifts">
+                    <h4>🎁 God's Gifts</h4>
+                    <p>Good things He gives</p>
+                </div>
+                <div class="category-box gods-person" data-category="person">
+                    <h4>👑 God Himself</h4>
+                    <p>Who He is as a Person</p>
+                </div>
+            </div>
+            <div class="feedback" id="sort-feedback"></div>
+        </div>
+
+        <!-- Activity 6: Priority Ranking -->
+        <div class="activity">
+            <h3>📊 What Would You Choose?</h3>
+            <div class="activity-description">If you had to give up things one by one, rank these in order of what you'd keep longest (drag to reorder):</div>
+            
+            <div class="priority-items" id="priorityList">
+                <div class="priority-item" draggable="true">
+                    Your closest friendships
+                    <span class="drag-handle">⣿</span>
+                </div>
+                <div class="priority-item" draggable="true">
+                    Your health and physical abilities
+                    <span class="drag-handle">⣿</span>
+                </div>
+                <div class="priority-item" draggable="true">
+                    God's love and presence
+                    <span class="drag-handle">⣿</span>
+                </div>
+                <div class="priority-item" draggable="true">
+                    Financial security
+                    <span class="drag-handle">⣿</span>
+                </div>
+                <div class="priority-item" draggable="true">
+                    Your dreams and goals
+                    <span class="drag-handle">⣿</span>
+                </div>
+            </div>
+            <div class="feedback encouraging" style="display: block;">This helps us see what we truly treasure most. Job chose God above everything else.</div>
+        </div>
+
+        <!-- Activity 7: Macedonian Joy Comparison -->
+        <div class="activity">
+            <h3>💰 The Macedonian Secret</h3>
+            <div class="activity-description">The Macedonians were poor and suffering, yet generous and loving. Use the slider to explore:</div>
+            
+            <div class="slider-container">
+                <div class="slider-question">Where did their generous love come from?</div>
+                <div class="slider-track" id="slider2">
+                    <div class="slider-thumb" id="thumb2"></div>
+                </div>
+                <div class="slider-labels">
+                    <span>Good<br/>Circumstances</span>
+                    <span>Trying<br/>Harder</span>
+                    <span>Joy in<br/>God</span>
+                </div>
+                <div class="slider-feedback" id="slider2-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Activity 8: Voice Note Reflections -->
+        <div class="activity">
+            <h3>🎙️ Heart Check Voice Notes</h3>
+            <div class="activity-description">Record your honest thoughts like you're leaving voice messages for a close friend:</div>
+            
+            <div class="voice-note">
+                <h4>Voice Note 1: Your Anniversary Story</h4>
+                <p>Imagine giving your spouse expensive flowers and saying "It's my duty." How would they feel? Now imagine saying "I couldn't help myself - spending time with you makes me happy!" What's the difference?</p>
+                <textarea class="voice-textarea" placeholder="Hey friend, here's what I'm thinking about duty vs delight in relationships..."></textarea>
+            </div>
+
+            <div class="voice-note">
+                <h4>Voice Note 2: Ringing God's Doorbell</h4>
+                <p>Piper says we should approach God with excitement, not obligation - like "ringing His doorbell" because we want to see Him. What would that look like in your daily life?</p>
+                <textarea class="voice-textarea" placeholder="So I've been thinking about what it would mean to approach God with excitement..."></textarea>
+            </div>
+
+            <div class="voice-note">
+                <h4>Voice Note 3: Your Next Step</h4>
+                <p>If you really believed that God wants your joy more than your duty, what would change this week? Be specific.</p>
+                <textarea class="voice-textarea" placeholder="If I really believed God wants my joy, I think I'd start..."></textarea>
+            </div>
+        </div>
+
+        <!-- Copy Responses Button -->
+        <button class="copy-btn" onclick="copyAllResponses()">📋 Copy My Responses</button>
+
+        <div class="instruction-box" style="margin-top: 25px;">
+            <h3>🎉 Beautiful Work!</h3>
+            <p>Remember: God is most glorified when you are most satisfied in Him. You don't have to earn His love - He invites you to enjoy Him as the most satisfying Person in the universe!</p>
+        </div>
+    </div>
+
+    <script>
+        let progress = 0;
+        const totalActivities = 8;
+        let draggedElement = null;
+        let placedItems = 0;
+
+        // Quote Builder
+        function initQuoteBuilder() {
+            const inputs = document.querySelectorAll('.quote-blank');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    checkQuoteCompletion();
+                });
+            });
+        }
+
+        function checkQuoteCompletion() {
+            const inputs = document.querySelectorAll('.quote-blank');
+            const feedback = document.getElementById('quote-feedback');
+            let correct = 0;
+            
+            inputs.forEach(input => {
+                const answer = input.dataset.answer.toLowerCase();
+                const userAnswer = input.value.toLowerCase().trim();
+                
+                if (userAnswer === answer) {
+                    correct++;
+                    input.style.background = '#d4edda';
+                } else if (userAnswer.length > 0) {
+                    input.style.background = '#fff3cd';
+                } else {
+                    input.style.background = 'rgba(255,255,255,0.8)';
+                }
+            });
+            
+            if (correct === inputs.length) {
+                feedback.className = 'feedback correct';
+                feedback.style.display = 'block';
+                feedback.textContent = '🎯 Perfect! This is the heart of Christian hedonism - God\'s glory and our joy go together!';
+                updateProgress();
+            } else if (correct > 0) {
+                feedback.className = 'feedback encouraging';
+                feedback.style.display = 'block';
+                feedback.textContent = `Getting there! ${correct} out of ${inputs.length} correct.`;
+            } else {
+                feedback.style.display = 'none';
+            }
+        }
+
+        // Slider Activities
+        function initSliders() {
+            initSlider('slider1', 'thumb1', 'slider1-feedback', [
+                'It\'s honest to admit we often start with duty. God wants to transform that into delight!',
+                'Many of us are here - some duty, some delight. That\'s normal and God is patient with us.',
+                'This is the goal! When we delight in God, our obedience flows from joy, not obligation.'
+            ]);
+            
+            initSlider('slider2', 'thumb2', 'slider2-feedback', [
+                'Wrong! They were in severe affliction and extreme poverty. Good circumstances wasn\'t the source.',
+                'Nope! Paul says their generosity came from joy, not from trying harder or being more disciplined.',
+                'Exactly! Their abundant joy in God overflowed into generous love for others, even in suffering.'
+            ]);
+        }
+
+        function initSlider(trackId, thumbId, feedbackId, messages) {
+            const track = document.getElementById(trackId);
+            const thumb = document.getElementById(thumbId);
+            const feedback = document.getElementById(feedbackId);
+            let isDragging = false;
+            let currentValue = 50; // Start in middle
+
+            function updateSlider(clientX) {
+                const rect = track.getBoundingClientRect();
+                const x = clientX - rect.left;
+                const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                
+                thumb.style.left = percentage + '%';
+                currentValue = percentage;
+                
+                // Show feedback based on position
+                let messageIndex = 0;
+                if (percentage > 33 && percentage <= 66) messageIndex = 1;
+                else if (percentage > 66) messageIndex = 2;
+                
+                feedback.className = 'slider-feedback encouraging';
+                feedback.style.display = 'block';
+                feedback.textContent = messages[messageIndex];
+                
+                if (trackId === 'slider2' && percentage > 66) {
+                    updateProgress();
+                } else if (trackId === 'slider1') {
+                    updateProgress();
+                }
+            }
+
+            // Mouse events
+            thumb.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) updateSlider(e.clientX);
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Touch events
+            thumb.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                e.preventDefault();
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (isDragging) updateSlider(e.touches[0].clientX);
+            });
+
+            document.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        }
+
+        // Analogy Builder
+        function initAnalogyBuilder() {
+            const inputs = document.querySelectorAll('.analogy-input');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateAnalogy);
+            });
+        }
+
+        function updateAnalogy() {
+            const enjoyThing = document.getElementById('enjoyThing').value;
+            const whyEnjoy = document.getElementById('whyEnjoy').value;
+            const godConnection = document.getElementById('godConnection').value;
+            const result = document.getElementById('analogyResult');
+            const text = document.getElementById('analogyText');
+            
+            if (enjoyThing && whyEnjoy && godConnection) {
+                text.innerHTML = `Just like I enjoy <strong>${enjoyThing}</strong> because <strong>${whyEnjoy}</strong>, I can enjoy God because <strong>${godConnection}</strong>. This helps me understand that God wants to be enjoyed, not just obeyed!`;
+                result.style.display = 'block';
+                updateProgress();
+            } else {
+                result.style.display = 'none';
+            }
+        }
+
+        // Timeline Steps
+        function initTimeline() {
+            const inputs = document.querySelectorAll('.step-input');
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (this.value.trim().length > 0) {
+                        const step = this.closest('.timeline-step');
+                        const stepNumber = step.querySelector('.step-number');
+                        step.classList.add('completed');
+                        stepNumber.classList.add('completed');
+                        
+                        if (index === inputs.length - 1) {
+                            updateProgress();
+                        }
+                    }
+                });
+            });
+        }
+
+        // Drag and Drop Sorting
+        function initDragAndDrop() {
+            const draggableItems = document.querySelectorAll('.draggable-item');
+            const categoryBoxes = document.querySelectorAll('.category-box');
+            
+            draggableItems.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    draggedElement = e.target;
+                    e.target.style.opacity = '0.5';
+                });
+                
+                item.addEventListener('dragend', (e) => {
+                    e.target.style.opacity = '1';
+                });
+
+                // Touch events for mobile
+                item.addEventListener('touchstart', (e) => {
+                    draggedElement = e.target;
+                    e.target.style.opacity = '0.5';
+                });
+            });
+            
+            categoryBoxes.forEach(box => {
+                box.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    box.style.background = box.classList.contains('god-gifts') ? '#bbdefb' : '#e1bee7';
+                });
+                
+                box.addEventListener('dragleave', () => {
+                    box.style.background = box.classList.contains('god-gifts') ? '#e3f2fd' : '#f3e5f5';
+                });
+                
+                box.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    if (draggedElement) {
+                        const correctCategory = draggedElement.dataset.category;
+                        const boxCategory = box.dataset.category;
+                        
+                        if (correctCategory === boxCategory) {
+                            box.appendChild(draggedElement);
+                            draggedElement.classList.add('placed');
+                            placedItems++;
+                            
+                            if (placedItems === draggableItems.length) {
+                                const feedback = document.getElementById('sort-feedback');
+                                feedback.className = 'feedback correct';
+                                feedback.style.display = 'block';
+                                feedback.textContent = '🎉 Great job! Understanding this difference is crucial - we enjoy God Himself, not just His gifts.';
+                                updateProgress();
+                            }
+                        }
+                        box.style.background = box.classList.contains('god-gifts') ? '#e3f2fd' : '#f3e5f5';
+                    }
+                });
+
+                // Touch events for mobile
+                box.addEventListener('touchend', (e) => {
+                    if (draggedElement) {
+                        const correctCategory = draggedElement.dataset.category;
+                        const boxCategory = box.dataset.category;
+                        
+                        if (correctCategory === boxCategory) {
+                            box.appendChild(draggedElement);
+                            draggedElement.classList.add('placed');
+                            draggedElement.style.opacity = '1';
+                            placedItems++;
+                            
+                            if (placedItems === draggableItems.length) {
+                                const feedback = document.getElementById('sort-feedback');
+                                feedback.className = 'feedback correct';
+                                feedback.style.display = 'block';
+                                feedback.textContent = '🎉 Perfect! You understand the difference between enjoying God\'s gifts and enjoying God Himself.';
+                                updateProgress();
+                            }
+                        }
+                        draggedElement = null;
+                    }
+                });
+            });
+        }
+
+        // Priority List Drag and Drop
+        function initPriorityList() {
+            const list = document.getElementById('priorityList');
+            let draggedItem = null;
+            
+            const items = list.querySelectorAll('.priority-item');
+            items.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    draggedItem = e.target;
+                    e.target.classList.add('dragging');
+                });
+                
+                item.addEventListener('dragend', (e) => {
+                    e.target.classList.remove('dragging');
+                    updateProgress(); // Count as interaction
+                });
+                
+                item.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    const afterElement = getDragAfterElement(list, e.clientY);
+                    if (afterElement == null) {
+                        list.appendChild(draggedItem);
+                    } else {
+                        list.insertBefore(draggedItem, afterElement);
+                    }
+                });
+            });
+        }
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.priority-item:not(.dragging)')];
+            
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        // Voice Notes
+        function initVoiceNotes() {
+            const textareas = document.querySelectorAll('.voice-textarea');
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', function() {
+                    if (this.value.trim().length > 20) {
+                        updateProgress();
+                    }
+                });
+            });
+        }
+
+        function updateProgress() {
+            progress++;
+            const percentage = Math.min((progress / (totalActivities * 2)) * 100, 100);
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+
+        function copyAllResponses() {
+            let responses = "MY RESPONSES - What Is It Like to Enjoy God?\n\n";
+            
+            // Quote Builder
+            responses += "KEY QUOTE COMPLETION:\n";
+            const quoteInputs = document.querySelectorAll('.quote-blank');
+            quoteInputs.forEach((input, i) => {
+                responses += `Blank ${i + 1}: ${input.value || '[Not completed]'}\n`;
+            });
+            
+            // Analogy Builder
+            responses += "\nMY ANALOGY:\n";
+            responses += `Something I enjoy: ${document.getElementById('enjoyThing').value || '[Not completed]'}\n`;
+            responses += `Why I enjoy it: ${document.getElementById('whyEnjoy').value || '[Not completed]'}\n`;
+            responses += `God connection: ${document.getElementById('godConnection').value || '[Not completed]'}\n`;
+            
+            // Timeline
+            responses += "\nJOB'S STORY INSIGHTS:\n";
+            const timelineInputs = document.querySelectorAll('.step-input');
+            timelineInputs.forEach((input, i) => {
+                responses += `Step ${i + 1}: ${input.value || '[Not completed]'}\n`;
+            });
+            
+            // Voice Notes
+            responses += "\nVOICE NOTE REFLECTIONS:\n";
+            const voiceNotes = document.querySelectorAll('.voice-textarea');
+            const voiceTopics = ['Anniversary Story', 'Ringing God\'s Doorbell', 'Next Step'];
+            voiceNotes.forEach((textarea, i) => {
+                responses += `${voiceTopics[i]}: ${textarea.value || '[Not completed]'}\n\n`;
+            });
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(responses).then(() => {
+                alert('📋 Your responses have been copied! You can paste them anywhere to save your reflections.');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = responses;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('📋 Your responses have been copied! You can paste them anywhere to save your reflections.');
+            });
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initQuoteBuilder();
+            initSliders();
+            initAnalogyBuilder();
+            initTimeline();
+            initDragAndDrop();
+            initPriorityList();
+            initVoiceNotes();
+        });
+    </script>
+</body>
+</html>

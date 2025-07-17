@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgiveness: Cancelling the Debt - Interactive Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            color: #6f4e37;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.8;
+        }
+
+        .activity {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            border-left: 6px solid #dc3545;
+        }
+
+        .activity h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-description {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .instruction-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: none;
+        }
+
+        .instruction-box h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .instruction-box p {
+            color: #34495e;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin: 18px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #dc3545, #28a745);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Debt Cancellation Simulator */
+        .debt-simulator {
+            background: #fff;
+            border: 2px solid #dc3545;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .scenario-text {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .response-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .response-option {
+            padding: 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .response-option:hover {
+            background: #e9ecef;
+        }
+
+        .response-option.selected {
+            border-color: #007bff;
+            background: #e3f2fd;
+        }
+
+        .response-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .response-option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        /* Punishment Method Assessment */
+        .punishment-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .punishment-item {
+            background: #fff;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 18px;
+            position: relative;
+        }
+
+        .punishment-question {
+            font-size: 16px;
+            color: #856404;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .punishment-example {
+            font-size: 14px;
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
+        }
+
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffc107;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+
+        .custom-checkbox.checked {
+            background: #ffc107;
+            color: white;
+        }
+
+        .custom-checkbox.checked::after {
+            content: "✓";
+            font-weight: bold;
+        }
+
+        /* Intimacy Scale Builder */
+        .intimacy-builder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .scale-container {
+            margin: 20px 0;
+        }
+
+        .scale-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+
+        .scale-label {
+            flex: 1;
+            font-size: 15px;
+            margin-right: 15px;
+        }
+
+        .scale-slider {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .scale-thumb {
+            position: absolute;
+            top: -7px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            left: 0%;
+        }
+
+        .scale-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        /* Cost Calculator */
+        .cost-calculator {
+            background: #ffe6e6;
+            border: 2px solid #dc3545;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .cost-category {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .cost-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 10px;
+        }
+
+        .cost-description {
+            font-size: 14px;
+            color: #856404;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .cost-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cost-slider {
+            flex: 1;
+            height: 6px;
+            background: #dee2e6;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cost-thumb {
+            position: absolute;
+            top: -7px;
+            width: 20px;
+            height: 20px;
+            background: #dc3545;
+            border-radius: 50%;
+            cursor: pointer;
+            left: 0%;
+        }
+
+        .cost-total {
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #721c24;
+        }
+
+        /* Comparison Tool */
+        .comparison-tool {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .comparison-column {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #bbdefb;
+        }
+
+        .comparison-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .comparison-item {
+            padding: 8px;
+            margin: 5px 0;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Cross Perspective Shifter */
+        .cross-shifter {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .cross-shifter::before {
+            content: "✝️";
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+        }
+
+        .perspective-question {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #ecf0f1;
+        }
+
+        .perspective-input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            margin: 10px 0;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .perspective-input:focus {
+            outline: none;
+            background: white;
+        }
+
+        .perspective-shift {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        /* Application Scenarios */
+        .scenario-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .scenario-card {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 18px;
+            position: relative;
+        }
+
+        .scenario-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .scenario-description {
+            font-size: 14px;
+            color: #6c5700;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .scenario-response {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #ffeaa7;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .scenario-response:focus {
+            border-color: #f39c12;
+            outline: none;
+        }
+
+        /* Personal Journey */
+        .journey-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .journey-step {
+            background: white;
+            border: 2px solid #17a2b8;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .journey-step::before {
+            content: attr(data-step);
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #17a2b8;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .journey-question {
+            font-size: 16px;
+            color: #0c5460;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .journey-reflection {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #bee5eb;
+            border-radius: 8px;
+            font-size: 15px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .journey-reflection:focus {
+            border-color: #17a2b8;
+            outline: none;
+        }
+
+        /* Feedback Styles */
+        .feedback {
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.encouraging {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .feedback.thinking {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .activity {
+                padding: 15px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💔➡️❤️ Forgiveness</h1>
+            <p>Cancelling the Debt</p>
+        </div>
+
+        <div class="instruction-box">
+            <h3>Grace-Filled Learning 🕊️</h3>
+            <p>Voddie Baucham teaches that forgiveness is the one word that best captures what it means to be a Christian. Explore what it really means to cancel the debt, not just avoid revenge.</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <!-- Activity 1: Debt Cancellation Simulator -->
+        <div class="activity">
+            <h3>💸 Debt Cancellation Simulator</h3>
+            <div class="activity-description">Experience what true forgiveness means through real scenarios:</div>
+            
+            <div class="debt-simulator">
+                <div class="scenario-text">
+                    <strong>Scenario:</strong> Your friend borrows your brand new phone and accidentally drops it in a lake. It's completely destroyed and would cost $800 to replace. They're devastated and apologizing profusely. You say "I forgive you." What does that actually mean?
+                </div>
+                
+                <div class="response-options">
+                    <div class="response-option" onclick="selectResponse(this, false)">
+                        "I'm not going to yell at you or be mean, but you definitely need to buy me a new phone."
+                    </div>
+                    <div class="response-option" onclick="selectResponse(this, false)">
+                        "It's okay, I won't stay mad at you forever, but this is going to take time to get over."
+                    </div>
+                    <div class="response-option" onclick="selectResponse(this, true)">
+                        "The debt is cancelled. You don't owe me anything - not money, not guilt, not payback."
+                    </div>
+                </div>
+                <div class="feedback" id="debt-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Activity 2: Punishment Method Assessment -->
+        <div class="activity">
+            <h3>🎯 How Do You Punish?</h3>
+            <div class="activity-description">Voddie says we punish by withholding attention, affection, or honor. Honestly assess your patterns:</div>
+            
+            <div class="punishment-grid">
+                <div class="punishment-item">
+                    <div class="punishment-question">Withholding Attention</div>
+                    <div class="punishment-example">"I don't want to see you right now. Get out of my face."</div>
+                    <div class="checkbox-container">
+                        <div class="custom-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <span>I give people the silent treatment when they hurt me</span>
+                    </div>
+                    <div class="checkbox-container">
+                        <div class="custom-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <span>I avoid spending time with people who have disappointed me</span>
+                    </div>
+                </div>
+
+                <div class="punishment-item">
+                    <div class="punishment-question">Withholding Affection</div>
+                    <div class="punishment-example">"You can have my attention, but there will be no warmth from me."</div>
+                    <div class="checkbox-container">
+                        <div class="custom-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <span>I act cold and distant when someone hurts me</span>
+                    </div>
+                    <div class="checkbox-container">
+                        <div class="custom-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <span>I withhold physical affection (hugs, kisses) to make my point</span>
+                    </div>
+                </div>
+
+                <div class="punishment-item">
+                    <div class="punishment-question">Withholding Honor</div>
+                    <div class="punishment-example">"It's their birthday, but I'm not calling because they don't deserve it."</div>
+                    <div class="checkbox-container">
+                        <div class="custom-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <span>I refuse to show respect to people who have failed me</span>
+                    </div>
+                    <div class="checkbox-container">
+                        <div class="custom-checkbox" onclick="toggleCheckbox(this)"></div>
+                        <span>I withhold praise or recognition as punishment</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feedback encouraging" style="display: block;">
+                Recognizing these patterns is the first step to freedom. We all do this - but Christ calls us to something better.
+            </div>
+        </div>
+
+        <!-- Activity 3: Intimacy vs Forgiveness Scale -->
+        <div class="activity">
+            <h3>📈 The Intimacy Paradox</h3>
+            <div class="activity-description">Voddie teaches that greater intimacy requires MORE forgiveness, not less sin. Explore this with people in your life:</div>
+            
+            <div class="intimacy-builder">
+                <div class="scale-container">
+                    <div class="scale-item">
+                        <div class="scale-label">Your spouse/closest person:</div>
+                        <div class="scale-slider" onclick="updateScale(this, event)">
+                            <div class="scale-thumb"></div>
+                        </div>
+                        <div class="scale-values">
+                            <span>Low Need for Forgiveness</span>
+                            <span>High Need for Forgiveness</span>
+                        </div>
+                    </div>
+
+                    <div class="scale-item">
+                        <div class="scale-label">Close friends/family:</div>
+                        <div class="scale-slider" onclick="updateScale(this, event)">
+                            <div class="scale-thumb"></div>
+                        </div>
+                        <div class="scale-values">
+                            <span>Low Need for Forgiveness</span>
+                            <span>High Need for Forgiveness</span>
+                        </div>
+                    </div>
+
+                    <div class="scale-item">
+                        <div class="scale-label">Acquaintances/coworkers:</div>
+                        <div class="scale-slider" onclick="updateScale(this, event)">
+                            <div class="scale-thumb"></div>
+                        </div>
+                        <div class="scale-values">
+                            <span>Low Need for Forgiveness</span>
+                            <span>High Need for Forgiveness</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feedback encouraging" style="display: block; background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);">
+                    Notice the pattern? The closer we are, the more we see each other's sin. This doesn't mean they love you less - it means you need to forgive more!
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity 4: Cost of Unforgiveness Calculator -->
+        <div class="activity">
+            <h3>💰 What Does Unforgiveness Cost You?</h3>
+            <div class="activity-description">Rate how much unforgiveness is currently costing you in each area:</div>
+            
+            <div class="cost-calculator">
+                <div class="cost-category">
+                    <div class="cost-title">Emotional Cost</div>
+                    <div class="cost-description">How draining is it to constantly remember what they did and regulate how much attention, affection, and honor to withhold?</div>
+                    <div class="cost-range">
+                        <span>Low</span>
+                        <div class="cost-slider" onclick="updateCostSlider(this, event)">
+                            <div class="cost-thumb"></div>
+                        </div>
+                        <span>High</span>
+                    </div>
+                </div>
+
+                <div class="cost-category">
+                    <div class="cost-title">Relationship with God</div>
+                    <div class="cost-description">Do you question God's forgiveness toward you when you refuse to forgive others?</div>
+                    <div class="cost-range">
+                        <span>No Impact</span>
+                        <div class="cost-slider" onclick="updateCostSlider(this, event)">
+                            <div class="cost-thumb"></div>
+                        </div>
+                        <span>Major Impact</span>
+                    </div>
+                </div>
+
+                <div class="cost-category">
+                    <div class="cost-title">Theological Understanding</div>
+                    <div class="cost-description">Are you saying Christ's blood isn't enough, but your personal standards are higher than God's?</div>
+                    <div class="cost-range">
+                        <span>Clear Theology</span>
+                        <div class="cost-slider" onclick="updateCostSlider(this, event)">
+                            <div class="cost-thumb"></div>
+                        </div>
+                        <span>Confused Theology</span>
+                    </div>
+                </div>
+
+                <div class="cost-category">
+                    <div class="cost-title">Compassion for Others</div>
+                    <div class="cost-description">How has unforgiveness affected your ability to have compassion for other struggling people?</div>
+                    <div class="cost-range">
+                        <span>Very Compassionate</span>
+                        <div class="cost-slider" onclick="updateCostSlider(this, event)">
+                            <div class="cost-thumb"></div>
+                        </div>
+                        <span>Hardened Heart</span>
+                    </div>
+                </div>
+
+                <div class="cost-total" id="costTotal">
+                    Total Cost Assessment: Click the sliders above to see your unforgiveness cost
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity 5: Forgiveness vs Reconciliation Comparison -->
+        <div class="activity">
+            <h3>🛤️ Two Different Roads</h3>
+            <div class="activity-description">Understand the crucial difference between forgiveness and reconciliation:</div>
+            
+            <div class="comparison-tool">
+                <div class="comparison-grid">
+                    <div class="comparison-column">
+                        <div class="comparison-title">Forgiveness</div>
+                        <div class="comparison-item">A lonely highway</div>
+                        <div class="comparison-item">You can do it alone</div>
+                        <div class="comparison-item">Cancels the debt</div>
+                        <div class="comparison-item">Doesn't require their response</div>
+                        <div class="comparison-item">Can forgive dead people</div>
+                        <div class="comparison-item">Your responsibility</div>
+                    </div>
+                    <div class="comparison-column">
+                        <div class="comparison-title">Reconciliation</div>
+                        <div class="comparison-item">A two-way street</div>
+                        <div class="comparison-item">Requires both people</div>
+                        <div class="comparison-item">Restores relationship</div>
+                        <div class="comparison-item">Needs repentance & trust</div>
+                        <div class="comparison-item">Both must participate</div>
+                        <div class="comparison-item">Mutual responsibility</div>
+                    </div>
+                </div>
+                
+                <div class="feedback encouraging" style="display: block;">
+                    You can and should forgive regardless of their response. But reconciliation takes two people walking together in repentance and trust.
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity 6: Cross-Centered Perspective Shifter -->
+        <div class="activity">
+            <h3>✝️ The Cross Changes Everything</h3>
+            <div class="activity-description">Let the cross transform how you see both your sin and theirs:</div>
+            
+            <div class="cross-shifter">
+                <div class="perspective-question">Think of someone who has hurt you. What did they do?</div>
+                <input type="text" class="perspective-input" placeholder="Describe the hurt..." id="hurtDescription">
+                
+                <div class="perspective-question">Now remember: Christ's blood was shed for that exact sin. What does this mean?</div>
+                <input type="text" class="perspective-input" placeholder="If Christ died for their sin..." id="christDied">
+                
+                <div class="perspective-question">And Christ also died for all your sins. How does this change your perspective?</div>
+                <input type="text" class="perspective-input" placeholder="Since I'm also forgiven..." id="alsoForgiven">
+                
+                <div class="perspective-shift">
+                    <strong>The Cross Perspective:</strong> If Christ's blood is enough to satisfy the triune God for both their sin and yours, what more could you possibly require? Your sins, even the ones against you, are under the blood of Christ.
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity 7: Family Application Scenarios -->
+        <div class="activity">
+            <h3>🏠 Bringing It Home</h3>
+            <div class="activity-description">Apply forgiveness principles to real family situations:</div>
+            
+            <div class="scenario-cards">
+                <div class="scenario-card">
+                    <div class="scenario-title">Children</div>
+                    <div class="scenario-description">Your child wants something, you say no, and they fold their arms and turn away. How do you address this withholding of attention, affection, and honor?</div>
+                    <textarea class="scenario-response" placeholder="How would you lovingly confront this unforgiveness while teaching them about forgiveness?"></textarea>
+                </div>
+
+                <div class="scenario-card">
+                    <div class="scenario-title">Parents</div>
+                    <div class="scenario-description">Your parents weren't perfect. Maybe they hurt you in ways that still affect you today. How does forgiveness apply here?</div>
+                    <textarea class="scenario-response" placeholder="What would it look like to forgive while still acknowledging the hurt?"></textarea>
+                </div>
+
+                <div class="scenario-card">
+                    <div class="scenario-title">Marriage/Close Relationships</div>
+                    <div class="scenario-description">Your spouse/close friend has disappointed you again in the same way. You feel like giving them the cold shoulder "until they learn."</div>
+                    <textarea class="scenario-response" placeholder="How could you confront the sin without withholding attention, affection, or honor?"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity 8: Personal Forgiveness Journey -->
+        <div class="activity">
+            <h3>🚶‍♀️ Your Forgiveness Journey</h3>
+            <div class="activity-description">Take honest steps toward freedom:</div>
+            
+            <div class="journey-steps">
+                <div class="journey-step" data-step="1">
+                    <div class="journey-question">Who are you currently withholding attention, affection, or honor from?</div>
+                    <textarea class="journey-reflection" placeholder="Be honest about who comes to mind and how you're punishing them..."></textarea>
+                </div>
+
+                <div class="journey-step" data-step="2">
+                    <div class="journey-question">How has unforgiveness been costly for you personally?</div>
+                    <textarea class="journey-reflection" placeholder="What has holding onto this hurt cost you emotionally, spiritually, relationally?"></textarea>
+                </div>
+
+                <div class="journey-step" data-step="3">
+                    <div class="journey-question">What would it look like to cancel their debt this week?</div>
+                    <textarea class="journey-reflection" placeholder="What specific attention, affection, or honor could you choose to give instead of withhold?"></textarea>
+                </div>
+
+                <div class="journey-step" data-step="4">
+                    <div class="journey-question">How does being forgiven by Christ change your perspective on forgiving them?</div>
+                    <textarea class="journey-reflection" placeholder="When you remember what Christ forgave you for, how does this impact your willingness to forgive?"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copy Responses Button -->
+        <button class="copy-btn" onclick="copyAllResponses()">📋 Copy My Responses</button>
+
+        <div class="instruction-box" style="margin-top: 25px;">
+            <h3>🕊️ The Heart of Christianity</h3>
+            <p>Remember: Forgiveness isn't just something Christians do - it's who we are. You are forgiven, therefore you can forgive. The cross has made peace between you and God, and now it can make peace between you and others.</p>
+        </div>
+    </div>
+
+    <script>
+        let progress = 0;
+        const totalActivities = 8;
+        let costSliders = [];
+
+        function selectResponse(element, isCorrect) {
+            const container = element.parentElement;
+            const options = container.querySelectorAll('.response-option');
+            const feedback = document.getElementById('debt-feedback');
+            
+            // Clear previous selections
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // Mark selection
+            element.classList.add('selected');
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedback.className = 'feedback correct';
+                feedback.style.display = 'block';
+                feedback.textContent = '✅ Exactly! True forgiveness means the debt is completely cancelled. They owe you nothing.';
+                updateProgress();
+            } else {
+                element.classList.add('incorrect');
+                feedback.className = 'feedback thinking';
+                feedback.style.display = 'block';
+                feedback.textContent = '🤔 This is how most people think of forgiveness, but Voddie teaches that real forgiveness means cancelling the debt entirely.';
+            }
+        }
+
+        function toggleCheckbox(element) {
+            element.classList.toggle('checked');
+            updateProgress();
+        }
+
+        function updateScale(slider, event) {
+            const rect = slider.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+            
+            const thumb = slider.querySelector('.scale-thumb');
+            thumb.style.left = percentage + '%';
+            
+            updateProgress();
+        }
+
+        function updateCostSlider(slider, event) {
+            const rect = slider.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+            
+            const thumb = slider.querySelector('.cost-thumb');
+            thumb.style.left = percentage + '%';
+            
+            // Store the value
+            slider.dataset.value = percentage;
+            
+            updateCostTotal();
+            updateProgress();
+        }
+
+        function updateCostTotal() {
+            const sliders = document.querySelectorAll('.cost-slider');
+            let total = 0;
+            let count = 0;
+            
+            sliders.forEach(slider => {
+                if (slider.dataset.value) {
+                    total += parseFloat(slider.dataset.value);
+                    count++;
+                }
+            });
+            
+            if (count > 0) {
+                const average = total / count;
+                const costTotal = document.getElementById('costTotal');
+                
+                if (average < 25) {
+                    costTotal.textContent = 'Low Cost: Unforgiveness isn\'t severely impacting you right now. Great!';
+                    costTotal.style.background = '#d4edda';
+                    costTotal.style.color = '#155724';
+                } else if (average < 50) {
+                    costTotal.textContent = 'Moderate Cost: Unforgiveness is starting to take a toll. Consider the freedom of letting go.';
+                    costTotal.style.background = '#fff3cd';
+                    costTotal.style.color = '#856404';
+                } else if (average < 75) {
+                    costTotal.textContent = 'High Cost: Unforgiveness is significantly impacting your life. The cross offers a better way.';
+                    costTotal.style.background = '#f8d7da';
+                    costTotal.style.color = '#721c24';
+                } else {
+                    costTotal.textContent = 'Very High Cost: Unforgiveness is destroying your peace, relationships, and spiritual life. Christ offers immediate freedom.';
+                    costTotal.style.background = '#dc3545';
+                    costTotal.style.color = 'white';
+                }
+            }
+        }
+
+        function initTextareaTracking() {
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', function() {
+                    if (this.value.trim().length > 15) {
+                        updateProgress();
+                    }
+                });
+            });
+        }
+
+        function initInputTracking() {
+            const inputs = document.querySelectorAll('.perspective-input');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.trim().length > 10) {
+                        updateProgress();
+                    }
+                });
+            });
+        }
+
+        function updateProgress() {
+            progress++;
+            const percentage = Math.min((progress / (totalActivities * 3)) * 100, 100);
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+
+        function copyAllResponses() {
+            let responses = "MY RESPONSES - Forgiveness: Cancelling the Debt\n\n";
+            
+            // Punishment Assessment
+            responses += "PUNISHMENT PATTERNS I RECOGNIZE:\n";
+            const checkboxes = document.querySelectorAll('.custom-checkbox.checked');
+            checkboxes.forEach((checkbox, i) => {
+                const text = checkbox.nextElementSibling.textContent;
+                responses += `✓ ${text}\n`;
+            });
+            
+            // Cross Perspective
+            responses += "\nCROSS-CENTERED PERSPECTIVE:\n";
+            responses += `The hurt: ${document.getElementById('hurtDescription')?.value || '[Not completed]'}\n`;
+            responses += `Christ died for this: ${document.getElementById('christDied')?.value || '[Not completed]'}\n`;
+            responses += `Since I'm forgiven: ${document.getElementById('alsoForgiven')?.value || '[Not completed]'}\n`;
+            
+            // Family Scenarios
+            responses += "\nFAMILY APPLICATION:\n";
+            const scenarioResponses = document.querySelectorAll('.scenario-response');
+            const scenarioTitles = ['Children', 'Parents', 'Marriage/Close Relationships'];
+            scenarioResponses.forEach((textarea, i) => {
+                responses += `${scenarioTitles[i]}: ${textarea.value || '[Not completed]'}\n\n`;
+            });
+            
+            // Personal Journey
+            responses += "PERSONAL FORGIVENESS JOURNEY:\n";
+            const journeyResponses = document.querySelectorAll('.journey-reflection');
+            const journeyQuestions = [
+                'Who I\'m withholding from',
+                'Cost of unforgiveness',
+                'How to cancel the debt',
+                'How being forgiven changes everything'
+            ];
+            journeyResponses.forEach((textarea, i) => {
+                responses += `${journeyQuestions[i]}: ${textarea.value || '[Not completed]'}\n\n`;
+            });
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(responses).then(() => {
+                alert('📋 Your forgiveness reflections have been copied! You can paste them anywhere to continue processing these important truths.');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = responses;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('📋 Your responses have been copied! You can paste them anywhere to save your reflections.');
+            });
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initTextareaTracking();
+            initInputTracking();
+        });
+    </script>
+</body>
+</html>
