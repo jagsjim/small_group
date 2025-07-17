@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblical Accountability vs. Being Judgmental</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        .slideshow-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide h1 {
+            font-size: clamp(32px, 8vw, 48px);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .slide h2 {
+            font-size: clamp(28px, 7vw, 42px);
+            margin-bottom: 25px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.3;
+        }
+
+        .slide h3 {
+            font-size: clamp(24px, 6vw, 36px);
+            margin-bottom: 20px;
+            color: #87ceeb;
+            line-height: 1.4;
+        }
+
+        .slide p {
+            font-size: clamp(20px, 5vw, 32px);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .verse {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #ffd700;
+            font-style: italic;
+        }
+
+        .quote {
+            background: rgba(255,215,0,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ffd700;
+            font-size: clamp(18px, 4.5vw, 28px);
+        }
+
+        .story-slide {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+        }
+
+        .discussion-slide {
+            background: linear-gradient(135deg, #228b22 0%, #32cd32 100%);
+        }
+
+        .time-marker {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        .slide-counter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 80px;
+        }
+
+        .nav-btn:hover, .nav-btn:active {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin: 0 5px;
+        }
+
+        .warning-slide {
+            background: linear-gradient(135deg, #cc0000 0%, #ff3333 100%);
+        }
+
+        .highlight {
+            background: rgba(255,255,0,0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+            }
+            
+            .navigation {
+                bottom: 30px;
+            }
+            
+            .nav-btn {
+                padding: 12px 20px;
+                font-size: 16px;
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="time-marker" id="timeMarker">Opening: 8 min</div>
+        <div class="slide-counter" id="slideCounter">1 / 72</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>Biblical Accountability vs. Being Judgmental</h1>
+            <h2>Knowing the Real Jesus</h2>
+            <p>🕊️ An 80-Minute Journey Through Scripture 🕊️</p>
+        </div>
+
+        <!-- Slide 2: Opening Story Setup -->
+        <div class="slide story-slide">
+            <h2>Sarah's Embarrassing Mistake</h2>
+            <p>She was going through a difficult divorce...</p>
+            <p>Desperately needed to talk to someone...</p>
+        </div>
+
+        <!-- Slide 3: Sarah's Call -->
+        <div class="slide story-slide">
+            <h3>The Phone Call</h3>
+            <p>Her friend gave her "James Smith's" number</p>
+            <p>A counselor who had helped before</p>
+            <p>Sarah was nervous but finally called...</p>
+        </div>
+
+        <!-- Slide 4: The Mistake -->
+        <div class="slide story-slide">
+            <h3>Pouring Out Her Heart</h3>
+            <p>When "James" answered, she shared everything:</p>
+            <p>• Her marriage struggles</p>
+            <p>• Her fears about the future</p>
+            <p>• Her financial problems</p>
+            <p>• Her deepest insecurities</p>
+        </div>
+
+        <!-- Slide 5: The Shock -->
+        <div class="slide story-slide">
+            <h3>Awkward Silence...</h3>
+            <p>"Ma'am, I think you have the wrong number."</p>
+            <p><span class="highlight">"I'm James Smith the plumber, not James Smith the counselor."</span></p>
+        </div>
+
+        <!-- Slide 6: The Problem -->
+        <div class="slide">
+            <h2>31,000 James Smiths</h2>
+            <p>Sarah shared her most private struggles with a complete stranger</p>
+            <p>Why? <span class="highlight">Over 31,000 James Smiths</span> in the US alone</p>
+            <p>She dialed the wrong one! 📞</p>
+        </div>
+
+        <!-- Slide 7: Spiritual Application -->
+        <div class="slide warning-slide">
+            <h2>The Spiritual Danger</h2>
+            <p>Many people approach God the same way</p>
+            <p>They pray to "God" but...</p>
+            <p><span class="highlight">They've never learned who He actually is</span></p>
+        </div>
+
+        <!-- Slide 8: Wrong Jesus -->
+        <div class="slide warning-slide">
+            <h3>Creating Our Own Jesus</h3>
+            <p>Based on what feels comfortable</p>
+            <p>What they've heard from others</p>
+            <p>What fits their lifestyle</p>
+            <p><span class="highlight">But what if they're talking to the wrong Jesus?</span></p>
+        </div>
+
+        <!-- Slide 9: Hall Brothers Setup -->
+        <div class="slide story-slide">
+            <h2>A Chilling True Story</h2>
+            <p>Larry and Gary Hall</p>
+            <p>Identical twin brothers</p>
+            <p>Same house, same parents, same upbringing</p>
+            <p>If you saw them, you couldn't tell them apart...</p>
+        </div>
+
+        <!-- Slide 10: The Terrifying Truth -->
+        <div class="slide story-slide">
+            <h3>But One Was a Monster</h3>
+            <p><span class="highlight">Larry Hall:</span> Serial killer, suspected of murdering dozens of women</p>
+            <p><span class="highlight">Gary Hall:</span> Normal life, never suspected of wrongdoing</p>
+            <p>Same face, same family, same background</p>
+        </div>
+
+        <!-- Slide 11: Life or Death -->
+        <div class="slide warning-slide">
+            <h3>Imagine Meeting One at Night</h3>
+            <p>You couldn't tell which brother you faced</p>
+            <p><span class="highlight">A simple case of mistaken identity could cost your life</span></p>
+            <p>💀 Surface details aren't enough! 💀</p>
+        </div>
+
+        <!-- Slide 12: Spiritual Warning -->
+        <div class="slide warning-slide">
+            <h2>This IS a Spiritual Warning</h2>
+            <p>The Jesus of Scripture vs. the Jesus of popular culture</p>
+            <p><span class="highlight">As different as Larry and Gary Hall</span></p>
+            <p>One leads to eternal life, one to eternal death</p>
+        </div>
+
+        <!-- Slide 13: Most Terrifying Words -->
+        <div class="slide warning-slide">
+            <h3>The Most Terrifying Words</h3>
+            <div class="verse">
+                "I never knew you" - Matthew 7:23
+            </div>
+            <p>Many will be confident they know Him...</p>
+            <p>Only to discover they were wrong</p>
+        </div>
+
+        <!-- Slide 14: The Question -->
+        <div class="slide">
+            <h2>The Question We Must Face</h2>
+            <p><span class="highlight">Are we following the Jesus of Scripture, or a Jesus of our own imagination?</span></p>
+        </div>
+
+        <!-- Slide 15: Voddie Quote -->
+        <div class="slide">
+            <div class="quote">
+                "I choose to believe the Bible because it is a reliable collection of historical documents written down by eyewitnesses during the lifetime of other eyewitnesses."
+                <br><br>- Voddie Baucham
+            </div>
+        </div>
+
+        <!-- Slide 16: Part 1 Transition -->
+        <div class="slide">
+            <div class="time-marker">Part 1: 15 min</div>
+            <h1>Part 1: The Cultural Confusion About "Don't Judge"</h1>
+        </div>
+
+        <!-- Slide 17: False Teaching -->
+        <div class="slide">
+            <h2>The False Teaching Destroying the Church</h2>
+            <p>"Jesus said not to judge, so we should never tell anyone they're wrong"</p>
+            <p>Even Christians feel guilty about addressing sin 😔</p>
+        </div>
+
+        <!-- Slide 18: Wrong Mindset -->
+        <div class="slide">
+            <h3>The Lie We've Believed</h3>
+            <p>Most loving thing = accept everyone exactly as they are</p>
+            <p>Never suggest anyone needs to change</p>
+            <p><span class="highlight">But this isn't loving—it's negligent!</span></p>
+        </div>
+
+        <!-- Slide 19: Doctor Illustration -->
+        <div class="slide">
+            <h3>The Negligent Doctor</h3>
+            <p>Doctors who refuse to diagnose cancer</p>
+            <p>Because they don't want to hurt feelings</p>
+            <p><span class="highlight">That's not love—that's malpractice! 🏥</span></p>
+        </div>
+
+        <!-- Slide 20: What Jesus Actually Said -->
+        <div class="slide">
+            <h2>What Jesus Actually Said</h2>
+            <p>The most misquoted passage in the Bible:</p>
+            <p>Matthew 7:1-5</p>
+        </div>
+
+        <!-- Slide 21: Matthew 7:1-2 -->
+        <div class="slide">
+            <div class="verse">
+                "Do not judge, or you too will be judged. For in the same way you judge others, you will be judged, and with the measure you use, it will be measured to you."
+                <br><br>- Matthew 7:1-2 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 22: Matthew 7:3-4 -->
+        <div class="slide">
+            <div class="verse">
+                "Why do you look at the speck of sawdust in your brother's eye and pay no attention to the plank in your own eye? How can you say to your brother, 'Let me take the speck out of your eye,' when all the time there is a plank in your own eye?"
+                <br><br>- Matthew 7:3-4 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 23: Matthew 7:5 - The Key -->
+        <div class="slide">
+            <div class="verse">
+                "You hypocrite, first take the plank out of your own eye, and then you will see clearly to <span class="highlight">remove the speck from your brother's eye.</span>"
+                <br><br>- Matthew 7:5 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 24: Jesus' Real Teaching -->
+        <div class="slide">
+            <h2>What Jesus Is Actually Teaching</h2>
+            <p>❌ Not: "Never address sin in others"</p>
+            <p>✅ The proper order and heart attitude</p>
+            <p><span class="highlight">Jesus assumes we WILL help remove the speck</span></p>
+        </div>
+
+        <!-- Slide 25: Two Types of Judgment -->
+        <div class="slide">
+            <h3>Hypocritical vs. Loving</h3>
+            <p><span class="highlight">Hypocritical judgment:</span> "I'm better than you, and I'll point out your sin while ignoring mine"</p>
+            <p><span class="highlight">Loving correction:</span> "I struggle with sin too, but I care about you"</p>
+        </div>
+
+        <!-- Slide 26: Cliff Illustration -->
+        <div class="slide">
+            <h3>Love Warns 🚨</h3>
+            <p>If your friend was about to walk off a cliff...</p>
+            <p>Would love keep you silent?</p>
+            <p><span class="highlight">Of course not! Love would compel you to warn them</span></p>
+        </div>
+
+        <!-- Slide 27: Spiritual Cliff -->
+        <div class="slide">
+            <h3>Spiritual Danger</h3>
+            <p>When someone we love is walking in patterns that destroy:</p>
+            <p>• Their life</p>
+            <p>• Their relationships</p>
+            <p>• Their witness for Christ</p>
+            <p><span class="highlight">Love cannot remain silent</span></p>
+        </div>
+
+        <!-- Slide 28: Discussion Questions Part 1 -->
+        <div class="slide discussion-slide">
+            <h2>Discussion Time - Part 1</h2>
+            <h3>Personal Reflection:</h3>
+            <p>When someone corrects you, is your first reaction defensive or grateful?</p>
+            <h3>Group Discussion:</h3>
+            <p>How can we tell the difference between loving correction and judgmental criticism?</p>
+        </div>
+
+        <!-- Slide 29: Discussion 2 -->
+        <div class="slide discussion-slide">
+            <h3>Group Discussion (cont.):</h3>
+            <p>Can you think of a time when someone's loving correction helped you grow?</p>
+            <p>💭 Take 5 minutes to discuss</p>
+        </div>
+
+        <!-- Slide 30: Part 2 Transition -->
+        <div class="slide">
+            <div class="time-marker">Part 2: 18 min</div>
+            <h1>Part 2: The Corinthian Church</h1>
+            <h2>When "Love" Becomes Harmful</h2>
+        </div>
+
+        <!-- Slide 31: Corinthian Pride -->
+        <div class="slide">
+            <h2>A Church That Refused to Address Sin</h2>
+            <p>The Corinthians thought they were loving and progressive</p>
+            <p>They had a scandal that shocked even pagans</p>
+            <p><span class="highlight">But they were proud of how "accepting" they were</span></p>
+        </div>
+
+        <!-- Slide 32: The Shocking Sin -->
+        <div class="slide">
+            <div class="verse">
+                "It is actually reported that there is sexual immorality among you, and of a kind that even pagans do not tolerate: A man is sleeping with his father's wife."
+                <br><br>- 1 Corinthians 5:1 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 33: Paul's Shock -->
+        <div class="slide">
+            <div class="verse">
+                "And you are proud! Shouldn't you rather have gone into mourning and have put out of your fellowship the man who has been doing this?"
+                <br><br>- 1 Corinthians 5:2 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 34: Paul's Disbelief -->
+        <div class="slide">
+            <h3>Can You Hear Paul's Shock?</h3>
+            <p>"Even the pagans wouldn't tolerate this..."</p>
+            <p>"But you're PROUD of your tolerance!"</p>
+            <p><span class="highlight">They thought acceptance showed love</span></p>
+            <p>Paul shows them they were destroying the man</p>
+        </div>
+
+        <!-- Slide 35: The Yeast Principle -->
+        <div class="slide">
+            <div class="verse">
+                "Your boasting is not good. Don't you know that a little yeast leavens the whole batch of dough? Get rid of the old yeast, so that you may be a new unleavened batch—as you really are."
+                <br><br>- 1 Corinthians 5:6-7 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 36: Why Tolerance Can Be Cruel -->
+        <div class="slide">
+            <h3>Sin Is Contagious 🦠</h3>
+            <p>Little yeast affects the entire batch</p>
+            <p>When churches tolerate unrepentant sin:</p>
+            <p>• It affects the entire community</p>
+            <p>• Makes it easier to justify our compromises</p>
+            <p>• Church develops casual attitude toward sin</p>
+        </div>
+
+        <!-- Slide 37: Enabling Harm -->
+        <div class="slide">
+            <h3>Enabling vs. Helping</h3>
+            <p>When we enable continued sin without consequences:</p>
+            <p>❌ We're not helping them</p>
+            <p>❌ We're hurting them</p>
+            <p><span class="highlight">Making it easier to ignore God's voice</span></p>
+        </div>
+
+        <!-- Slide 38: Parenting Illustration -->
+        <div class="slide">
+            <h3>Neglectful Parenting</h3>
+            <p>If your teenager was experimenting with drugs...</p>
+            <p>Would love ignore it?</p>
+            <p><span class="highlight">Or would love intervene, even with conflict and consequences?</span></p>
+        </div>
+
+        <!-- Slide 39: Church Discipline Command -->
+        <div class="slide">
+            <div class="verse">
+                "But now I am writing to you that you must not associate with anyone who claims to be a brother or sister but is sexually immoral or greedy, an idolater or slanderer, a drunkard or swindler. Do not even eat with such people... 'Expel the wicked person from among you.'"
+                <br><br>- 1 Corinthians 5:11-13 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 40: Clarification -->
+        <div class="slide">
+            <h3>Important Clarification</h3>
+            <p>Paul is NOT talking about people who:</p>
+            <p>• Struggle with sin and fight against it</p>
+            <p>Paul IS talking about people who:</p>
+            <p>• <span class="highlight">Claim to be Christians but live in open, unrepentant sin</span></p>
+            <p>• Refuse to listen to loving correction</p>
+        </div>
+
+        <!-- Slide 41: Purpose of Discipline -->
+        <div class="slide">
+            <h3>The Goal: Wake-Up Call</h3>
+            <p>Not punishment for punishment's sake</p>
+            <p><span class="highlight">Sometimes people need to experience consequences before they take sin seriously</span></p>
+        </div>
+
+        <!-- Slide 42: Piper Quote -->
+        <div class="slide">
+            <div class="quote">
+                "Biblical church discipline is simple obedience to God and a simple confession that we need help. We cannot live the Christian life alone."
+                <br><br>- John Piper
+            </div>
+        </div>
+
+        <!-- Slide 43: Beautiful Ending -->
+        <div class="slide">
+            <h2>The Beautiful Ending 💝</h2>
+            <p>In Paul's second letter to the Corinthians...</p>
+            <p>We see what happened next</p>
+        </div>
+
+        <!-- Slide 44: Restoration -->
+        <div class="slide">
+            <div class="verse">
+                "The punishment inflicted on him by the majority is sufficient. Now instead, you ought to forgive and comfort him, so that he will not be overwhelmed by excessive sorrow. I urge you, therefore, to reaffirm your love for him."
+                <br><br>- 2 Corinthians 2:6-8 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 45: Godly Sorrow -->
+        <div class="slide">
+            <div class="verse">
+                "Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death."
+                <br><br>- 2 Corinthians 7:10 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 46: Success Story -->
+        <div class="slide">
+            <h2>Church Discipline Worked! 🎉</h2>
+            <p>The man repented</p>
+            <p>Paul urges restoration with love</p>
+            <p><span class="highlight">This is biblical accountability done right</span></p>
+        </div>
+
+        <!-- Slide 47: David and Nathan -->
+        <div class="slide">
+            <h3>David and Nathan (2 Samuel 12)</h3>
+            <p>When David committed adultery and murder</p>
+            <p>Nathan confronted him directly with a story</p>
+            <p>David's response: <span class="highlight">"I have sinned against the Lord"</span></p>
+        </div>
+
+        <!-- Slide 48: Paul and Peter -->
+        <div class="slide">
+            <h3>Paul Confronting Peter (Galatians 2)</h3>
+            <p>Even apostles need accountability!</p>
+            <p>Peter discriminated against Gentile Christians</p>
+            <p>Paul confronted him publicly because the sin was public</p>
+            <p><span class="highlight">Accountability works both ways</span></p>
+        </div>
+
+        <!-- Slide 49: Discussion Questions Part 2 -->
+        <div class="slide discussion-slide">
+            <h2>Discussion Time - Part 2</h2>
+            <h3>Personal Reflection:</h3>
+            <p>What's the difference between enabling someone in sin and truly loving them?</p>
+            <h3>Group Discussion:</h3>
+            <p>Why do you think it's sometimes easier to ignore sin than to address it lovingly?</p>
+            <p>💭 Take 5 minutes to discuss</p>
+        </div>
+
+        <!-- Slide 50: Part 3 Transition -->
+        <div class="slide">
+            <div class="time-marker">Part 3: 12 min</div>
+            <h1>Part 3: Self-Righteous Judge vs. Loving Shepherd</h1>
+            <h2>The Heart Makes All the Difference ❤️</h2>
+        </div>
+
+        <!-- Slide 51: Not All Confrontation Is Biblical -->
+        <div class="slide">
+            <h3>Biblical Accountability ≠ All Confrontation</h3>
+            <p>There's a world of difference between:</p>
+            <p>🚫 Self-righteous judge</p>
+            <p>✅ Loving shepherd</p>
+            <p><span class="highlight">Usually not WHAT is said, but WHY and HOW</span></p>
+        </div>
+
+        <!-- Slide 52: Self-Righteous Judge -->
+        <div class="slide">
+            <h3>The Self-Righteous Judge 😤</h3>
+            <p>• <strong>Motive:</strong> Feel superior, vent frustration, control</p>
+            <p>• <strong>Attitude:</strong> Harsh, unforgiving, proud</p>
+            <p>• <strong>Method:</strong> Public shaming, gossip</p>
+            <p>• <strong>Heart:</strong> "I'm better than you"</p>
+        </div>
+
+        <!-- Slide 53: Loving Shepherd -->
+        <div class="slide">
+            <h3>The Loving Shepherd 🐑</h3>
+            <p>• <strong>Motive:</strong> Restore and protect, honor God</p>
+            <p>• <strong>Attitude:</strong> Gentle, humble, sorrowful over sin</p>
+            <p>• <strong>Method:</strong> Private first, biblical process</p>
+            <p>• <strong>Heart:</strong> "I love you too much to watch you destroy yourself"</p>
+        </div>
+
+        <!-- Slide 54: Galatians 6:1 -->
+        <div class="slide">
+            <div class="verse">
+                "Brothers and sisters, if someone is caught in a sin, you who live by the Spirit should restore that person gently. But watch yourselves, or you also may be tempted."
+                <br><br>- Galatians 6:1 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 55: Restore -->
+        <div class="slide">
+            <h3>That Beautiful Word: "Restore" 🔧</h3>
+            <p>Greek word: <em>katartizo</em></p>
+            <p>Means to mend or repair</p>
+            <p>Like a fisherman mending his nets</p>
+            <p><span class="highlight">Goal is always to fix what's broken, not throw it away</span></p>
+        </div>
+
+        <!-- Slide 56: Jesus' Process -->
+        <div class="slide">
+            <h2>The Process Jesus Gave Us</h2>
+            <p>Matthew 18:15-17</p>
+            <p>A clear process that protects both the person and community</p>
+        </div>
+
+        <!-- Slide 57: Step 1 -->
+        <div class="slide">
+            <div class="verse">
+                "If your brother or sister sins, go and point out their fault, just between the two of you. If they listen to you, you have won them over."
+                <br><br>- Matthew 18:15 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 58: Step 2 -->
+        <div class="slide">
+            <div class="verse">
+                "But if they will not listen, take one or two others along, so that 'every matter may be established by the testimony of two or three witnesses.'"
+                <br><br>- Matthew 18:16 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 59: Step 3 -->
+        <div class="slide">
+            <div class="verse">
+                "If they still refuse to listen, tell it to the church; and if they refuse to listen even to the church, treat them as you would a pagan or a tax collector."
+                <br><br>- Matthew 18:17 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 60: Process Protection -->
+        <div class="slide">
+            <h3>Beautiful Protection 🛡️</h3>
+            <p>Starts private, only becomes public if necessary</p>
+            <p>The goal at every step: restoration</p>
+            <p><span class="highlight">Jesus protects both the person and the community</span></p>
+        </div>
+
+        <!-- Slide 61: Voddie Quote -->
+        <div class="slide">
+            <div class="quote">
+                "It is one thing for me to claim that God has changed me; it is quite another for those around me to acknowledge that I have truly changed. We are self-deceived. We are in desperate need of brothers and sisters who will tell us the truth."
+                <br><br>- Voddie Baucham
+            </div>
+        </div>
+
+        <!-- Slide 62: We Need Each Other -->
+        <div class="slide">
+            <h3>Why We Need Each Other 🤝</h3>
+            <p>We all have blind spots</p>
+            <p>We all justify our behavior</p>
+            <p>We all minimize our sin</p>
+            <p><span class="highlight">We need people who love us enough to tell us the truth</span></p>
+        </div>
+
+        <!-- Slide 63: Discussion Questions Part 3 -->
+        <div class="slide discussion-slide">
+            <h2>Discussion Time - Part 3</h2>
+            <h3>Personal Reflection:</h3>
+            <p>Can you identify any "blind spots" in your own life where you might need input from others?</p>
+            <h3>Group Discussion:</h3>
+            <p>What makes it hard to receive correction from others? What makes it easier?</p>
+            <p>💭 Take 5 minutes to discuss</p>
+        </div>
+
+        <!-- Slide 64: Part 4 Transition -->
+        <div class="slide">
+            <div class="time-marker">Part 4: 20 min</div>
+            <h1>Part 4: True vs. False Conversion</h1>
+            <h2>The Heart of the Matter 💔</h2>
+        </div>
+
+        <!-- Slide 65: The Sobering Reality -->
+        <div class="slide warning-slide">
+            <h3>What If They're Not Really Saved?</h3>
+            <p>Everything so far assumes we're dealing with true believers</p>
+            <p>But what if we're dealing with people who think they're Christians...</p>
+            <p><span class="highlight">But have never actually been born again?</span></p>
+        </div>
+
+        <!-- Slide 66: Jesus' Warning -->
+        <div class="slide warning-slide">
+            <div class="verse">
+                "Not everyone who says to me, 'Lord, Lord,' will enter the kingdom of heaven, but only the one who does the will of my Father who is in heaven."
+                <br><br>- Matthew 7:21 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 67: Many Will Be Shocked -->
+        <div class="slide warning-slide">
+            <div class="verse">
+                "Many will say to me on that day, 'Lord, Lord, did we not prophesy in your name and in your name drive out demons and in your name perform many miracles?' Then I will tell them plainly, 'I never knew you. Away from me, you evildoers!'"
+                <br><br>- Matthew 7:22-23 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 68: That Word "Many" -->
+        <div class="slide warning-slide">
+            <h3>Did You Catch That Word "MANY"? 😱</h3>
+            <p>Jesus isn't talking about a few confused people</p>
+            <p><span class="highlight">MANY people will be shocked to discover they were never truly converted</span></p>
+        </div>
+
+        <!-- Slide 69: Parable of Seeds -->
+        <div class="slide">
+            <h2>The Parable of the Seeds</h2>
+            <p>Luke 8:11-15</p>
+            <p>Not all "belief" is saving faith</p>
+        </div>
+
+        <!-- Slide 70: Rocky Ground -->
+        <div class="slide">
+            <div class="verse">
+                "Those on the rocky ground are the ones who receive the word with joy when they hear it, but they have no root. They believe for a while, but in the time of testing they fall away."
+                <br><br>- Luke 8:13 (NIV)
+            </div>
+        </div>
+
+        <!-- Slide 71: Believed for a While -->
+        <div class="slide">
+            <h3>Key Insight 🔑</h3>
+            <p>"They <span class="highlight">believe for a while</span>, but in the time of testing they fall away"</p>
+            <p>This person had joy, even belief</p>
+            <p>But it wasn't real saving faith because it didn't last</p>
+        </div>
+
+        <!-- Slide 72: R.C. Sproul Warning -->
+        <div class="slide">
+            <div class="quote">
+                "Jesus said that the number of such self-proclaiming believers, who are not really regenerate, is declared to be 'many.' This should elicit caution in our assumptions about our 'evangelism statistics.'"
+                <br><br>- R.C. Sproul
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="changeSlide(-1)" id="prevBtn">← Prev</button>
+            <button class="nav-btn" onclick="changeSlide(1)" id="nextBtn">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        const timeMarkers = [
+            'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min', 
+            'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min',
+            'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min', 'Opening: 8 min',
+            'Part 1: 15 min', 'Part 1: 15 min', 'Part 1: 15 min', 'Part 1: 15 min', 'Part 1: 15 min',
+            'Part 1: 15 min', 'Part 1: 15 min', 'Part 1: 15 min', 'Part 1: 15 min', 'Part 1: 15 min',
+            'Part 1: 15 min', 'Part 1: 15 min', 'Discussion: 5 min', 'Discussion: 5 min',
+            'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min',
+            'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min',
+            'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min',
+            'Part 2: 18 min', 'Part 2: 18 min', 'Part 2: 18 min', 'Discussion: 5 min',
+            'Part 3: 12 min', 'Part 3: 12 min', 'Part 3: 12 min', 'Part 3: 12 min', 'Part 3: 12 min',
+            'Part 3: 12 min', 'Part 3: 12 min', 'Part 3: 12 min', 'Part 3: 12 min', 'Part 3: 12 min',
+            'Part 3: 12 min', 'Part 3: 12 min', 'Discussion: 5 min',
+            'Part 4: 20 min', 'Part 4: 20 min', 'Part 4: 20 min', 'Part 4: 20 min', 'Part 4: 20 min',
+            'Part 4: 20 min', 'Part 4: 20 min', 'Part 4: 20 min', 'Part 4: 20 min'
+        ];
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            document.getElementById('timeMarker').textContent = timeMarkers[currentSlide] || 'Part 4: 20 min';
+            
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(n) {
+            if (currentSlide + n >= 0 && currentSlide + n < totalSlides) {
+                showSlide(currentSlide + n);
+            }
+        }
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe left, go to next slide
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe right, go to previous slide
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

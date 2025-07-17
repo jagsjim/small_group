@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 2: The Solution and the Fulfillment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a4b5c, #2e7d8a);
+            color: #f8f9fa;
+            overflow: hidden;
+            user-select: none;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #2e7d8a, #4fb3c5);
+            border: 3px solid #17a2b8;
+            position: relative;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        .slide.title-slide {
+            background: linear-gradient(135deg, #155724, #28a745);
+            border: 3px solid #ffc107;
+        }
+        
+        .slide.discussion-slide {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            border: 3px solid #fd7e14;
+        }
+        
+        .slide.time-marker {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: 3px solid #ffc107;
+        }
+        
+        .slide.jesus-slide {
+            background: linear-gradient(135deg, #dc3545, #bd2130);
+            border: 3px solid #ffc107;
+        }
+        
+        .slide.incarnation-slide {
+            background: linear-gradient(135deg, #6f42c1, #5a32a3);
+            border: 3px solid #ffc107;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #fff3cd;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff9db;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+        
+        h3 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fffacd;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+        
+        p, li {
+            font-size: 32px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .scripture {
+            font-style: italic;
+            color: #fff3cd;
+            background: rgba(255, 243, 205, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #d1ecf1;
+            background: rgba(209, 236, 241, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #17a2b8;
+            margin: 20px 0;
+        }
+        
+        .covenant-box {
+            background: rgba(23, 162, 184, 0.2);
+            border: 2px solid #17a2b8;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .discussion-box {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            animation: gentle-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes gentle-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 193, 7, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(255, 193, 7, 0.6); }
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: #ffc107;
+            background: rgba(0,0,0,0.3);
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        
+        .time-indicator {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            color: #fff3cd;
+            background: rgba(255, 243, 205, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 193, 7, 0.9);
+            color: #212529;
+            border: none;
+            font-size: 40px;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .nav-button:hover {
+            background: #ffc107;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            background: #ffc107;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+        }
+        
+        .emoji {
+            font-size: 40px;
+            margin: 0 10px;
+        }
+        
+        ul {
+            text-align: left;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        
+        .highlight {
+            background: rgba(255, 243, 205, 0.4);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .parable-box {
+            background: rgba(40, 167, 69, 0.2);
+            border: 2px solid #28a745;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .cross-box {
+            background: rgba(220, 53, 69, 0.2);
+            border: 2px solid #dc3545;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .resurrection-box {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <div class="slide-number">1/78</div>
+            <h1>✨ Session 2: The Solution and the Fulfillment</h1>
+            <h2>How God Kept Every Promise He Ever Made</h2>
+            <p style="font-size: 28px; margin-top: 30px;">From Promise to Fulfillment: God's Unbreakable Love Story</p>
+        </div>
+
+        <!-- Slide 2: Welcome Back -->
+        <div class="slide">
+            <div class="slide-number">2/78</div>
+            <h2>Welcome Back, Friends! 👋</h2>
+            <p>If you were here for Session 1, you know we ended with the ultimate cliffhanger...</p>
+            <div class="highlight">Humanity broke every covenant. Will God keep them Himself?</div>
+        </div>
+
+        <!-- Slide 3: The Question -->
+        <div class="slide">
+            <div class="slide-number">3/78</div>
+            <h2>The Burning Question 🔥</h2>
+            <p>If humanity can't keep God's covenants...</p>
+            <div class="highlight" style="font-size: 36px; margin: 30px 0;">Will God keep them HIMSELF?</div>
+            <p>Today we discover the most beautiful answer in history!</p>
+        </div>
+
+        <!-- Slide 4: What God Did -->
+        <div class="slide">
+            <div class="slide-number">4/78</div>
+            <h2>What God Did 🎯</h2>
+            <p>God didn't lower His standards</p>
+            <p>God didn't pretend sin didn't matter</p>
+            <div class="highlight">Instead, He did something so unexpected, so costly, so beautiful...</div>
+        </div>
+
+        <!-- Slide 5: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">5/78</div>
+            <div class="time-indicator">⏰ 3 min</div>
+            <h1>📋 Quick Recap</h1>
+            <h2>Where We Left Off</h2>
+        </div>
+
+        <!-- Slide 6: Covenant Scorecard -->
+        <div class="slide">
+            <div class="slide-number">6/78</div>
+            <h2>The Covenant Scorecard 📊</h2>
+            <ul>
+                <li><strong>Creation Covenant:</strong> Broken by disobedience</li>
+                <li><strong>Abrahamic Covenant:</strong> God made with Himself (unconditional)</li>
+                <li><strong>Mosaic Covenant:</strong> Broken repeatedly</li>
+                <li><strong>Davidic Covenant:</strong> No king, temple destroyed</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7: The Pattern -->
+        <div class="slide">
+            <div class="slide-number">7/78</div>
+            <h2>The Pattern Discovered</h2>
+            <div class="covenant-box">
+                <p>When covenants depend on human faithfulness → BROKEN</p>
+                <p>When covenants depend on God's faithfulness → ENDURE FOREVER</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: 400 Years -->
+        <div class="slide">
+            <div class="slide-number">8/78</div>
+            <h2>400 Years of Silence... 🤫</h2>
+            <p>God was silent for four centuries</p>
+            <p>But He wasn't sleeping</p>
+            <div class="highlight">He was preparing for the most important moment in history</div>
+        </div>
+
+        <!-- Slide 9: Time Marker -->
+        <div class="slide time-marker incarnation-slide">
+            <div class="slide-number">9/78</div>
+            <div class="time-indicator">⏰ 8 min</div>
+            <h1>👶 The Incredible Incarnation</h1>
+            <h2>God Becomes Man</h2>
+        </div>
+
+        <!-- Slide 10: The Impossible -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">10/78</div>
+            <h2>The Impossible Happened</h2>
+            <p>In little Bethlehem, the eternal God became a baby</p>
+            <div class="scripture">
+                "The Word became flesh and made his dwelling among us"
+                <br><em>- John 1:14</em>
+            </div>
+        </div>
+
+        <!-- Slide 11: Why? -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">11/78</div>
+            <h2>But WHY? 🤔</h2>
+            <p>Why would the God who spoke galaxies into existence become helpless and vulnerable?</p>
+            <div class="highlight">The incarnation wasn't just nice - it was the ONLY way</div>
+        </div>
+
+        <!-- Slide 12: Problem 1 -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">12/78</div>
+            <h2>Problem #1: The Justice Problem ⚖️</h2>
+            <p>God is perfectly just</p>
+            <p>Sin cannot go unpunished</p>
+            <p>Every broken covenant created a debt</p>
+            <div class="highlight">But who could pay a debt that big?</div>
+        </div>
+
+        <!-- Slide 13: Solution 1 -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">13/78</div>
+            <h2>Solution: God Becomes Human</h2>
+            <p>God had to become human so He could die in our place</p>
+            <div class="quote">
+                "The Son of God became a man to enable men to become sons of God"
+                <br><em>- C.S. Lewis</em>
+            </div>
+        </div>
+
+        <!-- Slide 14: Problem 2 -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">14/78</div>
+            <h2>Problem #2: The Representation Problem 👥</h2>
+            <p>The covenants were made with humanity</p>
+            <p>If God was going to keep them on our behalf...</p>
+            <div class="highlight">He had to become one of us</div>
+        </div>
+
+        <!-- Slide 15: Solution 2 -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">15/78</div>
+            <h2>Solution: The Second Adam</h2>
+            <p>Jesus became the "Second Adam"</p>
+            <p>The human being who would finally keep God's covenants perfectly</p>
+            <div class="highlight">Where Adam failed, Jesus would succeed</div>
+        </div>
+
+        <!-- Slide 16: Problem 3 -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">16/78</div>
+            <h2>Problem #3: The Righteousness Problem ✨</h2>
+            <p>God's covenants required perfect obedience</p>
+            <p>No human after Adam achieved this</p>
+            <div class="highlight">We needed someone to live the perfect life we couldn't live</div>
+        </div>
+
+        <!-- Slide 17: Solution 3 -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">17/78</div>
+            <h2>Solution: Perfect Obedience</h2>
+            <p>Jesus lived the sinless life we should have lived</p>
+            <div class="highlight">His perfect obedience becomes ours when we trust in Him</div>
+        </div>
+
+        <!-- Slide 18: Virgin Birth -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">18/78</div>
+            <h2>The Miracle of Virgin Birth 👶</h2>
+            <div class="scripture">
+                "The virgin will conceive and give birth to a son, and will call him Immanuel"
+                <br><em>- Isaiah 7:14 (700 years earlier!)</em>
+            </div>
+        </div>
+
+        <!-- Slide 19: Fully Human Fully God -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">19/78</div>
+            <h2>Fully Human, Fully God</h2>
+            <p>Through Mary: Fully human (to represent us)</p>
+            <p>Through Holy Spirit: Without sin (to save us)</p>
+            <div class="highlight">Immanuel = "God with us"</div>
+        </div>
+
+        <!-- Slide 20: Ultimate Tabernacle -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">20/78</div>
+            <h2>The Ultimate Tabernacle ⛺</h2>
+            <p>Remember the tabernacle? God dwelling among His people?</p>
+            <div class="highlight">Jesus is the ultimate fulfillment!</div>
+            <p>Not just God visiting - God becoming one of us forever</p>
+        </div>
+
+        <!-- Slide 21: Covenant Keeper -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">21/78</div>
+            <h2>Jesus: The Covenant Keeper</h2>
+            <p>From birth, Jesus began perfectly fulfilling every broken covenant:</p>
+            <ul>
+                <li>Second Adam ✓</li>
+                <li>Abraham's Promised Seed ✓</li>
+                <li>Perfect Israelite ✓</li>
+                <li>David's Greater Son ✓</li>
+            </ul>
+        </div>
+
+        <!-- Slide 22: Sproul Quote -->
+        <div class="slide incarnation-slide">
+            <div class="slide-number">22/78</div>
+            <div class="quote">
+                "Jesus didn't come to make bad people good. He came to make dead people alive"
+                <br><em>- R.C. Sproul</em>
+            </div>
+        </div>
+
+        <!-- Slide 23: Discussion -->
+        <div class="slide discussion-slide">
+            <div class="slide-number">23/78</div>
+            <h2>💭 Discussion Moment</h2>
+            <div class="discussion-box">
+                <p>What amazes you most about God becoming human?</p>
+                <p><strong>That He was willing to do it, or that He was able to do it while staying God?</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 24: Time Marker -->
+        <div class="slide time-marker jesus-slide">
+            <div class="slide-number">24/78</div>
+            <div class="time-indicator">⏰ 23 min</div>
+            <h1>👑 Jesus' Life and Teachings</h1>
+            <h2>The Kingdom Has Come</h2>
+        </div>
+
+        <!-- Slide 25: Jesus' Message -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">25/78</div>
+            <h2>The Heart of Jesus' Message</h2>
+            <div class="scripture">
+                "The kingdom of heaven has come near"
+                <br><em>- Matthew 4:17</em>
+            </div>
+            <p>For three years, everywhere Jesus went, He proclaimed this message</p>
+        </div>
+
+        <!-- Slide 26: Kingdom of Heaven -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">26/78</div>
+            <h2>What Is the Kingdom of Heaven? 👑</h2>
+            <p>Jesus was announcing that God's rule and reign had arrived on earth through Him</p>
+            <div class="highlight">All those Old Testament promises about God being King? Coming true in Jesus!</div>
+        </div>
+
+        <!-- Slide 27: Jesus and Law -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">27/78</div>
+            <h2>Jesus and the Law 📜</h2>
+            <div class="scripture">
+                "Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfill them"
+                <br><em>- Matthew 5:17-18</em>
+            </div>
+        </div>
+
+        <!-- Slide 28: God Didn't Change -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">28/78</div>
+            <h2>God Didn't Change! ⚖️</h2>
+            <p>Some think God was harsh in OT, "laid back" in NT</p>
+            <div class="highlight">WRONG! God's character never changed</div>
+            <p>His holiness, justice, hatred of sin = exactly the same</p>
+        </div>
+
+        <!-- Slide 29: What Changed -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">29/78</div>
+            <h2>What Changed</h2>
+            <p>God's standards didn't get lower</p>
+            <div class="highlight">Jesus met God's perfect standards FOR us</div>
+            <p>The cross proves God takes sin MORE seriously than we thought</p>
+        </div>
+
+        <!-- Slide 30: Parables -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">30/78</div>
+            <h2>Jesus Loved Parables 📖</h2>
+            <p>Simple stories revealing deep spiritual truths</p>
+            <p>Jesus told over 40 parables</p>
+            <div class="highlight">Each one showed what God's kingdom is like</div>
+        </div>
+
+        <!-- Slide 31: Why Parables -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">31/78</div>
+            <h2>Why Parables? 🤔</h2>
+            <p>Revealed truth to those genuinely seeking God</p>
+            <p>Hid truth from those only wanting to criticize</p>
+            <div class="highlight">Truth for humble hearts</div>
+        </div>
+
+        <!-- Slide 32: Lost Sheep -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">32/78</div>
+            <h2>The Lost Sheep 🐑</h2>
+            <div class="parable-box">
+                <p>Shepherd leaves 99 sheep to find 1 lost sheep</p>
+                <p>When found, he celebrates!</p>
+            </div>
+            <p><strong>What this teaches:</strong> You're not one of billions to God - you're the ONE He'd leave everything to find</p>
+        </div>
+
+        <!-- Slide 33: Prodigal Son -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">33/78</div>
+            <h2>The Prodigal Son 🏃‍♂️</h2>
+            <div class="parable-box">
+                <p>Son wastes inheritance, returns expecting to be servant</p>
+                <p>Father runs to him, embraces him, throws party!</p>
+            </div>
+            <p><strong>What this teaches:</strong> God's love isn't based on performance - He's watching for our return</p>
+        </div>
+
+        <!-- Slide 34: Good Samaritan -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">34/78</div>
+            <h2>The Good Samaritan 🏥</h2>
+            <div class="parable-box">
+                <p>Despised Samaritan helps beaten Jewish man</p>
+                <p>Religious leaders walk by</p>
+            </div>
+            <p><strong>What this teaches:</strong> Love is action that crosses boundaries to help those in need</p>
+        </div>
+
+        <!-- Slide 35: The Sower -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">35/78</div>
+            <h2>The Sower 🌱</h2>
+            <div class="parable-box">
+                <p>Farmer scatters seed on different soils</p>
+                <p>Growth depends on soil condition</p>
+            </div>
+            <p><strong>What this teaches:</strong> God's Word has power, but our hearts need to be ready to receive it</p>
+        </div>
+
+        <!-- Slide 36: The Talents -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">36/78</div>
+            <h2>The Talents 💰</h2>
+            <div class="parable-box">
+                <p>Master gives servants money to invest</p>
+                <p>Wise investors rewarded, fearful servant condemned</p>
+            </div>
+            <p><strong>What this teaches:</strong> God expects us to use our gifts for His glory, not hide them</p>
+        </div>
+
+        <!-- Slide 37: Greatest Commandments -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">37/78</div>
+            <h2>The Greatest Commandments ❤️</h2>
+            <div class="scripture">
+                "Love the Lord your God with all your heart... Love your neighbor as yourself"
+                <br><em>- Matthew 22:37-39</em>
+            </div>
+            <p>All of life = love for God + love for others</p>
+        </div>
+
+        <!-- Slide 38: Golden Rule -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">38/78</div>
+            <h2>The Golden Rule ✨</h2>
+            <div class="scripture">
+                "In everything, do to others what you would have them do to you"
+                <br><em>- Matthew 7:12</em>
+            </div>
+            <p>One sentence with enough wisdom to transform every relationship</p>
+        </div>
+
+        <!-- Slide 39: Beatitudes -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">39/78</div>
+            <h2>The Beatitudes 🙏</h2>
+            <ul>
+                <li>"Blessed are the poor in spirit"</li>
+                <li>"Blessed are those who mourn"</li>
+                <li>"Blessed are the meek"</li>
+            </ul>
+            <div class="highlight">Upside-Down Kingdom: God's values opposite of world's</div>
+        </div>
+
+        <!-- Slide 40: Lord's Prayer -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">40/78</div>
+            <h2>The Lord's Prayer 🙏</h2>
+            <div class="scripture">
+                "Our Father in heaven, hallowed be your name, your kingdom come..."
+                <br><em>- Matthew 6:9-13</em>
+            </div>
+            <p>Complete framework for talking with God</p>
+        </div>
+
+        <!-- Slide 41: Jesus' Miracles -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">41/78</div>
+            <h2>Jesus' Miracles: Signs of the Kingdom</h2>
+            <ul>
+                <li><strong>Healing sick:</strong> No sickness in God's kingdom</li>
+                <li><strong>Feeding hungry:</strong> God provides our needs</li>
+                <li><strong>Calming storms:</strong> Power over chaos</li>
+                <li><strong>Raising dead:</strong> Power over our greatest enemy</li>
+            </ul>
+        </div>
+
+        <!-- Slide 42: Owen Quote -->
+        <div class="slide jesus-slide">
+            <div class="slide-number">42/78</div>
+            <div class="quote">
+                "Christ did not die to make us merely religious or moral; He died to make us like God"
+                <br><em>- John Owen</em>
+            </div>
+        </div>
+
+        <!-- Slide 43: Discussion -->
+        <div class="slide discussion-slide">
+            <div class="slide-number">43/78</div>
+            <h2>💭 Discussion Moment</h2>
+            <div class="discussion-box">
+                <p>Which of Jesus' teachings or parables speaks to you most right now?</p>
+                <p><strong>What do you think Jesus was trying to show us about God through that story?</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 44: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">44/78</div>
+            <div class="time-indicator">⏰ 43 min</div>
+            <h1>✝️ The Cross</h1>
+            <h2>Love's Greatest Display</h2>
+        </div>
+
+        <!-- Slide 45: The Week -->
+        <div class="slide">
+            <div class="slide-number">45/78</div>
+            <h2>The Week That Changed History</h2>
+            <p>Jesus set His face toward Jerusalem</p>
+            <p>He knew what was waiting</p>
+            <div class="highlight">But He went anyway. Why? This was why He came.</div>
+        </div>
+
+        <!-- Slide 46: Palm Sunday -->
+        <div class="slide">
+            <div class="slide-number">46/78</div>
+            <h2>Palm Sunday 🌴</h2>
+            <p>Crowds welcomed Him as king: "Hosanna!"</p>
+            <p>They wanted political savior to overthrow Rome</p>
+            <div class="highlight">Jesus came as different kind of king - conquering sin and death</div>
+        </div>
+
+        <!-- Slide 47: Last Supper -->
+        <div class="slide">
+            <div class="slide-number">47/78</div>
+            <h2>The Last Supper 🍞</h2>
+            <div class="scripture">
+                "This is my body given for you... This cup is the new covenant in my blood"
+                <br><em>- Luke 22:19-20</em>
+            </div>
+            <p>The New Covenant was about to be sealed!</p>
+        </div>
+
+        <!-- Slide 48: Garden -->
+        <div class="slide">
+            <div class="slide-number">48/78</div>
+            <h2>In the Garden 🌙</h2>
+            <div class="scripture">
+                "Father, if you are willing, take this cup from me; yet not my will, but yours be done"
+                <br><em>- Luke 22:42</em>
+            </div>
+            <p>Even Jesus dreaded what was coming</p>
+        </div>
+
+        <!-- Slide 49: Good Friday -->
+        <div class="slide">
+            <div class="slide-number">49/78</div>
+            <h2>Good Friday ✝️</h2>
+            <div class="cross-box">
+                <p>9 AM: Nailed to cross</p>
+                <p>Noon-3 PM: Darkness covered land</p>
+                <p>3 PM: "My God, My God, why have you forsaken me?"</p>
+            </div>
+        </div>
+
+        <!-- Slide 50: What Was Happening -->
+        <div class="slide">
+            <div class="slide-number">50/78</div>
+            <h2>What Was Happening? 🔥</h2>
+            <p>Jesus bearing full weight of human sin</p>
+            <p>Every broken covenant placed on Him</p>
+            <div class="highlight">Father turned away from His beloved Son</div>
+        </div>
+
+        <!-- Slide 51: It Is Finished -->
+        <div class="slide">
+            <div class="slide-number">51/78</div>
+            <h2>"It Is Finished!" 🎯</h2>
+            <div class="scripture">
+                "Tetelestai" - "PAID IN FULL"
+                <br><em>- John 19:30</em>
+            </div>
+            <p>Not defeat - VICTORY!</p>
+            <p>Every debt settled, every covenant fulfilled</p>
+        </div>
+
+        <!-- Slide 52: What Cross Accomplished -->
+        <div class="slide">
+            <div class="slide-number">52/78</div>
+            <h2>What the Cross Accomplished</h2>
+            <div class="cross-box">
+                <p><strong>Substitution:</strong> Jesus took our place</p>
+                <p><strong>Redemption:</strong> Bought us back from slavery</p>
+                <p><strong>Reconciliation:</strong> Separation ended</p>
+                <p><strong>Covenant Fulfillment:</strong> Every promise kept</p>
+            </div>
+        </div>
+
+        <!-- Slide 53: Spurgeon Quote -->
+        <div class="slide">
+            <div class="slide-number">53/78</div>
+            <div class="quote">
+                "The death of Christ is the death of death, the grave of sin, the destruction of destruction"
+                <br><em>- Charles Spurgeon</em>
+            </div>
+        </div>
+
+        <!-- Slide 54: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">54/78</div>
+            <div class="time-indicator">⏰ 55 min</div>
+            <h1>🌅 Easter Sunday</h1>
+            <h2>Victory Over Death</h2>
+        </div>
+
+        <!-- Slide 55: Three Days Later -->
+        <div class="slide">
+            <div class="slide-number">55/78</div>
+            <h2>Three Days Later... 🌅</h2>
+            <p>Something happened no one expected</p>
+            <p>(Even though Jesus predicted it!)</p>
+            <div class="highlight">Mary and the women went to anoint His body...</div>
+        </div>
+
+        <!-- Slide 56: Empty Tomb -->
+        <div class="slide">
+            <div class="slide-number">56/78</div>
+            <h2>The Empty Tomb! 😱</h2>
+            <div class="resurrection-box">
+                <div class="scripture">
+                    "He is not here; he has risen, just as he said"
+                    <br><em>- Matthew 28:6</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 57: Why Resurrection Matters -->
+        <div class="slide">
+            <div class="slide-number">57/78</div>
+            <h2>Why the Resurrection Matters</h2>
+            <div class="resurrection-box">
+                <p>✓ Jesus really was who He claimed</p>
+                <p>✓ His sacrifice was accepted</p>
+                <p>✓ Death conquered forever</p>
+                <p>✓ New life available to all</p>
+            </div>
+        </div>
+
+        <!-- Slide 58: Jesus Appears -->
+        <div class="slide">
+            <div class="slide-number">58/78</div>
+            <h2>Jesus Appears 👀</h2>
+            <p>For 40 days, Jesus appeared to disciples</p>
+            <p>He ate with them, taught them</p>
+            <div class="highlight">Over 500 people at one time! (1 Cor 15:6)</div>
+        </div>
+
+        <!-- Slide 59: Great Commission -->
+        <div class="slide">
+            <div class="slide-number">59/78</div>
+            <h2>The Great Commission 🌍</h2>
+            <div class="scripture">
+                "Go and make disciples of all nations... And surely I am with you always"
+                <br><em>- Matthew 28:19-20</em>
+            </div>
+            <p>Abraham's promise: ALL nations blessed!</p>
+        </div>
+
+        <!-- Slide 60: Discussion -->
+        <div class="slide discussion-slide">
+            <div class="slide-number">60/78</div>
+            <h2>💭 Discussion Moment</h2>
+            <div class="discussion-box">
+                <p>The resurrection changed the disciples from fearful to fearless.</p>
+                <p><strong>How should believing in Jesus' resurrection change how we live day to day?</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 61: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">61/78</div>
+            <div class="time-indicator">⏰ 63 min</div>
+            <h1>🔥 Pentecost and the Church</h1>
+            <h2>The New Covenant in Action</h2>
+        </div>
+
+        <!-- Slide 62: Holy Spirit Comes -->
+        <div class="slide">
+            <div class="slide-number">62/78</div>
+            <h2>The Holy Spirit Comes! 🔥</h2>
+            <p>50 days after resurrection</p>
+            <p>Ordinary people boldly proclaimed gospel in new languages</p>
+            <div class="highlight">The church was born!</div>
+        </div>
+
+        <!-- Slide 63: 3000 Converts -->
+        <div class="slide">
+            <div class="slide-number">63/78</div>
+            <h2>God Shows His Power! ⚡</h2>
+            <div class="scripture">
+                "About three thousand were added to their number"
+                <br><em>- Acts 2:41</em>
+            </div>
+            <p>Three thousand people in ONE DAY!</p>
+            <p>This wasn't just human effort - this was God!</p>
+        </div>
+
+        <!-- Slide 64: Something Brand New -->
+        <div class="slide">
+            <div class="slide-number">64/78</div>
+            <h2>Something Brand New! ✨</h2>
+            <p>OT: Holy Spirit "visited" for specific tasks</p>
+            <p>NT: Holy Spirit comes to STAY FOREVER</p>
+            <div class="highlight">Not a visit - a gift that never leaves!</div>
+        </div>
+
+        <!-- Slide 65: New Covenant Realized -->
+        <div class="slide">
+            <div class="slide-number">65/78</div>
+            <h2>Jeremiah's Promise Fulfilled!</h2>
+            <div class="scripture">
+                "I will put my law in their minds and write it on their hearts"
+                <br><em>- Jeremiah 31:33</em>
+            </div>
+            <p>This was happening at Pentecost!</p>
+        </div>
+
+        <!-- Slide 66: Written on Hearts -->
+        <div class="slide">
+            <div class="slide-number">66/78</div>
+            <h2>Written on Hearts, Not Stone 💖</h2>
+            <div class="covenant-box">
+                <p><strong>Old Covenant:</strong> Stone tablets (could break)</p>
+                <p><strong>New Covenant:</strong> Human hearts (by Holy Spirit)</p>
+            </div>
+        </div>
+
+        <!-- Slide 67: Based on God's Faithfulness -->
+        <div class="slide">
+            <div class="slide-number">67/78</div>
+            <h2>Based on God's Faithfulness</h2>
+            <div class="covenant-box">
+                <p><strong>Old:</strong> "If you obey, you'll be blessed"</p>
+                <p><strong>New:</strong> "Because Jesus obeyed perfectly, you're blessed forever"</p>
+            </div>
+        </div>
+
+        <!-- Slide 68: Breaking Down Walls -->
+        <div class="slide">
+            <div class="slide-number">68/78</div>
+            <h2>Breaking Down the Walls 🌍</h2>
+            <div class="scripture">
+                "We believe it is through the grace of our Lord Jesus that we are saved, just as they are"
+                <br><em>- Acts 15:11</em>
+            </div>
+            <p>Jew and Gentile - all welcome!</p>
+        </div>
+
+        <!-- Slide 69: Packer Quote -->
+        <div class="slide">
+            <div class="slide-number">69/78</div>
+            <div class="quote">
+                "The church exists primarily for two closely related purposes: to worship God and to work for him"
+                <br><em>- J.I. Packer</em>
+            </div>
+        </div>
+
+        <!-- Slide 70: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">70/78</div>
+            <div class="time-indicator">⏰ 73 min</div>
+            <h1>👁️ Looking Back</h1>
+            <h2>Seeing Jesus Everywhere</h2>
+        </div>
+
+        <!-- Slide 71: Jesus All Along -->
+        <div class="slide">
+            <div class="slide-number">71/78</div>
+            <h2>It Was About Jesus All Along!</h2>
+            <div class="scripture">
+                "Beginning with Moses and all the Prophets, he explained to them what was said in all the Scriptures concerning himself"
+                <br><em>- Luke 24:27</em>
+            </div>
+        </div>
+
+        <!-- Slide 72: Jesus in Key Moments -->
+        <div class="slide">
+            <div class="slide-number">72/78</div>
+            <h2>Jesus in Key Moments</h2>
+            <ul>
+                <li><strong>Garden:</strong> Promise of serpent crusher = Jesus</li>
+                <li><strong>Abraham's Ram:</strong> "God will provide" = Jesus</li>
+                <li><strong>Passover:</strong> Lamb's blood = Jesus</li>
+                <li><strong>Tabernacle:</strong> God dwelling with us = Jesus</li>
+            </ul>
+        </div>
+
+        <!-- Slide 73: Perfect Fulfillment -->
+        <div class="slide">
+            <div class="slide-number">73/78</div>
+            <h2>The Perfect Fulfillment</h2>
+            <p>Jesus is:</p>
+            <ul>
+                <li>The Prophet who perfectly reveals God</li>
+                <li>The Priest who offered Himself once for all</li>
+                <li>The King who reigns forever in righteousness</li>
+            </ul>
+        </div>
+
+        <!-- Slide 74: Baucham Quote -->
+        <div class="slide">
+            <div class="slide-number">74/78</div>
+            <div class="quote">
+                "The Bible is not a collection of stories about people who lived good lives. The Bible is one story about the God who gives life to dead people"
+                <br><em>- Voddie Baucham</em>
+            </div>
+        </div>
+
+        <!-- Slide 75: Discussion -->
+        <div class="slide discussion-slide">
+            <div class="slide-number">75/78</div>
+            <h2>💭 Discussion Moment</h2>
+            <div class="discussion-box">
+                <p>Now that you can see Jesus throughout the Old Testament...</p>
+                <p><strong>Which story or picture of Him amazes you most? Why?</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 76: Your Place in Story -->
+        <div class="slide">
+            <div class="slide-number">76/78</div>
+            <h2>Your Place in the Story 📖</h2>
+            <p>The story isn't over!</p>
+            <p>We live in "already but not yet"</p>
+            <div class="highlight">You get to participate in God's plan to bless all nations!</div>
+        </div>
+
+        <!-- Slide 77: The Ultimate Ending -->
+        <div class="slide">
+            <div class="slide-number">77/78</div>
+            <h2>The Ultimate Ending 👑</h2>
+            <div class="scripture">
+                "Look! God's dwelling place is now among the people... He will wipe every tear from their eyes"
+                <br><em>- Revelation 21:3-4</em>
+            </div>
+            <p>The wedding of the Lamb!</p>
+        </div>
+
+        <!-- Slide 78: Final -->
+        <div class="slide title-slide">
+            <div class="slide-number">78/78</div>
+            <h1>🎉 God Kept Every Promise!</h1>
+            <h2>When we couldn't keep our promises to Him, He kept all His promises to us through Jesus</h2>
+            <div class="highlight" style="margin-top: 30px; font-size: 32px;">God's hesed love never fails!</div>
+        </div>
+
+        <button class="nav-button prev" onclick="changeSlide(-1)">‹</button>
+        <button class="nav-button next" onclick="changeSlide(1)">›</button>
+        <div class="progress-bar" id="progress"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateProgress();
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        // Touch/swipe support
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!startX || !startY) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+            
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX > 50) changeSlide(1);
+                if (diffX < -50) changeSlide(-1);
+            }
+            
+            startX = 0;
+            startY = 0;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

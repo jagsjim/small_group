@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 2: The Solution and the Fulfillment - Interactive Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a4b5c, #2e7d8a);
+            color: #f8f9fa;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: rgba(46, 125, 138, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #fff3cd;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            color: #fff9db;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .instruction {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .activity {
+            background: rgba(23, 162, 184, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 2px solid #17a2b8;
+        }
+        
+        .activity h2 {
+            color: #fff3cd;
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .question {
+            font-size: 22px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            font-size: 20px;
+            border-radius: 8px;
+            border: 2px solid #17a2b8;
+            background: rgba(248, 249, 250, 0.9);
+            color: #1a4b5c;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item {
+            background: rgba(255, 243, 205, 0.1);
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .timeline-item:hover {
+            background: rgba(255, 243, 205, 0.2);
+            transform: translateX(10px);
+        }
+        
+        .timeline-item.placed {
+            background: rgba(40, 167, 69, 0.3);
+            border-color: #28a745;
+        }
+        
+        .timeline-slot {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px dashed #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .timeline-slot.drag-over {
+            background: rgba(255, 193, 7, 0.3);
+            border-color: #fff3cd;
+        }
+        
+        .parable-matcher {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .parable-card, .meaning-card {
+            background: #2e7d8a;
+            border: 2px solid #17a2b8;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .parable-card:hover, .meaning-card:hover {
+            background: #4fb3c5;
+            transform: scale(1.05);
+        }
+        
+        .parable-card.selected, .meaning-card.selected {
+            background: #ffc107;
+            color: #1a4b5c;
+            border-color: #fff3cd;
+        }
+        
+        .parable-card.matched, .meaning-card.matched {
+            background: #28a745;
+            color: white;
+            cursor: default;
+        }
+        
+        .slider-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 243, 205, 0.1);
+            border-radius: 10px;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #ddd;
+            outline: none;
+            margin: 20px 0;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #ffc107;
+            cursor: pointer;
+        }
+        
+        .covenant-connection {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 243, 205, 0.1);
+            border-radius: 8px;
+        }
+        
+        .covenant-old {
+            flex: 1;
+            padding: 10px;
+            background: rgba(220, 53, 69, 0.3);
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .covenant-arrow {
+            font-size: 30px;
+            color: #ffc107;
+            margin: 0 10px;
+        }
+        
+        .covenant-new {
+            flex: 1;
+            padding: 10px;
+            background: rgba(40, 167, 69, 0.3);
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        
+        .word-scramble {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+        
+        .letter-tile {
+            background: #ffc107;
+            color: #1a4b5c;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        .letter-tile:hover {
+            background: #fff3cd;
+            transform: scale(1.1);
+        }
+        
+        .letter-tile.used {
+            background: #28a745;
+            color: white;
+            cursor: default;
+        }
+        
+        .answer-area {
+            background: rgba(255, 243, 205, 0.2);
+            border: 2px dashed #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .flip-card {
+            background: linear-gradient(135deg, #2e7d8a, #4fb3c5);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 10px 0;
+            text-align: center;
+            border: 2px solid #17a2b8;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .flip-card.flipped {
+            background: linear-gradient(135deg, #ffc107, #fff3cd);
+            color: #1a4b5c;
+            transform: rotateY(180deg);
+        }
+        
+        .feedback {
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+        
+        .correct {
+            background: rgba(40, 167, 69, 0.8);
+            color: #d4edda;
+            border: 2px solid #28a745;
+        }
+        
+        .incorrect {
+            background: rgba(220, 53, 69, 0.8);
+            color: #f8d7da;
+            border: 2px solid #dc3545;
+        }
+        
+        .copy-btn {
+            background: #ffc107;
+            color: #1a4b5c;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            font-weight: bold;
+        }
+        
+        .progress-indicator {
+            background: rgba(255, 193, 7, 0.2);
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: #ffc107;
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 28px; }
+            .question { font-size: 20px; }
+            .parable-matcher { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Session 2: The Solution and the Fulfillment</h1>
+        <p class="subtitle">Interactive Learning Worksheet</p>
+        
+        <div class="instruction">
+            <strong>🎉 Learning Celebration:</strong> Explore how Jesus fulfills every promise! 
+            These activities help you discover the amazing connections between problem and solution. 
+            <br><strong>⏱️ Estimated time: 10-12 minutes</strong>
+        </div>
+
+        <div class="progress-indicator">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+
+        <!-- Activity 1: Timeline Drag & Drop -->
+        <div class="activity" id="activity1">
+            <h2>📅 Jesus Timeline Challenge</h2>
+            <div class="question">Drag the events into chronological order to show Jesus' life:</div>
+            
+            <div style="margin: 20px 0;">
+                <div class="timeline-item" draggable="true" data-order="4">Crucifixion and "It is Finished"</div>
+                <div class="timeline-item" draggable="true" data-order="1">Virgin birth in Bethlehem</div>
+                <div class="timeline-item" draggable="true" data-order="6">Pentecost and the church</div>
+                <div class="timeline-item" draggable="true" data-order="2">Teaching parables and miracles</div>
+                <div class="timeline-item" draggable="true" data-order="5">Resurrection and appearances</div>
+                <div class="timeline-item" draggable="true" data-order="3">Last Supper and New Covenant</div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <div class="timeline-slot" data-position="1">1. First Event</div>
+                <div class="timeline-slot" data-position="2">2. Second Event</div>
+                <div class="timeline-slot" data-position="3">3. Third Event</div>
+                <div class="timeline-slot" data-position="4">4. Fourth Event</div>
+                <div class="timeline-slot" data-position="5">5. Fifth Event</div>
+                <div class="timeline-slot" data-position="6">6. Sixth Event</div>
+            </div>
+            
+            <div class="feedback" id="feedback1"></div>
+        </div>
+
+        <!-- Activity 2: Parable Matching Game -->
+        <div class="activity" id="activity2">
+            <h2>📖 Parable Wisdom Matcher</h2>
+            <div class="question">Match each parable with what it teaches us about God's kingdom:</div>
+            
+            <div class="parable-matcher">
+                <div class="parable-card" data-match="individual">Lost Sheep</div>
+                <div class="meaning-card" data-match="individual">God loves each person individually</div>
+                
+                <div class="parable-card" data-match="performance">Prodigal Son</div>
+                <div class="meaning-card" data-match="performance">Love isn't based on performance</div>
+                
+                <div class="parable-card" data-match="action">Good Samaritan</div>
+                <div class="meaning-card" data-match="action">Love is action that crosses boundaries</div>
+                
+                <div class="parable-card" data-match="heart">The Sower</div>
+                <div class="meaning-card" data-match="heart">Heart condition affects God's Word</div>
+            </div>
+            
+            <div class="feedback" id="feedback2"></div>
+        </div>
+
+        <!-- Activity 3: Interactive Comparison Slider -->
+        <div class="activity" id="activity3">
+            <h2>⚖️ Old vs New Covenant Slider</h2>
+            <div class="question">Move the slider to see how Jesus transformed the covenants:</div>
+            
+            <div class="slider-container">
+                <input type="range" min="0" max="100" value="50" class="slider" id="covenantSlider">
+                
+                <div id="covenantDisplay">
+                    <div class="covenant-connection">
+                        <div class="covenant-old">Written on stone tablets</div>
+                        <div class="covenant-arrow">→</div>
+                        <div class="covenant-new">Written on hearts by Holy Spirit</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feedback" id="feedback3"></div>
+        </div>
+
+        <!-- Activity 4: Word Scramble -->
+        <div class="activity" id="activity4">
+            <h2>🔤 Unscramble the Key Truth</h2>
+            <div class="question">Tap the letters in order to reveal what Jesus said on the cross:</div>
+            
+            <div class="word-scramble" id="scrambleArea">
+                <div class="letter-tile" data-letter="I">I</div>
+                <div class="letter-tile" data-letter="T">T</div>
+                <div class="letter-tile" data-letter=" "> </div>
+                <div class="letter-tile" data-letter="I">I</div>
+                <div class="letter-tile" data-letter="S">S</div>
+                <div class="letter-tile" data-letter=" "> </div>
+                <div class="letter-tile" data-letter="F">F</div>
+                <div class="letter-tile" data-letter="I">I</div>
+                <div class="letter-tile" data-letter="N">N</div>
+                <div class="letter-tile" data-letter="I">I</div>
+                <div class="letter-tile" data-letter="S">S</div>
+                <div class="letter-tile" data-letter="H">H</div>
+                <div class="letter-tile" data-letter="E">E</div>
+                <div class="letter-tile" data-letter="D">D</div>
+            </div>
+            
+            <div class="answer-area" id="answerArea">Tap letters above...</div>
+            
+            <div class="feedback" id="feedback4"></div>
+        </div>
+
+        <!-- Activity 5: Flip Cards - Three Problems Three Solutions -->
+        <div class="activity" id="activity5">
+            <h2>🔄 Flip to Discover: Why Jesus Had to Become Human</h2>
+            <div class="question">Tap each card to flip it and discover how Jesus solved each problem:</div>
+            
+            <div class="flip-card" onclick="flipCard(1, this)">
+                <div class="front">Problem #1: The Justice Problem<br>Sin cannot go unpunished</div>
+                <div class="back" style="display: none;">Solution: Jesus became human so He could die in our place as our substitute</div>
+            </div>
+            
+            <div class="flip-card" onclick="flipCard(2, this)">
+                <div class="front">Problem #2: The Representation Problem<br>Covenants were made with humanity</div>
+                <div class="back" style="display: none;">Solution: Jesus became the "Second Adam" to represent us perfectly</div>
+            </div>
+            
+            <div class="flip-card" onclick="flipCard(3, this)">
+                <div class="front">Problem #3: The Righteousness Problem<br>Perfect obedience was required</div>
+                <div class="back" style="display: none;">Solution: Jesus lived the sinless life we couldn't live</div>
+            </div>
+            
+            <div class="feedback" id="feedback5"></div>
+        </div>
+
+        <!-- Activity 6: Multiple Choice with Explanations -->
+        <div class="activity" id="activity6">
+            <h2>🎯 Quick Knowledge Check</h2>
+            <div class="question">
+                Jesus said He came not to abolish the Law but to ________ it. This means:
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <button class="parable-card" onclick="answerMultiple(6, 'A', this)" style="width: 100%; margin: 5px 0;">
+                    A) Change it to make it easier
+                </button>
+                <button class="parable-card" onclick="answerMultiple(6, 'B', this)" style="width: 100%; margin: 5px 0;">
+                    B) Fulfill it perfectly on our behalf
+                </button>
+                <button class="parable-card" onclick="answerMultiple(6, 'C', this)" style="width: 100%; margin: 5px 0;">
+                    C) Replace it with something new
+                </button>
+            </div>
+            
+            <div class="feedback" id="feedback6"></div>
+        </div>
+
+        <!-- Activity 7: Creative Analogy Completion -->
+        <div class="activity" id="activity7">
+            <h2>🎨 Complete the Analogy</h2>
+            <div class="question">
+                Based on today's study, complete this sentence:
+                <br><br>
+                "If Session 1 showed us the <input type="text" id="analogy1" placeholder="what?" style="display: inline; width: auto; min-width: 150px;">, 
+                then Session 2 showed us the <input type="text" id="analogy2" placeholder="what?" style="display: inline; width: auto; min-width: 150px;">."
+            </div>
+            <div class="feedback" id="feedback7"></div>
+        </div>
+
+        <!-- Activity 8: Personal Application -->
+        <div class="activity" id="activity8">
+            <h2>💖 Heart Response</h2>
+            <div class="question">
+                Knowing that Jesus perfectly fulfilled every broken covenant from Session 1, 
+                how does this change how you think about God's love for you?
+            </div>
+            <textarea id="heartResponse" rows="4" placeholder="Share what's on your heart..."></textarea>
+            <div class="feedback" id="feedback8">
+                <p style="color: #d4edda;">✨ Beautiful! Jesus' perfect love casts out all fear and doubt!</p>
+            </div>
+        </div>
+
+        <!-- Activity 9: Future Vision -->
+        <div class="activity" id="activity9">
+            <h2>🌟 Your Role in the Continuing Story</h2>
+            <div class="question">
+                Jesus gave us the Great Commission to "make disciples of all nations." 
+                What's one practical way you could participate in God's ongoing love story this week?
+            </div>
+            <textarea id="futureVision" rows="3" placeholder="One practical step..."></textarea>
+            <div class="feedback" id="feedback9">
+                <p style="color: #d4edda;">🎉 Wonderful! Every act of love advances God's kingdom on earth!</p>
+            </div>
+        </div>
+
+        <!-- Copy Responses Button -->
+        <button class="copy-btn" onclick="copyAllResponses()">📋 Copy My Responses</button>
+
+        <div style="text-align: center; margin-top: 30px; color: #fff3cd;">
+            <p><strong>🎊 Amazing work exploring God's perfect solution!</strong></p>
+            <p>Remember: When we couldn't keep our promises to God,<br>
+            He kept all His promises to us through Jesus!</p>
+            <p style="margin-top: 15px; font-size: 24px;">✨ <em>God's hesed love never fails!</em> ✨</p>
+        </div>
+    </div>
+
+    <script>
+        let completedActivities = 0;
+        const totalActivities = 9;
+        let currentAnswer = "";
+        let flippedCards = 0;
+        let correctPlacements = 0;
+        let matchedPairs = 0;
+        
+        function updateProgress() {
+            const percentage = (completedActivities / totalActivities) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+        
+        function showFeedback(activityNum, isCorrect, message) {
+            const feedback = document.getElementById(`feedback${activityNum}`);
+            feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = message;
+            feedback.style.display = 'block';
+            
+            if (isCorrect && !feedback.dataset.completed) {
+                completedActivities++;
+                feedback.dataset.completed = 'true';
+                updateProgress();
+            }
+        }
+        
+        // Activity 1: Timeline Drag & Drop
+        let draggedElement = null;
+        
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('dragstart', (e) => {
+                draggedElement = e.target;
+                e.target.style.opacity = '0.5';
+            });
+            
+            item.addEventListener('dragend', (e) => {
+                e.target.style.opacity = '';
+            });
+        });
+        
+        document.querySelectorAll('.timeline-slot').forEach(slot => {
+            slot.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                slot.classList.add('drag-over');
+            });
+            
+            slot.addEventListener('dragleave', () => {
+                slot.classList.remove('drag-over');
+            });
+            
+            slot.addEventListener('drop', (e) => {
+                e.preventDefault();
+                slot.classList.remove('drag-over');
+                
+                if (draggedElement) {
+                    const expectedOrder = slot.dataset.position;
+                    const actualOrder = draggedElement.dataset.order;
+                    
+                    if (expectedOrder === actualOrder) {
+                        slot.appendChild(draggedElement);
+                        slot.style.background = 'rgba(40, 167, 69, 0.3)';
+                        draggedElement.classList.add('placed');
+                        correctPlacements++;
+                        
+                        if (correctPlacements === 6) {
+                            showFeedback(1, true, '📅 Perfect timeline! You understand the flow of Jesus\' life and ministry!');
+                        }
+                    }
+                }
+            });
+        });
+        
+        // Activity 2: Parable Matching
+        let selectedParable = null;
+        let selectedMeaning = null;
+        
+        document.querySelectorAll('.parable-card, .meaning-card').forEach(card => {
+            card.addEventListener('click', () => {
+                if (card.classList.contains('matched')) return;
+                
+                if (card.classList.contains('parable-card')) {
+                    document.querySelectorAll('.parable-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    selectedParable = card;
+                } else {
+                    document.querySelectorAll('.meaning-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    selectedMeaning = card;
+                }
+                
+                if (selectedParable && selectedMeaning) {
+                    setTimeout(checkParableMatch, 300);
+                }
+            });
+        });
+        
+        function checkParableMatch() {
+            if (selectedParable.dataset.match === selectedMeaning.dataset.match) {
+                selectedParable.classList.add('matched');
+                selectedMeaning.classList.add('matched');
+                matchedPairs++;
+                
+                if (matchedPairs === 4) {
+                    showFeedback(2, true, '📖 Excellent! You understand the heart of Jesus\' parables!');
+                }
+            } else {
+                selectedParable.classList.remove('selected');
+                selectedMeaning.classList.remove('selected');
+            }
+            
+            selectedParable = null;
+            selectedMeaning = null;
+        }
+        
+        // Activity 3: Covenant Slider
+        document.getElementById('covenantSlider').addEventListener('input', function() {
+            const value = this.value;
+            const display = document.getElementById('covenantDisplay');
+            
+            const covenants = [
+                {
+                    old: "Written on stone tablets",
+                    new: "Written on hearts by Holy Spirit"
+                },
+                {
+                    old: "Depends on human obedience",
+                    new: "Depends on Jesus' perfect obedience"
+                },
+                {
+                    old: "External rules and regulations",
+                    new: "Internal transformation and love"
+                },
+                {
+                    old: "Temporary and breakable",
+                    new: "Eternal and unbreakable"
+                },
+                {
+                    old: "Condemnation for failure",
+                    new: "Forgiveness and acceptance"
+                }
+            ];
+            
+            const index = Math.floor(value / 20);
+            const covenant = covenants[index] || covenants[0];
+            
+            display.innerHTML = `
+                <div class="covenant-connection">
+                    <div class="covenant-old">${covenant.old}</div>
+                    <div class="covenant-arrow">→</div>
+                    <div class="covenant-new">${covenant.new}</div>
+                </div>
+            `;
+            
+            if (!document.getElementById('feedback3').dataset.completed) {
+                showFeedback(3, true, '⚖️ Great exploration! You can see how Jesus transformed everything!');
+            }
+        });
+        
+        // Activity 4: Word Scramble
+        document.querySelectorAll('.letter-tile').forEach(tile => {
+            tile.addEventListener('click', () => {
+                if (tile.classList.contains('used')) return;
+                
+                tile.classList.add('used');
+                currentAnswer += tile.dataset.letter;
+                document.getElementById('answerArea').textContent = currentAnswer;
+                
+                if (currentAnswer === "IT IS FINISHED") {
+                    showFeedback(4, true, '🔤 Perfect! "It is finished" - Jesus completed our salvation!');
+                }
+            });
+        });
+        
+        // Activity 5: Flip Cards
+        function flipCard(cardNum, element) {
+            if (element.classList.contains('flipped')) return;
+            
+            element.classList.add('flipped');
+            const front = element.querySelector('.front');
+            const back = element.querySelector('.back');
+            
+            setTimeout(() => {
+                front.style.display = 'none';
+                back.style.display = 'block';
+            }, 250);
+            
+            flippedCards++;
+            
+            if (flippedCards === 3) {
+                showFeedback(5, true, '🔄 Amazing! You understand why the incarnation was necessary!');
+            }
+        }
+        
+        // Activity 6: Multiple Choice
+        function answerMultiple(activityNum, answer, button) {
+            const buttons = button.parentNode.querySelectorAll('.parable-card');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected', 'matched');
+            });
+            
+            if (answer === 'B') {
+                button.classList.add('matched');
+                showFeedback(activityNum, true, '🎯 Correct! Jesus fulfilled the Law perfectly on our behalf. God\'s character and standards never changed!');
+            } else {
+                button.classList.add('selected');
+                showFeedback(activityNum, false, '❌ Not quite. Jesus came to fulfill the Law perfectly, not change or replace it. His standards remained the same!');
+            }
+        }
+        
+        // Activity 7: Analogy
+        document.getElementById('analogy1').addEventListener('input', checkAnalogy);
+        document.getElementById('analogy2').addEventListener('input', checkAnalogy);
+        
+        function checkAnalogy() {
+            const answer1 = document.getElementById('analogy1').value.toLowerCase().trim();
+            const answer2 = document.getElementById('analogy2').value.toLowerCase().trim();
+            
+            const validAnswers1 = ['problem', 'problems', 'broken covenants', 'failure', 'sin'];
+            const validAnswers2 = ['solution', 'solutions', 'answer', 'fulfillment', 'jesus'];
+            
+            if (validAnswers1.some(word => answer1.includes(word)) && 
+                validAnswers2.some(word => answer2.includes(word))) {
+                showFeedback(7, true, '🎨 Beautiful analogy! You see the perfect connection between problem and solution!');
+            }
+        }
+        
+        // Activity 8 & 9: Text areas
+        document.getElementById('heartResponse').addEventListener('input', function() {
+            if (this.value.trim().length > 25) {
+                document.getElementById('feedback8').style.display = 'block';
+                if (!document.getElementById('feedback8').dataset.completed) {
+                    completedActivities++;
+                    document.getElementById('feedback8').dataset.completed = 'true';
+                    updateProgress();
+                }
+            }
+        });
+        
+        document.getElementById('futureVision').addEventListener('input', function() {
+            if (this.value.trim().length > 15) {
+                document.getElementById('feedback9').style.display = 'block';
+                if (!document.getElementById('feedback9').dataset.completed) {
+                    completedActivities++;
+                    document.getElementById('feedback9').dataset.completed = 'true';
+                    updateProgress();
+                }
+            }
+        });
+        
+        // Copy responses function
+        function copyAllResponses() {
+            const responses = {
+                'Timeline Challenge': 'Completed successfully',
+                'Parable Matching': 'Completed successfully',
+                'Covenant Comparison': 'Explored interactive slider',
+                'Word Scramble': currentAnswer,
+                'Incarnation Understanding': 'Flipped all three cards',
+                'Jesus and the Law': 'Answered multiple choice',
+                'Analogy Completion': {
+                    'Session 1 showed': document.getElementById('analogy1').value,
+                    'Session 2 showed': document.getElementById('analogy2').value
+                },
+                'Heart Response': document.getElementById('heartResponse').value,
+                'Future Vision': document.getElementById('futureVision').value
+            };
+            
+            const text = JSON.stringify(responses, null, 2);
+            navigator.clipboard.writeText(text).then(() => {
+                alert('📋 Your responses have been copied to clipboard!');
+            });
+        }
+        
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 1: The Problem and the Promise - Interactive Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c1810, #4a2c1a);
+            color: #f4f1e8;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: rgba(60, 37, 26, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #f4d03f;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            color: #f7dc6f;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .instruction {
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .activity {
+            background: rgba(92, 52, 38, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 2px solid #8b6f47;
+        }
+        
+        .activity h2 {
+            color: #f8c471;
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .question {
+            font-size: 22px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            font-size: 20px;
+            border-radius: 8px;
+            border: 2px solid #8b6f47;
+            background: rgba(244, 241, 232, 0.9);
+            color: #2c1810;
+            margin-bottom: 10px;
+        }
+        
+        .fill-blank {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 2px solid #d4af37;
+            background: transparent;
+            color: #f4d03f;
+            font-weight: bold;
+            text-align: center;
+            margin: 0 5px;
+        }
+        
+        .hint-btn {
+            background: #cd853f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .hint {
+            color: #f4d03f;
+            font-style: italic;
+            font-size: 16px;
+            margin-left: 10px;
+            display: none;
+        }
+        
+        .feedback {
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+        
+        .correct {
+            background: rgba(46, 125, 50, 0.8);
+            color: #c8e6c9;
+            border: 2px solid #4caf50;
+        }
+        
+        .incorrect {
+            background: rgba(198, 40, 40, 0.8);
+            color: #ffcdd2;
+            border: 2px solid #f44336;
+        }
+        
+        .true-false-btn {
+            background: #5c3426;
+            color: #f4f1e8;
+            border: 2px solid #8b6f47;
+            padding: 15px 25px;
+            margin: 10px;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .true-false-btn:hover {
+            background: #8b6f47;
+        }
+        
+        .true-false-btn.selected-correct {
+            background: #4caf50;
+            border-color: #2e7d32;
+            color: white;
+        }
+        
+        .true-false-btn.selected-incorrect {
+            background: #f44336;
+            border-color: #c62828;
+            color: white;
+        }
+        
+        .memory-card {
+            background: #5c3426;
+            border: 2px solid #8b6f47;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 18px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .memory-card:hover {
+            background: #8b6f47;
+        }
+        
+        .memory-card.flipped {
+            background: #d4af37;
+            color: #2c1810;
+        }
+        
+        .memory-card.matched {
+            background: #4caf50;
+            color: white;
+            cursor: default;
+        }
+        
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .swipe-card {
+            background: linear-gradient(135deg, #5c3426, #8b6f47);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 10px 0;
+            text-align: center;
+            border: 2px solid #d4af37;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .swipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .swipe-card.revealed {
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: #2c1810;
+        }
+        
+        .copy-btn {
+            background: #d4af37;
+            color: #2c1810;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            font-weight: bold;
+        }
+        
+        .progress-indicator {
+            background: rgba(212, 175, 55, 0.2);
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: #d4af37;
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .analogy-builder {
+            background: rgba(139, 111, 71, 0.3);
+            border: 2px dashed #8b6f47;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .drop-zone {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px dashed #d4af37;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .drop-zone.drag-over {
+            background: rgba(212, 175, 55, 0.3);
+            border-color: #f4d03f;
+        }
+        
+        .draggable {
+            background: #8b6f47;
+            color: #f4f1e8;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: move;
+            margin: 5px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .draggable:hover {
+            background: #a67c52;
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 28px; }
+            .question { font-size: 20px; }
+            .memory-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Session 1: The Problem and the Promise</h1>
+        <p class="subtitle">Interactive Learning Worksheet</p>
+        
+        <div class="instruction">
+            <strong>📚 Learning Tool:</strong> This worksheet reinforces key concepts from today's study. 
+            Take your time and use the hints if needed. This is for learning, not testing! 
+            <br><strong>⏱️ Estimated time: 8-12 minutes</strong>
+        </div>
+
+        <div class="progress-indicator">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+
+        <!-- Activity 1: Fill in the Blanks with Hints -->
+        <div class="activity" id="activity1">
+            <h2>🔤 Complete the Key Concepts</h2>
+            <div class="question">
+                1. The Bible contains <input type="text" class="fill-blank" id="books" placeholder="number"> books, written by 
+                <input type="text" class="fill-blank" id="authors" placeholder="number"> different authors over 
+                <input type="text" class="fill-blank" id="years" placeholder="time period">.
+                <button class="hint-btn" onclick="showHint('hint1')">💡 Hint</button>
+                <div class="hint" id="hint1">66 books, 40 authors, 1,500 years</div>
+            </div>
+            
+            <div class="question">
+                2. Yet it tells <input type="text" class="fill-blank" id="story" placeholder="how many?"> story about 
+                <input type="text" class="fill-blank" id="hero" placeholder="who?">.
+                <button class="hint-btn" onclick="showHint('hint2')">💡 Hint</button>
+                <div class="hint" id="hint2">ONE story, Jesus Christ</div>
+            </div>
+            
+            <div class="question">
+                3. <em>Hesed</em> is the Hebrew word for God's <input type="text" class="fill-blank" id="hesed" placeholder="type of love">, 
+                covenant-keeping love.
+                <button class="hint-btn" onclick="showHint('hint3')">💡 Hint</button>
+                <div class="hint" id="hint3">steadfast (or loyal)</div>
+            </div>
+            
+            <div class="feedback" id="feedback1"></div>
+        </div>
+
+        <!-- Activity 2: Scripture Matching -->
+        <div class="activity" id="activity2">
+            <h2>📖 Scripture Matching</h2>
+            <p class="question">Match each verse with its correct reference:</p>
+            
+            <div style="margin: 15px 0;">
+                <label style="display: block; margin-bottom: 5px;">"All Scripture is God-breathed..."</label>
+                <select id="verse1" onchange="checkVerse(1)">
+                    <option value="">Choose reference...</option>
+                    <option value="2Timothy3:16">2 Timothy 3:16</option>
+                    <option value="Genesis1:31">Genesis 1:31</option>
+                    <option value="Genesis3:15">Genesis 3:15</option>
+                </select>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <label style="display: block; margin-bottom: 5px;">"God saw all that he had made, and it was very good"</label>
+                <select id="verse2" onchange="checkVerse(2)">
+                    <option value="">Choose reference...</option>
+                    <option value="2Timothy3:16">2 Timothy 3:16</option>
+                    <option value="Genesis1:31">Genesis 1:31</option>
+                    <option value="Genesis3:15">Genesis 3:15</option>
+                </select>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <label style="display: block; margin-bottom: 5px;">The woman's offspring will crush the serpent's head</label>
+                <select id="verse3" onchange="checkVerse(3)">
+                    <option value="">Choose reference...</option>
+                    <option value="2Timothy3:16">2 Timothy 3:16</option>
+                    <option value="Genesis1:31">Genesis 1:31</option>
+                    <option value="Genesis3:15">Genesis 3:15</option>
+                </select>
+            </div>
+            
+            <div class="feedback" id="feedback2"></div>
+        </div>
+
+        <!-- Activity 3: True/False with Immediate Feedback -->
+        <div class="activity" id="activity3">
+            <h2>✅ True or False</h2>
+            <div class="question">
+                God made both conditional and unconditional covenants in the Old Testament.
+                <br><br>
+                <button class="true-false-btn" onclick="answerTrueFalse(3, true, this)">TRUE</button>
+                <button class="true-false-btn" onclick="answerTrueFalse(3, false, this)">FALSE</button>
+            </div>
+            <div class="feedback" id="feedback3"></div>
+        </div>
+
+        <!-- Activity 4: Memory Match Game -->
+        <div class="activity" id="activity4">
+            <h2>🧠 Memory Match: Covenants & Signs</h2>
+            <p class="question">Match each covenant with its sign or characteristic:</p>
+            <div class="memory-grid" id="memoryGrid">
+                <!-- Cards will be generated by JavaScript -->
+            </div>
+            <div class="feedback" id="feedback4"></div>
+        </div>
+
+        <!-- Activity 5: Swipe Learning Cards -->
+        <div class="activity" id="activity5">
+            <h2>👆 Tap to Reveal: Abraham & Isaac Pictures of Jesus</h2>
+            <p class="question">Tap each card to discover how Abraham and Isaac point to Jesus:</p>
+            
+            <div class="swipe-card" onclick="revealCard(1, this)">
+                <strong>Isaac was the beloved son...</strong>
+                <div style="display: none;">Just like Jesus is God's beloved Son (Matthew 3:17)</div>
+            </div>
+            
+            <div class="swipe-card" onclick="revealCard(2, this)">
+                <strong>Isaac carried the wood...</strong>
+                <div style="display: none;">Just like Jesus carried His cross (John 19:17)</div>
+            </div>
+            
+            <div class="swipe-card" onclick="revealCard(3, this)">
+                <strong>Isaac was willing to be sacrificed...</strong>
+                <div style="display: none;">Just like Jesus willingly gave His life (John 10:18)</div>
+            </div>
+            
+            <div class="swipe-card" onclick="revealCard(4, this)">
+                <strong>God provided a substitute ram...</strong>
+                <div style="display: none;">Just like God provided Jesus as our substitute (2 Corinthians 5:21)</div>
+            </div>
+            
+            <div class="feedback" id="feedback5"></div>
+        </div>
+
+        <!-- Activity 6: Interactive Analogy Builder -->
+        <div class="activity" id="activity6">
+            <h2>🏗️ Build the Analogy: God's Love Letters</h2>
+            <p class="question">Drag the correct pieces to complete this analogy:</p>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <div class="draggable" draggable="true" data-answer="groom">The loving groom</div>
+                <div class="draggable" draggable="true" data-answer="bride">His future bride</div>
+                <div class="draggable" draggable="true" data-answer="letters">Love letters</div>
+                <div class="draggable" draggable="true" data-answer="wedding">Wedding day reunion</div>
+            </div>
+            
+            <div class="analogy-builder">
+                <p>God is like <div class="drop-zone" data-target="groom" ondrop="drop(event)" ondragover="allowDrop(event)"></div></p>
+                <p>We are like <div class="drop-zone" data-target="bride" ondrop="drop(event)" ondragover="allowDrop(event)"></div></p>
+                <p>Scripture is like <div class="drop-zone" data-target="letters" ondrop="drop(event)" ondragover="allowDrop(event)"></div></p>
+                <p>Heaven will be like <div class="drop-zone" data-target="wedding" ondrop="drop(event)" ondragover="allowDrop(event)"></div></p>
+            </div>
+            
+            <div class="feedback" id="feedback6"></div>
+        </div>
+
+        <!-- Activity 7: Personal Reflection -->
+        <div class="activity" id="activity7">
+            <h2>💭 Personal Reflection</h2>
+            <div class="question">
+                Looking at the pattern of covenant breaking in Session 1, where do you see yourself in this story? 
+                What encourages you most about God's hesed love?
+            </div>
+            <textarea id="reflection" rows="4" placeholder="Share your thoughts here..."></textarea>
+            <div class="feedback" id="feedback7">
+                <p style="color: #c8e6c9;">✅ Thank you for reflecting! Your honest thoughts matter to God.</p>
+            </div>
+        </div>
+
+        <!-- Activity 8: What Would You Say? Scenario -->
+        <div class="activity" id="activity8">
+            <h2>🗣️ What Would You Say?</h2>
+            <div class="question">
+                A friend says: "I've tried to be good, but I keep messing up. I don't think God could love someone like me."
+                <br><br>Based on what you learned about God's hesed love and His covenants, what would you tell them?
+            </div>
+            <textarea id="scenario" rows="3" placeholder="Your encouraging response..."></textarea>
+            <div class="feedback" id="feedback8">
+                <p style="color: #c8e6c9;">✅ Beautiful! God's love isn't based on our performance but on His character.</p>
+            </div>
+        </div>
+
+        <!-- Copy Responses Button -->
+        <button class="copy-btn" onclick="copyAllResponses()">📋 Copy My Responses</button>
+
+        <div style="text-align: center; margin-top: 30px; color: #f7dc6f;">
+            <p><strong>🎉 Great job exploring God's covenant love!</strong></p>
+            <p>Remember: When covenants depend on human faithfulness, they get broken.<br>
+            When they depend on God's faithfulness, they endure forever!</p>
+        </div>
+    </div>
+
+    <script>
+        let completedActivities = 0;
+        const totalActivities = 8;
+        
+        // Memory game data
+        const memoryCards = [
+            { id: 1, text: 'Noahic Covenant', match: 'Rainbow' },
+            { id: 2, text: 'Rainbow', match: 'Noahic Covenant' },
+            { id: 3, text: 'Abrahamic Covenant', match: 'Circumcision' },
+            { id: 4, text: 'Circumcision', match: 'Abrahamic Covenant' },
+            { id: 5, text: 'Mosaic Covenant', match: 'Law/Commandments' },
+            { id: 6, text: 'Law/Commandments', match: 'Mosaic Covenant' }
+        ];
+        
+        let flippedCards = [];
+        let matchedPairs = 0;
+        
+        function updateProgress() {
+            const percentage = (completedActivities / totalActivities) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+        
+        function showHint(hintId) {
+            document.getElementById(hintId).style.display = 'block';
+        }
+        
+        function showFeedback(activityNum, isCorrect, message) {
+            const feedback = document.getElementById(`feedback${activityNum}`);
+            feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = message;
+            feedback.style.display = 'block';
+            
+            if (isCorrect && !feedback.dataset.completed) {
+                completedActivities++;
+                feedback.dataset.completed = 'true';
+                updateProgress();
+            }
+        }
+        
+        // Activity 1: Fill in blanks
+        document.querySelectorAll('.fill-blank').forEach(input => {
+            input.addEventListener('input', checkFillBlanks);
+        });
+        
+        function checkFillBlanks() {
+            const books = document.getElementById('books').value.trim();
+            const authors = document.getElementById('authors').value.trim();
+            const years = document.getElementById('years').value.trim();
+            const story = document.getElementById('story').value.trim().toLowerCase();
+            const hero = document.getElementById('hero').value.trim().toLowerCase();
+            const hesed = document.getElementById('hesed').value.trim().toLowerCase();
+            
+            if (books === '66' && authors === '40' && (years.includes('1500') || years.includes('1,500')) &&
+                story === 'one' && (hero.includes('jesus') || hero.includes('christ')) &&
+                (hesed.includes('steadfast') || hesed.includes('loyal'))) {
+                showFeedback(1, true, '🎉 Excellent! You understand the Bible\'s amazing unity and God\'s hesed love!');
+            }
+        }
+        
+        // Activity 2: Scripture matching
+        function checkVerse(verseNum) {
+            const correct = {
+                1: '2Timothy3:16',
+                2: 'Genesis1:31',
+                3: 'Genesis3:15'
+            };
+            
+            const selected = document.getElementById(`verse${verseNum}`).value;
+            
+            if (selected === correct[verseNum]) {
+                const allCorrect = 
+                    document.getElementById('verse1').value === '2Timothy3:16' &&
+                    document.getElementById('verse2').value === 'Genesis1:31' &&
+                    document.getElementById('verse3').value === 'Genesis3:15';
+                
+                if (allCorrect) {
+                    showFeedback(2, true, '📖 Perfect! You know your key verses from Session 1!');
+                }
+            }
+        }
+        
+        // Activity 3: True/False
+        function answerTrueFalse(activityNum, isTrue, button) {
+            const buttons = button.parentNode.querySelectorAll('.true-false-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected-correct', 'selected-incorrect');
+            });
+            
+            if (isTrue) {
+                button.classList.add('selected-correct');
+                showFeedback(activityNum, true, '✅ Correct! God made both conditional covenants (like with Moses) and unconditional covenants (like with Noah and Abraham).');
+            } else {
+                button.classList.add('selected-incorrect');
+                showFeedback(activityNum, false, '❌ Not quite. God made both types: conditional (depends on human obedience) and unconditional (depends only on God\'s faithfulness).');
+            }
+        }
+        
+        // Activity 4: Memory Match Game
+        function initializeMemoryGame() {
+            const grid = document.getElementById('memoryGrid');
+            const shuffled = [...memoryCards].sort(() => Math.random() - 0.5);
+            
+            shuffled.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'memory-card';
+                cardElement.dataset.id = card.id;
+                cardElement.dataset.text = card.text;
+                cardElement.dataset.match = card.match;
+                cardElement.innerHTML = '❓';
+                cardElement.onclick = () => flipCard(cardElement);
+                grid.appendChild(cardElement);
+            });
+        }
+        
+        function flipCard(card) {
+            if (card.classList.contains('flipped') || card.classList.contains('matched') || flippedCards.length >= 2) {
+                return;
+            }
+            
+            card.classList.add('flipped');
+            card.innerHTML = card.dataset.text;
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 1000);
+            }
+        }
+        
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.dataset.match === card2.dataset.text || card2.dataset.match === card1.dataset.text) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                
+                if (matchedPairs === 3) {
+                    showFeedback(4, true, '🧠 Fantastic! You matched all the covenants with their signs!');
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                card1.innerHTML = '❓';
+                card2.innerHTML = '❓';
+            }
+            
+            flippedCards = [];
+        }
+        
+        // Activity 5: Swipe cards
+        let revealedCards = 0;
+        function revealCard(cardNum, element) {
+            if (element.classList.contains('revealed')) return;
+            
+            element.classList.add('revealed');
+            const hiddenText = element.querySelector('div');
+            hiddenText.style.display = 'block';
+            revealedCards++;
+            
+            if (revealedCards === 4) {
+                showFeedback(5, true, '👆 Amazing! You can see how Abraham and Isaac beautifully picture Jesus!');
+            }
+        }
+        
+        // Activity 6: Drag and Drop Analogy Builder
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.target.classList.add('drag-over');
+        }
+        
+        function drop(ev) {
+            ev.preventDefault();
+            ev.target.classList.remove('drag-over');
+            
+            const data = ev.dataTransfer.getData("text");
+            const draggedElement = document.querySelector(`[data-answer="${data}"]`);
+            const target = ev.target.dataset.target;
+            
+            if (data === target) {
+                ev.target.appendChild(draggedElement);
+                draggedElement.style.margin = '0';
+                draggedElement.style.backgroundColor = '#4caf50';
+                draggedElement.style.color = 'white';
+                
+                checkAnalogyComplete();
+            }
+        }
+        
+        document.querySelectorAll('.draggable').forEach(item => {
+            item.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData("text", e.target.dataset.answer);
+            });
+        });
+        
+        function checkAnalogyComplete() {
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let completed = 0;
+            
+            dropZones.forEach(zone => {
+                if (zone.children.length > 0) {
+                    completed++;
+                }
+            });
+            
+            if (completed === 4) {
+                showFeedback(6, true, '🏗️ Perfect analogy! God truly is writing love letters to prepare us for eternal fellowship with Him!');
+            }
+        }
+        
+        // Activity 7 & 8: Text areas
+        document.getElementById('reflection').addEventListener('input', function() {
+            if (this.value.trim().length > 20) {
+                document.getElementById('feedback7').style.display = 'block';
+                if (!document.getElementById('feedback7').dataset.completed) {
+                    completedActivities++;
+                    document.getElementById('feedback7').dataset.completed = 'true';
+                    updateProgress();
+                }
+            }
+        });
+        
+        document.getElementById('scenario').addEventListener('input', function() {
+            if (this.value.trim().length > 20) {
+                document.getElementById('feedback8').style.display = 'block';
+                if (!document.getElementById('feedback8').dataset.completed) {
+                    completedActivities++;
+                    document.getElementById('feedback8').dataset.completed = 'true';
+                    updateProgress();
+                }
+            }
+        });
+        
+        // Copy responses function
+        function copyAllResponses() {
+            const responses = {
+                'Fill in the Blanks': {
+                    'Books': document.getElementById('books').value,
+                    'Authors': document.getElementById('authors').value,
+                    'Years': document.getElementById('years').value,
+                    'Story': document.getElementById('story').value,
+                    'Hero': document.getElementById('hero').value,
+                    'Hesed': document.getElementById('hesed').value
+                },
+                'Personal Reflection': document.getElementById('reflection').value,
+                'What Would You Say': document.getElementById('scenario').value
+            };
+            
+            const text = JSON.stringify(responses, null, 2);
+            navigator.clipboard.writeText(text).then(() => {
+                alert('📋 Your responses have been copied to clipboard!');
+            });
+        }
+        
+        // Initialize
+        initializeMemoryGame();
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growing in Grace - Teaching Presentation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            background-color: #1a1a1a;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        /* Warm background variants */
+        .warm-bg {
+            background: linear-gradient(135deg, #2a1a1a 0%, #3a2a2a 100%);
+        }
+
+        .story-bg {
+            background: linear-gradient(135deg, #1a1a2a 0%, #2a2a3a 100%);
+        }
+
+        .scripture-bg {
+            background: linear-gradient(135deg, #2a2a1a 0%, #3a3a2a 100%);
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            color: #6bb6ff;
+            max-width: 900px;
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+            color: #6bb6ff;
+            max-width: 900px;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #8cc8ff;
+            line-height: 1.3;
+        }
+
+        p {
+            font-size: 28px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 850px;
+        }
+
+        .content-text {
+            font-size: 26px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: left;
+            max-width: 850px;
+            color: #e0e0e0;
+        }
+
+        .scripture {
+            font-size: 30px;
+            font-style: italic;
+            color: #ffd700;
+            margin: 30px auto;
+            padding: 25px;
+            border-left: 5px solid #ffd700;
+            text-align: left;
+            max-width: 800px;
+            background-color: rgba(255, 215, 0, 0.05);
+            border-radius: 5px;
+        }
+
+        .scripture-ref {
+            font-size: 24px;
+            color: #ffed4e;
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        li {
+            font-size: 26px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+
+        .quote {
+            font-size: 28px;
+            font-style: italic;
+            color: #90ee90;
+            margin: 30px auto;
+            max-width: 750px;
+            padding: 25px;
+            border: 2px solid #90ee90;
+            border-radius: 10px;
+            background-color: rgba(144, 238, 144, 0.05);
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 24px;
+            color: #b8ffb8;
+            margin-top: 15px;
+            font-style: normal;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 20px;
+            background-color: #4a9eff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3a8eef;
+        }
+
+        button:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            color: #888;
+        }
+
+        .emphasis {
+            color: #6bb6ff;
+            font-weight: bold;
+        }
+
+        .warm-emphasis {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a3a 100%);
+        }
+
+        .discussion-slide {
+            background: linear-gradient(135deg, #2a2a3a 0%, #3a3a4a 100%);
+        }
+
+        .discussion-slide h2 {
+            color: #90ee90;
+        }
+
+        .time-marker {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            color: #888;
+        }
+
+        .key-point {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            font-size: 30px;
+            max-width: 750px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .story-text {
+            font-size: 26px;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            color: #e0e0e0;
+        }
+
+        .illustration {
+            background-color: rgba(107, 182, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            border: 1px solid rgba(107, 182, 255, 0.2);
+        }
+
+        .arrow {
+            font-size: 36px;
+            color: #6bb6ff;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            h2 { font-size: 32px; }
+            h3 { font-size: 28px; }
+            p, .content-text { font-size: 24px; }
+            li { font-size: 24px; }
+            .scripture { font-size: 26px; }
+            .quote { font-size: 24px; }
+            .key-point { font-size: 26px; }
+        }
+
+        .section-intro {
+            font-size: 24px;
+            color: #aaa;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide active warm-bg">
+        <h1>Growing in Grace</h1>
+        <h2 style="color: #8cc8ff;">Understanding Sanctification, Obedience, and Spiritual Fruit</h2>
+        <p style="margin-top: 40px; font-size: 24px; color: #ccc;">A 70-Minute Journey Together</p>
+        <div class="slide-number">1/68</div>
+    </div>
+
+    <!-- Slide 2: Welcome and Why -->
+    <div class="slide">
+        <div class="time-marker">5 min</div>
+        <h2>Good Evening, Everyone!</h2>
+        <p>I'm so glad you're here tonight.</p>
+        <div class="content-text" style="text-align: center; margin-top: 30px;">
+            I've been thinking a lot lately about how we grow as Christians...
+        </div>
+        <div class="slide-number">2/77</div>
+    </div>
+
+    <!-- Slide 3: Questions We All Ask -->
+    <div class="slide warm-bg">
+        <h2>Have You Ever Wondered...</h2>
+        <div class="content-text" style="text-align: center;">
+            <p>Why some people seem to have this <span class="warm-emphasis">deep joy and peace</span>, while others who've been in church for years still struggle with the same issues?</p>
+            <p style="margin-top: 30px;">Or why some Christians naturally <span class="warm-emphasis">overflow with kindness</span> and patience, while others seem stuck?</p>
+        </div>
+        <div class="slide-number">3/68</div>
+    </div>
+
+    <!-- Slide 4: Why I Chose This -->
+    <div class="slide">
+        <h2>Why I Chose This Topic</h2>
+        <div class="content-text">
+            <p style="text-align: center;">I believe many of us are confused about how spiritual growth actually works.</p>
+            <ul style="margin-top: 30px;">
+                <li>Some of us are <span class="emphasis">exhausted</span> from trying to earn God's love</li>
+                <li>Others wonder if they're <span class="emphasis">really saved</span> because they still struggle</li>
+                <li>And some are just <span class="emphasis">stuck</span>, not seeing the growth they long for</li>
+            </ul>
+        </div>
+        <div class="slide-number">4/68</div>
+    </div>
+
+    <!-- Slide 5: The Beautiful Truth -->
+    <div class="slide scripture-bg">
+        <h2>The Beautiful Truth</h2>
+        <div class="key-point">
+            <p>God has a plan for transforming us</p>
+            <p style="margin-top: 20px;">And it's <span class="warm-emphasis">not</span> about us trying harder</p>
+            <p style="margin-top: 20px;">It's about understanding how His <span class="warm-emphasis">grace</span> works in our daily lives</p>
+        </div>
+        <p style="font-size: 24px; margin-top: 30px; color: #90ee90;">So let's dive in together...</p>
+        <div class="slide-number">5/68</div>
+    </div>
+
+    <!-- Slide 6: Tonight's Journey -->
+    <div class="slide">
+        <h2>Our Journey Tonight</h2>
+        <ul style="font-size: 28px;">
+            <li><span class="emphasis">Segment 1:</span> Understanding Sanctification<br/>
+            <span style="font-size: 22px; color: #aaa;">What it really means to be transformed (20 min)</span></li>
+            <li style="margin-top: 20px;"><span class="emphasis">Segment 2:</span> The Heart of Obedience<br/>
+            <span style="font-size: 22px; color: #aaa;">Why love comes before rules (15 min)</span></li>
+            <li style="margin-top: 20px;"><span class="emphasis">Segment 3:</span> Natural Growth of Spiritual Fruit<br/>
+            <span style="font-size: 22px; color: #aaa;">How real change happens (15 min)</span></li>
+        </ul>
+        <div class="slide-number">6/68</div>
+    </div>
+
+    <!-- Slide 7: Section 1 Title -->
+    <div class="slide section-title">
+        <div class="time-marker">20 min</div>
+        <h1>Segment 1</h1>
+        <h2>Understanding Sanctification</h2>
+        <p class="section-intro">How God lovingly transforms His children</p>
+        <div class="slide-number">7/68</div>
+    </div>
+
+    <!-- Slide 8: Let Me Start with a Story -->
+    <div class="slide story-bg">
+        <h2>Let Me Start with a Story...</h2>
+        <div class="story-text">
+            <p>Imagine you adopt a child who's been living on the streets.</p>
+            <p style="margin-top: 30px;">The moment you sign those papers, that child is <span class="warm-emphasis">legally yours</span>—fully part of your family.</p>
+        </div>
+        <div class="slide-number">8/68</div>
+    </div>
+
+    <!-- Slide 9: But They Still... -->
+    <div class="slide story-bg">
+        <h3>But They Still Have Street Habits...</h3>
+        <div class="content-text" style="text-align: center;">
+            <p>They might <span class="emphasis">hide food</span> in their room</p>
+            <p>They might <span class="emphasis">flinch</span> when you move too quickly</p>
+            <p>They might <span class="emphasis">struggle to trust</span> your love</p>
+        </div>
+        <div class="slide-number">9/68</div>
+    </div>
+
+    <!-- Slide 10: Over Time -->
+    <div class="slide story-bg">
+        <h3>But Over Time...</h3>
+        <div class="story-text">
+            <p>As they experience your <span class="warm-emphasis">consistent care</span>, they begin to change.</p>
+            <p style="margin-top: 30px;">They stop hoarding food.<br/>
+            They relax in your presence.<br/>
+            They learn what it means to be <span class="warm-emphasis">loved</span>.</p>
+        </div>
+        <div class="slide-number">10/68</div>
+    </div>
+
+    <!-- Slide 11: That's Sanctification! -->
+    <div class="slide warm-bg">
+        <h1>That's Sanctification!</h1>
+        <div class="key-point">
+            <p><span class="emphasis">Justification:</span><br/>
+            When God saves us, we're instantly His children—complete!</p>
+            <p style="margin-top: 30px;"><span class="emphasis">Sanctification:</span><br/>
+            God's patient, loving work of transforming us to actually live like the children we already are</p>
+        </div>
+        <div class="slide-number">11/68</div>
+    </div>
+
+    <!-- Slide 12: We Still Have -->
+    <div class="slide">
+        <h3>We Still Have...</h3>
+        <div class="illustration">
+            <p>Old patterns 🔄</p>
+            <p>Old wounds 💔</p>
+            <p>Old ways of thinking 🧠</p>
+        </div>
+        <p style="margin-top: 30px; color: #90ee90;">But God is patient with us!</p>
+        <div class="slide-number">12/68</div>
+    </div>
+
+    <!-- Slide 13: Piper Quote Full -->
+    <div class="slide">
+        <div class="quote">
+            "The only sin we can fight against successfully is a forgiven sin... Justification is the foundation of sanctification."
+            <div class="quote-author">- John Piper</div>
+        </div>
+        <p style="margin-top: 30px;">In other words: We don't change to <span class="emphasis">become</span> God's children—we change because we <span class="emphasis">already are</span>.</p>
+        <div class="slide-number">13/68</div>
+    </div>
+
+    <!-- Slide 14: Scripture 2 Cor -->
+    <div class="slide scripture-bg">
+        <h3>Let Me Share Some Scripture</h3>
+        <div class="scripture">
+            "And we all, who with unveiled faces contemplate the Lord's glory, are being transformed into his image with ever-increasing glory, which comes from the Lord, who is the Spirit."
+            <div class="scripture-ref">2 Corinthians 3:18</div>
+        </div>
+        <div class="slide-number">14/68</div>
+    </div>
+
+    <!-- Slide 15: Notice the Language -->
+    <div class="slide">
+        <h2>Notice Something Crucial</h2>
+        <div class="key-point">
+            <p>"are <span class="warm-emphasis">being transformed</span>"</p>
+            <p style="font-size: 24px; color: #aaa;">Not "are transforming ourselves"</p>
+        </div>
+        <p style="margin-top: 30px;">We're not passive, but <span class="emphasis">God is doing the transforming</span>.</p>
+        <p>We're contemplating His glory, He's doing the work!</p>
+        <div class="slide-number">15/68</div>
+    </div>
+
+    <!-- Slide 16: Guitar Illustration Full -->
+    <div class="slide warm-bg">
+        <h2>Think of It Like Learning Guitar 🎸</h2>
+        <div class="content-text" style="text-align: center;">
+            <p>When you first pick up a guitar, your fingers don't naturally know where to go.</p>
+            <p style="margin-top: 20px;">It feels <span class="emphasis">awkward</span>, even <span class="emphasis">painful</span>.</p>
+            <p style="margin-top: 20px;">But with practice, guided by a teacher, something amazing happens...</p>
+            <p style="margin-top: 20px; color: #90ee90;">Eventually, your fingers move without thinking. Music just flows!</p>
+        </div>
+        <div class="slide-number">16/68</div>
+    </div>
+
+    <!-- Slide 17: RC Sproul -->
+    <div class="slide">
+        <div class="quote">
+            "Sanctification is the work of God's free grace, whereby we are renewed in the whole man after the image of God, and are enabled more and more to die unto sin and live unto righteousness."
+            <div class="quote-author">- R.C. Sproul</div>
+        </div>
+        <div class="slide-number">17/68</div>
+    </div>
+
+    <!-- Slide 18: Three Key Truths -->
+    <div class="slide">
+        <h2>Three Key Truths About How This Works</h2>
+        <p style="font-size: 24px; color: #aaa;">Let's unpack each one...</p>
+        <div class="slide-number">18/68</div>
+    </div>
+
+    <!-- Slide 19: Truth 1 -->
+    <div class="slide scripture-bg">
+        <h2>1. It's God's Work, Not Ours</h2>
+        <div class="scripture">
+            "For it is God who works in you to will and to act in order to fulfill his good purpose."
+            <div class="scripture-ref">Philippians 2:13</div>
+        </div>
+        <p style="margin-top: 30px;">We're not passive, but God is the primary actor.<br/>
+        <span class="emphasis">He's the sculptor; we're the marble.</span></p>
+        <div class="slide-number">19/68</div>
+    </div>
+
+    <!-- Slide 20: Truth 2 -->
+    <div class="slide scripture-bg">
+        <h2>2. It Happens Through Union with Christ</h2>
+        <div class="scripture">
+            "For if we have been united with him in a death like his, we will certainly also be united with him in a resurrection like his."
+            <div class="scripture-ref">Romans 6:5</div>
+        </div>
+        <p style="margin-top: 30px;">Because we're connected to Jesus, His life flows into ours.<br/>
+        <span class="emphasis">Like a branch connected to a vine.</span></p>
+        <div class="slide-number">20/68</div>
+    </div>
+
+    <!-- Slide 21: Truth 3 -->
+    <div class="slide scripture-bg">
+        <h2>3. It's a Process, Not an Event</h2>
+        <div class="scripture">
+            "Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus."
+            <div class="scripture-ref">Philippians 1:6</div>
+        </div>
+        <p style="margin-top: 30px;">Unlike justification (instant), sanctification takes our <span class="emphasis">whole lifetime</span>.</p>
+        <div class="slide-number">21/68</div>
+    </div>
+
+    <!-- Slide 22: Why This Matters -->
+    <div class="slide warm-bg">
+        <h2>Why Understanding This Matters</h2>
+        <div class="content-text" style="text-align: center;">
+            <p>Many Christians live in one of two ditches:</p>
+            <div class="illustration" style="margin-top: 30px;">
+                <p>⬅️ <span class="emphasis">Ditch 1:</span> Trying to earn God's love through good behavior<br/>
+                <span style="font-size: 22px; color: #ff6b6b;">(That's exhausting and impossible!)</span></p>
+                <p style="margin-top: 30px;">➡️ <span class="emphasis">Ditch 2:</span> Since we're saved by grace, how we live doesn't matter<br/>
+                <span style="font-size: 22px; color: #ff6b6b;">(That's cheap grace—not biblical!)</span></p>
+            </div>
+        </div>
+        <div class="slide-number">22/68</div>
+    </div>
+
+    <!-- Slide 23: Edwards Quote -->
+    <div class="slide">
+        <div class="quote">
+            "True grace is of a transforming nature... The grace of God in the heart is a holy seed that will certainly grow up to eternal life."
+            <div class="quote-author">- Jonathan Edwards</div>
+        </div>
+        <p style="margin-top: 30px;">The balance: Grace <span class="emphasis">transforms</span> us!</p>
+        <div class="slide-number">23/68</div>
+    </div>
+
+    <!-- Slide 24: Discussion Time 1 -->
+    <div class="slide discussion-slide">
+        <h2>Let's Pause and Talk</h2>
+        <p style="font-size: 24px; color: #ccc;">Choose one question that speaks to you:</p>
+        <ul style="font-size: 26px; margin-top: 30px;">
+            <li>"When you were growing up, did you ever feel like you had to be 'good enough' for your parents? How is God different?"</li>
+            <li style="margin-top: 20px;">"What's one thing you do just because you love someone, not because you have to?"</li>
+        </ul>
+        <div class="slide-number">24/73</div>
+    </div>
+
+    <!-- Slide 25: Section 2 Title -->
+    <div class="slide section-title">
+        <div class="time-marker">15 min</div>
+        <h1>Segment 2</h1>
+        <h2>The Heart of Obedience</h2>
+        <p class="section-intro">Love as the root, not the fruit</p>
+        <div class="slide-number">25/68</div>
+    </div>
+
+    <!-- Slide 26: Back to Our Story -->
+    <div class="slide story-bg">
+        <h2>Let's Return to That Adopted Child</h2>
+        <div class="story-text">
+            <p>Remember our adopted child?</p>
+            <p style="margin-top: 30px;">Once they <span class="warm-emphasis">truly understand</span> they're safe and loved, something beautiful happens...</p>
+        </div>
+        <div class="slide-number">26/68</div>
+    </div>
+
+    <!-- Slide 27: They Start Following -->
+    <div class="slide story-bg">
+        <h3>They Start Following Family Rules</h3>
+        <div class="content-text" style="text-align: center;">
+            <p>Not because they <span class="emphasis">have to earn</span> their place</p>
+            <p style="margin-top: 20px;">But because they <span class="warm-emphasis">trust their parents</span></p>
+            <p style="margin-top: 20px;">And want to <span class="warm-emphasis">please them</span></p>
+        </div>
+        <div class="slide-number">27/68</div>
+    </div>
+
+    <!-- Slide 28: They Help -->
+    <div class="slide story-bg">
+        <h3>They Help with Chores</h3>
+        <div class="key-point">
+            <p>Not to <span class="emphasis">become</span> part of the family</p>
+            <p style="margin-top: 30px;">But because they <span class="warm-emphasis">already are</span></p>
+        </div>
+        <p style="margin-top: 30px; font-size: 32px; color: #90ee90;">That's the heart of biblical obedience!</p>
+        <div class="slide-number">28/68</div>
+    </div>
+
+    <!-- Slide 29: Voddie Full Quote -->
+    <div class="slide">
+        <div class="quote">
+            "Our love will be shown by obedience, not by how good we feel about God at a given moment. The Gospel produces obedience. If you love Him, you will keep His commandments."
+            <div class="quote-author">- Voddie Baucham</div>
+        </div>
+        <div class="slide-number">29/68</div>
+    </div>
+
+    <!-- Slide 30: Jesus Said -->
+    <div class="slide scripture-bg">
+        <h3>Look at What Jesus Himself Said</h3>
+        <div class="scripture">
+            "If you love me, keep my commands."
+            <div class="scripture-ref">John 14:15</div>
+        </div>
+        <div class="slide-number">30/68</div>
+    </div>
+
+    <!-- Slide 31: Notice What He Didn't Say -->
+    <div class="slide">
+        <h2>Notice What Jesus DIDN'T Say</h2>
+        <div class="content-text" style="text-align: center;">
+            <p style="color: #ff6b6b;">❌ He didn't say:<br/>
+            "Keep my commands so that I'll love you"</p>
+            <p style="margin-top: 30px; color: #90ee90;">✅ He said:<br/>
+            "<span class="warm-emphasis">If you love me</span>, keep my commands"</p>
+        </div>
+        <p style="margin-top: 40px; font-size: 32px;">The love comes <span class="emphasis">first</span>, then obedience naturally follows!</p>
+        <div class="slide-number">31/68</div>
+    </div>
+
+    <!-- Slide 32: Most Misunderstood -->
+    <div class="slide">
+        <h2>One of the Most Misunderstood Passages</h2>
+        <p style="font-size: 24px; color: #aaa;">Let's read it carefully...</p>
+        <div class="slide-number">32/68</div>
+    </div>
+
+    <!-- Slide 33: Ephesians 2:8-10 -->
+    <div class="slide scripture-bg">
+        <div class="scripture">
+            "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast. For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do."
+            <div class="scripture-ref">Ephesians 2:8-10</div>
+        </div>
+        <div class="slide-number">33/68</div>
+    </div>
+
+    <!-- Slide 34: See the Order -->
+    <div class="slide warm-bg">
+        <h2>See the Order?</h2>
+        <div class="key-point">
+            <p><span class="emphasis">Verses 8-9:</span> Saved by grace ✨</p>
+            <p style="margin-top: 30px;"><span class="emphasis">Verse 10:</span> Created for good works 🛠️</p>
+        </div>
+        <p style="margin-top: 40px; font-size: 32px; color: #90ee90;">Works don't produce salvation;<br/>
+        Salvation produces works!</p>
+        <div class="slide-number">34/68</div>
+    </div>
+
+    <!-- Slide 35: John Owen -->
+    <div class="slide">
+        <div class="quote">
+            "Be killing sin, or sin will be killing you."
+            <div class="quote-author">- John Owen</div>
+        </div>
+        <p style="margin-top: 30px;">But notice—he's talking to people who are <span class="emphasis">already Christians</span>.</p>
+        <p>We fight sin not to become God's children, but because we are.</p>
+        <div class="slide-number">35/68</div>
+    </div>
+
+    <!-- Slide 36: Freedom -->
+    <div class="slide warm-bg">
+        <h2>The Freedom of Gospel Obedience</h2>
+        <div class="content-text" style="text-align: center;">
+            <p>When you understand that obedience flows from <span class="warm-emphasis">love</span> rather than <span class="emphasis">fear</span>, everything changes.</p>
+            <p style="margin-top: 30px;">You're not constantly wondering:<br/>
+            <span style="color: #ff6b6b;">"Have I done enough?"</span></p>
+            <p style="margin-top: 30px;">Instead, you're asking:<br/>
+            <span style="color: #90ee90;">"How can I express my gratitude?"</span></p>
+        </div>
+        <div class="slide-number">36/68</div>
+    </div>
+
+    <!-- Slide 37: Burning Building -->
+    <div class="slide story-bg">
+        <h2>Think About It This Way...</h2>
+        <div class="story-text">
+            <p>If someone rescued you from a burning building 🔥</p>
+            <p style="margin-top: 30px;">You wouldn't spend the rest of your life trying to <span class="emphasis">pay them back</span></p>
+        </div>
+        <div class="slide-number">37/68</div>
+    </div>
+
+    <!-- Slide 38: But You Might -->
+    <div class="slide story-bg">
+        <h3>But You Might...</h3>
+        <ul style="font-size: 28px;">
+            <li>Send them a card every year 💌</li>
+            <li>Name your child after them 👶</li>
+            <li>Tell everyone about their heroism 📢</li>
+        </ul>
+        <p style="margin-top: 40px; font-size: 32px; color: #90ee90;">That's gratitude, not payment!</p>
+        <div class="slide-number">38/68</div>
+    </div>
+
+    <!-- Slide 39: CS Lewis -->
+    <div class="slide">
+        <div class="quote">
+            "Good actions are not the root; they are the fruit of a changed heart."
+            <div class="quote-author">- C.S. Lewis</div>
+        </div>
+        <p style="margin-top: 30px;">He understood: <span class="emphasis">Transformation first</span>, then action.</p>
+        <div class="slide-number">39/68</div>
+    </div>
+
+    <!-- Slide 40: Discussion 2 -->
+    <div class="slide discussion-slide">
+        <h2>Let's Reflect Together</h2>
+        <p style="font-size: 30px; margin-top: 40px;">"How does understanding obedience as gratitude rather than payment change your daily walk with God?"</p>
+        <p style="font-size: 24px; color: #aaa; margin-top: 40px;">Take a moment to think before sharing...</p>
+        <div class="slide-number">40/73</div>
+    </div>
+
+    <!-- Slide 41: Section 3 Title -->
+    <div class="slide section-title">
+        <div class="time-marker">15 min</div>
+        <h1>Segment 3</h1>
+        <h2>The Fruit of the Spirit</h2>
+        <p class="section-intro">Natural growth, not manufactured results</p>
+        <div class="slide-number">41/68</div>
+    </div>
+
+    <!-- Slide 42: Many of Us -->
+    <div class="slide">
+        <h2>Here's Where Many of Us Get Tripped Up</h2>
+        <div class="content-text" style="text-align: center;">
+            <p>We read Galatians 5:22-23 like it's a <span class="emphasis">to-do list</span>:</p>
+        </div>
+        <div class="slide-number">42/68</div>
+    </div>
+
+    <!-- Slide 43: The List -->
+    <div class="slide scripture-bg">
+        <div class="scripture">
+            "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law."
+            <div class="scripture-ref">Galatians 5:22-23</div>
+        </div>
+        <div class="slide-number">43/68</div>
+    </div>
+
+    <!-- Slide 44: Wrong Approach -->
+    <div class="slide warm-bg">
+        <h3>The Wrong Approach</h3>
+        <div class="illustration">
+            <p>📅 "Okay, today I'm going to be more joyful"</p>
+            <p style="margin-top: 20px;">📅 "Tomorrow I'll work on patience"</p>
+            <p style="margin-top: 20px;">📅 "Next week: kindness bootcamp!"</p>
+        </div>
+        <p style="margin-top: 40px; font-size: 30px; color: #ff6b6b;">But that's like tying apples onto a dead tree and calling it alive! 🍎🌳</p>
+        <div class="slide-number">44/68</div>
+    </div>
+
+    <!-- Slide 45: Jesus Better Picture -->
+    <div class="slide">
+        <h2>Jesus Gives Us a Better Picture</h2>
+        <div class="slide-number">45/68</div>
+    </div>
+
+    <!-- Slide 46: Vine and Branches -->
+    <div class="slide scripture-bg">
+        <div class="scripture">
+            "Remain in me, as I also remain in you. No branch can bear fruit by itself; it must remain in the vine. Neither can you bear fruit unless you remain in me. I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing."
+            <div class="scripture-ref">John 15:4-5</div>
+        </div>
+        <div class="slide-number">46/68</div>
+    </div>
+
+    <!-- Slide 47: What Jesus Doesn't Say -->
+    <div class="slide">
+        <h2>Notice What Jesus DOESN'T Say</h2>
+        <div class="content-text" style="text-align: center;">
+            <p style="color: #ff6b6b;">❌ "Try really hard to produce fruit"</p>
+            <p style="color: #ff6b6b;">❌ "Have fruit-producing meetings"</p>
+            <p style="color: #ff6b6b;">❌ "Set fruit production goals"</p>
+            <p style="margin-top: 40px; color: #90ee90; font-size: 36px;">✅ He says: "Remain in me"</p>
+        </div>
+        <div class="slide-number">47/68</div>
+    </div>
+
+    <!-- Slide 48: The Key -->
+    <div class="slide warm-bg">
+        <h1 style="font-size: 72px; color: #90ee90;">REMAIN</h1>
+        <p style="margin-top: 30px;">The fruit is the natural result of staying connected to Him</p>
+        <div class="slide-number">48/68</div>
+    </div>
+
+    <!-- Slide 49: Apple Tree -->
+    <div class="slide story-bg">
+        <h2>Think About a Healthy Apple Tree 🍎🌳</h2>
+        <div class="content-text" style="text-align: center;">
+            <p>It doesn't strain to produce apples</p>
+            <p>It doesn't have apple-producing meetings</p>
+            <p>It doesn't set apple goals for the quarter</p>
+            <p style="margin-top: 40px; color: #90ee90;">It simply draws nutrients from the soil,<br/>
+            receives sunshine and rain,<br/>
+            and naturally produces fruit.</p>
+            <p style="margin-top: 30px; font-size: 32px;">That's its nature!</p>
+        </div>
+        <div class="slide-number">49/68</div>
+    </div>
+
+    <!-- Slide 50: RC Sproul Tree -->
+    <div class="slide">
+        <div class="quote">
+            "A bad tree cannot bear good fruit. This is why we need to be made new creatures, with new hearts... Out of the heart that has been made new comes the fruit of obedience."
+            <div class="quote-author">- R.C. Sproul</div>
+        </div>
+        <div class="slide-number">50/68</div>
+    </div>
+
+    <!-- Slide 51: Diagnosis -->
+    <div class="slide warm-bg">
+        <h2>If You're Not Seeing Growth...</h2>
+        <div class="content-text" style="text-align: center;">
+            <p>In love, joy, peace, and the other fruit...</p>
+            <p style="margin-top: 30px; font-size: 32px; color: #6bb6ff;">The solution isn't to try harder</p>
+            <p style="margin-top: 30px; font-size: 32px; color: #90ee90;">The solution is to examine your connection to the vine</p>
+        </div>
+        <div class="slide-number">51/68</div>
+    </div>
+
+    <!-- Slide 52: Ask Yourself -->
+    <div class="slide">
+        <h2>Ask Yourself...</h2>
+        <ul style="font-size: 28px;">
+            <li>Am I spending time in God's Word, letting it nourish my soul? 📖</li>
+            <li style="margin-top: 20px;">Am I talking to God in prayer, maintaining that vital connection? 🙏</li>
+            <li style="margin-top: 20px;">Am I in fellowship with other believers who encourage my growth? 👥</li>
+            <li style="margin-top: 20px;">Am I confessing sin quickly, removing barriers between me and God? ✨</li>
+        </ul>
+        <div class="slide-number">52/68</div>
+    </div>
+
+    <!-- Slide 53: Important Truth -->
+    <div class="slide warm-bg">
+        <h2>An Important Truth</h2>
+        <div class="key-point">
+            <p>A lack of spiritual fruit isn't a call to <span class="emphasis">try harder</span></p>
+            <p style="margin-top: 30px; font-size: 36px;">It's a call to <span class="warm-emphasis">draw closer</span></p>
+        </div>
+        <div class="slide-number">53/68</div>
+    </div>
+
+    <!-- Slide 54: James Challenge -->
+    <div class="slide">
+        <h2>This Brings Us to James's Challenge</h2>
+        <div class="slide-number">54/68</div>
+    </div>
+
+    <!-- Slide 55: James Scripture -->
+    <div class="slide scripture-bg">
+        <div class="scripture">
+            "In the same way, faith by itself, if it is not accompanied by action, is dead."
+            <div class="scripture-ref">James 2:17</div>
+        </div>
+        <div class="scripture" style="margin-top: 30px;">
+            "As the body without the spirit is dead, so faith without deeds is dead."
+            <div class="scripture-ref">James 2:26</div>
+        </div>
+        <div class="slide-number">55/68</div>
+    </div>
+
+    <!-- Slide 56: James Not Contradicting -->
+    <div class="slide">
+        <h3>James Isn't Contradicting Paul</h3>
+        <div class="content-text" style="text-align: center;">
+            <p>He's saying that <span class="warm-emphasis">real faith</span>—living faith—naturally produces works</p>
+            <p style="margin-top: 30px;">Just like a <span class="emphasis">living tree</span> naturally produces fruit</p>
+            <p style="margin-top: 30px;">If there's no fruit over time, we need to ask whether the tree is truly alive</p>
+        </div>
+        <div class="slide-number">56/68</div>
+    </div>
+
+    <!-- Slide 57: Edwards -->
+    <div class="slide">
+        <div class="quote">
+            "The degree of love to God may be known by the degree of our hatred of sin."
+            <div class="quote-author">- Jonathan Edwards</div>
+        </div>
+        <p style="margin-top: 30px;">Real transformation shows itself in real change.</p>
+        <div class="slide-number">57/68</div>
+    </div>
+
+    <!-- Slide 58: Discussion 3 -->
+    <div class="slide discussion-slide">
+        <h2>Your Turn to Share</h2>
+        <p style="font-size: 24px; color: #ccc;">Choose one:</p>
+        <ul style="font-size: 26px; margin-top: 30px;">
+            <li>"Think of a plant in your house or garden. What does it need to grow well? How is that like our spiritual life?"</li>
+            <li style="margin-top: 20px;">"Share about a time when you tried really hard to change something about yourself. What happened?"</li>
+        </ul>
+        <div class="slide-number">58/73</div>
+    </div>
+
+    <!-- Slide 59: Application Title -->
+    <div class="slide section-title">
+        <div class="time-marker">13 min</div>
+        <h1>Bringing It All Together</h1>
+        <h2>Discussion & Application</h2>
+        <div class="slide-number">59/73</div>
+    </div>
+
+    <!-- Slide 60: Quick Check -->
+    <div class="slide discussion-slide">
+        <h2>Quick Check</h2>
+        <p style="font-size: 36px;">"In your own words, what's one thing that stood out to you tonight?"</p>
+        <p style="margin-top: 40px; font-size: 24px; color: #aaa;">Let's hear from a few people...</p>
+        <div class="slide-number">60/73</div>
+    </div>
+
+    <!-- Slide 61: Reality Check Title -->
+    <div class="slide warm-bg">
+        <h2>Let's Have a Reality Check</h2>
+        <p style="font-size: 24px; color: #ccc;">Something we need to address honestly...</p>
+        <div class="slide-number">61/73</div>
+    </div>
+
+    <!-- Slide 62: Cultural Christianity -->
+    <div class="slide">
+        <h3>Many People Today Say...</h3>
+        <div class="content-text" style="text-align: center;">
+            <p>"I have a relationship with God"</p>
+            <p style="margin-top: 30px; color: #ff6b6b;">But...</p>
+            <ul style="margin-top: 30px;">
+                <li>They rarely read His Word 📖</li>
+                <li>They seldom gather with His people 👥</li>
+                <li>Their habits remain unchanged 🔄</li>
+            </ul>
+        </div>
+        <div class="slide-number">62/73</div>
+    </div>
+
+    <!-- Slide 63: John 10:27 -->
+    <div class="slide scripture-bg">
+        <h3>Jesus Said Something Important</h3>
+        <div class="scripture">
+            "My sheep listen to my voice; I know them, and they follow me."
+            <div class="scripture-ref">John 10:27</div>
+        </div>
+        <p style="margin-top: 30px; text-align: center;">Think about this: How can we recognize His voice if we never spend time listening?</p>
+        <div class="slide-number">63/73</div>
+    </div>
+
+    <!-- Slide 64: Hebrews 10:25 -->
+    <div class="slide scripture-bg">
+        <h3>God's Word Warns Us</h3>
+        <div class="scripture">
+            "Not giving up meeting together, as some are in the habit of doing, but encouraging one another—and all the more as you see the Day approaching."
+            <div class="scripture-ref">Hebrews 10:25</div>
+        </div>
+        <div class="slide-number">64/73</div>
+    </div>
+
+    <!-- Slide 65: Partnership Title -->
+    <div class="slide warm-bg">
+        <h2>Our Partnership with God</h2>
+        <p style="font-size: 28px;">Remember: Sanctification is God's work, but we're not passive!</p>
+        <div class="slide-number">65/73</div>
+    </div>
+
+    <!-- Slide 66: God's Promise -->
+    <div class="slide scripture-bg">
+        <div class="scripture">
+            "May God himself, the God of peace, sanctify you through and through... The one who calls you is faithful, and he will do it."
+            <div class="scripture-ref">1 Thessalonians 5:23-24</div>
+        </div>
+        <p style="margin-top: 30px; text-align: center; font-size: 32px; color: #90ee90;">Notice: God does it, but through means!</p>
+        <div class="slide-number">66/73</div>
+    </div>
+
+    <!-- Slide 67: Living Sacrifice -->
+    <div class="slide scripture-bg">
+        <div class="scripture">
+            "Therefore, I urge you, brothers and sisters, in view of God's mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship. Do not conform to the pattern of this world, but be transformed by the renewing of your mind."
+            <div class="scripture-ref">Romans 12:1-2</div>
+        </div>
+        <div class="slide-number">67/73</div>
+    </div>
+
+    <!-- Slide 68: Our Part -->
+    <div class="slide warm-bg">
+        <h2>See the Partnership?</h2>
+        <div class="key-point">
+            <p>✋ We offer ourselves → God transforms</p>
+            <p style="margin-top: 20px;">📖 We read His Word → He renews our minds</p>
+            <p style="margin-top: 20px;">👥 We gather with believers → He encourages our hearts</p>
+        </div>
+        <div class="slide-number">68/73</div>
+    </div>
+
+    <!-- Slide 69: Spurgeon Quote -->
+    <div class="slide">
+        <div class="quote">
+            "Sanctification grows out of faith in Jesus Christ. Remember holiness is a flower, not a root; it is not sanctification that saves, but salvation that sanctifies."
+            <div class="quote-author">- Charles Spurgeon</div>
+        </div>
+        <div class="slide-number">69/73</div>
+    </div>
+
+    <!-- Slide 70: Personal Story -->
+    <div class="slide discussion-slide">
+        <h2>Share a Story</h2>
+        <p style="font-size: 30px;">"Can anyone share a simple example of how God has changed you since you became a Christian?"</p>
+        <p style="margin-top: 30px; font-size: 24px; color: #ccc;">Maybe a bad habit that's gotten better<br/>
+        or a new desire to help others?</p>
+        <div class="slide-number">70/73</div>
+    </div>
+
+    <!-- Slide 71: Honest Reflection -->
+    <div class="slide discussion-slide">
+        <h2>Time for Honest Reflection</h2>
+        <p style="font-size: 30px; margin-top: 40px;">"Are you truly connected to the vine, or just going through the motions?"</p>
+        <p style="margin-top: 30px; font-size: 26px; color: #ccc;">"What evidence of growth do you see in your life?"</p>
+        <div class="slide-number">71/73</div>
+    </div>
+
+    <!-- Slide 72: Remember -->
+    <div class="slide warm-bg">
+        <h2>Remember These Truths</h2>
+        <div class="key-point">
+            <p><span class="emphasis">Sanctification:</span><br/>
+            God's ongoing work of transforming you by His grace</p>
+            <p style="margin-top: 30px;"><span class="emphasis">Obedience:</span><br/>
+            Your grateful response to His amazing love</p>
+            <p style="margin-top: 30px;"><span class="emphasis">Fruit:</span><br/>
+            The natural result of remaining connected to Christ</p>
+        </div>
+        <div class="slide-number">72/77</div>
+    </div>
+
+    <!-- Slide 73: Already Loved -->
+    <div class="slide scripture-bg">
+        <h1>You're Already Loved! 💕</h1>
+        <div class="content-text" style="text-align: center; font-size: 30px;">
+            <p>God isn't waiting for you to get your act together</p>
+            <p style="margin-top: 30px;">He loves you right now, as you are</p>
+            <p style="margin-top: 40px; color: #90ee90; font-size: 36px;">Rest in His grace<br/>
+            Abide in His presence<br/>
+            Watch Him transform you from the inside out</p>
+        </div>
+        <div class="slide-number">73/77</div>
+    </div>
+
+    <!-- Slide 74: Final Promise -->
+    <div class="slide">
+        <div class="scripture">
+            "He who began a good work in you will carry it on to completion until the day of Christ Jesus."
+            <div class="scripture-ref">Philippians 1:6</div>
+        </div>
+        <p style="margin-top: 40px; font-size: 32px; color: #90ee90;">This is God's promise to you!</p>
+        <div class="slide-number">74/77</div>
+    </div>
+
+    <!-- Slide 75: Spurgeon Final -->
+    <div class="slide">
+        <div class="quote">
+            "If he gives you the grace to make you believe, he will give you the grace to live a holy life afterward."
+            <div class="quote-author">- Charles Spurgeon</div>
+        </div>
+        <p style="margin-top: 30px; text-align: center;">Trust Him for both!</p>
+        <div class="slide-number">75/77</div>
+    </div>
+
+    <!-- Slide 76: Prayer -->
+    <div class="slide section-title">
+        <div class="time-marker">2 min</div>
+        <h1>Let's Close in Prayer</h1>
+        <p style="font-size: 24px; color: #ccc;">Who would like to volunteer to thank God<br/>
+        for His patient, transforming work in our lives?</p>
+        <div class="slide-number">76/77</div>
+    </div>
+
+    <!-- Slide 77: Worksheet -->
+    <div class="slide warm-bg">
+        <h2>Don't Forget Your Worksheet!</h2>
+        <div class="illustration">
+            <p>📝 Take it home as a helpful reference</p>
+            <p style="margin-top: 20px;">🙏 Use the prayer prompts this week</p>
+            <p style="margin-top: 20px;">💭 Review the key truths when you need encouragement</p>
+        </div>
+        <p style="margin-top: 40px; font-size: 24px; color: #90ee90;">Remember: It's not homework—it's a tool to help you grow!</p>
+        <div class="slide-number">77/77</div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = 77;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) changeSlide(1);
+            if (e.key === 'ArrowLeft' && currentSlide > 0) changeSlide(-1);
+        });
+
+        // Touch navigation for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 50 && currentSlide < totalSlides - 1) changeSlide(1);
+            if (touchEndX > touchStartX + 50 && currentSlide > 0) changeSlide(-1);
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

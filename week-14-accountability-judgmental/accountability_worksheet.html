@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblical Accountability - Interactive Learning Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #4facfe;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .activity {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .activity.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+
+        .activity.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .question {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .fill-blank {
+            display: inline-block;
+            border-bottom: 2px solid #6c757d;
+            min-width: 100px;
+            padding: 5px;
+            margin: 0 5px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #4facfe;
+        }
+
+        .dropdown {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: #4facfe;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-true {
+            background: #28a745;
+        }
+
+        .btn-false {
+            background: #dc3545;
+        }
+
+        .btn-true:hover {
+            background: #218838;
+        }
+
+        .btn-false:hover {
+            background: #c82333;
+        }
+
+        .hint {
+            font-size: 14px;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .swipe-cards {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .card {
+            min-width: 250px;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card.flipped {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .tap-reveal {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .tap-reveal:hover {
+            background: #dee2e6;
+        }
+
+        .tap-reveal.revealed {
+            background: #d4edda;
+            border: 2px solid #28a745;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .memory-card {
+            height: 80px;
+            background: #6c757d;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .memory-card.flipped {
+            background: #4facfe;
+        }
+
+        .memory-card.matched {
+            background: #28a745;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4facfe;
+            cursor: pointer;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .copy-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+            transform: scale(1.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .card {
+                min-width: 200px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Biblical Accountability Learning Worksheet</h1>
+            <p>Interactive activities to reinforce what we've learned</p>
+            <p><strong>This is for learning, not testing! 😊</strong></p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Section 1: Fill in the Blanks -->
+        <div class="section">
+            <div class="section-title">
+                🖊️ Fill in the Blanks
+            </div>
+            
+            <div class="activity" id="activity1">
+                <div class="question">
+                    Jesus doesn't forbid all judgment—He forbids <span class="fill-blank" id="blank1">___________</span> judgment. After dealing with your own sin, you CAN "<span class="fill-blank" id="blank2">___________</span> the speck from your brother's eye."
+                </div>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="input1" placeholder="First blank" data-answer="hypocritical" data-hint="hyp...">
+                    <div class="hint">Hint: hyp...</div>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="input2" placeholder="Second blank" data-answer="remove" data-hint="rem...">
+                    <div class="hint">Hint: rem...</div>
+                </div>
+                <button class="btn" onclick="checkFillBlanks(1)">Check Answer</button>
+                <div class="feedback" id="feedback1"></div>
+            </div>
+
+            <div class="activity" id="activity2">
+                <div class="question">
+                    According to John Piper, "Biblical church discipline is simple <span class="fill-blank" id="blank3">___________</span> to God and a simple confession that we need <span class="fill-blank" id="blank4">___________</span>. We cannot live the Christian life alone."
+                </div>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="input3" placeholder="First blank" data-answer="obedience" data-hint="obe...">
+                    <div class="hint">Hint: obe...</div>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="input4" placeholder="Second blank" data-answer="help" data-hint="hel...">
+                    <div class="hint">Hint: hel...</div>
+                </div>
+                <button class="btn" onclick="checkFillBlanks(2)">Check Answer</button>
+                <div class="feedback" id="feedback2"></div>
+            </div>
+        </div>
+
+        <!-- Section 2: Scripture Matching -->
+        <div class="section">
+            <div class="section-title">
+                📖 Scripture Matching
+            </div>
+            
+            <div class="activity" id="activity3">
+                <div class="question">
+                    Match this verse: "My sheep listen to my voice; I know them, and they follow me. I give them eternal life, and they shall never perish..."
+                </div>
+                <select class="dropdown" id="dropdown1" onchange="checkDropdown(1)">
+                    <option value="">Choose the reference...</option>
+                    <option value="john10">John 10:27-29</option>
+                    <option value="matt7">Matthew 7:16</option>
+                    <option value="gal6">Galatians 6:1</option>
+                    <option value="1john2">1 John 2:19</option>
+                </select>
+                <div class="feedback" id="feedback3"></div>
+            </div>
+
+            <div class="activity" id="activity4">
+                <div class="question">
+                    Match this verse: "They went out from us, but they did not really belong to us. For if they had belonged to us, they would have remained with us..."
+                </div>
+                <select class="dropdown" id="dropdown2" onchange="checkDropdown(2)">
+                    <option value="">Choose the reference...</option>
+                    <option value="john10">John 10:27-29</option>
+                    <option value="matt7">Matthew 7:16</option>
+                    <option value="gal6">Galatians 6:1</option>
+                    <option value="1john2">1 John 2:19</option>
+                </select>
+                <div class="feedback" id="feedback4"></div>
+            </div>
+        </div>
+
+        <!-- Section 3: True/False -->
+        <div class="section">
+            <div class="section-title">
+                ✅❌ True or False
+            </div>
+            
+            <div class="activity" id="activity5">
+                <div class="question">
+                    According to Edwards, false converts are satisfied with their current spiritual state, while true believers always hunger for more of God.
+                </div>
+                <button class="btn btn-true" onclick="checkTrueFalse(1, true)">True</button>
+                <button class="btn btn-false" onclick="checkTrueFalse(1, false)">False</button>
+                <div class="feedback" id="feedback5"></div>
+            </div>
+
+            <div class="activity" id="activity6">
+                <div class="question">
+                    The goal of biblical church discipline is punishment and permanent rejection from the community.
+                </div>
+                <button class="btn btn-true" onclick="checkTrueFalse(2, true)">True</button>
+                <button class="btn btn-false" onclick="checkTrueFalse(2, false)">False</button>
+                <div class="feedback" id="feedback6"></div>
+            </div>
+        </div>
+
+        <!-- Section 4: Swipe Learning Cards -->
+        <div class="section">
+            <div class="section-title">
+                👆 Tap to Learn - Key Concepts
+            </div>
+            
+            <div class="swipe-cards">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-front">What does "katartizo" mean?</div>
+                    <div class="card-back" style="display: none;">To mend or restore, like mending fishing nets. The goal is always restoration!</div>
+                </div>
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-front">What's the difference between the Hall twins?</div>
+                    <div class="card-back" style="display: none;">Larry was a serial killer, Gary was innocent. Same appearance, totally different hearts - like false vs. true Jesus!</div>
+                </div>
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-front">Why did the Corinthians need discipline?</div>
+                    <div class="card-back" style="display: none;">They were proud of tolerating serious sin. Their "love" was actually enabling destruction!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Tap to Reveal Scripture -->
+        <div class="section">
+            <div class="section-title">
+                📜 Tap to Reveal Scripture
+            </div>
+            
+            <div class="tap-reveal" onclick="revealScripture(this)">
+                <strong>Tap to see what Jesus said about false converts:</strong>
+                <div class="hidden-content" style="display: none;">
+                    <p><em>"Not everyone who says to me, 'Lord, Lord,' will enter the kingdom of heaven, but only the one who does the will of my Father who is in heaven. Many will say to me on that day, 'Lord, Lord, did we not prophesy in your name...' Then I will tell them plainly, 'I never knew you.'"</em> - Matthew 7:21-23</p>
+                </div>
+            </div>
+
+            <div class="tap-reveal" onclick="revealScripture(this)">
+                <strong>Tap to see Spurgeon's insight on perseverance:</strong>
+                <div class="hidden-content" style="display: none;">
+                    <p><em>"Perseverance is the badge of true saints. The Christian life is not a beginning only in the ways of God, but also a continuance in the same as long as life lasts... Final perseverance is the necessary evidence of genuine conversion."</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Interactive Comparison Slider -->
+        <div class="section">
+            <div class="section-title">
+                ⚖️ Compare: Self-Righteous Judge vs. Loving Shepherd
+            </div>
+            
+            <div class="slider-container">
+                <input type="range" min="0" max="100" value="50" class="slider" id="comparisonSlider" oninput="updateComparison(this.value)">
+                <div class="slider-labels">
+                    <span>Self-Righteous Judge</span>
+                    <span>Loving Shepherd</span>
+                </div>
+                <div id="comparisonText" style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                    Move the slider to explore the differences!
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Memory Match Game -->
+        <div class="section">
+            <div class="section-title">
+                🧠 Memory Match - Bible Characters & Lessons
+            </div>
+            
+            <div class="memory-grid" id="memoryGrid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <button class="btn" onclick="resetMemoryGame()">Reset Game</button>
+        </div>
+
+        <!-- Section 8: What Would You Say? -->
+        <div class="section">
+            <div class="section-title">
+                💬 What Would You Say?
+            </div>
+            
+            <div class="activity">
+                <div class="question">
+                    A friend says: "I believe in Jesus, but I don't need to go to church or read the Bible. God knows my heart." How would you lovingly respond using what we've learned?
+                </div>
+                <textarea class="text-input" style="height: 100px; resize: vertical;" placeholder="Type your response here..."></textarea>
+            </div>
+
+            <div class="activity">
+                <div class="question">
+                    Someone in your small group is consistently living in obvious sin but gets defensive when anyone tries to talk to them about it. Based on Matthew 18, what steps would you take?
+                </div>
+                <textarea class="text-input" style="height: 100px; resize: vertical;" placeholder="Type your response here..."></textarea>
+            </div>
+        </div>
+
+        <!-- Section 9: Personal Reflection -->
+        <div class="section">
+            <div class="section-title">
+                🤔 Personal Reflection
+            </div>
+            
+            <div class="activity">
+                <div class="question">
+                    After this study, how would you describe the difference between knowing about Jesus and truly knowing Jesus?
+                </div>
+                <textarea class="text-input" style="height: 80px; resize: vertical;" placeholder="Your thoughts..."></textarea>
+            </div>
+
+            <div class="activity">
+                <div class="question">
+                    Can you think of any "blind spots" in your life where you might benefit from loving accountability from others?
+                </div>
+                <textarea class="text-input" style="height: 80px; resize: vertical;" placeholder="Your thoughts..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <button class="copy-btn" onclick="copyResponses()" title="Copy All Responses">
+        📋
+    </button>
+
+    <script>
+        let completedActivities = 0;
+        const totalActivities = 6; // Fill blanks, dropdowns, true/false
+
+        function updateProgress() {
+            const percentage = (completedActivities / totalActivities) * 100;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        function checkFillBlanks(activityNum) {
+            const input1 = document.getElementById(`input${activityNum * 2 - 1}`);
+            const input2 = document.getElementById(`input${activityNum * 2}`);
+            const feedback = document.getElementById(`feedback${activityNum}`);
+            const activity = document.getElementById(`activity${activityNum}`);
+            
+            const answer1 = input1.dataset.answer.toLowerCase();
+            const answer2 = input2.dataset.answer.toLowerCase();
+            const user1 = input1.value.toLowerCase().trim();
+            const user2 = input2.value.toLowerCase().trim();
+            
+            if (user1 === answer1 && user2 === answer2) {
+                feedback.className = 'feedback correct';
+                feedback.style.display = 'block';
+                feedback.textContent = '✅ Excellent! You understand the biblical principle.';
+                activity.classList.add('correct');
+                activity.classList.remove('incorrect');
+                completedActivities++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.style.display = 'block';
+                feedback.textContent = '❌ Not quite right. Check the hints and try again!';
+                activity.classList.add('incorrect');
+                activity.classList.remove('correct');
+            }
+        }
+
+        function checkDropdown(dropdownNum) {
+            const dropdown = document.getElementById(`dropdown${dropdownNum}`);
+            const feedback = document.getElementById(`feedback${dropdownNum + 2}`);
+            const activity = document.getElementById(`activity${dropdownNum + 2}`);
+            
+            const correctAnswers = ['john10', '1john2'];
+            const isCorrect = dropdown.value === correctAnswers[dropdownNum - 1];
+            
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.style.display = 'block';
+                feedback.textContent = '✅ Perfect! You matched the verse correctly.';
+                activity.classList.add('correct');
+                activity.classList.remove('incorrect');
+                completedActivities++;
+                updateProgress();
+            } else if (dropdown.value !== '') {
+                feedback.className = 'feedback incorrect';
+                feedback.style.display = 'block';
+                feedback.textContent = '❌ That\'s not the right match. Try again!';
+                activity.classList.add('incorrect');
+                activity.classList.remove('correct');
+            }
+        }
+
+        function checkTrueFalse(questionNum, userAnswer) {
+            const feedback = document.getElementById(`feedback${questionNum + 4}`);
+            const activity = document.getElementById(`activity${questionNum + 4}`);
+            
+            const correctAnswers = [true, false]; // Question 1: true, Question 2: false
+            const isCorrect = userAnswer === correctAnswers[questionNum - 1];
+            
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.style.display = 'block';
+                if (questionNum === 1) {
+                    feedback.textContent = '✅ Correct! Edwards taught that true believers always hunger for more of God.';
+                } else {
+                    feedback.textContent = '✅ Correct! The goal is restoration, not punishment or rejection.';
+                }
+                activity.classList.add('correct');
+                activity.classList.remove('incorrect');
+                completedActivities++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.style.display = 'block';
+                if (questionNum === 1) {
+                    feedback.textContent = '❌ Review Edwards\' teaching on true vs. false conversion.';
+                } else {
+                    feedback.textContent = '❌ Remember the goal is restoration, like mending fishing nets.';
+                }
+                activity.classList.add('incorrect');
+                activity.classList.remove('correct');
+            }
+        }
+
+        function flipCard(card) {
+            const front = card.querySelector('.card-front');
+            const back = card.querySelector('.card-back');
+            
+            if (back.style.display === 'none') {
+                front.style.display = 'none';
+                back.style.display = 'block';
+                card.classList.add('flipped');
+            } else {
+                front.style.display = 'block';
+                back.style.display = 'none';
+                card.classList.remove('flipped');
+            }
+        }
+
+        function revealScripture(element) {
+            const hiddenContent = element.querySelector('.hidden-content');
+            if (hiddenContent.style.display === 'none') {
+                hiddenContent.style.display = 'block';
+                element.classList.add('revealed');
+            } else {
+                hiddenContent.style.display = 'none';
+                element.classList.remove('revealed');
+            }
+        }
+
+        function updateComparison(value) {
+            const text = document.getElementById('comparisonText');
+            
+            if (value < 20) {
+                text.innerHTML = '<strong>Self-Righteous Judge:</strong> Motivated by superiority, harsh and unforgiving, uses public shaming. Heart says "I\'m better than you."';
+                text.style.background = '#f8d7da';
+            } else if (value > 80) {
+                text.innerHTML = '<strong>Loving Shepherd:</strong> Motivated by restoration, gentle and humble, aims for healing. Heart says "I love you too much to watch you destroy yourself."';
+                text.style.background = '#d4edda';
+            } else {
+                text.innerHTML = '<strong>The Key Difference:</strong> It\'s usually not WHAT is said, but WHY and HOW it\'s said. The heart motivation makes all the difference!';
+                text.style.background = '#fff3cd';
+            }
+        }
+
+        // Memory Game
+        const memoryPairs = [
+            ['David', 'Repented when Nathan confronted him'],
+            ['Corinthians', 'Were proud of tolerating sin'],
+            ['Paul', 'Confronted Peter publicly'],
+            ['Edwards', 'Distinguished true from false affections']
+        ];
+
+        let memoryCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+
+        function createMemoryGame() {
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            memoryCards = [];
+            flippedCards = [];
+            matchedPairs = 0;
+            
+            // Create pairs array
+            const gameCards = [];
+            memoryPairs.forEach(pair => {
+                gameCards.push(...pair);
+            });
+            
+            // Shuffle cards
+            for (let i = gameCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [gameCards[i], gameCards[j]] = [gameCards[j], gameCards[i]];
+            }
+            
+            // Create card elements
+            gameCards.forEach((cardText, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.textContent = '?';
+                card.dataset.cardText = cardText;
+                card.dataset.index = index;
+                card.onclick = () => flipMemoryCard(card);
+                grid.appendChild(card);
+                memoryCards.push(card);
+            });
+        }
+
+        function flipMemoryCard(card) {
+            if (flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                return;
+            }
+            
+            card.classList.add('flipped');
+            card.textContent = card.dataset.cardText;
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                setTimeout(checkMemoryMatch, 1000);
+            }
+        }
+
+        function checkMemoryMatch() {
+            const [card1, card2] = flippedCards;
+            const text1 = card1.dataset.cardText;
+            const text2 = card2.dataset.cardText;
+            
+            let isMatch = false;
+            memoryPairs.forEach(pair => {
+                if ((pair[0] === text1 && pair[1] === text2) || (pair[0] === text2 && pair[1] === text1)) {
+                    isMatch = true;
+                }
+            });
+            
+            if (isMatch) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                
+                if (matchedPairs === memoryPairs.length) {
+                    setTimeout(() => alert('🎉 Congratulations! You matched all the pairs!'), 500);
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                card1.textContent = '?';
+                card2.textContent = '?';
+            }
+            
+            flippedCards = [];
+        }
+
+        function resetMemoryGame() {
+            createMemoryGame();
+        }
+
+        function copyResponses() {
+            const textareas = document.querySelectorAll('textarea');
+            const inputs = document.querySelectorAll('input[type="text"]');
+            
+            let responses = 'My Responses to Biblical Accountability Worksheet:\n\n';
+            
+            // Add fill-in-blank responses
+            inputs.forEach((input, index) => {
+                if (input.value.trim()) {
+                    responses += `Fill-in-blank ${index + 1}: ${input.value}\n`;
+                }
+            });
+            
+            // Add textarea responses
+            textareas.forEach((textarea, index) => {
+                if (textarea.value.trim()) {
+                    responses += `Response ${index + 1}: ${textarea.value}\n\n`;
+                }
+            });
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(responses).then(() => {
+                alert('📋 All responses copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = responses;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('📋 All responses copied to clipboard!');
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createMemoryGame();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

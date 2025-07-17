@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Growing in Grace - Interactive Worksheet</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
+
+        h1 {
+            color: #4a9eff;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #4a9eff;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: #6bb6ff;
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #4a9eff;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .fill-blank {
+            display: inline-block;
+            width: auto;
+            min-width: 150px;
+            margin: 0 5px;
+            padding: 8px;
+            border-bottom: 2px solid #4a9eff;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            background-color: #f0f8ff;
+            position: relative;
+        }
+
+        .fill-blank.correct {
+            border-bottom-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+
+        .fill-blank.incorrect {
+            border-bottom-color: #f44336;
+            background-color: #ffebee;
+        }
+
+        .hint-text {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .checkbox-group, .radio-group {
+            margin: 15px 0;
+        }
+
+        .checkbox-item, .radio-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"],
+        .radio-item input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            flex: 1;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .matching-exercise {
+            display: grid;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .match-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border-radius: 5px;
+        }
+
+        .match-select {
+            padding: 8px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .match-select.correct {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+
+        .match-select.incorrect {
+            border-color: #f44336;
+            background-color: #ffebee;
+        }
+
+        .true-false-group {
+            margin: 20px 0;
+        }
+
+        .true-false-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .true-false-item.correct {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+
+        .true-false-item.incorrect {
+            border-color: #f44336;
+            background-color: #ffebee;
+        }
+
+        .true-false-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tf-button {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            background-color: white;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tf-button.true {
+            color: #4CAF50;
+        }
+
+        .tf-button.false {
+            color: #f44336;
+        }
+
+        .tf-button.selected.true {
+            background-color: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .tf-button.selected.false {
+            background-color: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .rating-group {
+            margin: 20px 0;
+        }
+
+        .rating-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .rating-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .star {
+            font-size: 30px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star.filled {
+            color: #ffd700;
+        }
+
+        .quote-box {
+            background-color: #f0f8ff;
+            border-left: 4px solid #4a9eff;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .quote-author {
+            text-align: right;
+            margin-top: 10px;
+            font-style: normal;
+            color: #666;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .reminder-box {
+            background-color: #e8f5e9;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .reminder-box h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+
+        .save-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #4a9eff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        .save-button:active {
+            background-color: #3a8eef;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 24px; }
+            h2 { font-size: 20px; }
+            h3 { font-size: 18px; }
+            .container { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Growing in Grace</h1>
+        <p class="subtitle">Interactive Worksheet - Tap to complete!</p>
+        
+        <div style="background-color: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 30px;">
+            <p style="margin: 0; text-align: center; color: #1976d2;">
+                <strong>This is a learning tool!</strong><br>
+                🟢 Green = Correct | 🔴 Red = Try Again<br>
+                <span style="font-size: 14px;">Immediate feedback helps reinforce the teaching</span>
+            </p>
+        </div>
+
+        <!-- Part 1: Key Truths -->
+        <div class="section">
+            <h2>Part 1: Key Truths to Remember</h2>
+            <p style="text-align: center; color: #666; font-size: 14px; font-style: italic;">
+                Type your answers and watch them turn green (correct) or red (try again)
+            </p>
+            
+            <p><strong>Sanctification is...</strong><br>
+            God's ongoing work of <input type="text" class="fill-blank" placeholder="tap for hint" data-answer="transforming us"> after we're saved.</p>
+
+            <p><strong>The adoption illustration teaches us that:</strong><br>
+            • We don't obey to <input type="text" class="fill-blank" placeholder="tap for hint" data-answer="earn"> our place in the family<br>
+            • We obey because we're <input type="text" class="fill-blank" placeholder="tap for hint" data-answer="grateful"> for being in the family</p>
+
+            <p><strong>The fruit of the Spirit grows through:</strong><br>
+            • <input type="text" class="fill-blank" placeholder="tap for hint" data-answer="Remaining"> in Christ (like branches to a vine)<br>
+            • Not through our own <input type="text" class="fill-blank" placeholder="tap for hint" data-answer="effort/striving"></p>
+
+            <p><strong>Our partnership with God means:</strong><br>
+            • God <input type="text" class="fill-blank" placeholder="tap for hint" data-answer="sanctifies"> us (1 Thess. 5:23-24)<br>
+            • But He uses <input type="text" class="fill-blank" placeholder="tap for hint" data-answer="means"> like His Word, prayer, and fellowship</p>
+        </div>
+
+        <!-- Part 2: Scripture Connections -->
+        <div class="section">
+            <h2>Part 2: Scripture Connections</h2>
+            <p>Match each truth with its scripture:</p>
+            <p style="text-align: center; color: #666; font-size: 14px; font-style: italic;">
+                Select an answer to see if you're correct!
+            </p>
+            
+            <div class="matching-exercise">
+                <div class="match-item">
+                    <span>We're saved by grace, not works</span>
+                    <select class="match-select" data-correct="eph">
+                        <option value="">Choose...</option>
+                        <option value="james">James 2:17</option>
+                        <option value="phil213">Philippians 2:13</option>
+                        <option value="john1415">John 14:15</option>
+                        <option value="john155">John 15:5</option>
+                        <option value="eph">Ephesians 2:8-9</option>
+                        <option value="heb">Hebrews 10:25</option>
+                        <option value="phil16">Philippians 1:6</option>
+                    </select>
+                </div>
+                
+                <div class="match-item">
+                    <span>If we love God, we'll obey Him</span>
+                    <select class="match-select" data-correct="john1415">
+                        <option value="">Choose...</option>
+                        <option value="james">James 2:17</option>
+                        <option value="phil213">Philippians 2:13</option>
+                        <option value="john1415">John 14:15</option>
+                        <option value="john155">John 15:5</option>
+                        <option value="eph">Ephesians 2:8-9</option>
+                        <option value="heb">Hebrews 10:25</option>
+                        <option value="phil16">Philippians 1:6</option>
+                    </select>
+                </div>
+
+                <div class="match-item">
+                    <span>Apart from Christ, we can't bear fruit</span>
+                    <select class="match-select" data-correct="john155">
+                        <option value="">Choose...</option>
+                        <option value="james">James 2:17</option>
+                        <option value="phil213">Philippians 2:13</option>
+                        <option value="john1415">John 14:15</option>
+                        <option value="john155">John 15:5</option>
+                        <option value="eph">Ephesians 2:8-9</option>
+                        <option value="heb">Hebrews 10:25</option>
+                        <option value="phil16">Philippians 1:6</option>
+                    </select>
+                </div>
+
+                <div class="match-item">
+                    <span>God is working in us</span>
+                    <select class="match-select" data-correct="phil213">
+                        <option value="">Choose...</option>
+                        <option value="james">James 2:17</option>
+                        <option value="phil213">Philippians 2:13</option>
+                        <option value="john1415">John 14:15</option>
+                        <option value="john155">John 15:5</option>
+                        <option value="eph">Ephesians 2:8-9</option>
+                        <option value="heb">Hebrews 10:25</option>
+                        <option value="phil16">Philippians 1:6</option>
+                    </select>
+                </div>
+
+                <div class="match-item">
+                    <span>Faith without works is dead</span>
+                    <select class="match-select" data-correct="james">
+                        <option value="">Choose...</option>
+                        <option value="james">James 2:17</option>
+                        <option value="phil213">Philippians 2:13</option>
+                        <option value="john1415">John 14:15</option>
+                        <option value="john155">John 15:5</option>
+                        <option value="eph">Ephesians 2:8-9</option>
+                        <option value="heb">Hebrews 10:25</option>
+                        <option value="phil16">Philippians 1:6</option>
+                    </select>
+                </div>
+
+                <div class="match-item">
+                    <span>We need to meet together regularly</span>
+                    <select class="match-select" data-correct="heb">
+                        <option value="">Choose...</option>
+                        <option value="james">James 2:17</option>
+                        <option value="phil213">Philippians 2:13</option>
+                        <option value="john1415">John 14:15</option>
+                        <option value="john155">John 15:5</option>
+                        <option value="eph">Ephesians 2:8-9</option>
+                        <option value="heb">Hebrews 10:25</option>
+                        <option value="phil16">Philippians 1:6</option>
+                    </select>
+                </div>
+
+                <div class="match-item">
+                    <span>God completes what He starts</span>
+                    <select class="match-select" data-correct="phil16">
+                        <option value="">Choose...</option>
+                        <option value="james">James 2:17</option>
+                        <option value="phil213">Philippians 2:13</option>
+                        <option value="john1415">John 14:15</option>
+                        <option value="john155">John 15:5</option>
+                        <option value="eph">Ephesians 2:8-9</option>
+                        <option value="heb">Hebrews 10:25</option>
+                        <option value="phil16">Philippians 1:6</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 3: Personal Reflection -->
+        <div class="section">
+            <h2>Part 3: Personal Reflection</h2>
+            
+            <h3>The Vine Check-Up</h3>
+            <p>Rate your current connection (tap the stars):</p>
+            <p style="text-align: center; color: #666; font-size: 14px; font-style: italic;">
+                (Be honest - this is between you and God!)
+            </p>
+            
+            <div class="rating-group">
+                <div class="rating-item">
+                    <div class="rating-title">Time in God's Word</div>
+                    <div class="star-rating" data-rating="0">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <div class="rating-title">Prayer life</div>
+                    <div class="star-rating" data-rating="0">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <div class="rating-title">Fellowship with believers</div>
+                    <div class="star-rating" data-rating="0">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <div class="rating-title">Quick confession of sin</div>
+                    <div class="star-rating" data-rating="0">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #666; font-style: italic;">
+                Remember: This isn't about earning God's love—it's about staying connected to receive His transforming power!
+            </p>
+
+            <h3>Our Partnership with God</h3>
+            <p>Fill in the blanks from Romans 12:1-2:</p>
+            <p>We <input type="text" class="fill-blank" placeholder="offer"> our bodies as living sacrifices<br>
+            God <input type="text" class="fill-blank" placeholder="transforms"> us by the renewing of our minds</p>
+        </div>
+
+        <!-- Part 4: Fruit Inventory -->
+        <div class="section">
+            <h2>Part 4: Fruit Inventory</h2>
+            <p>Check the fruits you see growing. Tap again to add a star (★) for ones where you'd like more growth:</p>
+            <p style="text-align: center; color: #666; font-size: 14px; font-style: italic;">
+                (This is self-reflection - there are no wrong answers here!)
+            </p>
+            
+            <div class="checkbox-group">
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Love</label>
+                </div>
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Joy</label>
+                </div>
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Peace</label>
+                </div>
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Patience</label>
+                </div>
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Kindness</label>
+                </div>
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Goodness</label>
+                </div>
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Faithfulness</label>
+                </div>
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Gentleness</label>
+                </div>
+                <div class="checkbox-item fruit-item" data-checked="false" data-starred="false">
+                    <span style="font-size: 20px; margin-right: 10px;">☐</span>
+                    <label>Self-Control</label>
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: #666; font-style: italic;">
+                Remember: We don't manufacture these—they grow naturally as we abide in Christ
+            </p>
+        </div>
+
+        <!-- Part 5: True or False -->
+        <div class="section">
+            <h2>Part 5: Common Misunderstandings</h2>
+            <p>Tap ✓ for TRUE or ✗ for FALSE:</p>
+            <p style="text-align: center; color: #666; font-size: 14px; font-style: italic;">
+                The box will turn green if correct, red if incorrect
+            </p>
+            
+            <div class="true-false-group">
+                <div class="true-false-item" data-correct="false">
+                    <div class="true-false-buttons">
+                        <button class="tf-button true" data-value="true">✓</button>
+                        <button class="tf-button false" data-value="false">✗</button>
+                    </div>
+                    <span>I need to work harder to make God love me more</span>
+                </div>
+
+                <div class="true-false-item" data-correct="false">
+                    <div class="true-false-buttons">
+                        <button class="tf-button true" data-value="true">✓</button>
+                        <button class="tf-button false" data-value="false">✗</button>
+                    </div>
+                    <span>Sanctification happens instantly when I'm saved</span>
+                </div>
+
+                <div class="true-false-item" data-correct="true">
+                    <div class="true-false-buttons">
+                        <button class="tf-button true" data-value="true">✓</button>
+                        <button class="tf-button false" data-value="false">✗</button>
+                    </div>
+                    <span>Good works are evidence of salvation, not the cause</span>
+                </div>
+
+                <div class="true-false-item" data-correct="false">
+                    <div class="true-false-buttons">
+                        <button class="tf-button true" data-value="true">✓</button>
+                        <button class="tf-button false" data-value="false">✗</button>
+                    </div>
+                    <span>I should try to manufacture the fruit of the Spirit</span>
+                </div>
+
+                <div class="true-false-item" data-correct="true">
+                    <div class="true-false-buttons">
+                        <button class="tf-button true" data-value="true">✓</button>
+                        <button class="tf-button false" data-value="false">✗</button>
+                    </div>
+                    <span>God is patient with my growth process</span>
+                </div>
+
+                <div class="true-false-item" data-correct="false">
+                    <div class="true-false-buttons">
+                        <button class="tf-button true" data-value="true">✓</button>
+                        <button class="tf-button false" data-value="false">✗</button>
+                    </div>
+                    <span>If I'm not perfect, I might not really be saved</span>
+                </div>
+
+                <div class="true-false-item" data-correct="false">
+                    <div class="true-false-buttons">
+                        <button class="tf-button true" data-value="true">✓</button>
+                        <button class="tf-button false" data-value="false">✗</button>
+                    </div>
+                    <span>I can have a relationship with God without reading His Word or meeting with His people</span>
+                </div>
+
+                <div class="true-false-item" data-correct="true">
+                    <div class="true-false-buttons">
+                        <button class="tf-button true" data-value="true">✓</button>
+                        <button class="tf-button false" data-value="false">✗</button>
+                    </div>
+                    <span>God does the sanctifying, but He uses means like His Word and fellowship</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 6: Reality Check -->
+        <div class="section">
+            <h2>Part 6: Reality Check</h2>
+            
+            <div class="quote-box">
+                <p>"My sheep listen to my voice; I know them, and they follow me."</p>
+                <div class="quote-author">- John 10:27</div>
+            </div>
+
+            <p>How can we expect to recognize His voice if we never spend time listening?</p>
+
+            <h3>Check areas where you're partnering with God:</h3>
+            <p style="text-align: center; color: #666; font-size: 14px; font-style: italic;">
+                (This is a self-assessment - check all that apply)
+            </p>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="partner1">
+                    <label for="partner1">Regular time in God's Word</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="partner2">
+                    <label for="partner2">Consistent prayer life</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="partner3">
+                    <label for="partner3">Fellowship with other believers</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="partner4">
+                    <label for="partner4">Quick confession when I sin</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="partner5">
+                    <label for="partner5">Serving others in love</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="partner6">
+                    <label for="partner6">Gathering for worship (Hebrews 10:25)</label>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #666; font-style: italic;">
+                Remember: God sanctifies us (1 Thess. 5:23-24), but He uses these means!
+            </p>
+        </div>
+
+        <!-- Part 7: Application -->
+        <div class="section">
+            <h2>Part 7: Practical Application</h2>
+            <p style="text-align: center; color: #666; font-size: 14px; font-style: italic;">
+                (Personal reflection - be honest with yourself!)
+            </p>
+            
+            <h3>One Thing to Stop:</h3>
+            <p>What's one area where you've been trying to earn God's love or change yourself through willpower?</p>
+            <textarea placeholder="Type your answer here..."></textarea>
+
+            <h3>One Thing to Start:</h3>
+            <p>What's one practical way you can strengthen your connection to Christ this week?</p>
+            <textarea placeholder="Type your answer here..."></textarea>
+
+            <h3>Honest Question:</h3>
+            <p>Are you truly connected to the vine, or just going through the motions? What evidence of growth do you see?</p>
+            <textarea placeholder="Type your answer here..."></textarea>
+        </div>
+
+        <!-- Part 8: Key Quotes -->
+        <div class="section">
+            <h2>Part 8: Key Quotes to Keep</h2>
+            
+            <div class="quote-box">
+                <p>"The only sin we can fight against successfully is a forgiven sin."</p>
+                <div class="quote-author">- John Piper</div>
+            </div>
+
+            <div class="quote-box">
+                <p>"Sanctification grows out of faith in Jesus Christ. Remember holiness is a flower, not a root; it is not sanctification that saves, but salvation that sanctifies."</p>
+                <div class="quote-author">- Charles Spurgeon</div>
+            </div>
+
+            <div class="quote-box">
+                <p>"Our love will be shown by obedience, not by how good we feel about God at a given moment."</p>
+                <div class="quote-author">- Voddie Baucham</div>
+            </div>
+
+            <div class="quote-box">
+                <p>"Good actions are not the root; they are the fruit of a changed heart."</p>
+                <div class="quote-author">- C.S. Lewis</div>
+            </div>
+
+            <div class="quote-box">
+                <p>"Be killing sin, or sin will be killing you."</p>
+                <div class="quote-author">- John Owen</div>
+            </div>
+
+            <div class="quote-box">
+                <p>"Christ will be master of the heart, and sin must be mortified. If your life is unholy, then your heart is unchanged."</p>
+                <div class="quote-author">- Charles Spurgeon</div>
+            </div>
+
+            <div class="quote-box">
+                <p>"If he gives you the grace to make you believe, he will give you the grace to live a holy life afterward."</p>
+                <div class="quote-author">- Charles Spurgeon</div>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="section">
+            <h2>Notes</h2>
+            <p>Jot down insights, questions, or thoughts:</p>
+            <textarea style="min-height: 150px;" placeholder="Type your notes here..."></textarea>
+        </div>
+
+        <!-- Remember Box -->
+        <div class="reminder-box">
+            <h3>Remember: You're Already Loved! 💕</h3>
+            <p>God isn't waiting for you to get your act together. He loves you right now, as you are. Sanctification isn't about earning His love—it's about becoming who He's already declared you to be.</p>
+            <p><strong>"He who began a good work in you will carry it on to completion until the day of Christ Jesus."</strong><br>- Philippians 1:6</p>
+        </div>
+
+        <!-- Save Button -->
+        <button class="save-button" onclick="saveProgress()">Copy My Responses</button>
+    </div>
+
+    <script>
+        // Star rating functionality
+        document.querySelectorAll('.star-rating').forEach(rating => {
+            const stars = rating.querySelectorAll('.star');
+            
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    rating.setAttribute('data-rating', value);
+                    
+                    stars.forEach((s, i) => {
+                        if (i < value) {
+                            s.classList.add('filled');
+                        } else {
+                            s.classList.remove('filled');
+                        }
+                    });
+                });
+            });
+        });
+
+        // True/False buttons
+        document.querySelectorAll('.true-false-item').forEach(item => {
+            const buttons = item.querySelectorAll('.tf-button');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('selected'));
+                    button.classList.add('selected');
+                });
+            });
+        });
+
+        // Fruit checkbox functionality
+        document.querySelectorAll('.fruit-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const checked = item.getAttribute('data-checked') === 'true';
+                const starred = item.getAttribute('data-starred') === 'true';
+                const checkbox = item.querySelector('span');
+                
+                if (!checked) {
+                    item.setAttribute('data-checked', 'true');
+                    checkbox.textContent = '☑';
+                    item.style.backgroundColor = '#e8f5e9';
+                } else if (!starred) {
+                    item.setAttribute('data-starred', 'true');
+                    checkbox.textContent = '☑★';
+                    item.style.backgroundColor = '#fff3cd';
+                } else {
+                    item.setAttribute('data-checked', 'false');
+                    item.setAttribute('data-starred', 'false');
+                    checkbox.textContent = '☐';
+                    item.style.backgroundColor = '#f9f9f9';
+                }
+            });
+        });
+
+        // Save progress function
+        function saveProgress() {
+            // Show completion message
+            const button = document.querySelector('.save-button');
+            button.textContent = 'Worksheet Complete! ✓';
+            button.style.backgroundColor = '#4CAF50';
+            
+            // Create a summary of responses
+            let summary = "My Sanctification Worksheet Responses:\n\n";
+            
+            // Add fill-in-the-blank responses
+            const fillBlanks = document.querySelectorAll('.fill-blank');
+            if (fillBlanks.length > 0) {
+                summary += "Key Truths:\n";
+                fillBlanks.forEach((input, index) => {
+                    if (input.value) summary += `- ${input.value}\n`;
+                });
+                summary += "\n";
+            }
+            
+            // Add ratings
+            summary += "My Connection Ratings:\n";
+            const ratingItems = document.querySelectorAll('.rating-item');
+            ratingItems.forEach(item => {
+                const title = item.querySelector('.rating-title').textContent;
+                const rating = item.querySelector('.star-rating').getAttribute('data-rating');
+                summary += `${title}: ${rating}/5 stars\n`;
+            });
+            summary += "\n";
+            
+            // Add text responses
+            const textAreas = document.querySelectorAll('textarea');
+            const labels = ['One thing to stop:', 'One thing to start:', 'Honest reflection:', 'Notes:'];
+            textAreas.forEach((textarea, index) => {
+                if (textarea.value && labels[index]) {
+                    summary += `${labels[index]}\n${textarea.value}\n\n`;
+                }
+            });
+            
+            // Option to copy summary
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(summary).then(() => {
+                    setTimeout(() => {
+                        button.textContent = 'Copied to Clipboard! 📋';
+                        setTimeout(() => {
+                            button.textContent = 'Copy My Responses';
+                            button.style.backgroundColor = '#4a9eff';
+                        }, 2000);
+                    }, 1000);
+                });
+            } else {
+                // Fallback for browsers without clipboard API
+                setTimeout(() => {
+                    button.textContent = 'Copy My Responses';
+                    button.style.backgroundColor = '#4a9eff';
+                }, 2000);
+            }
+        }
+
+    </script>
+</body>
+</html>

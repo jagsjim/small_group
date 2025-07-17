@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 1: The Problem and the Promise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c1810, #4a2c1a);
+            color: #f4f1e8;
+            overflow: hidden;
+            user-select: none;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #3d251a, #5c3426);
+            border: 3px solid #8b6f47;
+            position: relative;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        .slide.title-slide {
+            background: linear-gradient(135deg, #1a0f0a, #2d1b10);
+            border: 3px solid #d4af37;
+        }
+        
+        .slide.discussion-slide {
+            background: linear-gradient(135deg, #2a1810, #4a2f1c);
+            border: 3px solid #cd853f;
+        }
+        
+        .slide.time-marker {
+            background: linear-gradient(135deg, #4a2c1a, #6b3e26);
+            border: 3px solid #daa520;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #f4d03f;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f7dc6f;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+        
+        h3 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f8c471;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+        
+        p, li {
+            font-size: 32px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            color: #fbeee6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .scripture {
+            font-style: italic;
+            color: #f4d03f;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+            margin: 20px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #e8daef;
+            background: rgba(232, 218, 239, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #bb8fce;
+            margin: 20px 0;
+        }
+        
+        .covenant-box {
+            background: rgba(205, 133, 63, 0.2);
+            border: 2px solid #cd853f;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .discussion-box {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid #ffd700;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes gentle-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: #d4af37;
+            background: rgba(0,0,0,0.3);
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        
+        .time-indicator {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            color: #daa520;
+            background: rgba(218, 165, 32, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.8);
+            color: #2c1810;
+            border: none;
+            font-size: 40px;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .nav-button:hover {
+            background: #d4af37;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .emoji {
+            font-size: 40px;
+            margin: 0 10px;
+        }
+        
+        ul {
+            text-align: left;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        
+        .highlight {
+            background: rgba(244, 208, 63, 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <div class="slide-number">1/72</div>
+            <h1>📜 Session 1: The Problem and the Promise</h1>
+            <h2>God's Covenants and Humanity's Failure</h2>
+            <p style="font-size: 28px; margin-top: 30px;">From Promise to Fulfillment: God's Unbreakable Love Story</p>
+        </div>
+
+        <!-- Slide 2: Welcome -->
+        <div class="slide">
+            <div class="slide-number">2/72</div>
+            <h2>Welcome Friends! 👋</h2>
+            <p>Today we're beginning an incredible journey through God's love story</p>
+            <p>We'll discover the ultimate cliffhanger:</p>
+            <div class="highlight">Humanity breaks every covenant, but will God keep His promises Himself?</div>
+        </div>
+
+        <!-- Slide 3: The Big Picture -->
+        <div class="slide">
+            <div class="slide-number">3/72</div>
+            <h2>The Incredible Unity 📚</h2>
+            <p>The Bible contains:</p>
+            <ul>
+                <li><strong>66 books</strong></li>
+                <li><strong>40 different authors</strong></li>
+                <li><strong>1,500 years</strong> to write</li>
+            </ul>
+            <div class="highlight">Yet it tells ONE story about ONE hero: Jesus Christ</div>
+        </div>
+
+        <!-- Slide 4: Love Letter Metaphor -->
+        <div class="slide">
+            <div class="slide-number">4/72</div>
+            <h2>God's Love Letters 💕</h2>
+            <p>Imagine an arranged marriage where the groom writes love letters to his future bride...</p>
+            <p>He wants their wedding day to feel like meeting someone she already knows and loves</p>
+            <div class="highlight">That's what God is doing through Scripture!</div>
+        </div>
+
+        <!-- Slide 5: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">5/72</div>
+            <div class="time-indicator">⏰ 4 min</div>
+            <h1>🙏 Opening Prayer</h1>
+            <p style="font-style: italic;">For hearts to be amazed by God's covenant love</p>
+        </div>
+
+        <!-- Slide 6: God-Breathed -->
+        <div class="slide">
+            <div class="slide-number">6/72</div>
+            <h2>God-Breathed Scripture 📖</h2>
+            <div class="scripture">
+                "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness"
+                <br><em>- 2 Timothy 3:16</em>
+            </div>
+            <p>God Himself inspired every word!</p>
+        </div>
+
+        <!-- Slide 7: Hesed Love -->
+        <div class="slide">
+            <div class="slide-number">7/72</div>
+            <h2>Understanding HESED ❤️</h2>
+            <p>Hebrew word appearing 240+ times in the Old Testament</p>
+            <div class="highlight">God's loyal, covenant-keeping, steadfast love</div>
+            <p>Not just feelings - unbreakable commitment!</p>
+        </div>
+
+        <!-- Slide 8: Covenant Definition -->
+        <div class="slide">
+            <div class="slide-number">8/72</div>
+            <h2>What Is a Covenant? 🤝</h2>
+            <p>More than a contract - it's about relationship</p>
+            <div class="covenant-box">
+                <p>Binding promises between people who commit to be loyal to each other no matter what</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Sproul Quote -->
+        <div class="slide">
+            <div class="slide-number">9/72</div>
+            <div class="quote">
+                "A covenant is a sacred bond, sovereignly administered, with life-and-death consequences"
+                <br><em>- R.C. Sproul</em>
+            </div>
+            <p>When God makes a covenant, He binds Himself to us in love</p>
+        </div>
+
+        <!-- Slide 10: Two Types -->
+        <div class="slide">
+            <div class="slide-number">10/72</div>
+            <h2>Two Types of Covenants</h2>
+            <div class="covenant-box">
+                <p><strong>Conditional:</strong> "If you do this, then I'll do that"</p>
+                <p><strong>Unconditional:</strong> "I will do this, period"</p>
+            </div>
+            <p>Watch for this pattern - it becomes very important!</p>
+        </div>
+
+        <!-- Slide 11: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">11/72</div>
+            <div class="time-indicator">⏰ 12 min</div>
+            <h1>🍎 The First Covenant</h1>
+            <h2>Paradise Lost</h2>
+        </div>
+
+        <!-- Slide 12: Creation -->
+        <div class="slide">
+            <div class="slide-number">12/72</div>
+            <h2>In the Beginning... 🌅</h2>
+            <div class="scripture">
+                "God saw all that he had made, and it was very good"
+                <br><em>- Genesis 1:31</em>
+            </div>
+            <p>Perfect world, perfect relationship, perfect harmony</p>
+        </div>
+
+        <!-- Slide 13: Creation Covenant -->
+        <div class="slide">
+            <div class="slide-number">13/72</div>
+            <h2>The Creation Covenant</h2>
+            <div class="covenant-box">
+                <p>Enjoy this perfect world, rule with love, trust Me completely</p>
+                <p>But don't eat from one tree</p>
+            </div>
+            <p>Not mean - just asking for complete trust</p>
+        </div>
+
+        <!-- Slide 14: The Fall -->
+        <div class="slide">
+            <div class="slide-number">14/72</div>
+            <h2>The Heartbreak 💔</h2>
+            <div class="scripture">
+                "She took some and ate it. She also gave some to her husband, who was with her, and he ate it"
+                <br><em>- Genesis 3:6</em>
+            </div>
+            <p>First covenant shattered by human disobedience</p>
+        </div>
+
+        <!-- Slide 15: First Promise -->
+        <div class="slide">
+            <div class="slide-number">15/72</div>
+            <h2>But God's First Promise! ⭐</h2>
+            <div class="scripture">
+                The woman's offspring would crush the serpent's head
+                <br><em>- Genesis 3:15</em>
+            </div>
+            <p>First glimpse of a Savior!</p>
+        </div>
+
+        <!-- Slide 16: First Sacrifice -->
+        <div class="slide">
+            <div class="slide-number">16/72</div>
+            <h2>God Teaches the First Sacrifice 🩸</h2>
+            <div class="scripture">
+                "The Lord God made garments of skin for Adam and his wife and clothed them"
+                <br><em>- Genesis 3:21</em>
+            </div>
+            <p>Innocent animals died to cover their shame</p>
+        </div>
+
+        <!-- Slide 17: Sacrifice Points Forward -->
+        <div class="slide">
+            <div class="slide-number">17/72</div>
+            <h2>Pointing to Jesus 👉</h2>
+            <p>God was teaching:</p>
+            <ul>
+                <li>Sin requires death</li>
+                <li>But He would provide a substitute</li>
+                <li>Every future sacrifice points to the perfect one</li>
+            </ul>
+        </div>
+
+        <!-- Slide 18: Spurgeon Quote -->
+        <div class="slide">
+            <div class="slide-number">18/72</div>
+            <div class="quote">
+                "The first grain of incense that ever smoked upon the altar of promise was this earliest word of hope"
+                <br><em>- Charles Spurgeon</em>
+            </div>
+        </div>
+
+        <!-- Slide 19: Getting Worse -->
+        <div class="slide">
+            <div class="slide-number">19/72</div>
+            <h2>From Bad to Worse 📉</h2>
+            <p>Cain killed Abel</p>
+            <p>Violence filled the earth</p>
+            <div class="scripture">
+                "Every inclination of the thoughts of the human heart was only evil all the time"
+                <br><em>- Genesis 6:5</em>
+            </div>
+        </div>
+
+        <!-- Slide 20: Discussion -->
+        <div class="slide discussion-slide">
+            <div class="slide-number">20/72</div>
+            <h2>💭 Discussion Moment</h2>
+            <div class="discussion-box">
+                <p>Adam and Eve had everything they could want, yet they still chose to disobey.</p>
+                <p><strong>Why do you think having "everything" wasn't enough for them?</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 21: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">21/72</div>
+            <div class="time-indicator">⏰ 16 min</div>
+            <h1>🌈 The Covenant of Preservation</h1>
+            <h2>Starting Over</h2>
+        </div>
+
+        <!-- Slide 22: Noah -->
+        <div class="slide">
+            <div class="slide-number">22/72</div>
+            <h2>Noah Found Favor 🙏</h2>
+            <div class="scripture">
+                Noah "found favor in the eyes of the Lord"
+                <br><em>- Genesis 6:8</em>
+            </div>
+            <p>God decided to start over</p>
+        </div>
+
+        <!-- Slide 23: Not a Children's Story -->
+        <div class="slide">
+            <div class="slide-number">23/72</div>
+            <h2>This Wasn't Cute 🚫</h2>
+            <p>Not a happy children's story with animals</p>
+            <div class="highlight">This was God's holy wrath poured out against sin</div>
+            <p>Every person outside the ark died</p>
+        </div>
+
+        <!-- Slide 24: Mercy in Judgment -->
+        <div class="slide">
+            <div class="slide-number">24/72</div>
+            <h2>Mercy in Judgment 💙</h2>
+            <p>Yet in wrath, God showed mercy</p>
+            <p>He saved Noah's family</p>
+            <div class="highlight">Preserving humanity so the Savior could still come</div>
+        </div>
+
+        <!-- Slide 25: Rainbow Covenant -->
+        <div class="slide">
+            <div class="slide-number">25/72</div>
+            <h2>The Rainbow Promise 🌈</h2>
+            <div class="scripture">
+                "I have set my rainbow in the clouds, and it will be the sign of the covenant between me and the earth"
+                <br><em>- Genesis 9:13</em>
+            </div>
+        </div>
+
+        <!-- Slide 26: Unconditional -->
+        <div class="slide">
+            <div class="slide-number">26/72</div>
+            <h2>First UNCONDITIONAL Covenant!</h2>
+            <div class="covenant-box">
+                <p>God didn't say "IF you're good"</p>
+                <p>He simply promised, PERIOD</p>
+            </div>
+            <p>Rainbow = God's signature on unbreakable promise</p>
+        </div>
+
+        <!-- Slide 27: Packer Quote -->
+        <div class="slide">
+            <div class="slide-number">27/72</div>
+            <div class="quote">
+                "What matters supremely is not that I know God, but the larger fact that he knows me"
+                <br><em>- J.I. Packer</em>
+            </div>
+        </div>
+
+        <!-- Slide 28: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">28/72</div>
+            <div class="time-indicator">⏰ 18 min</div>
+            <h1>🗼 Tower of Babel</h1>
+            <h2>Pride vs. God's Mission</h2>
+        </div>
+
+        <!-- Slide 29: Human Pride -->
+        <div class="slide">
+            <div class="slide-number">29/72</div>
+            <h2>Making a Name for Ourselves</h2>
+            <p>Humans built a tower to:</p>
+            <ul>
+                <li>"Make a name for ourselves"</li>
+                <li>Avoid being scattered</li>
+                <li>Run from God's command</li>
+            </ul>
+        </div>
+
+        <!-- Slide 30: God Scatters -->
+        <div class="slide">
+            <div class="slide-number">30/72</div>
+            <h2>Confusion and Separation 🌐</h2>
+            <p>God confused their languages and scattered them</p>
+            <p>This created confusion and further separation from God Himself</p>
+            <div class="highlight">Humanity now divided by language, culture, and distance</div>
+        </div>
+
+        <!-- Slide 31: Next Chapter -->
+        <div class="slide">
+            <div class="slide-number">31/72</div>
+            <h2>But Notice What's Next! 👀</h2>
+            <p>The very next chapter introduces Abraham</p>
+            <p>After rebellion created confusion and separation...</p>
+            <div class="highlight">God was about to reintroduce Himself to the world through one man</div>
+        </div>
+
+        <!-- Slide 32: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">32/72</div>
+            <div class="time-indicator">⏰ 20 min</div>
+            <h1>⭐ The Covenant of Promise</h1>
+            <h2>Abraham: Father of Faith</h2>
+        </div>
+
+        <!-- Slide 33: Abraham Called -->
+        <div class="slide">
+            <div class="slide-number">33/72</div>
+            <h2>One of the Most Beautiful Moments</h2>
+            <p>God calls a man named Abram</p>
+            <p>Makes him an incredible promise</p>
+            <div class="highlight">This changes everything</div>
+        </div>
+
+        <!-- Slide 34: Abrahamic Covenant -->
+        <div class="slide">
+            <div class="slide-number">34/72</div>
+            <h2>The Abrahamic Covenant</h2>
+            <div class="scripture">
+                "I will make you into a great nation, and I will bless you... and all peoples on earth will be blessed through you"
+                <br><em>- Genesis 12:2-3</em>
+            </div>
+        </div>
+
+        <!-- Slide 35: All Nations -->
+        <div class="slide">
+            <div class="slide-number">35/72</div>
+            <h2>ALL Peoples! 🌍</h2>
+            <p>God promised to bless ALL peoples through Abraham</p>
+            <div class="highlight">That includes YOU!</div>
+            <p>Always about more than one family - God's plan to rescue the whole world</p>
+        </div>
+
+        <!-- Slide 36: Unconditional Again -->
+        <div class="slide">
+            <div class="slide-number">36/72</div>
+            <h2>Another UNCONDITIONAL Covenant</h2>
+            <div class="covenant-box">
+                <p>God didn't say "IF you're perfect"</p>
+                <p>He simply said "I WILL"</p>
+            </div>
+            <p>Abraham believed and it was credited as righteousness</p>
+        </div>
+
+        <!-- Slide 37: God Makes It With Himself -->
+        <div class="slide">
+            <div class="slide-number">37/72</div>
+            <h2>God Makes Covenant with Himself! 😴</h2>
+            <p>Genesis 15: God made Abraham fall into deep sleep</p>
+            <p>Only GOD walked between the sacrifice pieces</p>
+            <div class="highlight">"I'm making this covenant with Myself. You can't break it!"</div>
+        </div>
+
+        <!-- Slide 38: Depends on God -->
+        <div class="slide">
+            <div class="slide-number">38/72</div>
+            <h2>Success Depends on God Alone</h2>
+            <div class="covenant-box">
+                <p>Abraham couldn't participate - he was asleep!</p>
+                <p>Covenant's success depends entirely on God's faithfulness, not Abraham's</p>
+            </div>
+        </div>
+
+        <!-- Slide 39: The Ultimate Test -->
+        <div class="slide">
+            <div class="slide-number">39/72</div>
+            <h2>The Ultimate Test 🔥</h2>
+            <p>God asked Abraham to sacrifice Isaac</p>
+            <p>The very son through whom the promise was to be fulfilled</p>
+            <div class="highlight">This would reveal something incredible about God's heart</div>
+        </div>
+
+        <!-- Slide 40: Mount Moriah -->
+        <div class="slide">
+            <div class="slide-number">40/72</div>
+            <h2>Picture the Scene 🏔️</h2>
+            <p>Abraham, the elderly father</p>
+            <p>Isaac, carrying wood for his own sacrifice</p>
+            <p>Climbing Mount Moriah together</p>
+        </div>
+
+        <!-- Slide 41: Where is the Lamb -->
+        <div class="slide">
+            <div class="slide-number">41/72</div>
+            <h2>"Where is the Lamb?" 🐑</h2>
+            <div class="scripture">
+                Isaac: "Father, where is the lamb for the burnt offering?"
+                <br><em>- Genesis 22:7</em>
+            </div>
+            <p>Innocent question that pierces the heart</p>
+        </div>
+
+        <!-- Slide 42: Abraham's Prophetic Answer -->
+        <div class="slide">
+            <div class="slide-number">42/72</div>
+            <h2>Abraham's Prophetic Answer</h2>
+            <div class="scripture">
+                "God himself will provide the lamb for the burnt offering, my son"
+                <br><em>- Genesis 22:8</em>
+            </div>
+            <div class="highlight">More prophetic than Abraham knew!</div>
+        </div>
+
+        <!-- Slide 43: Perfect Picture of Jesus -->
+        <div class="slide">
+            <div class="slide-number">43/72</div>
+            <h2>Perfect Picture of Jesus! ✨</h2>
+            <p>Here's what God was showing:</p>
+            <ul>
+                <li>Isaac = beloved son (like Jesus)</li>
+                <li>Isaac carried wood (like Jesus carried cross)</li>
+                <li>Isaac willing to be sacrificed (like Jesus)</li>
+            </ul>
+        </div>
+
+        <!-- Slide 44: More Pictures -->
+        <div class="slide">
+            <div class="slide-number">44/72</div>
+            <h2>More Amazing Pictures</h2>
+            <ul>
+                <li>Isaac "raised from dead" in Abraham's mind (like Jesus actually raised)</li>
+                <li>God provided substitute ram (like Jesus our substitute)</li>
+            </ul>
+        </div>
+
+        <!-- Slide 45: Preview of Gospel -->
+        <div class="slide">
+            <div class="slide-number">45/72</div>
+            <h2>Preview of the Gospel! 📖</h2>
+            <p>When Abraham saw the ram caught in the thicket:</p>
+            <div class="highlight">"Abraham, I will provide the ultimate sacrifice. One day I will sacrifice My Son."</div>
+        </div>
+
+        <!-- Slide 46: Abraham's Faith -->
+        <div class="slide">
+            <div class="slide-number">46/72</div>
+            <h2>Abraham's Amazing Faith</h2>
+            <div class="scripture">
+                Abraham believed God could raise Isaac from the dead if necessary
+                <br><em>- Hebrews 11:19</em>
+            </div>
+            <p>Trusted God's promise completely</p>
+        </div>
+
+        <!-- Slide 47: Promise Passes On -->
+        <div class="slide">
+            <div class="slide-number">47/72</div>
+            <h2>Promise Passes On</h2>
+            <p>Abraham → Isaac → Jacob → Twelve Sons</p>
+            <p>Through every generation, God kept His word</p>
+            <div class="highlight">Despite human weakness and failure</div>
+        </div>
+
+        <!-- Slide 48: Discussion -->
+        <div class="slide discussion-slide">
+            <div class="slide-number">48/72</div>
+            <h2>💭 Discussion Moment</h2>
+            <div class="discussion-box">
+                <p>God made Abraham wait 25 years for Isaac, but He kept His promise.</p>
+                <p><strong>What encourages you most about Abraham's story - his faith or God's faithfulness?</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 49: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">49/72</div>
+            <div class="time-indicator">⏰ 35 min</div>
+            <h1>🏺 Providence and Preparation</h1>
+            <h2>Joseph in Egypt</h2>
+        </div>
+
+        <!-- Slide 50: Joseph's Story -->
+        <div class="slide">
+            <div class="slide-number">50/72</div>
+            <h2>God Works Through Evil</h2>
+            <p>Brothers sold Joseph into slavery out of jealousy</p>
+            <p>But God used even that evil for good</p>
+            <p>Years later, Joseph saved his family from famine</p>
+        </div>
+
+        <!-- Slide 51: Joseph's Perspective -->
+        <div class="slide">
+            <div class="slide-number">51/72</div>
+            <h2>Joseph's Perspective</h2>
+            <div class="scripture">
+                "You intended to harm me, but God intended it for good to accomplish what is now being done"
+                <br><em>- Genesis 50:20</em>
+            </div>
+        </div>
+
+        <!-- Slide 52: God's Faithfulness -->
+        <div class="slide">
+            <div class="slide-number">52/72</div>
+            <h2>God's Covenant Faithfulness</h2>
+            <p>God preserved the covenant family through slavery and famine</p>
+            <p>Egypt = protective cocoon for growth</p>
+            <div class="highlight">From 70 people to a great nation</div>
+        </div>
+
+        <!-- Slide 53: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">53/72</div>
+            <div class="time-indicator">⏰ 39 min</div>
+            <h1>📜 The Covenant of Law</h1>
+            <h2>Moses and the Great Rescue</h2>
+        </div>
+
+        <!-- Slide 54: 400 Years Later -->
+        <div class="slide">
+            <div class="slide-number">54/72</div>
+            <h2>400 Years Later... ⛓️</h2>
+            <p>Israelites had become slaves</p>
+            <p>They cried out to God</p>
+            <div class="scripture">
+                "God heard their groaning and he remembered his covenant with Abraham, Isaac and Jacob"
+                <br><em>- Exodus 2:24-25</em>
+            </div>
+        </div>
+
+        <!-- Slide 55: God Remembers -->
+        <div class="slide">
+            <div class="slide-number">55/72</div>
+            <h2>God "Remembers" 🧠</h2>
+            <p>Doesn't mean He forgot!</p>
+            <p>In Hebrew, "remember" = act on what you know</p>
+            <div class="highlight">God was about to fulfill His promise in a powerful way</div>
+        </div>
+
+        <!-- Slide 56: The Great Rescue -->
+        <div class="slide">
+            <div class="slide-number">56/72</div>
+            <h2>The Great Rescue 🌊</h2>
+            <p>Ten plagues</p>
+            <p>Parting of the Red Sea</p>
+            <p>God delivered His people from slavery</p>
+            <p>But this was about more than physical freedom</p>
+        </div>
+
+        <!-- Slide 57: Mosaic Covenant -->
+        <div class="slide">
+            <div class="slide-number">57/72</div>
+            <h2>The Mosaic Covenant</h2>
+            <div class="covenant-box">
+                <p><strong>CONDITIONAL Covenant:</strong></p>
+                <p>"If you obey my commands, you will be blessed"</p>
+                <p>"If you disobey, you will face consequences"</p>
+            </div>
+        </div>
+
+        <!-- Slide 58: Why the Law -->
+        <div class="slide">
+            <div class="slide-number">58/72</div>
+            <h2>Why the Law? 📏</h2>
+            <p>Not meant to save them</p>
+            <p>Meant to show them how to live as God's people</p>
+            <div class="highlight">And ultimately to show their need for a Savior</div>
+        </div>
+
+        <!-- Slide 59: God's Heart -->
+        <div class="slide">
+            <div class="slide-number">59/72</div>
+            <h2>God's Heart for His People</h2>
+            <div class="scripture">
+                "You will be for me a kingdom of priests and a holy nation"
+                <br><em>- Exodus 19:5-6</em>
+            </div>
+        </div>
+
+        <!-- Slide 60: The Tabernacle -->
+        <div class="slide">
+            <div class="slide-number">60/72</div>
+            <h2>The Tabernacle: God With Us! ⛺</h2>
+            <div class="scripture">
+                "Have them make a sanctuary for me, and I will dwell among them"
+                <br><em>- Exodus 25:8</em>
+            </div>
+            <p>God wanted to live right in the middle of His people!</p>
+        </div>
+
+        <!-- Slide 61: Points to Jesus -->
+        <div class="slide">
+            <div class="slide-number">61/72</div>
+            <h2>This Points to Jesus!</h2>
+            <p>Tabernacle = preview of "Immanuel" (God with us)</p>
+            <ul>
+                <li>Sacrificial altar → Jesus, perfect sacrifice</li>
+                <li>Separating veil → Jesus tore it in two</li>
+                <li>Mercy seat → Jesus, our meeting place with God</li>
+            </ul>
+        </div>
+
+        <!-- Slide 62: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">62/72</div>
+            <div class="time-indicator">⏰ 47 min</div>
+            <h1>🏜️ Testing and Failure</h1>
+            <h2>The Covenant-Breaking Pattern</h2>
+        </div>
+
+        <!-- Slide 63: The Pattern Emerges -->
+        <div class="slide">
+            <div class="slide-number">63/72</div>
+            <h2>Even After Miracles... 😔</h2>
+            <p>Israelites complained</p>
+            <p>Worshipped idols</p>
+            <p>Rebelled against God</p>
+            <div class="highlight">Even after witnessing incredible miracles!</div>
+        </div>
+
+        <!-- Slide 64: The Cycle -->
+        <div class="slide">
+            <div class="slide-number">64/72</div>
+            <h2>The Repeating Cycle</h2>
+            <div class="covenant-box">
+                <p>God's grace → human rebellion → God's discipline → God's grace again</p>
+            </div>
+            <p>Sound familiar? Same pattern in our lives</p>
+        </div>
+
+        <!-- Slide 65: God's Character -->
+        <div class="slide">
+            <div class="slide-number">65/72</div>
+            <h2>God's Character Revealed</h2>
+            <div class="scripture">
+                "The Lord is slow to anger, abounding in love and forgiving sin and rebellion"
+                <br><em>- Numbers 14:18</em>
+            </div>
+            <p>That's HESED love in action!</p>
+        </div>
+
+        <!-- Slide 66: The Sobering Truth -->
+        <div class="slide">
+            <div class="slide-number">66/72</div>
+            <h2>The Sobering Truth</h2>
+            <p>Because of unbelief, entire generation died in wilderness</p>
+            <p>Only Joshua and Caleb entered Promised Land</p>
+            <div class="highlight">Human beings cannot keep God's covenants</div>
+        </div>
+
+        <!-- Slide 67: Baucham Quote -->
+        <div class="slide">
+            <div class="slide-number">67/72</div>
+            <div class="quote">
+                "God's love is not sentimental. It is not based on our performance. It is based on His character and His covenant promises"
+                <br><em>- Voddie Baucham</em>
+            </div>
+        </div>
+
+        <!-- Slide 68: Discussion -->
+        <div class="slide discussion-slide">
+            <div class="slide-number">68/72</div>
+            <h2>💭 Discussion Moment</h2>
+            <div class="discussion-box">
+                <p>God's grace → human rebellion → God's discipline → God's grace again</p>
+                <p><strong>Where do you see this pattern in your own life?</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 69: The Cliffhanger -->
+        <div class="slide">
+            <div class="slide-number">69/72</div>
+            <h2>The Ultimate Cliffhanger! 😱</h2>
+            <p>We've seen God make covenant after covenant</p>
+            <p>We've seen humanity break every single one</p>
+            <div class="highlight">If humanity can't keep God's covenants, will God keep them Himself?</div>
+        </div>
+
+        <!-- Slide 70: CS Lewis Quote -->
+        <div class="slide">
+            <div class="slide-number">70/72</div>
+            <div class="quote">
+                "The problem is only insoluble so long as we attach a trivial meaning to the word 'love'"
+                <br><em>- C.S. Lewis</em>
+            </div>
+            <p>God's love is deeper than we thought</p>
+        </div>
+
+        <!-- Slide 71: The Promise Remains -->
+        <div class="slide">
+            <div class="slide-number">71/72</div>
+            <h2>The Promise Remains ⭐</h2>
+            <p>God promised a New Covenant written on hearts</p>
+            <p>But how will He do it?</p>
+            <div class="highlight">The answer is coming... and it will be more beautiful than anything the world has ever seen</div>
+        </div>
+
+        <!-- Slide 72: Next Time -->
+        <div class="slide title-slide">
+            <div class="slide-number">72/72</div>
+            <h1>📖 Next Time...</h1>
+            <h2>Session 2: The Solution and the Fulfillment</h2>
+            <p style="font-size: 28px;">How God kept every promise He ever made by keeping them Himself</p>
+            <div class="highlight" style="margin-top: 30px;">God's hesed love never fails!</div>
+        </div>
+
+        <button class="nav-button prev" onclick="changeSlide(-1)">‹</button>
+        <button class="nav-button next" onclick="changeSlide(1)">›</button>
+        <div class="progress-bar" id="progress"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateProgress();
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        // Touch/swipe support
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!startX || !startY) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+            
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX > 50) changeSlide(1); // Swipe left
+                if (diffX < -50) changeSlide(-1); // Swipe right
+            }
+            
+            startX = 0;
+            startY = 0;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -221,168 +221,273 @@
             font-weight: bold;
         }
 
-        /* Intimacy Scale Builder */
-        .intimacy-builder {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        /* Bible Verse Reconstruction */
+        .verse-builder {
+            margin: 20px 0;
+        }
+
+        .verse-container {
+            background: #fff;
+            border: 2px solid #6f42c1;
+            border-radius: 10px;
             padding: 20px;
-            border-radius: 12px;
             margin: 20px 0;
         }
 
-        .scale-container {
-            margin: 20px 0;
+        .verse-container h4 {
+            color: #6f42c1;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-align: center;
         }
 
-        .scale-item {
-            display: flex;
-            align-items: center;
+        .verse-target {
+            min-height: 80px;
+            border: 2px dashed #6f42c1;
+            border-radius: 8px;
+            padding: 15px;
             margin: 15px 0;
-            padding: 15px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-        }
-
-        .scale-label {
-            flex: 1;
-            font-size: 15px;
-            margin-right: 15px;
-        }
-
-        .scale-slider {
-            flex: 1;
-            height: 6px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 3px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .scale-thumb {
-            position: absolute;
-            top: -7px;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            left: 0%;
-        }
-
-        .scale-values {
+            background: #f8f9ff;
             display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            margin-top: 5px;
-            opacity: 0.8;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: flex-start;
+            font-size: 16px;
+            line-height: 1.6;
         }
 
-        /* Cost Calculator */
-        .cost-calculator {
-            background: #ffe6e6;
-            border: 2px solid #dc3545;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
+        .verse-target.populated {
+            border-style: solid;
+            background: #e8f5e8;
         }
 
-        .cost-category {
-            margin: 20px 0;
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
             padding: 15px;
-            background: white;
+            background: #f8f9fa;
             border-radius: 8px;
-            border-left: 4px solid #dc3545;
+            border: 1px solid #dee2e6;
         }
 
-        .cost-title {
+        .word-tile {
+            padding: 6px 12px;
+            background: #6f42c1;
+            color: white;
+            border-radius: 15px;
+            cursor: move;
+            font-size: 14px;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .word-tile:hover {
+            background: #5a36a3;
+            transform: scale(1.05);
+        }
+
+        .word-tile.placed {
+            background: #28a745;
+            margin: 2px;
+        }
+
+        .word-tile.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+
+        /* Heart Temperature Check */
+        .temperature-gauge {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffecd2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .gauge-instruction {
             font-size: 16px;
             font-weight: 600;
-            color: #721c24;
-            margin-bottom: 10px;
+            color: #6f4e37;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .cost-description {
+        .temperature-scale {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .temp-item {
+            background: rgba(255,255,255,0.9);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .temp-item:hover {
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .temp-item.selected {
+            border-color: #dc3545;
+            background: white;
+            box-shadow: 0 4px 12px rgba(220,53,69,0.3);
+        }
+
+        .temp-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .temp-content {
+            flex: 1;
+        }
+
+        .temp-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .temp-description {
             font-size: 14px;
-            color: #856404;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .temperature-feedback {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: none;
+            color: #6f4e37;
+            font-weight: 600;
+        }
+
+        .next-step-container {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .next-step-question {
+            font-size: 16px;
+            font-weight: 600;
+            color: #6f4e37;
             margin-bottom: 12px;
+        }
+
+        .next-step-input {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            font-size: 15px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .next-step-input:focus {
+            border-color: #dc3545;
+            outline: none;
+        }
+
+        /* Forgiveness Myth Buster */
+        .myth-buster {
+            margin: 20px 0;
+        }
+
+        .myth-statement {
+            background: #fff;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .statement-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
             line-height: 1.5;
         }
 
-        .cost-range {
+        .truth-buttons {
             display: flex;
-            align-items: center;
             gap: 10px;
+            margin-bottom: 15px;
         }
 
-        .cost-slider {
+        .truth-btn {
             flex: 1;
-            height: 6px;
-            background: #dee2e6;
-            border-radius: 3px;
-            position: relative;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            background: #f8f9fa;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .cost-thumb {
-            position: absolute;
-            top: -7px;
-            width: 20px;
-            height: 20px;
+        .truth-btn:hover {
+            background: #e9ecef;
+        }
+
+        .myth-btn {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .myth-btn.selected {
             background: #dc3545;
-            border-radius: 50%;
-            cursor: pointer;
-            left: 0%;
+            color: white;
         }
 
-        .cost-total {
-            background: #f8d7da;
+        .truth-btn-real {
+            border-color: #28a745;
+            color: #28a745;
+        }
+
+        .truth-btn-real.selected {
+            background: #28a745;
+            color: white;
+        }
+
+        .truth-btn.correct {
+            box-shadow: 0 0 0 3px rgba(40,167,69,0.3);
+        }
+
+        .truth-btn.incorrect {
+            opacity: 0.5;
+        }
+
+        .explanation {
+            background: #f8f9fa;
             padding: 15px;
             border-radius: 8px;
-            margin-top: 15px;
-            text-align: center;
-            font-weight: 600;
-            color: #721c24;
-        }
-
-        /* Comparison Tool */
-        .comparison-tool {
-            background: #e3f2fd;
-            border: 2px solid #2196f3;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .comparison-column {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #bbdefb;
-        }
-
-        .comparison-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1565c0;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .comparison-item {
-            padding: 8px;
-            margin: 5px 0;
-            background: #f5f5f5;
-            border-radius: 4px;
+            border-left: 4px solid #17a2b8;
             font-size: 14px;
-            text-align: center;
+            line-height: 1.5;
+            margin-top: 15px;
+        }
+
+        .explanation strong {
+            color: #17a2b8;
         }
 
         /* Cross Perspective Shifter */
@@ -689,144 +794,184 @@
             </div>
         </div>
 
-        <!-- Activity 3: Intimacy vs Forgiveness Scale -->
+        <!-- Activity 3: Bible Verse Reconstruction -->
         <div class="activity">
-            <h3>📈 The Intimacy Paradox</h3>
-            <div class="activity-description">Voddie teaches that greater intimacy requires MORE forgiveness, not less sin. Explore this with people in your life:</div>
+            <h3>📖 Rebuild the Truth</h3>
+            <div class="activity-description">Reconstruct key Bible verses about forgiveness by dragging words into the correct order:</div>
             
-            <div class="intimacy-builder">
-                <div class="scale-container">
-                    <div class="scale-item">
-                        <div class="scale-label">Your spouse/closest person:</div>
-                        <div class="scale-slider" onclick="updateScale(this, event)">
-                            <div class="scale-thumb"></div>
-                        </div>
-                        <div class="scale-values">
-                            <span>Low Need for Forgiveness</span>
-                            <span>High Need for Forgiveness</span>
-                        </div>
+            <div class="verse-builder">
+                <div class="verse-container">
+                    <h4>Ephesians 4:32</h4>
+                    <div class="verse-target" id="verse1Target">
+                        Drag words here to rebuild the verse...
                     </div>
-
-                    <div class="scale-item">
-                        <div class="scale-label">Close friends/family:</div>
-                        <div class="scale-slider" onclick="updateScale(this, event)">
-                            <div class="scale-thumb"></div>
-                        </div>
-                        <div class="scale-values">
-                            <span>Low Need for Forgiveness</span>
-                            <span>High Need for Forgiveness</span>
-                        </div>
+                    <div class="word-bank" id="verse1Bank">
+                        <span class="word-tile" draggable="true">Be</span>
+                        <span class="word-tile" draggable="true">kind</span>
+                        <span class="word-tile" draggable="true">to</span>
+                        <span class="word-tile" draggable="true">one</span>
+                        <span class="word-tile" draggable="true">another,</span>
+                        <span class="word-tile" draggable="true">tenderhearted,</span>
+                        <span class="word-tile" draggable="true">forgiving</span>
+                        <span class="word-tile" draggable="true">one</span>
+                        <span class="word-tile" draggable="true">another,</span>
+                        <span class="word-tile" draggable="true">as</span>
+                        <span class="word-tile" draggable="true">God</span>
+                        <span class="word-tile" draggable="true">in</span>
+                        <span class="word-tile" draggable="true">Christ</span>
+                        <span class="word-tile" draggable="true">forgave</span>
+                        <span class="word-tile" draggable="true">you.</span>
                     </div>
-
-                    <div class="scale-item">
-                        <div class="scale-label">Acquaintances/coworkers:</div>
-                        <div class="scale-slider" onclick="updateScale(this, event)">
-                            <div class="scale-thumb"></div>
-                        </div>
-                        <div class="scale-values">
-                            <span>Low Need for Forgiveness</span>
-                            <span>High Need for Forgiveness</span>
-                        </div>
-                    </div>
+                    <div class="feedback" id="verse1Feedback"></div>
                 </div>
-                
-                <div class="feedback encouraging" style="display: block; background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);">
-                    Notice the pattern? The closer we are, the more we see each other's sin. This doesn't mean they love you less - it means you need to forgive more!
+
+                <div class="verse-container">
+                    <h4>Mark 11:25</h4>
+                    <div class="verse-target" id="verse2Target">
+                        Drag words here to rebuild the verse...
+                    </div>
+                    <div class="word-bank" id="verse2Bank">
+                        <span class="word-tile" draggable="true">And</span>
+                        <span class="word-tile" draggable="true">whenever</span>
+                        <span class="word-tile" draggable="true">you</span>
+                        <span class="word-tile" draggable="true">stand</span>
+                        <span class="word-tile" draggable="true">praying,</span>
+                        <span class="word-tile" draggable="true">forgive,</span>
+                        <span class="word-tile" draggable="true">if</span>
+                        <span class="word-tile" draggable="true">you</span>
+                        <span class="word-tile" draggable="true">have</span>
+                        <span class="word-tile" draggable="true">anything</span>
+                        <span class="word-tile" draggable="true">against</span>
+                        <span class="word-tile" draggable="true">anyone.</span>
+                    </div>
+                    <div class="feedback" id="verse2Feedback"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Activity 4: Cost of Unforgiveness Calculator -->
+        <!-- Activity 4: Heart Temperature Check -->
         <div class="activity">
-            <h3>💰 What Does Unforgiveness Cost You?</h3>
-            <div class="activity-description">Rate how much unforgiveness is currently costing you in each area:</div>
+            <h3>🌡️ Heart Temperature Check</h3>
+            <div class="activity-description">Assess the current temperature of your heart toward someone who has hurt you:</div>
             
-            <div class="cost-calculator">
-                <div class="cost-category">
-                    <div class="cost-title">Emotional Cost</div>
-                    <div class="cost-description">How draining is it to constantly remember what they did and regulate how much attention, affection, and honor to withhold?</div>
-                    <div class="cost-range">
-                        <span>Low</span>
-                        <div class="cost-slider" onclick="updateCostSlider(this, event)">
-                            <div class="cost-thumb"></div>
-                        </div>
-                        <span>High</span>
+            <div class="temperature-gauge">
+                <div class="gauge-instruction">Think of someone specific who has hurt you. Where is your heart right now?</div>
+                
+                <div class="temperature-scale">
+                    <div class="temp-item" onclick="selectTemperature(this, 'frozen')">
+                        <div class="temp-icon">🧊</div>
+                        <div class="temp-label">Frozen</div>
+                        <div class="temp-description">I can barely think about them without anger. I want them to suffer.</div>
+                    </div>
+                    
+                    <div class="temp-item" onclick="selectTemperature(this, 'cold')">
+                        <div class="temp-icon">❄️</div>
+                        <div class="temp-label">Cold</div>
+                        <div class="temp-description">I'm withholding warmth and affection. They need to earn my kindness back.</div>
+                    </div>
+                    
+                    <div class="temp-item" onclick="selectTemperature(this, 'cool')">
+                        <div class="temp-icon">🌤️</div>
+                        <div class="temp-label">Cool</div>
+                        <div class="temp-description">I'm civil but distant. I've said "I forgive" but I'm still punishing them.</div>
+                    </div>
+                    
+                    <div class="temp-item" onclick="selectTemperature(this, 'warm')">
+                        <div class="temp-icon">☀️</div>
+                        <div class="temp-label">Warm</div>
+                        <div class="temp-description">I'm working on truly cancelling the debt. Some days are better than others.</div>
+                    </div>
+                    
+                    <div class="temp-item" onclick="selectTemperature(this, 'hot')">
+                        <div class="temp-icon">🔥</div>
+                        <div class="temp-label">Hot</div>
+                        <div class="temp-description">I've cancelled the debt. I'm not withholding attention, affection, or honor.</div>
                     </div>
                 </div>
-
-                <div class="cost-category">
-                    <div class="cost-title">Relationship with God</div>
-                    <div class="cost-description">Do you question God's forgiveness toward you when you refuse to forgive others?</div>
-                    <div class="cost-range">
-                        <span>No Impact</span>
-                        <div class="cost-slider" onclick="updateCostSlider(this, event)">
-                            <div class="cost-thumb"></div>
-                        </div>
-                        <span>Major Impact</span>
-                    </div>
-                </div>
-
-                <div class="cost-category">
-                    <div class="cost-title">Theological Understanding</div>
-                    <div class="cost-description">Are you saying Christ's blood isn't enough, but your personal standards are higher than God's?</div>
-                    <div class="cost-range">
-                        <span>Clear Theology</span>
-                        <div class="cost-slider" onclick="updateCostSlider(this, event)">
-                            <div class="cost-thumb"></div>
-                        </div>
-                        <span>Confused Theology</span>
-                    </div>
-                </div>
-
-                <div class="cost-category">
-                    <div class="cost-title">Compassion for Others</div>
-                    <div class="cost-description">How has unforgiveness affected your ability to have compassion for other struggling people?</div>
-                    <div class="cost-range">
-                        <span>Very Compassionate</span>
-                        <div class="cost-slider" onclick="updateCostSlider(this, event)">
-                            <div class="cost-thumb"></div>
-                        </div>
-                        <span>Hardened Heart</span>
-                    </div>
-                </div>
-
-                <div class="cost-total" id="costTotal">
-                    Total Cost Assessment: Click the sliders above to see your unforgiveness cost
+                
+                <div class="temperature-feedback" id="tempFeedback"></div>
+                
+                <div class="next-step-container">
+                    <div class="next-step-question">What's one specific way you could "turn up the temperature" this week?</div>
+                    <textarea class="next-step-input" placeholder="Be specific about how you could show attention, affection, or honor instead of withholding it..."></textarea>
                 </div>
             </div>
         </div>
 
-        <!-- Activity 5: Forgiveness vs Reconciliation Comparison -->
+        <!-- Activity 5: Forgiveness Myth Buster -->
         <div class="activity">
-            <h3>🛤️ Two Different Roads</h3>
-            <div class="activity-description">Understand the crucial difference between forgiveness and reconciliation:</div>
+            <h3>🚫 Myth Buster</h3>
+            <div class="activity-description">Separate common myths about forgiveness from biblical truth:</div>
             
-            <div class="comparison-tool">
-                <div class="comparison-grid">
-                    <div class="comparison-column">
-                        <div class="comparison-title">Forgiveness</div>
-                        <div class="comparison-item">A lonely highway</div>
-                        <div class="comparison-item">You can do it alone</div>
-                        <div class="comparison-item">Cancels the debt</div>
-                        <div class="comparison-item">Doesn't require their response</div>
-                        <div class="comparison-item">Can forgive dead people</div>
-                        <div class="comparison-item">Your responsibility</div>
+            <div class="myth-buster">
+                <div class="myth-statement" data-myth="true">
+                    <div class="statement-text">"True forgiveness means forgetting what happened."</div>
+                    <div class="truth-buttons">
+                        <button class="truth-btn myth-btn" onclick="selectTruthValue(this, true)">MYTH</button>
+                        <button class="truth-btn truth-btn-real" onclick="selectTruthValue(this, false)">TRUTH</button>
                     </div>
-                    <div class="comparison-column">
-                        <div class="comparison-title">Reconciliation</div>
-                        <div class="comparison-item">A two-way street</div>
-                        <div class="comparison-item">Requires both people</div>
-                        <div class="comparison-item">Restores relationship</div>
-                        <div class="comparison-item">Needs repentance & trust</div>
-                        <div class="comparison-item">Both must participate</div>
-                        <div class="comparison-item">Mutual responsibility</div>
+                    <div class="explanation" style="display: none;">
+                        <strong>MYTH:</strong> Humans weren't made to forget. The power of forgiveness is choosing not to punish despite remembering. Forgetting isn't required - cancelling the debt is.
                     </div>
                 </div>
-                
-                <div class="feedback encouraging" style="display: block;">
-                    You can and should forgive regardless of their response. But reconciliation takes two people walking together in repentance and trust.
+
+                <div class="myth-statement" data-myth="false">
+                    <div class="statement-text">"Forgiveness means cancelling the debt completely."</div>
+                    <div class="truth-buttons">
+                        <button class="truth-btn myth-btn" onclick="selectTruthValue(this, false)">MYTH</button>
+                        <button class="truth-btn truth-btn-real" onclick="selectTruthValue(this, true)">TRUTH</button>
+                    </div>
+                    <div class="explanation" style="display: none;">
+                        <strong>TRUTH:</strong> This is Voddie's core definition. If someone destroys your phone, forgiveness means they don't have to buy you a new one. The debt is cancelled.
+                    </div>
+                </div>
+
+                <div class="myth-statement" data-myth="true">
+                    <div class="statement-text">"You can only forgive someone who asks for forgiveness."</div>
+                    <div class="truth-buttons">
+                        <button class="truth-btn myth-btn" onclick="selectTruthValue(this, true)">MYTH</button>
+                        <button class="truth-btn truth-btn-real" onclick="selectTruthValue(this, false)">TRUTH</button>
+                    </div>
+                    <div class="explanation" style="display: none;">
+                        <strong>MYTH:</strong> Forgiveness is a lonely highway - you can do it alone. You can even forgive dead people. Reconciliation requires two people, but forgiveness doesn't.
+                    </div>
+                </div>
+
+                <div class="myth-statement" data-myth="true">
+                    <div class="statement-text">"If you really loved me, you wouldn't sin against me so much."</div>
+                    <div class="truth-buttons">
+                        <button class="truth-btn myth-btn" onclick="selectTruthValue(this, true)">MYTH</button>
+                        <button class="truth-btn truth-btn-real" onclick="selectTruthValue(this, false)">TRUTH</button>
+                    </div>
+                    <div class="explanation" style="display: none;">
+                        <strong>MYTH:</strong> Greater intimacy means seeing more sin, not less sin. If you interact 3 times a day instead of 3 times a month, you'll see more failures. This means YOU need to forgive more, not that THEY need to sin less.
+                    </div>
+                </div>
+
+                <div class="myth-statement" data-myth="false">
+                    <div class="statement-text">"We punish people by withholding attention, affection, or honor."</div>
+                    <div class="truth-buttons">
+                        <button class="truth-btn myth-btn" onclick="selectTruthValue(this, false)">MYTH</button>
+                        <button class="truth-btn truth-btn-real" onclick="selectTruthValue(this, true)">TRUTH</button>
+                    </div>
+                    <div class="explanation" style="display: none;">
+                        <strong>TRUTH:</strong> This is exactly how we make people pay in relationships - the silent treatment, coldness, withholding respect. True forgiveness stops this punishment.
+                    </div>
+                </div>
+
+                <div class="myth-statement" data-myth="true">
+                    <div class="statement-text">"I can forgive but I don't have to trust them again."</div>
+                    <div class="truth-buttons">
+                        <button class="truth-btn myth-btn" onclick="selectTruthValue(this, true)">MYTH</button>
+                        <button class="truth-btn truth-btn-real" onclick="selectTruthValue(this, false)">TRUTH</button>
+                    </div>
+                    <div class="explanation" style="display: none;">
+                        <strong>MYTH & TRUTH:</strong> This mixes forgiveness with reconciliation. You CAN forgive without trusting - forgiveness cancels the debt. But rebuilding trust is part of reconciliation, which requires both people working together.
+                    </div>
                 </div>
             </div>
+            
+            <div class="feedback" id="mythFeedback"></div>
         </div>
 
         <!-- Activity 6: Cross-Centered Perspective Shifter -->
