@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Narrow Gate - Session 2 Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        h2 {
+            color: #34495e;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon {
+            font-size: 28px;
+        }
+        
+        /* Scripture Matching Dropdown */
+        .scripture-match {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .scripture-match.correct {
+            border-color: #27ae60;
+            background: #d4edda;
+        }
+        
+        .scripture-match.incorrect {
+            border-color: #e74c3c;
+            background: #f8d7da;
+        }
+        
+        .scripture-text {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .scripture-select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .scripture-select:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+        
+        /* Broad Road Identifier */
+        .broad-road-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .broad-road-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .broad-road-card.selected {
+            border-color: #3498db;
+            background: #ebf5fb;
+        }
+        
+        .broad-road-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .broad-road-card p {
+            color: #555;
+            font-size: 16px;
+        }
+        
+        .identify-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            display: none;
+            font-size: 16px;
+            color: #2e7d32;
+        }
+        
+        .identify-feedback.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Endurance Understanding Cards */
+        .endurance-scenario {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .scenario-title {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .endurance-options {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .endurance-btn {
+            padding: 15px;
+            background: #ecf0f1;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .endurance-btn:hover {
+            background: #e8e8e8;
+            transform: translateX(5px);
+        }
+        
+        .endurance-btn.selected.correct {
+            background: #d4edda;
+            border-color: #27ae60;
+        }
+        
+        .endurance-btn.selected.incorrect {
+            background: #f8d7da;
+            border-color: #e74c3c;
+        }
+        
+        .scenario-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: none;
+            font-size: 16px;
+        }
+        
+        .scenario-feedback.show {
+            display: block;
+        }
+        
+        /* Tap to Reveal Scripture */
+        .tap-reveal {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tap-reveal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .tap-reveal.revealed {
+            background: white;
+            color: #2c3e50;
+            border: 2px solid #3498db;
+        }
+        
+        .reveal-prompt {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .scripture-content {
+            display: none;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .tap-reveal.revealed .reveal-prompt {
+            display: none;
+        }
+        
+        .tap-reveal.revealed .scripture-content {
+            display: block;
+        }
+        
+        /* What Would You Say Scenarios */
+        .scenario-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .scenario-text {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .response-options {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .response-btn {
+            padding: 15px;
+            background: #ecf0f1;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .response-btn:hover {
+            background: #e8e8e8;
+            transform: translateX(5px);
+        }
+        
+        .response-btn.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+        
+        .response-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            display: none;
+            font-size: 16px;
+            color: #2e7d32;
+        }
+        
+        .response-feedback.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* False Assurance Checker */
+        .assurance-statement {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .assurance-question {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .assurance-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .scale-option {
+            flex: 1;
+            padding: 15px 10px;
+            text-align: center;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .scale-option:first-child {
+            border-radius: 10px 0 0 10px;
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .scale-option:nth-child(2) {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .scale-option:last-child {
+            border-radius: 0 10px 10px 0;
+            background: #27ae60;
+            color: white;
+        }
+        
+        .scale-option:hover {
+            transform: translateY(-2px);
+        }
+        
+        .scale-option.selected {
+            border-color: #2c3e50;
+            transform: scale(1.05);
+        }
+        
+        /* Enhanced Reflection */
+        .reflection-prompts {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .prompt-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            font-size: 16px;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .prompt-card:hover {
+            background: #f0f0f0;
+            transform: translateX(5px);
+        }
+        
+        .reflection-box {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            font-size: 18px;
+            resize: vertical;
+            font-family: inherit;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+        
+        .reflection-box:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+        
+        /* Copy Button */
+        .copy-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-weight: bold;
+        }
+        
+        .copy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .copy-button.copied {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .progress-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+        
+        .complete-badge {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #27ae60;
+            border-radius: 50%;
+            margin-left: 5px;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .truth-bomb {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(238, 90, 111, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Narrow Gate</h1>
+        <p class="subtitle">Session 2: The Crowd and the Destination</p>
+        
+        <div class="warning-box">
+            ⚠️ Remember: You can't pray a prayer and be "sealed" forever regardless of how you live!
+        </div>
+        
+        <!-- Scripture Matching Section -->
+        <div class="section">
+            <h2><span class="icon">📖</span> Match the Scripture</h2>
+            <p style="margin-bottom: 20px; color: #555;">Match each scripture quote with its reference:</p>
+            
+            <div class="scripture-match">
+                <p class="scripture-text">"Test yourselves to see if you are in the faith."</p>
+                <select class="scripture-select" onchange="checkScripture(this, '2 Corinthians 13:5')">
+                    <option value="">Select the reference...</option>
+                    <option value="Matthew 7:13-14">Matthew 7:13-14</option>
+                    <option value="2 Corinthians 13:5">2 Corinthians 13:5</option>
+                    <option value="Romans 3:10-18">Romans 3:10-18</option>
+                    <option value="Matthew 24:13">Matthew 24:13</option>
+                </select>
+            </div>
+            
+            <div class="scripture-match">
+                <p class="scripture-text">"The one who endures to the end will be saved."</p>
+                <select class="scripture-select" onchange="checkScripture(this, 'Matthew 24:13')">
+                    <option value="">Select the reference...</option>
+                    <option value="Matthew 7:13-14">Matthew 7:13-14</option>
+                    <option value="2 Corinthians 13:5">2 Corinthians 13:5</option>
+                    <option value="Romans 3:10-18">Romans 3:10-18</option>
+                    <option value="Matthew 24:13">Matthew 24:13</option>
+                </select>
+            </div>
+            
+            <div class="scripture-match">
+                <p class="scripture-text">"None is righteous, no not one... no one seeks for God."</p>
+                <select class="scripture-select" onchange="checkScripture(this, 'Romans 3:10-18')">
+                    <option value="">Select the reference...</option>
+                    <option value="Matthew 7:13-14">Matthew 7:13-14</option>
+                    <option value="2 Corinthians 13:5">2 Corinthians 13:5</option>
+                    <option value="Romans 3:10-18">Romans 3:10-18</option>
+                    <option value="Matthew 24:13">Matthew 24:13</option>
+                </select>
+            </div>
+            
+            <div class="scripture-match">
+                <p class="scripture-text">"He who began a good work in you will bring it to completion."</p>
+                <select class="scripture-select" onchange="checkScripture(this, 'Philippians 1:6')">
+                    <option value="">Select the reference...</option>
+                    <option value="Philippians 1:6">Philippians 1:6</option>
+                    <option value="Ephesians 2:1-3">Ephesians 2:1-3</option>
+                    <option value="Romans 5:12">Romans 5:12</option>
+                    <option value="Hebrews 12:2">Hebrews 12:2</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Broad Road Identifier -->
+        <div class="section">
+            <h2><span class="icon">🚦</span> Identify the Broad Road</h2>
+            <p style="margin-bottom: 20px; color: #555;">Which of these describes someone on the BROAD road? (Select all that apply)</p>
+            
+            <div class="broad-road-card" onclick="toggleBroadRoad(this, true)">
+                <h3>"I prayed the prayer when I was 8, so I'm saved!"</h3>
+                <p>Never thinks about God, lives however they want, but feels secure because of childhood prayer.</p>
+            </div>
+            
+            <div class="broad-road-card" onclick="toggleBroadRoad(this, false)">
+                <h3>"I struggle with sin but hate it"</h3>
+                <p>Falls into sin sometimes but grieves over it, seeks forgiveness, and fights to change.</p>
+            </div>
+            
+            <div class="broad-road-card" onclick="toggleBroadRoad(this, true)">
+                <h3>"I go to church every Sunday"</h3>
+                <p>Perfect attendance but no real relationship with Jesus, no fruit, no testing themselves.</p>
+            </div>
+            
+            <div class="broad-road-card" onclick="toggleBroadRoad(this, true)">
+                <h3>"My grandmother was a saint, so I'm good"</h3>
+                <p>Relies on family faith heritage, assumes they're included because of godly relatives.</p>
+            </div>
+            
+            <div class="identify-feedback" id="broadRoadFeedback"></div>
+        </div>
+        
+        <!-- Understanding Endurance -->
+        <div class="section">
+            <h2><span class="icon">💪</span> Understanding Endurance</h2>
+            
+            <div class="endurance-scenario">
+                <p class="scenario-title">What does "endurance is evidence of salvation" mean?</p>
+                <div class="endurance-options">
+                    <button class="endurance-btn" onclick="checkEndurance(this, false, 1)">
+                        "I have to work hard to keep my salvation"
+                    </button>
+                    <button class="endurance-btn" onclick="checkEndurance(this, false, 1)">
+                        "If I mess up too much, I'll lose my salvation"
+                    </button>
+                    <button class="endurance-btn" onclick="checkEndurance(this, true, 1)">
+                        "My continuing in faith shows that Christ is holding me"
+                    </button>
+                </div>
+                <div class="scenario-feedback" id="enduranceFeedback1"></div>
+            </div>
+            
+            <div class="endurance-scenario">
+                <p class="scenario-title">Someone says: "I used to be a Christian but I walked away."</p>
+                <div class="endurance-options">
+                    <button class="endurance-btn" onclick="checkEndurance(this, false, 2)">
+                        "You lost your salvation when you walked away"
+                    </button>
+                    <button class="endurance-btn" onclick="checkEndurance(this, true, 2)">
+                        "If you truly walked away, you were likely never saved"
+                    </button>
+                    <button class="endurance-btn" onclick="checkEndurance(this, false, 2)">
+                        "Don't worry, once saved always saved no matter what"
+                    </button>
+                </div>
+                <div class="scenario-feedback" id="enduranceFeedback2"></div>
+            </div>
+            
+            <div class="endurance-scenario">
+                <p class="scenario-title">Why are there so few on the narrow road?</p>
+                <div class="endurance-options">
+                    <button class="endurance-btn" onclick="checkEndurance(this, false, 3)">
+                        "God only chooses a few people to save"
+                    </button>
+                    <button class="endurance-btn" onclick="checkEndurance(this, false, 3)">
+                        "Most people are basically good and don't need it"
+                    </button>
+                    <button class="endurance-btn" onclick="checkEndurance(this, true, 3)">
+                        "Our sin nature leads us to the broad road by default"
+                    </button>
+                </div>
+                <div class="scenario-feedback" id="enduranceFeedback3"></div>
+            </div>
+        </div>
+        
+        <div class="truth-bomb">
+            💣 Truth Bomb: No one seeks God on their own! We're all born on the broad road!
+        </div>
+        
+        <!-- Tap to Reveal Scripture -->
+        <div class="section">
+            <h2><span class="icon">👆</span> Tap to Reveal Key Truths</h2>
+            
+            <div class="tap-reveal" onclick="revealScripture(this)">
+                <div class="reveal-prompt">Tap: Why Few Find the Narrow Gate</div>
+                <div class="scripture-content">
+                    Romans 3:10-11 - "None is righteous, no, not one; no one understands; no one seeks for God."
+                    <br><br>
+                    <strong>This is why it's hard to find - no one naturally seeks it!</strong>
+                </div>
+            </div>
+            
+            <div class="tap-reveal" onclick="revealScripture(this)">
+                <div class="reveal-prompt">Tap: The Danger of False Assurance</div>
+                <div class="scripture-content">
+                    Many on the broad road think they're saved because someone told them "if you prayed that prayer and meant it, you're saved!"
+                    <br><br>
+                    <strong>But Jesus says to TEST YOURSELF - not trust in past words!</strong>
+                </div>
+            </div>
+            
+            <div class="tap-reveal" onclick="revealScripture(this)">
+                <div class="reveal-prompt">Tap: Who Keeps Us on the Path?</div>
+                <div class="scripture-content">
+                    Philippians 1:6 - "He who began a good work in you will bring it to completion."
+                    <br><br>
+                    <strong>Your endurance proves Christ is holding you, not that you're holding onto Him!</strong>
+                </div>
+            </div>
+            
+            <div class="tap-reveal" onclick="revealScripture(this)">
+                <div class="reveal-prompt">Tap: Born on Which Road?</div>
+                <div class="scripture-content">
+                    Ephesians 2:1-3 - We were "by nature children of wrath, like the rest of mankind."
+                    <br><br>
+                    <strong>Everyone is born on the broad road - that's why we need to be born AGAIN!</strong>
+                </div>
+            </div>
+        </div>
+        
+        <!-- What Would You Say Scenarios -->
+        <div class="section">
+            <h2><span class="icon">💬</span> What Would You Say?</h2>
+            
+            <div class="scenario-card">
+                <p class="scenario-text">"I know I'm saved because I wrote the date in my Bible when I prayed the prayer!"</p>
+                <div class="response-options">
+                    <button class="response-btn" onclick="selectResponse(this, 1)">
+                        "That's great! The date proves you're saved."
+                    </button>
+                    <button class="response-btn" onclick="selectResponse(this, 2)">
+                        "That's meaningful, but are you still walking with Jesus today?"
+                    </button>
+                    <button class="response-btn" onclick="selectResponse(this, 3)">
+                        "Dates don't save us - ongoing faith does. How's your walk now?"
+                    </button>
+                </div>
+                <div class="response-feedback"></div>
+            </div>
+            
+            <div class="scenario-card">
+                <p class="scenario-text">"Most people are basically good, so they'll make it to heaven."</p>
+                <div class="response-options">
+                    <button class="response-btn" onclick="selectResponse(this, 4)">
+                        "You're right, God wouldn't send good people to hell."
+                    </button>
+                    <button class="response-btn" onclick="selectResponse(this, 5)">
+                        "Actually, the Bible says no one is good - we all need Jesus."
+                    </button>
+                    <button class="response-btn" onclick="selectResponse(this, 6)">
+                        "Being 'good' compared to others isn't the standard - perfection is."
+                    </button>
+                </div>
+                <div class="response-feedback"></div>
+            </div>
+            
+            <div class="scenario-card">
+                <p class="scenario-text">"I'm not worried - my whole family is Christian!"</p>
+                <div class="response-options">
+                    <button class="response-btn" onclick="selectResponse(this, 7)">
+                        "That's wonderful! Family faith is so important."
+                    </button>
+                    <button class="response-btn" onclick="selectResponse(this, 8)">
+                        "That's a blessing, but faith isn't inherited - it's personal."
+                    </button>
+                    <button class="response-btn" onclick="selectResponse(this, 9)">
+                        "Great! But you can't ride your family's coattails to heaven."
+                    </button>
+                </div>
+                <div class="response-feedback"></div>
+            </div>
+        </div>
+        
+        <!-- False Assurance Checker -->
+        <div class="section">
+            <h2><span class="icon">🔍</span> Check Your Assurance</h2>
+            <p style="margin-bottom: 20px; color: #555;">Rate how much you depend on each of these for your salvation assurance:</p>
+            
+            <div class="assurance-statement">
+                <p class="assurance-question">A prayer I prayed years ago</p>
+                <div class="assurance-scale">
+                    <div class="scale-option" onclick="selectScale(this)">Not at all</div>
+                    <div class="scale-option" onclick="selectScale(this)">Somewhat</div>
+                    <div class="scale-option" onclick="selectScale(this)">Completely</div>
+                </div>
+            </div>
+            
+            <div class="assurance-statement">
+                <p class="assurance-question">My current walk with Jesus</p>
+                <div class="assurance-scale">
+                    <div class="scale-option" onclick="selectScale(this)">Not at all</div>
+                    <div class="scale-option" onclick="selectScale(this)">Somewhat</div>
+                    <div class="scale-option" onclick="selectScale(this)">Completely</div>
+                </div>
+            </div>
+            
+            <div class="assurance-statement">
+                <p class="assurance-question">My family's faith</p>
+                <div class="assurance-scale">
+                    <div class="scale-option" onclick="selectScale(this)">Not at all</div>
+                    <div class="scale-option" onclick="selectScale(this)">Somewhat</div>
+                    <div class="scale-option" onclick="selectScale(this)">Completely</div>
+                </div>
+            </div>
+            
+            <div class="assurance-statement">
+                <p class="assurance-question">Church attendance/activities</p>
+                <div class="assurance-scale">
+                    <div class="scale-option" onclick="selectScale(this)">Not at all</div>
+                    <div class="scale-option" onclick="selectScale(this)">Somewhat</div>
+                    <div class="scale-option" onclick="selectScale(this)">Completely</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Deep Reflection -->
+        <div class="section">
+            <h2><span class="icon">💭</span> Deep Reflection</h2>
+            <p style="margin-bottom: 15px; color: #555;">Click a prompt to guide your reflection:</p>
+            
+            <div class="reflection-prompts">
+                <div class="prompt-card" onclick="setPrompt('When I think about \"testing myself to see if I\'m in the faith,\" what evidence do I see (or not see) in my life?')">
+                    🔍 Testing myself
+                </div>
+                <div class="prompt-card" onclick="setPrompt('If endurance is evidence that Christ is holding me (not me holding onto Him), how does that change my view of my struggles?')">
+                    💪 Understanding endurance
+                </div>
+                <div class="prompt-card" onclick="setPrompt('Am I depending on something I did in the past, or do I have a living relationship with Jesus today?')">
+                    📅 Past vs. present faith
+                </div>
+                <div class="prompt-card" onclick="setPrompt('Have I been assuming I\'m on the narrow road because of my family or church involvement? What makes me think I\'m truly saved?')">
+                    🤔 Examining my assumptions
+                </div>
+            </div>
+            
+            <textarea class="reflection-box" id="reflection" placeholder="Choose a prompt above or write your own reflection..."></textarea>
+        </div>
+        
+        <button class="copy-button" onclick="copyResponses()">
+            Copy All My Responses
+        </button>
+    </div>
+    
+    <div class="progress-indicator" id="progressIndicator">
+        Progress: <span id="completedCount">0</span>/7
+        <span class="complete-badge" style="display: none;">✓</span>
+    </div>
+    
+    <script>
+        let completedActivities = new Set();
+        let selectedBroadRoads = new Set();
+        
+        function updateProgress() {
+            const count = completedActivities.size;
+            document.getElementById('completedCount').textContent = count;
+            
+            if (count === 7) {
+                document.querySelector('.complete-badge').style.display = 'inline-block';
+                document.getElementById('progressIndicator').style.background = '#27ae60';
+                document.getElementById('progressIndicator').style.color = 'white';
+            }
+        }
+        
+        // Scripture Matching with red for wrong answers
+        function checkScripture(select, correctAnswer) {
+            const matchDiv = select.parentElement;
+            
+            if (select.value === correctAnswer) {
+                matchDiv.classList.remove('incorrect');
+                matchDiv.classList.add('correct');
+                select.disabled = true;
+                
+                // Check if all scriptures are matched
+                const allSelects = document.querySelectorAll('.scripture-select');
+                const allCorrect = Array.from(allSelects).every(s => s.disabled);
+                if (allCorrect && !completedActivities.has('scripture')) {
+                    completedActivities.add('scripture');
+                    updateProgress();
+                }
+            } else if (select.value !== '') {
+                matchDiv.classList.add('incorrect');
+                setTimeout(() => {
+                    matchDiv.classList.remove('incorrect');
+                    select.value = '';
+                }, 2000);
+            }
+        }
+        
+        // Broad Road Identifier
+        function toggleBroadRoad(card, isBroadRoad) {
+            card.classList.toggle('selected');
+            const feedback = document.getElementById('broadRoadFeedback');
+            
+            if (card.classList.contains('selected')) {
+                selectedBroadRoads.add({element: card, isBroad: isBroadRoad});
+            } else {
+                selectedBroadRoads.forEach(item => {
+                    if (item.element === card) {
+                        selectedBroadRoads.delete(item);
+                    }
+                });
+            }
+            
+            // Check if activity is complete (all 4 cards selected)
+            if (selectedBroadRoads.size === 4) {
+                let correct = 0;
+                selectedBroadRoads.forEach(item => {
+                    if ((item.isBroad && item.element.classList.contains('selected')) ||
+                        (!item.isBroad && item.element.classList.contains('selected'))) {
+                        correct++;
+                    }
+                });
+                
+                if (correct === 3) { // 3 broad road, 1 narrow road
+                    feedback.textContent = "Excellent! You correctly identified who's on the broad road. Remember: actions and fruit matter, not just past prayers or family heritage!";
+                    feedback.style.background = '#d4edda';
+                    feedback.style.color = '#155724';
+                } else {
+                    feedback.textContent = "Look again - remember the broad road includes those who think they're saved but show no fruit or ongoing faith.";
+                    feedback.style.background = '#f8d7da';
+                    feedback.style.color = '#721c24';
+                }
+                
+                feedback.classList.add('show');
+                
+                if (!completedActivities.has('broadRoad')) {
+                    completedActivities.add('broadRoad');
+                    updateProgress();
+                }
+            }
+        }
+        
+        // Endurance Understanding
+        let enduranceCompleted = 0;
+        function checkEndurance(button, isCorrect, scenarioNum) {
+            const scenario = button.closest('.endurance-scenario');
+            const feedback = document.getElementById(`enduranceFeedback${scenarioNum}`);
+            
+            // Disable all buttons in this scenario
+            scenario.querySelectorAll('.endurance-btn').forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.6';
+                btn.style.cursor = 'not-allowed';
+            });
+            
+            button.classList.add('selected', isCorrect ? 'correct' : 'incorrect');
+            button.style.opacity = '1';
+            
+            const feedbackText = {
+                1: {
+                    correct: "Yes! Endurance is the EVIDENCE that Christ is holding you, not you earning salvation by your effort.",
+                    incorrect: "No - endurance doesn't earn salvation. It's evidence that Christ is keeping you, not your own effort."
+                },
+                2: {
+                    correct: "Exactly. As 1 John says, 'They went out from us because they were not of us.' True believers persevere.",
+                    incorrect: "Remember: those who are truly saved will endure because Christ keeps them. Walking away may indicate they were never truly converted."
+                },
+                3: {
+                    correct: "Right! We're all born sinners on the broad road. No one naturally seeks the narrow gate.",
+                    incorrect: "Actually, we're all born on the broad road because of sin. Few find the narrow gate because no one naturally seeks God."
+                }
+            };
+            
+            feedback.textContent = isCorrect ? feedbackText[scenarioNum].correct : feedbackText[scenarioNum].incorrect;
+            feedback.classList.add('show');
+            feedback.style.background = isCorrect ? '#d4edda' : '#f8d7da';
+            feedback.style.color = isCorrect ? '#155724' : '#721c24';
+            
+            enduranceCompleted++;
+            if (enduranceCompleted === 3) {
+                updateProgress('endurance');
+            }
+        }
+        
+        // Tap to Reveal
+        function revealScripture(element) {
+            element.classList.add('revealed');
+            
+            // Check if all are revealed
+            const allReveals = document.querySelectorAll('.tap-reveal');
+            const allRevealed = Array.from(allReveals).every(r => r.classList.contains('revealed'));
+            if (allRevealed && !completedActivities.has('tapReveal')) {
+                completedActivities.add('tapReveal');
+                updateProgress();
+            }
+        }
+        
+        // Scenario Responses
+        const responseData = {
+            1: { feedback: "A date in your Bible doesn't guarantee salvation. What matters is ongoing faith and fruit.", good: false },
+            2: { feedback: "Good response! Past decisions matter less than present reality. Salvation shows itself in continued faith.", good: true },
+            3: { feedback: "Excellent! You're pointing them to examine their current faith, not rely on past events.", good: true },
+            4: { feedback: "This contradicts Scripture. The Bible clearly states that no one is good enough on their own.", good: false },
+            5: { feedback: "Perfect! You're sharing the biblical truth that challenges the common misconception.", good: true },
+            6: { feedback: "Great point! God's standard is perfection, which is why we all need Jesus.", good: true },
+            7: { feedback: "While family faith is a blessing, it doesn't save anyone. Each person must choose.", good: false },
+            8: { feedback: "Excellent balance - acknowledging the blessing while stating the personal nature of faith.", good: true },
+            9: { feedback: "Direct and true! No one gets to heaven on someone else's faith.", good: true }
+        };
+        
+        let scenariosCompleted = 0;
+        function selectResponse(button, responseId) {
+            // Clear other selections in this scenario
+            const scenario = button.closest('.scenario-card');
+            scenario.querySelectorAll('.response-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.disabled = true;
+                btn.style.opacity = '0.7';
+            });
+            
+            button.classList.add('selected');
+            button.style.opacity = '1';
+            
+            const feedback = scenario.querySelector('.response-feedback');
+            const data = responseData[responseId];
+            feedback.textContent = data.feedback;
+            feedback.classList.add('show');
+            
+            if (!data.good) {
+                feedback.style.background = '#ffebee';
+                feedback.style.color = '#c62828';
+            }
+            
+            scenariosCompleted++;
+            if (scenariosCompleted === 3 && !completedActivities.has('scenarios')) {
+                completedActivities.add('scenarios');
+                updateProgress();
+            }
+        }
+        
+        // Assurance Scale
+        let scalesCompleted = 0;
+        function selectScale(option) {
+            const scale = option.parentElement;
+            scale.querySelectorAll('.scale-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            option.classList.add('selected');
+            
+            // Count completed scales
+            const allScales = document.querySelectorAll('.assurance-scale');
+            const completed = Array.from(allScales).filter(s => 
+                s.querySelector('.scale-option.selected')
+            ).length;
+            
+            if (completed === 4 && !completedActivities.has('assurance')) {
+                completedActivities.add('assurance');
+                updateProgress();
+            }
+        }
+        
+        // Reflection prompt
+        function setPrompt(prompt) {
+            const textarea = document.getElementById('reflection');
+            textarea.value = prompt + '\n\n';
+            textarea.focus();
+            textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+        }
+        
+        // Track reflection completion
+        document.getElementById('reflection').addEventListener('input', function() {
+            if (this.value.length > 50 && !completedActivities.has('reflection')) {
+                completedActivities.add('reflection');
+                updateProgress();
+            }
+        });
+        
+        // Copy responses
+        function copyResponses() {
+            const responses = [];
+            
+            responses.push("SESSION 2 WORKSHEET RESPONSES\n");
+            
+            // Scripture matches
+            responses.push("Scripture Matching:");
+            document.querySelectorAll('.scripture-match').forEach((match, i) => {
+                const scripture = match.querySelector('.scripture-text').textContent;
+                const reference = match.querySelector('.scripture-select').value;
+                if (reference) {
+                    responses.push(`${i + 1}. ${scripture} - ${reference}`);
+                }
+            });
+            
+            // Broad road selections
+            responses.push("\nBroad Road Identification:");
+            document.querySelectorAll('.broad-road-card.selected').forEach(card => {
+                responses.push(`- ${card.querySelector('h3').textContent}`);
+            });
+            
+            // Endurance scenarios
+            responses.push("\nEndurance Understanding:");
+            document.querySelectorAll('.endurance-scenario').forEach((scenario, i) => {
+                const question = scenario.querySelector('.scenario-title').textContent;
+                const selected = scenario.querySelector('.endurance-btn.selected');
+                const feedback = scenario.querySelector('.scenario-feedback').textContent;
+                if (selected) {
+                    responses.push(`${i + 1}. ${question}`);
+                    responses.push(`   Answer: ${selected.textContent.trim()}`);
+                    if (feedback) {
+                        responses.push(`   Feedback: ${feedback}`);
+                    }
+                }
+            });
+            
+            // Revealed scriptures
+            responses.push("\nKey Truths Revealed:");
+            document.querySelectorAll('.tap-reveal.revealed').forEach(reveal => {
+                const content = reveal.querySelector('.scripture-content').textContent.trim();
+                responses.push(`- ${content.split('\n')[0]}`);
+            });
+            
+            // Scenario responses
+            responses.push("\nScenario Responses:");
+            document.querySelectorAll('.scenario-card').forEach(scenario => {
+                const question = scenario.querySelector('.scenario-text').textContent;
+                const selected = scenario.querySelector('.response-btn.selected');
+                const feedback = scenario.querySelector('.response-feedback').textContent;
+                if (selected) {
+                    responses.push(`Q: ${question}`);
+                    responses.push(`A: ${selected.textContent.trim()}`);
+                    responses.push(`Feedback: ${feedback}\n`);
+                }
+            });
+            
+            // Assurance scale
+            responses.push("\nAssurance Check:");
+            document.querySelectorAll('.assurance-statement').forEach(statement => {
+                const question = statement.querySelector('.assurance-question').textContent;
+                const selected = statement.querySelector('.scale-option.selected');
+                if (selected) {
+                    responses.push(`${question}: ${selected.textContent}`);
+                }
+            });
+            
+            // Reflection
+            const reflection = document.getElementById('reflection').value;
+            if (reflection) {
+                responses.push("\nPersonal Reflection:");
+                responses.push(reflection);
+            }
+            
+            // Copy to clipboard
+            const text = responses.join('\n');
+            navigator.clipboard.writeText(text).then(() => {
+                const button = event.target;
+                button.textContent = 'Copied Successfully! ✓';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = 'Copy All My Responses';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
