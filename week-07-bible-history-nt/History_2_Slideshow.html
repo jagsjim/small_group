@@ -71,6 +71,26 @@
             border: 3px solid #ffc107;
         }
         
+        .slide.story-slide {
+            background: linear-gradient(135deg, #17a2b8, #138496);
+            border: 3px solid #ffc107;
+        }
+        
+        .slide.kingdom-slide {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            border: 3px solid #8b4513;
+        }
+        
+        .slide.exile-slide {
+            background: linear-gradient(135deg, #343a40, #212529);
+            border: 3px solid #dc3545;
+        }
+        
+        .slide.prophecy-slide {
+            background: linear-gradient(135deg, #563d7c, #6f42c1);
+            border: 3px solid #ffd700;
+        }
+        
         h1 {
             font-size: 56px;
             font-weight: bold;
@@ -99,48 +119,57 @@
         }
         
         p, li {
-            font-size: 38px;
-            line-height: 1.4;
-            margin-bottom: 18px;
+            font-size: 36px;
+            line-height: 1.5;
+            margin-bottom: 20px;
             color: #f8f9fa;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .scripture {
             font-style: italic;
             color: #fff3cd;
             background: rgba(255, 243, 205, 0.15);
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
             border-left: 4px solid #ffc107;
-            margin: 20px 0;
+            margin: 20px auto;
+            font-size: 32px;
+            max-width: 85%;
         }
         
         .quote {
             font-style: italic;
             color: #d1ecf1;
             background: rgba(209, 236, 241, 0.15);
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
             border-left: 4px solid #17a2b8;
-            margin: 20px 0;
+            margin: 20px auto;
+            font-size: 30px;
+            max-width: 85%;
         }
         
         .covenant-box {
             background: rgba(23, 162, 184, 0.2);
             border: 2px solid #17a2b8;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 20px auto;
+            max-width: 85%;
         }
         
         .discussion-box {
             background: rgba(255, 193, 7, 0.2);
             border: 2px solid #ffc107;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 20px auto;
             animation: gentle-glow 3s ease-in-out infinite;
+            max-width: 85%;
         }
         
         @keyframes gentle-glow {
@@ -215,19 +244,29 @@
         }
         
         ul {
-            text-align: left;
-            max-width: 90%;
-            margin: 0 auto;
+        /* let the list span almost the full slide */
+        max-width: 98% !important;
+        padding-inline-start: 20px !important;  /* set bullet indent */
+        margin: 0 auto !important;
         }
-        
+
         li {
-            margin-bottom: 10px;
-            padding-left: 20px;
+        /* remove any per-item width cap or centering */
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        /* kill old padding, then tuck bullet inside the list’s padding */
+        padding-left: 0 !important;
+        list-style-position: inside !important;
+
+        /* keep a bit of vertical breathing room */
+        margin-bottom: 15px !important;
         }
         
         .highlight {
             background: rgba(255, 243, 205, 0.4);
-            padding: 5px 10px;
+            padding: 8px 12px;
             border-radius: 5px;
             font-weight: bold;
         }
@@ -237,7 +276,8 @@
             border: 2px solid #28a745;
             padding: 20px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 20px auto;
+            max-width: 85%;
         }
         
         .cross-box {
@@ -245,7 +285,8 @@
             border: 2px solid #dc3545;
             padding: 20px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 20px auto;
+            max-width: 85%;
         }
         
         .resurrection-box {
@@ -253,7 +294,16 @@
             border: 2px solid #ffc107;
             padding: 20px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 20px auto;
+            max-width: 85%;
+        }
+        
+        .story-text {
+            text-align: left;
+            font-size: 34px;
+            line-height: 1.6;
+            max-width: 88%;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -261,772 +311,899 @@
     <div class="slideshow-container">
         <!-- Slide 1: Title -->
         <div class="slide active title-slide">
-            <div class="slide-number">1/78</div>
+            <div class="slide-number">1/87</div>
             <h1>✨ Session 2: The Solution and the Fulfillment</h1>
-            <h2>How God Kept Every Promise He Ever Made</h2>
-            <p style="font-size: 28px; margin-top: 30px;">From Promise to Fulfillment: God's Unbreakable Love Story</p>
+            <h2>From Joshua to Jesus: How God Kept Every Promise</h2>
+            <p style="font-size: 30px; margin-top: 30px;">The rest of the Old Testament story and the beautiful climax in Christ</p>
         </div>
 
         <!-- Slide 2: Welcome Back -->
         <div class="slide">
-            <div class="slide-number">2/78</div>
-            <h2>Welcome Back, Friends! 👋</h2>
-            <p>If you were here for Session 1, you know we ended with the ultimate cliffhanger...</p>
-            <div class="highlight">Humanity broke every covenant. Will God keep them Himself?</div>
+            <div class="slide-number">2/87</div>
+            <h2>Welcome Back, Guys! 👋</h2>
+            <p>Last week, we left off with the ultimate cliffhanger. Moses died on Mount Nebo, looking at the Promised Land he couldn't enter. An entire generation perished in the wilderness because of unbelief. Only Joshua and Caleb from the original generation would cross the Jordan.</p>
+            <p style="margin-top: 25px;">Tonight, we'll see if this new generation succeeds where their parents failed. And we'll discover how God solves the ultimate problem - our inability to keep His covenants. The answer is more beautiful than you could imagine!</p>
         </div>
 
-        <!-- Slide 3: The Question -->
+        <!-- Slide 3: The Pattern So Far -->
         <div class="slide">
-            <div class="slide-number">3/78</div>
-            <h2>The Burning Question 🔥</h2>
-            <p>If humanity can't keep God's covenants...</p>
-            <div class="highlight" style="font-size: 36px; margin: 30px 0;">Will God keep them HIMSELF?</div>
-            <p>Today we discover the most beautiful answer in history!</p>
-        </div>
-
-        <!-- Slide 4: What God Did -->
-        <div class="slide">
-            <div class="slide-number">4/78</div>
-            <h2>What God Did 🎯</h2>
-            <p>God didn't lower His standards</p>
-            <p>God didn't pretend sin didn't matter</p>
-            <div class="highlight">Instead, He did something so unexpected, so costly, so beautiful...</div>
-        </div>
-
-        <!-- Slide 5: Time Marker -->
-        <div class="slide time-marker">
-            <div class="slide-number">5/78</div>
-            <div class="time-indicator">⏰ 3 min</div>
-            <h1>📋 Quick Recap</h1>
-            <h2>Where We Left Off</h2>
-        </div>
-
-        <!-- Slide 6: Covenant Scorecard -->
-        <div class="slide">
-            <div class="slide-number">6/78</div>
-            <h2>The Covenant Scorecard 📊</h2>
-            <ul>
-                <li><strong>Creation Covenant:</strong> Broken by disobedience</li>
-                <li><strong>Abrahamic Covenant:</strong> God made with Himself (unconditional)</li>
-                <li><strong>Mosaic Covenant:</strong> Broken repeatedly</li>
-                <li><strong>Davidic Covenant:</strong> No king, temple destroyed</li>
-            </ul>
-        </div>
-
-        <!-- Slide 7: The Pattern -->
-        <div class="slide">
-            <div class="slide-number">7/78</div>
-            <h2>The Pattern Discovered</h2>
+            <div class="slide-number">3/87</div>
+            <h2>The Pattern We've Seen</h2>
             <div class="covenant-box">
-                <p>When covenants depend on human faithfulness → BROKEN</p>
-                <p>When covenants depend on God's faithfulness → ENDURE FOREVER</p>
+                <p>When covenants depend on human faithfulness → ALWAYS BROKEN</p>
+                <p>When covenants depend on God's faithfulness → NEVER BROKEN</p>
             </div>
+            <p style="margin-top: 25px;">Keep watching for this pattern as we continue the story. It becomes crucial for understanding why Jesus had to come!</p>
         </div>
 
-        <!-- Slide 8: 400 Years -->
+        <!-- Slide 4: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">4/87</div>
+            <div class="time-indicator">⏰ 3 min</div>
+            <h1>⚔️ Conquest of the Promised Land</h1>
+            <h2>Joshua Leads a New Generation</h2>
+        </div>
+
+        <!-- Slide 5: Joshua Takes Over -->
         <div class="slide">
-            <div class="slide-number">8/78</div>
-            <h2>400 Years of Silence... 🤫</h2>
-            <p>God was silent for four centuries</p>
-            <p>But He wasn't sleeping</p>
-            <div class="highlight">He was preparing for the most important moment in history</div>
+            <div class="slide-number">5/87</div>
+            <h2>Joshua: Finally Entering! 🏞️</h2>
+            <p>After Moses dies, God speaks to Joshua: "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go."</p>
+            <p style="margin-top: 25px;">After 40 years of wandering, the new generation is ready. God parts the Jordan River (just like the Red Sea!), and they finally enter the land God promised Abraham 500 years earlier!</p>
         </div>
 
-        <!-- Slide 9: Time Marker -->
-        <div class="slide time-marker incarnation-slide">
-            <div class="slide-number">9/78</div>
-            <div class="time-indicator">⏰ 8 min</div>
-            <h1>👶 The Incredible Incarnation</h1>
-            <h2>God Becomes Man</h2>
-        </div>
-
-        <!-- Slide 10: The Impossible -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">10/78</div>
-            <h2>The Impossible Happened</h2>
-            <p>In little Bethlehem, the eternal God became a baby</p>
-            <div class="scripture">
-                "The Word became flesh and made his dwelling among us"
-                <br><em>- John 1:14</em>
+        <!-- Slide 6: Jericho Falls -->
+        <div class="slide story-slide">
+            <div class="slide-number">6/87</div>
+            <h2>The Walls of Jericho 🎺</h2>
+            <div class="story-text">
+                <p>The first city they face is Jericho, with massive walls. God's battle plan? March around the city once a day for six days. On the seventh day, march seven times, blow trumpets, and shout!</p>
+                <p style="margin-top: 20px;">When they obey, the walls collapse! This shows that victory comes not through human strength but through trusting and obeying God. The conquest of Canaan has begun.</p>
             </div>
         </div>
 
-        <!-- Slide 11: Why? -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">11/78</div>
-            <h2>But WHY? 🤔</h2>
-            <p>Why would the God who spoke galaxies into existence become helpless and vulnerable?</p>
-            <div class="highlight">The incarnation wasn't just nice - it was the ONLY way</div>
+        <!-- Slide 7: Incomplete Obedience -->
+        <div class="slide">
+            <div class="slide-number">7/87</div>
+            <h2>But They Don't Fully Obey...</h2>
+            <p>God commanded them to drive out all the Canaanites because of their wickedness and idolatry. But the Israelites get comfortable and leave many Canaanites in the land.</p>
+            <p style="margin-top: 25px;"><span class="highlight">This partial obedience will haunt them for centuries.</span> The remaining Canaanites will lead them into idolatry again and again.</p>
         </div>
 
-        <!-- Slide 12: Problem 1 -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">12/78</div>
-            <h2>Problem #1: The Justice Problem ⚖️</h2>
-            <p>God is perfectly just</p>
-            <p>Sin cannot go unpunished</p>
-            <p>Every broken covenant created a debt</p>
-            <div class="highlight">But who could pay a debt that big?</div>
+        <!-- Slide 8: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">8/87</div>
+            <div class="time-indicator">⏰ 6 min</div>
+            <h1>⚖️ The Judges: Chaos and Cycles</h1>
+            <h2>When Everyone Does What's Right in Their Own Eyes</h2>
         </div>
 
-        <!-- Slide 13: Solution 1 -->
+        <!-- Slide 9: The Judges Cycle -->
+        <div class="slide">
+            <div class="slide-number">9/87</div>
+            <h2>The Depressing Cycle 🔄</h2>
+            <p>After Joshua dies, Israel has no central leader. What follows is 300+ years of chaos. The book of Judges records this cycle repeated seven times:</p>
+            <ol>
+                <li>Israel does evil and worships idols</li>
+                <li>God allows enemies to oppress them</li>
+                <li>Israel cries out to God</li>
+                <li>God raises up a judge to deliver them</li>
+                <li>Peace while the judge lives</li>
+                <li>The judge dies, cycle repeats</li>
+            </ol>
+        </div>
+
+        <!-- Slide 10: Rock Bottom -->
+        <div class="slide">
+            <div class="slide-number">10/87</div>
+            <h2>Moral Chaos</h2>
+            <div class="scripture">
+                "In those days Israel had no king; everyone did as they saw fit."
+                <br><em>- Judges 21:25</em>
+            </div>
+            <p>The book ends with horrific stories of violence, idolatry, and moral confusion. Israel has become as bad as the Canaanites they were supposed to drive out. They desperately need a king.</p>
+        </div>
+
+        <!-- Slide 11: Time Marker -->
+        <div class="slide time-marker kingdom-slide">
+            <div class="slide-number">11/87</div>
+            <div class="time-indicator">⏰ 9 min</div>
+            <h1>👑 The Kings of Israel</h1>
+            <h2>Human Kings Can't Save</h2>
+        </div>
+
+        <!-- Slide 12: We Want a King -->
+        <div class="slide story-slide">
+            <div class="slide-number">12/87</div>
+            <h2>Israel Demands a King</h2>
+            <div class="story-text">
+                <p>The people come to Samuel the prophet: "Give us a king to lead us, such as all the other nations have." This breaks God's heart - HE is supposed to be their king! But they want to be like everyone else.</p>
+                <p style="margin-top: 20px;">God warns them that a human king will take their sons for his army, their daughters for his palace, their best fields, and tax them heavily. But they insist: "We want a king!"</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: King Saul -->
+        <div class="slide">
+            <div class="slide-number">13/87</div>
+            <h2>Saul: The King Who Failed</h2>
+            <p>God gives them Saul - tall, handsome, impressive. He starts well but soon reveals his true heart. He partially obeys God's commands, makes excuses, and cares more about people's opinions than God's.</p>
+            <p style="margin-top: 20px;">Samuel's response: "To obey is better than sacrifice... Because you have rejected the word of the Lord, he has rejected you as king."</p>
+        </div>
+
+        <!-- Slide 14: David Chosen -->
+        <div class="slide story-slide">
+            <div class="slide-number">14/87</div>
+            <h2>A Shepherd Boy Becomes King</h2>
+            <div class="story-text">
+                <p>God sends Samuel to Jesse's house to anoint the next king. Jesse parades seven impressive sons before Samuel, but God rejects them all. "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart."</p>
+                <p style="margin-top: 20px;">Finally, they call in the youngest - David, who's out watching sheep. When Samuel sees him, God says, "Rise and anoint him; this is the one." David is "a man after God's own heart."</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: David and Goliath -->
+        <div class="slide">
+            <div class="slide-number">15/87</div>
+            <h2>The Giant-Slayer</h2>
+            <p>Before becoming king, David faces Goliath - a 9-foot giant. While trained soldiers cower, this teenage shepherd boy declares: "You come against me with sword and spear... but I come against you in the name of the Lord Almighty!"</p>
+            <p style="margin-top: 25px;">David kills Goliath with a single stone. <span class="highlight">This pictures how Jesus, the son of David, would defeat our greatest enemy with what seemed like weakness.</span></p>
+        </div>
+
+        <!-- Slide 16: The Davidic Covenant -->
+        <div class="slide kingdom-slide">
+            <div class="slide-number">16/87</div>
+            <h2>God's Covenant with David 📜</h2>
+            <p>After David becomes king and brings peace to Israel, God makes an incredible promise:</p>
+            <div class="scripture">
+                "Your house and your kingdom will endure forever before me; your throne will be established forever."
+                <br><em>- 2 Samuel 7:16</em>
+            </div>
+            <p>How can a human throne last forever? <span class="highlight">This is another promise pointing to Jesus, the eternal King!</span></p>
+        </div>
+
+        <!-- Slide 17: David's Failure -->
+        <div class="slide">
+            <div class="slide-number">17/87</div>
+            <h2>Even David Falls</h2>
+            <p>David, the man after God's heart, commits terrible sins - adultery with Bathsheba and murder of her husband. When confronted, David repents deeply (read Psalm 51), and God forgives him.</p>
+            <p style="margin-top: 20px;">But there are consequences. His family is torn apart by violence and rebellion. Even the best human king is deeply flawed. We need a perfect King.</p>
+        </div>
+
+        <!-- Slide 18: Solomon's Glory -->
+        <div class="slide story-slide">
+            <div class="slide-number">18/87</div>
+            <h2>Solomon: Wisdom and Splendor</h2>
+            <div class="story-text">
+                <p>David's son Solomon becomes king. When God offers him anything, Solomon asks for wisdom. God is pleased and gives him wisdom, plus riches and honor.</p>
+                <p style="margin-top: 20px;">Solomon builds the magnificent temple in Jerusalem. When it's dedicated, God's glory fills the temple so powerfully that the priests can't even stand to minister!</p>
+            </div>
+        </div>
+
+        <!-- Slide 19: Solomon's Failure -->
+        <div class="slide">
+            <div class="slide-number">19/87</div>
+            <h2>Solomon's Heart Turns Away</h2>
+            <p>Despite his wisdom, Solomon marries 700 wives and 300 concubines - many from nations God had forbidden. They turn his heart after other gods. The wisest man who ever lived becomes a fool through disobedience.</p>
+            <p style="margin-top: 20px;">God announces judgment: "I will tear the kingdom away from you."</p>
+        </div>
+
+        <!-- Slide 20: Kingdom Divides -->
+        <div class="slide">
+            <div class="slide-number">20/87</div>
+            <h2>The Kingdom Splits in Two</h2>
+            <p>After Solomon dies, his son Rehoboam foolishly threatens to make the people's burden even heavier. Ten tribes rebel and form the northern kingdom (Israel). Only Judah and Benjamin remain loyal to David's line.</p>
+            <p style="margin-top: 20px;">From this point on, God's people are divided. Most kings are wicked. The northern kingdom doesn't have a single good king!</p>
+        </div>
+
+        <!-- Slide 21: Time Marker -->
+        <div class="slide time-marker exile-slide">
+            <div class="slide-number">21/87</div>
+            <div class="time-indicator">⏰ 16 min</div>
+            <h1>💔 Exile: Everything Falls Apart</h1>
+            <h2>The Consequences of Covenant Breaking</h2>
+        </div>
+
+        <!-- Slide 22: Assyrian Conquest -->
+        <div class="slide">
+            <div class="slide-number">22/87</div>
+            <h2>The Northern Kingdom Falls</h2>
+            <p>In 722 BC, after centuries of idolatry, the northern kingdom of Israel is conquered by Assyria. The ten tribes are scattered among the nations and largely lost to history.</p>
+            <p style="margin-top: 25px;">This is God's judgment for breaking the covenant. But what about Judah in the south?</p>
+        </div>
+
+        <!-- Slide 23: Babylonian Exile -->
+        <div class="slide story-slide">
+            <div class="slide-number">23/87</div>
+            <h2>Babylon Destroys Jerusalem</h2>
+            <div class="story-text">
+                <p>Judah lasts longer and has some good kings who bring revival. But eventually they too fall into idolatry. In 586 BC, Nebuchadnezzar of Babylon conquers Jerusalem.</p>
+                <p style="margin-top: 20px;">The unthinkable happens: The temple - God's dwelling place - is destroyed. The ark disappears. The city walls are torn down. The best and brightest are carried off to Babylon. It seems like God's promises have failed.</p>
+            </div>
+        </div>
+
+        <!-- Slide 24: In Exile -->
+        <div class="slide">
+            <div class="slide-number">24/87</div>
+            <h2>By the Rivers of Babylon 😢</h2>
+            <div class="scripture">
+                "By the rivers of Babylon we sat and wept when we remembered Zion... How can we sing the songs of the Lord while in a foreign land?"
+                <br><em>- Psalm 137:1,4</em>
+            </div>
+            <p>God's people are in exile, the temple is rubble, there's no king on David's throne. Has God abandoned His promises?</p>
+        </div>
+
+        <!-- Slide 25: Prophets Speak Hope -->
+        <div class="slide">
+            <div class="slide-number">25/87</div>
+            <h2>But God Speaks Through Prophets! 📢</h2>
+            <p>Even in exile, God sends prophets with messages of hope:</p>
+            <ul>
+                <li><strong>Isaiah:</strong> A virgin will bear a son called Immanuel</li>
+                <li><strong>Jeremiah:</strong> God will make a New Covenant written on hearts</li>
+                <li><strong>Ezekiel:</strong> God will put His Spirit in His people</li>
+                <li><strong>Daniel:</strong> An eternal kingdom is coming</li>
+            </ul>
+            <p style="margin-top: 20px;"><span class="highlight">The prophets see beyond the exile to a greater deliverance!</span></p>
+        </div>
+
+        <!-- Slide 26: Isaiah 53 -->
+        <div class="slide prophecy-slide">
+            <div class="slide-number">26/87</div>
+            <h2>The Suffering Servant Prophecy</h2>
+            <div class="scripture">
+                "He was despised and rejected by mankind, a man of suffering... he was pierced for our transgressions, he was crushed for our iniquities; the punishment that brought us peace was on him, and by his wounds we are healed."
+                <br><em>- Isaiah 53:3,5 (written 700 years before Jesus)</em>
+            </div>
+            <p>Isaiah sees a servant who will suffer and die for the people's sins. This doesn't match their expectations of a conquering Messiah!</p>
+        </div>
+
+        <!-- Slide 27: Return from Exile -->
+        <div class="slide">
+            <div class="slide-number">27/87</div>
+            <h2>A Remnant Returns</h2>
+            <p>After 70 years, Persia conquers Babylon. King Cyrus allows the Jews to return and rebuild the temple. A small remnant returns under Zerubbabel, Ezra, and Nehemiah.</p>
+            <p style="margin-top: 20px;">They rebuild the temple, but it's not as glorious. They rebuild the walls, but they're still under foreign rule. There's no king on David's throne. Something greater is still needed.</p>
+        </div>
+
+        <!-- Slide 28: The Promise Remains -->
+        <div class="slide">
+            <div class="slide-number">28/87</div>
+            <h2>Every Covenant Still Waiting...</h2>
+            <p>As the Old Testament ends, every major covenant seems unfulfilled:</p>
+            <ul>
+                <li><strong>Abrahamic:</strong> How will all nations be blessed?</li>
+                <li><strong>Mosaic:</strong> Who can keep the law perfectly?</li>
+                <li><strong>Davidic:</strong> Where is the eternal king?</li>
+            </ul>
+            <p style="margin-top: 25px;"><span class="highlight">God must have a plan to fulfill them all...</span></p>
+        </div>
+
+        <!-- Slide 29: 400 Years of Silence -->
+        <div class="slide story-slide">
+            <div class="slide-number">29/87</div>
+            <h2>Then... Silence 🤫</h2>
+            <div class="story-text">
+                <p>After Malachi, the last prophet, God goes quiet. For 400 years, no prophets, no miracles, no direct word from heaven. The Jews are conquered by Greeks, then Romans.</p>
+                <p style="margin-top: 20px;">They're trying to keep the law, waiting for the Messiah, longing for freedom. Many expect a political liberator to overthrow Rome. The stage is set for God's ultimate answer to the problem of sin...</p>
+            </div>
+        </div>
+
+        <!-- Slide 30: Discussion -->
+        <div class="slide discussion-slide">
+            <div class="slide-number">30/87</div>
+            <h2>💭 Discussion Moment</h2>
+            <div class="discussion-box">
+                <p>We've seen the pattern throughout Israel's history: God blesses → People turn away → Judgment comes → People cry out → God rescues → Repeat. Even with kings and temples, the heart problem remains.</p>
+                <p style="margin-top: 20px;"><strong>Why do you think external things like laws, leaders, and even temples couldn't change human hearts? What would it take to break this cycle?</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 31: Time Marker -->
+        <div class="slide time-marker incarnation-slide">
+            <div class="slide-number">31/87</div>
+            <div class="time-indicator">⏰ 25 min</div>
+            <h1>👶 The Incredible Incarnation</h1>
+            <h2>When Heaven Invaded Earth</h2>
+        </div>
+
+        <!-- Slide 32: Setting the Scene -->
+        <div class="slide story-slide">
+            <div class="slide-number">32/87</div>
+            <h2>A Teenage Girl in Nazareth</h2>
+            <div class="story-text">
+                <p>In a backwater town called Nazareth lives a teenage girl named Mary. She's engaged to Joseph, a carpenter. She's nobody special by the world's standards - poor, young, from a nothing town.</p>
+                <p style="margin-top: 20px;">One day, the angel Gabriel appears to her: "Greetings, you who are highly favored! The Lord is with you." Mary is terrified and confused. What could this mean?</p>
+            </div>
+        </div>
+
+        <!-- Slide 33: The Announcement -->
+        <div class="slide">
+            <div class="slide-number">33/87</div>
+            <h2>The Most Important Announcement</h2>
+            <div class="scripture">
+                "You will conceive and give birth to a son, and you are to call him Jesus. He will be great and will be called the Son of the Most High. The Lord God will give him the throne of his father David, and he will reign over Jacob's descendants forever."
+                <br><em>- Luke 1:31-33</em>
+            </div>
+            <p>Notice: "throne of his father David" - the Davidic covenant will be fulfilled through this child!</p>
+        </div>
+
+        <!-- Slide 34: The Miracle -->
+        <div class="slide">
+            <div class="slide-number">34/87</div>
+            <h2>The Holy Spirit's Work</h2>
+            <div class="scripture">
+                "The Holy Spirit will come on you, and the power of the Most High will overshadow you. So the holy one to be born will be called the Son of God."
+                <br><em>- Luke 1:35</em>
+            </div>
+            <p>This is crucial! Jesus had to be fully human to represent us, but conceived by the Holy Spirit to be without sin. He couldn't inherit Adam's sin nature.</p>
+        </div>
+
+        <!-- Slide 35: Joseph's Dream -->
+        <div class="slide story-slide">
+            <div class="slide-number">35/87</div>
+            <h2>Joseph's Crisis</h2>
+            <div class="story-text">
+                <p>When Joseph finds out Mary is pregnant, he plans to divorce her quietly. But an angel appears in a dream: "Joseph son of David, do not be afraid to take Mary home as your wife, because what is conceived in her is from the Holy Spirit."</p>
+                <p style="margin-top: 20px;">Notice: "Son of David" - Joseph is from David's royal line! Jesus will have legal claim to David's throne through Joseph.</p>
+            </div>
+        </div>
+
+        <!-- Slide 36: 700-Year-Old Prophecy -->
+        <div class="slide">
+            <div class="slide-number">36/87</div>
+            <h2>700-Year-Old Prophecy Fulfilled!</h2>
+            <div class="scripture">
+                "All this took place to fulfill what the Lord had said through the prophet: 'The virgin will conceive and give birth to a son, and they will call him Immanuel' (which means 'God with us')."
+                <br><em>- Matthew 1:22-23</em>
+            </div>
+            <p>Isaiah prophesied this 700 years earlier! God had been planning this rescue mission for centuries. <span class="highlight">Immanuel - God WITH us!</span> Not God far away, but God entering our world.</p>
+        </div>
+
+        <!-- Slide 37: Bethlehem Prophecy -->
+        <div class="slide prophecy-slide">
+            <div class="slide-number">37/87</div>
+            <h2>Even the Birthplace Was Prophesied!</h2>
+            <div class="scripture">
+                "But you, Bethlehem Ephrathah, though you are small among the clans of Judah, out of you will come for me one who will be ruler over Israel, whose origins are from of old, from ancient times."
+                <br><em>- Micah 5:2 (written 700 years before)</em>
+            </div>
+            <p>Caesar's census forced Mary and Joseph to travel to Bethlehem at exactly the right time. What looked like a Roman decree was actually God orchestrating prophecy!</p>
+        </div>
+
+        <!-- Slide 38: Born in Bethlehem -->
+        <div class="slide">
+            <div class="slide-number">38/87</div>
+            <h2>The Humble Birth</h2>
+            <div class="scripture">
+                "She gave birth to her firstborn, a son. She wrapped him in cloths and placed him in a manger, because there was no guest room available for them."
+                <br><em>- Luke 2:7</em>
+            </div>
+            <p>The Creator of the universe enters His creation not in a palace but in a stable. His first bed is a feeding trough. <span class="highlight">This tells us everything about the kind of King He would be!</span></p>
+        </div>
+
+        <!-- Slide 39: Why Become Human? -->
         <div class="slide incarnation-slide">
-            <div class="slide-number">13/78</div>
-            <h2>Solution: God Becomes Human</h2>
-            <p>God had to become human so He could die in our place</p>
+            <div class="slide-number">39/87</div>
+            <h2>But WHY Become Human? 🤔</h2>
+            <p>God had three problems to solve:</p>
+            <ul>
+                <li><strong>Justice Problem:</strong> Sin must be punished</li>
+                <li><strong>Representation Problem:</strong> Needed a new Adam</li>
+                <li><strong>Perfection Problem:</strong> Someone must obey perfectly</li>
+            </ul>
+            <p style="margin-top: 20px;"><span class="highlight">Only God becoming human could solve all three!</span></p>
+        </div>
+
+        <!-- Slide 40: CS Lewis Quote -->
+        <div class="slide">
+            <div class="slide-number">40/87</div>
             <div class="quote">
-                "The Son of God became a man to enable men to become sons of God"
+                "The Son of God became a man to enable men to become sons of God."
                 <br><em>- C.S. Lewis</em>
             </div>
+            <p>Jesus didn't just come to get us out of hell. He came to bring us into God's family!</p>
         </div>
 
-        <!-- Slide 14: Problem 2 -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">14/78</div>
-            <h2>Problem #2: The Representation Problem 👥</h2>
-            <p>The covenants were made with humanity</p>
-            <p>If God was going to keep them on our behalf...</p>
-            <div class="highlight">He had to become one of us</div>
-        </div>
-
-        <!-- Slide 15: Solution 2 -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">15/78</div>
-            <h2>Solution: The Second Adam</h2>
-            <p>Jesus became the "Second Adam"</p>
-            <p>The human being who would finally keep God's covenants perfectly</p>
-            <div class="highlight">Where Adam failed, Jesus would succeed</div>
-        </div>
-
-        <!-- Slide 16: Problem 3 -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">16/78</div>
-            <h2>Problem #3: The Righteousness Problem ✨</h2>
-            <p>God's covenants required perfect obedience</p>
-            <p>No human after Adam achieved this</p>
-            <div class="highlight">We needed someone to live the perfect life we couldn't live</div>
-        </div>
-
-        <!-- Slide 17: Solution 3 -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">17/78</div>
-            <h2>Solution: Perfect Obedience</h2>
-            <p>Jesus lived the sinless life we should have lived</p>
-            <div class="highlight">His perfect obedience becomes ours when we trust in Him</div>
-        </div>
-
-        <!-- Slide 18: Virgin Birth -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">18/78</div>
-            <h2>The Miracle of Virgin Birth 👶</h2>
-            <div class="scripture">
-                "The virgin will conceive and give birth to a son, and will call him Immanuel"
-                <br><em>- Isaiah 7:14 (700 years earlier!)</em>
-            </div>
-        </div>
-
-        <!-- Slide 19: Fully Human Fully God -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">19/78</div>
-            <h2>Fully Human, Fully God</h2>
-            <p>Through Mary: Fully human (to represent us)</p>
-            <p>Through Holy Spirit: Without sin (to save us)</p>
-            <div class="highlight">Immanuel = "God with us"</div>
-        </div>
-
-        <!-- Slide 20: Ultimate Tabernacle -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">20/78</div>
-            <h2>The Ultimate Tabernacle ⛺</h2>
-            <p>Remember the tabernacle? God dwelling among His people?</p>
-            <div class="highlight">Jesus is the ultimate fulfillment!</div>
-            <p>Not just God visiting - God becoming one of us forever</p>
-        </div>
-
-        <!-- Slide 21: Covenant Keeper -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">21/78</div>
-            <h2>Jesus: The Covenant Keeper</h2>
-            <p>From birth, Jesus began perfectly fulfilling every broken covenant:</p>
-            <ul>
-                <li>Second Adam ✓</li>
-                <li>Abraham's Promised Seed ✓</li>
-                <li>Perfect Israelite ✓</li>
-                <li>David's Greater Son ✓</li>
-            </ul>
-        </div>
-
-        <!-- Slide 22: Sproul Quote -->
-        <div class="slide incarnation-slide">
-            <div class="slide-number">22/78</div>
-            <div class="quote">
-                "Jesus didn't come to make bad people good. He came to make dead people alive"
-                <br><em>- R.C. Sproul</em>
-            </div>
-        </div>
-
-        <!-- Slide 23: Discussion -->
-        <div class="slide discussion-slide">
-            <div class="slide-number">23/78</div>
-            <h2>💭 Discussion Moment</h2>
-            <div class="discussion-box">
-                <p>What amazes you most about God becoming human?</p>
-                <p><strong>That He was willing to do it, or that He was able to do it while staying God?</strong></p>
-            </div>
-        </div>
-
-        <!-- Slide 24: Time Marker -->
+        <!-- Slide 41: Time Marker -->
         <div class="slide time-marker jesus-slide">
-            <div class="slide-number">24/78</div>
-            <div class="time-indicator">⏰ 23 min</div>
-            <h1>👑 Jesus' Life and Teachings</h1>
-            <h2>The Kingdom Has Come</h2>
+            <div class="slide-number">41/87</div>
+            <div class="time-indicator">⏰ 33 min</div>
+            <h1>👑 Jesus' Ministry</h1>
+            <h2>The Kingdom Has Come!</h2>
         </div>
 
-        <!-- Slide 25: Jesus' Message -->
+        <!-- Slide 42: Baptism -->
+        <div class="slide story-slide">
+            <div class="slide-number">42/87</div>
+            <h2>The Baptism</h2>
+            <div class="story-text">
+                <p>When Jesus is about 30, He comes to be baptized by John. John protests: "I need to be baptized by you!" But Jesus insists - He's identifying with sinful humanity as our representative.</p>
+                <p style="margin-top: 20px;">As He comes up from the water, heaven opens, the Spirit descends like a dove, and the Father speaks: "This is my Son, whom I love; with him I am well pleased."</p>
+            </div>
+        </div>
+
+        <!-- Slide 43: Temptation -->
+        <div class="slide">
+            <div class="slide-number">43/87</div>
+            <h2>Where Adam Failed, Jesus Succeeds</h2>
+            <p>The Spirit leads Jesus into the wilderness to be tempted by Satan for 40 days. Satan tempts Him to use divine power selfishly, test God's promises, and take a shortcut to glory.</p>
+            <p style="margin-top: 20px;">Each time, Jesus responds with Scripture. Where Adam failed in a perfect garden, Jesus succeeds in a barren wilderness. <span class="highlight">The Second Adam is proving He can't be defeated!</span></p>
+        </div>
+
+        <!-- Slide 44: Jesus' Message -->
         <div class="slide jesus-slide">
-            <div class="slide-number">25/78</div>
+            <div class="slide-number">44/87</div>
             <h2>The Heart of Jesus' Message</h2>
             <div class="scripture">
-                "The kingdom of heaven has come near"
-                <br><em>- Matthew 4:17</em>
+                "The time has come. The kingdom of God has come near. Repent and believe the good news!"
+                <br><em>- Mark 1:15</em>
             </div>
-            <p>For three years, everywhere Jesus went, He proclaimed this message</p>
+            <p>Jesus isn't just teaching about God's kingdom - He's announcing that the kingdom has arrived in HIM!</p>
         </div>
 
-        <!-- Slide 26: Kingdom of Heaven -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">26/78</div>
-            <h2>What Is the Kingdom of Heaven? 👑</h2>
-            <p>Jesus was announcing that God's rule and reign had arrived on earth through Him</p>
-            <div class="highlight">All those Old Testament promises about God being King? Coming true in Jesus!</div>
+        <!-- Slide 45: Calling Ordinary People -->
+        <div class="slide story-slide">
+            <div class="slide-number">45/87</div>
+            <h2>Calling Ordinary People</h2>
+            <div class="story-text">
+                <p>Jesus begins calling disciples - not from the religious elite but from ordinary workers. Peter, Andrew, James, and John are fishermen. Matthew is a despised tax collector. Simon is a political zealot.</p>
+                <p style="margin-top: 20px;">To fishermen He says, "Come, follow me, and I will send you out to fish for people." They immediately leave their nets. This tells us something crucial: Jesus doesn't call the qualified; He qualifies the called!</p>
+            </div>
         </div>
 
-        <!-- Slide 27: Jesus and Law -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">27/78</div>
-            <h2>Jesus and the Law 📜</h2>
+        <!-- Slide 46: Jesus and the Law -->
+        <div class="slide">
+            <div class="slide-number">46/87</div>
+            <h2>Not Abolishing but Fulfilling</h2>
             <div class="scripture">
-                "Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfill them"
-                <br><em>- Matthew 5:17-18</em>
+                "Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfill them."
+                <br><em>- Matthew 5:17</em>
             </div>
+            <p>Jesus makes God's standards even higher - it's not just about actions but about the heart. This makes the law impossible to keep on our own!</p>
         </div>
 
-        <!-- Slide 28: God Didn't Change -->
+        <!-- Slide 47: Jesus the Master Teacher -->
         <div class="slide jesus-slide">
-            <div class="slide-number">28/78</div>
-            <h2>God Didn't Change! ⚖️</h2>
-            <p>Some think God was harsh in OT, "laid back" in NT</p>
-            <div class="highlight">WRONG! God's character never changed</div>
-            <p>His holiness, justice, hatred of sin = exactly the same</p>
+            <div class="slide-number">47/87</div>
+            <h2>Jesus the Master Teacher 📖</h2>
+            <p>Jesus teaches mainly through parables - simple stories with profound spiritual truths. He uses everyday images: seeds, soil, bread, sheep, coins, weddings.</p>
+            <p style="margin-top: 25px;">Why parables? They reveal truth to humble seekers while concealing it from proud skeptics. They invite us to see God's kingdom with new eyes - where the last are first, the humble are exalted, and love conquers all.</p>
         </div>
 
-        <!-- Slide 29: What Changed -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">29/78</div>
-            <h2>What Changed</h2>
-            <p>God's standards didn't get lower</p>
-            <div class="highlight">Jesus met God's perfect standards FOR us</div>
-            <p>The cross proves God takes sin MORE seriously than we thought</p>
-        </div>
-
-        <!-- Slide 30: Parables -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">30/78</div>
-            <h2>Jesus Loved Parables 📖</h2>
-            <p>Simple stories revealing deep spiritual truths</p>
-            <p>Jesus told over 40 parables</p>
-            <div class="highlight">Each one showed what God's kingdom is like</div>
-        </div>
-
-        <!-- Slide 31: Why Parables -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">31/78</div>
-            <h2>Why Parables? 🤔</h2>
-            <p>Revealed truth to those genuinely seeking God</p>
-            <p>Hid truth from those only wanting to criticize</p>
-            <div class="highlight">Truth for humble hearts</div>
-        </div>
-
-        <!-- Slide 32: Lost Sheep -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">32/78</div>
-            <h2>The Lost Sheep 🐑</h2>
-            <div class="parable-box">
-                <p>Shepherd leaves 99 sheep to find 1 lost sheep</p>
-                <p>When found, he celebrates!</p>
-            </div>
-            <p><strong>What this teaches:</strong> You're not one of billions to God - you're the ONE He'd leave everything to find</p>
-        </div>
-
-        <!-- Slide 33: Prodigal Son -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">33/78</div>
-            <h2>The Prodigal Son 🏃‍♂️</h2>
-            <div class="parable-box">
-                <p>Son wastes inheritance, returns expecting to be servant</p>
-                <p>Father runs to him, embraces him, throws party!</p>
-            </div>
-            <p><strong>What this teaches:</strong> God's love isn't based on performance - He's watching for our return</p>
-        </div>
-
-        <!-- Slide 34: Good Samaritan -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">34/78</div>
-            <h2>The Good Samaritan 🏥</h2>
-            <div class="parable-box">
-                <p>Despised Samaritan helps beaten Jewish man</p>
-                <p>Religious leaders walk by</p>
-            </div>
-            <p><strong>What this teaches:</strong> Love is action that crosses boundaries to help those in need</p>
-        </div>
-
-        <!-- Slide 35: The Sower -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">35/78</div>
-            <h2>The Sower 🌱</h2>
-            <div class="parable-box">
-                <p>Farmer scatters seed on different soils</p>
-                <p>Growth depends on soil condition</p>
-            </div>
-            <p><strong>What this teaches:</strong> God's Word has power, but our hearts need to be ready to receive it</p>
-        </div>
-
-        <!-- Slide 36: The Talents -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">36/78</div>
-            <h2>The Talents 💰</h2>
-            <div class="parable-box">
-                <p>Master gives servants money to invest</p>
-                <p>Wise investors rewarded, fearful servant condemned</p>
-            </div>
-            <p><strong>What this teaches:</strong> God expects us to use our gifts for His glory, not hide them</p>
-        </div>
-
-        <!-- Slide 37: Greatest Commandments -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">37/78</div>
-            <h2>The Greatest Commandments ❤️</h2>
-            <div class="scripture">
-                "Love the Lord your God with all your heart... Love your neighbor as yourself"
-                <br><em>- Matthew 22:37-39</em>
-            </div>
-            <p>All of life = love for God + love for others</p>
-        </div>
-
-        <!-- Slide 38: Golden Rule -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">38/78</div>
-            <h2>The Golden Rule ✨</h2>
-            <div class="scripture">
-                "In everything, do to others what you would have them do to you"
-                <br><em>- Matthew 7:12</em>
-            </div>
-            <p>One sentence with enough wisdom to transform every relationship</p>
-        </div>
-
-        <!-- Slide 39: Beatitudes -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">39/78</div>
-            <h2>The Beatitudes 🙏</h2>
+        <!-- Slide 48: Miracles Show the Kingdom -->
+        <div class="slide">
+            <div class="slide-number">48/87</div>
+            <h2>Miracles: The Kingdom Breaking In</h2>
+            <p>Jesus doesn't just teach - He demonstrates the kingdom:</p>
             <ul>
-                <li>"Blessed are the poor in spirit"</li>
-                <li>"Blessed are those who mourn"</li>
-                <li>"Blessed are the meek"</li>
-            </ul>
-            <div class="highlight">Upside-Down Kingdom: God's values opposite of world's</div>
-        </div>
-
-        <!-- Slide 40: Lord's Prayer -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">40/78</div>
-            <h2>The Lord's Prayer 🙏</h2>
-            <div class="scripture">
-                "Our Father in heaven, hallowed be your name, your kingdom come..."
-                <br><em>- Matthew 6:9-13</em>
-            </div>
-            <p>Complete framework for talking with God</p>
-        </div>
-
-        <!-- Slide 41: Jesus' Miracles -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">41/78</div>
-            <h2>Jesus' Miracles: Signs of the Kingdom</h2>
-            <ul>
-                <li><strong>Healing sick:</strong> No sickness in God's kingdom</li>
-                <li><strong>Feeding hungry:</strong> God provides our needs</li>
-                <li><strong>Calming storms:</strong> Power over chaos</li>
-                <li><strong>Raising dead:</strong> Power over our greatest enemy</li>
+                <li>Healing shows no sickness in God's kingdom</li>
+                <li>Feeding multitudes shows God's abundant provision</li>
+                <li>Calming storms shows authority over chaos</li>
+                <li>Raising the dead shows death itself defeated</li>
             </ul>
         </div>
 
-        <!-- Slide 42: Owen Quote -->
-        <div class="slide jesus-slide">
-            <div class="slide-number">42/78</div>
-            <div class="quote">
-                "Christ did not die to make us merely religious or moral; He died to make us like God"
-                <br><em>- John Owen</em>
-            </div>
+        <!-- Slide 49: Jesus Fulfills the Feasts -->
+        <div class="slide prophecy-slide">
+            <div class="slide-number">49/87</div>
+            <h2>Jesus Fulfills the Jewish Feasts! 🎉</h2>
+            <p>The Old Testament feasts all point to Jesus:</p>
+            <ul>
+                <li><strong>Passover:</strong> Jesus is the Lamb who saves from death</li>
+                <li><strong>Unleavened Bread:</strong> Jesus is the sinless bread of life</li>
+                <li><strong>First Fruits:</strong> Jesus rose as the first fruits of resurrection</li>
+                <li><strong>Pentecost:</strong> The Holy Spirit came on this feast day</li>
+            </ul>
+            <p style="margin-top: 20px;"><span class="highlight">Every feast finds its meaning in Christ!</span></p>
         </div>
 
-        <!-- Slide 43: Discussion -->
-        <div class="slide discussion-slide">
-            <div class="slide-number">43/78</div>
-            <h2>💭 Discussion Moment</h2>
-            <div class="discussion-box">
-                <p>Which of Jesus' teachings or parables speaks to you most right now?</p>
-                <p><strong>What do you think Jesus was trying to show us about God through that story?</strong></p>
-            </div>
-        </div>
-
-        <!-- Slide 44: Time Marker -->
+        <!-- Slide 50: Time Marker -->
         <div class="slide time-marker">
-            <div class="slide-number">44/78</div>
-            <div class="time-indicator">⏰ 43 min</div>
+            <div class="slide-number">50/87</div>
+            <div class="time-indicator">⏰ 41 min</div>
             <h1>✝️ The Cross</h1>
-            <h2>Love's Greatest Display</h2>
+            <h2>Love's Ultimate Display</h2>
         </div>
 
-        <!-- Slide 45: The Week -->
+        <!-- Slide 51: Setting His Face -->
         <div class="slide">
-            <div class="slide-number">45/78</div>
-            <h2>The Week That Changed History</h2>
-            <p>Jesus set His face toward Jerusalem</p>
-            <p>He knew what was waiting</p>
-            <div class="highlight">But He went anyway. Why? This was why He came.</div>
-        </div>
-
-        <!-- Slide 46: Palm Sunday -->
-        <div class="slide">
-            <div class="slide-number">46/78</div>
-            <h2>Palm Sunday 🌴</h2>
-            <p>Crowds welcomed Him as king: "Hosanna!"</p>
-            <p>They wanted political savior to overthrow Rome</p>
-            <div class="highlight">Jesus came as different kind of king - conquering sin and death</div>
-        </div>
-
-        <!-- Slide 47: Last Supper -->
-        <div class="slide">
-            <div class="slide-number">47/78</div>
-            <h2>The Last Supper 🍞</h2>
+            <div class="slide-number">51/87</div>
+            <h2>Jesus Knows What's Coming</h2>
             <div class="scripture">
-                "This is my body given for you... This cup is the new covenant in my blood"
-                <br><em>- Luke 22:19-20</em>
+                "As the time approached for him to be taken up to heaven, Jesus resolutely set out for Jerusalem."
+                <br><em>- Luke 9:51</em>
             </div>
-            <p>The New Covenant was about to be sealed!</p>
+            <p>Jesus knows exactly what awaits Him - betrayal, torture, crucifixion. Yet He goes anyway. <span class="highlight">This is why He came!</span></p>
         </div>
 
-        <!-- Slide 48: Garden -->
-        <div class="slide">
-            <div class="slide-number">48/78</div>
-            <h2>In the Garden 🌙</h2>
-            <div class="scripture">
-                "Father, if you are willing, take this cup from me; yet not my will, but yours be done"
-                <br><em>- Luke 22:42</em>
+        <!-- Slide 52: The Last Supper -->
+        <div class="slide story-slide">
+            <div class="slide-number">52/87</div>
+            <h2>A New Covenant! 🍞</h2>
+            <div class="story-text">
+                <p>During the Passover meal, Jesus takes bread: "This is my body given for you." Then the cup: "This cup is the new covenant in my blood, which is poured out for you."</p>
+                <p style="margin-top: 20px;">Remember Jeremiah's prophecy about a New Covenant written on hearts? It's happening! Jesus is the true Passover Lamb whose blood delivers us from a greater bondage than Egypt!</p>
             </div>
-            <p>Even Jesus dreaded what was coming</p>
         </div>
 
-        <!-- Slide 49: Good Friday -->
+        <!-- Slide 53: Garden of Gethsemane -->
         <div class="slide">
-            <div class="slide-number">49/78</div>
-            <h2>Good Friday ✝️</h2>
+            <div class="slide-number">53/87</div>
+            <h2>The Agony in the Garden</h2>
+            <p>In Gethsemane, Jesus prays: "Father, if it is possible, may this cup be taken from me. Yet not as I will, but as you will." He's in such agony that His sweat is like drops of blood.</p>
+            <p style="margin-top: 20px;">What's in this cup? The full wrath of God against all human sin. Jesus, who has never sinned, is about to become sin for us.</p>
+        </div>
+
+        <!-- Slide 54: The Trials -->
+        <div class="slide">
+            <div class="slide-number">54/87</div>
+            <h2>Injustice Upon Injustice</h2>
+            <p>Jesus faces six trials in one night - all illegal or unjust. The religious leaders condemn Him for blasphemy. Pilate finds no guilt but caves to the crowd.</p>
+            <p style="margin-top: 20px;">The crowd chooses Barabbas (a murderer) to go free instead of Jesus. <span class="highlight">We are Barabbas - guilty and deserving death, but Jesus takes our place!</span></p>
+        </div>
+
+        <!-- Slide 55: The Crucifixion -->
+        <div class="slide">
+            <div class="slide-number">55/87</div>
+            <h2>Crucified Between Criminals ✝️</h2>
             <div class="cross-box">
-                <p>9 AM: Nailed to cross</p>
-                <p>Noon-3 PM: Darkness covered land</p>
-                <p>3 PM: "My God, My God, why have you forsaken me?"</p>
+                <p><strong>9 AM:</strong> They nail Jesus to the cross</p>
+                <p><strong>His first words:</strong> "Father, forgive them, for they do not know what they are doing"</p>
+                <p><strong>Noon-3 PM:</strong> Darkness covers the land</p>
+                <p><strong>3 PM:</strong> "My God, my God, why have you forsaken me?" (Psalm 22:1)</p>
             </div>
         </div>
 
-        <!-- Slide 50: What Was Happening -->
-        <div class="slide">
-            <div class="slide-number">50/78</div>
-            <h2>What Was Happening? 🔥</h2>
-            <p>Jesus bearing full weight of human sin</p>
-            <p>Every broken covenant placed on Him</p>
-            <div class="highlight">Father turned away from His beloved Son</div>
+        <!-- Slide 56: Psalm 22 Fulfillment -->
+        <div class="slide prophecy-slide">
+            <div class="slide-number">56/87</div>
+            <h2>1000-Year-Old Prophecy in Real Time!</h2>
+            <div class="scripture">
+                "My God, my God, why have you forsaken me?... All who see me mock me... they pierce my hands and my feet... They divide my clothes among them and cast lots for my garment."
+                <br><em>- Psalm 22:1,7,16,18 (written by David 1000 years before)</em>
+            </div>
+            <p>Jesus is quoting Psalm 22 - pointing everyone to this prophecy that's being fulfilled before their eyes! David described crucifixion centuries before it was invented!</p>
         </div>
 
-        <!-- Slide 51: It Is Finished -->
+        <!-- Slide 57: It Is Finished -->
         <div class="slide">
-            <div class="slide-number">51/78</div>
-            <h2>"It Is Finished!" 🎯</h2>
+            <div class="slide-number">57/87</div>
+            <h2>"TETELESTAI!" 🎯</h2>
             <div class="scripture">
-                "Tetelestai" - "PAID IN FULL"
+                "When he had received the drink, Jesus said, 'It is finished.' With that, he bowed his head and gave up his spirit."
                 <br><em>- John 19:30</em>
             </div>
-            <p>Not defeat - VICTORY!</p>
-            <p>Every debt settled, every covenant fulfilled</p>
+            <p>"Tetelestai" = "PAID IN FULL!" Every requirement of the law - satisfied! Every covenant promise - fulfilled! Every sin - paid for!</p>
         </div>
 
-        <!-- Slide 52: What Cross Accomplished -->
+        <!-- Slide 58: The Veil Tears -->
         <div class="slide">
-            <div class="slide-number">52/78</div>
-            <h2>What the Cross Accomplished</h2>
+            <div class="slide-number">58/87</div>
+            <h2>Access to God Opened!</h2>
+            <div class="scripture">
+                "At that moment the curtain of the temple was torn in two from top to bottom."
+                <br><em>- Matthew 27:51</em>
+            </div>
+            <p>The veil separated the Holy of Holies. Only God could tear it from top to bottom. <span class="highlight">The way to God is now open to all!</span></p>
+        </div>
+
+        <!-- Slide 59: What the Cross Accomplished -->
+        <div class="slide">
+            <div class="slide-number">59/87</div>
+            <h2>What Actually Happened?</h2>
             <div class="cross-box">
-                <p><strong>Substitution:</strong> Jesus took our place</p>
-                <p><strong>Redemption:</strong> Bought us back from slavery</p>
-                <p><strong>Reconciliation:</strong> Separation ended</p>
-                <p><strong>Covenant Fulfillment:</strong> Every promise kept</p>
+                <p><strong>Substitution:</strong> Jesus died in our place</p>
+                <p><strong>Propitiation:</strong> God's wrath was satisfied</p>
+                <p><strong>Redemption:</strong> We were bought back from slavery</p>
+                <p><strong>Reconciliation:</strong> The relationship was restored</p>
+                <p><strong>Justification:</strong> We were declared righteous</p>
             </div>
         </div>
 
-        <!-- Slide 53: Spurgeon Quote -->
-        <div class="slide">
-            <div class="slide-number">53/78</div>
-            <div class="quote">
-                "The death of Christ is the death of death, the grave of sin, the destruction of destruction"
-                <br><em>- Charles Spurgeon</em>
-            </div>
-        </div>
-
-        <!-- Slide 54: Time Marker -->
+        <!-- Slide 60: Time Marker -->
         <div class="slide time-marker">
-            <div class="slide-number">54/78</div>
-            <div class="time-indicator">⏰ 55 min</div>
-            <h1>🌅 Easter Sunday</h1>
-            <h2>Victory Over Death</h2>
+            <div class="slide-number">60/87</div>
+            <div class="time-indicator">⏰ 51 min</div>
+            <h1>🌅 The Resurrection</h1>
+            <h2>Death Could Not Hold Him!</h2>
         </div>
 
-        <!-- Slide 55: Three Days Later -->
+        <!-- Slide 61: The Burial -->
         <div class="slide">
-            <div class="slide-number">55/78</div>
-            <h2>Three Days Later... 🌅</h2>
-            <p>Something happened no one expected</p>
-            <p>(Even though Jesus predicted it!)</p>
-            <div class="highlight">Mary and the women went to anoint His body...</div>
+            <div class="slide-number">61/87</div>
+            <h2>A Rich Man's Tomb</h2>
+            <p>Joseph of Arimathea and Nicodemus take Jesus' body, wrap it in 75 pounds of spices and linen, and place Him in Joseph's new tomb. The great stone is rolled across the entrance.</p>
+            <p style="margin-top: 20px;">Saturday is the darkest day in history. The disciples are hiding, devastated. It seems like evil has won.</p>
         </div>
 
-        <!-- Slide 56: Empty Tomb -->
-        <div class="slide">
-            <div class="slide-number">56/78</div>
-            <h2>The Empty Tomb! 😱</h2>
-            <div class="resurrection-box">
-                <div class="scripture">
-                    "He is not here; he has risen, just as he said"
-                    <br><em>- Matthew 28:6</em>
-                </div>
+        <!-- Slide 62: Sunday Morning -->
+        <div class="slide story-slide">
+            <div class="slide-number">62/87</div>
+            <h2>While It Was Still Dark... 🌅</h2>
+            <div class="story-text">
+                <p>Early Sunday morning, women go to the tomb to anoint Jesus' body. But the stone has been rolled away! An angel tells them: "He is not here; he has risen, just as he said!"</p>
+                <p style="margin-top: 20px;">Mary Magdalene stays weeping. Someone she thinks is the gardener says one word: "Mary." She recognizes that voice! It's Jesus! He's alive!</p>
             </div>
         </div>
 
-        <!-- Slide 57: Why Resurrection Matters -->
+        <!-- Slide 63: Why the Resurrection Matters -->
         <div class="slide">
-            <div class="slide-number">57/78</div>
-            <h2>Why the Resurrection Matters</h2>
+            <div class="slide-number">63/87</div>
+            <h2>Everything Hinges on This!</h2>
             <div class="resurrection-box">
-                <p>✓ Jesus really was who He claimed</p>
-                <p>✓ His sacrifice was accepted</p>
-                <p>✓ Death conquered forever</p>
-                <p>✓ New life available to all</p>
+                <p>✓ It proves Jesus is who He claimed to be</p>
+                <p>✓ It validates His sacrifice - accepted!</p>
+                <p>✓ It defeats death - our greatest enemy</p>
+                <p>✓ It guarantees our resurrection</p>
+                <p>✓ It completes our salvation</p>
             </div>
         </div>
 
-        <!-- Slide 58: Jesus Appears -->
+        <!-- Slide 64: Jesus Appears -->
         <div class="slide">
-            <div class="slide-number">58/78</div>
-            <h2>Jesus Appears 👀</h2>
-            <p>For 40 days, Jesus appeared to disciples</p>
-            <p>He ate with them, taught them</p>
-            <div class="highlight">Over 500 people at one time! (1 Cor 15:6)</div>
+            <div class="slide-number">64/87</div>
+            <h2>Forty Days of Proof</h2>
+            <p>For 40 days, Jesus appears to His followers - to individuals, small groups, and even 500 at once! He eats with them, lets them touch His wounds, teaches them.</p>
+            <p style="margin-top: 20px;">This is no hallucination - this is a physical, bodily resurrection! <span class="highlight">Death has been defeated!</span></p>
         </div>
 
-        <!-- Slide 59: Great Commission -->
+        <!-- Slide 65: The Great Commission -->
         <div class="slide">
-            <div class="slide-number">59/78</div>
-            <h2>The Great Commission 🌍</h2>
+            <div class="slide-number">65/87</div>
+            <h2>The Mission Goes Global 🌍</h2>
             <div class="scripture">
-                "Go and make disciples of all nations... And surely I am with you always"
-                <br><em>- Matthew 28:19-20</em>
+                "All authority in heaven and on earth has been given to me. Therefore go and make disciples of all nations..."
+                <br><em>- Matthew 28:18-19</em>
             </div>
-            <p>Abraham's promise: ALL nations blessed!</p>
+            <p>Remember God's promise to Abraham? "All nations will be blessed through you." <span class="highlight">This is how it happens!</span></p>
         </div>
 
-        <!-- Slide 60: Discussion -->
-        <div class="slide discussion-slide">
-            <div class="slide-number">60/78</div>
-            <h2>💭 Discussion Moment</h2>
-            <div class="discussion-box">
-                <p>The resurrection changed the disciples from fearful to fearless.</p>
-                <p><strong>How should believing in Jesus' resurrection change how we live day to day?</strong></p>
-            </div>
+        <!-- Slide 66: The Ascension -->
+        <div class="slide">
+            <div class="slide-number">66/87</div>
+            <h2>Returning to the Father ☁️</h2>
+            <p>After 40 days, Jesus is taken up before their eyes. Two angels appear: "This same Jesus will come back in the same way you have seen him go."</p>
+            <p style="margin-top: 25px;">Jesus is at the Father's right hand, interceding for us, preparing a place for us. And He's coming back!</p>
         </div>
 
-        <!-- Slide 61: Time Marker -->
+        <!-- Slide 67: Time Marker -->
         <div class="slide time-marker">
-            <div class="slide-number">61/78</div>
-            <div class="time-indicator">⏰ 63 min</div>
-            <h1>🔥 Pentecost and the Church</h1>
-            <h2>The New Covenant in Action</h2>
+            <div class="slide-number">67/87</div>
+            <div class="time-indicator">⏰ 60 min</div>
+            <h1>🔥 Pentecost and Beyond</h1>
+            <h2>The Church Is Born</h2>
         </div>
 
-        <!-- Slide 62: Holy Spirit Comes -->
-        <div class="slide">
-            <div class="slide-number">62/78</div>
-            <h2>The Holy Spirit Comes! 🔥</h2>
-            <p>50 days after resurrection</p>
-            <p>Ordinary people boldly proclaimed gospel in new languages</p>
-            <div class="highlight">The church was born!</div>
-        </div>
-
-        <!-- Slide 63: 3000 Converts -->
-        <div class="slide">
-            <div class="slide-number">63/78</div>
-            <h2>God Shows His Power! ⚡</h2>
-            <div class="scripture">
-                "About three thousand were added to their number"
-                <br><em>- Acts 2:41</em>
+        <!-- Slide 68: The Day of Pentecost -->
+        <div class="slide story-slide">
+            <div class="slide-number">68/87</div>
+            <h2>When the Spirit Came! 🔥</h2>
+            <div class="story-text">
+                <p>Fifty days after Passover, 120 believers are praying when suddenly a sound like violent wind fills the house. Tongues of fire rest on each believer. They're filled with the Holy Spirit and begin speaking in languages they've never learned!</p>
+                <p style="margin-top: 20px;">Peter, who denied Jesus 50 days ago, boldly preaches to thousands! Three thousand people are baptized that day!</p>
             </div>
-            <p>Three thousand people in ONE DAY!</p>
-            <p>This wasn't just human effort - this was God!</p>
         </div>
 
-        <!-- Slide 64: Something Brand New -->
+        <!-- Slide 69: The New Covenant Reality -->
         <div class="slide">
-            <div class="slide-number">64/78</div>
-            <h2>Something Brand New! ✨</h2>
-            <p>OT: Holy Spirit "visited" for specific tasks</p>
-            <p>NT: Holy Spirit comes to STAY FOREVER</p>
-            <div class="highlight">Not a visit - a gift that never leaves!</div>
-        </div>
-
-        <!-- Slide 65: New Covenant Realized -->
-        <div class="slide">
-            <div class="slide-number">65/78</div>
+            <div class="slide-number">69/87</div>
             <h2>Jeremiah's Promise Fulfilled!</h2>
             <div class="scripture">
-                "I will put my law in their minds and write it on their hearts"
+                "I will put my law in their minds and write it on their hearts. I will be their God, and they will be my people."
                 <br><em>- Jeremiah 31:33</em>
             </div>
-            <p>This was happening at Pentecost!</p>
+            <p>The Holy Spirit is writing God's law on human hearts. The New Covenant has arrived!</p>
         </div>
 
-        <!-- Slide 66: Written on Hearts -->
+        <!-- Slide 70: The Early Church -->
         <div class="slide">
-            <div class="slide-number">66/78</div>
-            <h2>Written on Hearts, Not Stone 💖</h2>
-            <div class="covenant-box">
-                <p><strong>Old Covenant:</strong> Stone tablets (could break)</p>
-                <p><strong>New Covenant:</strong> Human hearts (by Holy Spirit)</p>
-            </div>
-        </div>
-
-        <!-- Slide 67: Based on God's Faithfulness -->
-        <div class="slide">
-            <div class="slide-number">67/78</div>
-            <h2>Based on God's Faithfulness</h2>
-            <div class="covenant-box">
-                <p><strong>Old:</strong> "If you obey, you'll be blessed"</p>
-                <p><strong>New:</strong> "Because Jesus obeyed perfectly, you're blessed forever"</p>
-            </div>
-        </div>
-
-        <!-- Slide 68: Breaking Down Walls -->
-        <div class="slide">
-            <div class="slide-number">68/78</div>
-            <h2>Breaking Down the Walls 🌍</h2>
-            <div class="scripture">
-                "We believe it is through the grace of our Lord Jesus that we are saved, just as they are"
-                <br><em>- Acts 15:11</em>
-            </div>
-            <p>Jew and Gentile - all welcome!</p>
-        </div>
-
-        <!-- Slide 69: Packer Quote -->
-        <div class="slide">
-            <div class="slide-number">69/78</div>
-            <div class="quote">
-                "The church exists primarily for two closely related purposes: to worship God and to work for him"
-                <br><em>- J.I. Packer</em>
-            </div>
-        </div>
-
-        <!-- Slide 70: Time Marker -->
-        <div class="slide time-marker">
-            <div class="slide-number">70/78</div>
-            <div class="time-indicator">⏰ 73 min</div>
-            <h1>👁️ Looking Back</h1>
-            <h2>Seeing Jesus Everywhere</h2>
-        </div>
-
-        <!-- Slide 71: Jesus All Along -->
-        <div class="slide">
-            <div class="slide-number">71/78</div>
-            <h2>It Was About Jesus All Along!</h2>
-            <div class="scripture">
-                "Beginning with Moses and all the Prophets, he explained to them what was said in all the Scriptures concerning himself"
-                <br><em>- Luke 24:27</em>
-            </div>
-        </div>
-
-        <!-- Slide 72: Jesus in Key Moments -->
-        <div class="slide">
-            <div class="slide-number">72/78</div>
-            <h2>Jesus in Key Moments</h2>
+            <div class="slide-number">70/87</div>
+            <h2>The Church Explodes with Growth! 💥</h2>
+            <p>The early church is unstoppable:</p>
             <ul>
-                <li><strong>Garden:</strong> Promise of serpent crusher = Jesus</li>
-                <li><strong>Abraham's Ram:</strong> "God will provide" = Jesus</li>
-                <li><strong>Passover:</strong> Lamb's blood = Jesus</li>
-                <li><strong>Tabernacle:</strong> God dwelling with us = Jesus</li>
+                <li>They share everything in common</li>
+                <li>Miracles happen daily</li>
+                <li>They meet in homes and the temple</li>
+                <li>Even persecution can't stop them</li>
+                <li>The message spreads like wildfire</li>
             </ul>
+            <p style="margin-top: 20px;"><span class="highlight">What 12 scared disciples couldn't do, thousands empowered by the Spirit accomplish!</span></p>
         </div>
 
-        <!-- Slide 73: Perfect Fulfillment -->
-        <div class="slide">
-            <div class="slide-number">73/78</div>
-            <h2>The Perfect Fulfillment</h2>
-            <p>Jesus is:</p>
-            <ul>
-                <li>The Prophet who perfectly reveals God</li>
-                <li>The Priest who offered Himself once for all</li>
-                <li>The King who reigns forever in righteousness</li>
-            </ul>
-        </div>
-
-        <!-- Slide 74: Baucham Quote -->
-        <div class="slide">
-            <div class="slide-number">74/78</div>
-            <div class="quote">
-                "The Bible is not a collection of stories about people who lived good lives. The Bible is one story about the God who gives life to dead people"
-                <br><em>- Voddie Baucham</em>
+        <!-- Slide 71: Paul's Conversion -->
+        <div class="slide story-slide">
+            <div class="slide-number">71/87</div>
+            <h2>From Persecutor to Apostle ⚡</h2>
+            <div class="story-text">
+                <p>Saul (later Paul) is zealously persecuting Christians. On the road to Damascus, a bright light knocks him down. "Saul, Saul, why do you persecute me?" It's Jesus!</p>
+                <p style="margin-top: 20px;">Paul is blinded for three days, then healed and filled with the Spirit. The church's greatest enemy becomes its greatest missionary! He'll take the gospel to the Gentile world.</p>
             </div>
         </div>
 
-        <!-- Slide 75: Discussion -->
+        <!-- Slide 72: Paul's Missionary Journeys -->
+        <div class="slide">
+            <div class="slide-number">72/87</div>
+            <h2>The Gospel Goes Everywhere! 🗺️</h2>
+            <p>Paul makes three missionary journeys, planting churches across the Roman Empire:</p>
+            <ul>
+                <li>First Journey: Cyprus and Asia Minor</li>
+                <li>Second Journey: Greece (Athens, Corinth)</li>
+                <li>Third Journey: Strengthening churches</li>
+            </ul>
+            <p>He's beaten, stoned, shipwrecked, imprisoned - but nothing stops him! <span class="highlight">"To live is Christ, to die is gain!"</span></p>
+        </div>
+
+        <!-- Slide 73: Bringing in the Gentiles -->
+        <div class="slide">
+            <div class="slide-number">73/87</div>
+            <h2>The Gospel Goes to All Nations! 🌏</h2>
+            <p>Through Paul's ministry, Gentiles (non-Jews) are welcomed into God's family without becoming Jewish first.</p>
+            <div class="scripture">
+                "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus."
+                <br><em>- Galatians 3:28</em>
+            </div>
+            <p><span class="highlight">The promise to Abraham is being fulfilled - ALL nations are being blessed!</span></p>
+        </div>
+
+        <!-- Slide 74: Discussion -->
         <div class="slide discussion-slide">
-            <div class="slide-number">75/78</div>
+            <div class="slide-number">74/87</div>
             <h2>💭 Discussion Moment</h2>
             <div class="discussion-box">
-                <p>Now that you can see Jesus throughout the Old Testament...</p>
-                <p><strong>Which story or picture of Him amazes you most? Why?</strong></p>
+                <p>The resurrection changed the disciples from cowards hiding in fear to bold witnesses who would die for their faith. They didn't die for something they hoped was true - they died for what they KNEW was true.</p>
+                <p style="margin-top: 20px;"><strong>How should the reality of Jesus' resurrection change how we face our fears and live our daily lives?</strong></p>
             </div>
         </div>
 
-        <!-- Slide 76: Your Place in Story -->
-        <div class="slide">
-            <div class="slide-number">76/78</div>
-            <h2>Your Place in the Story 📖</h2>
-            <p>The story isn't over!</p>
-            <p>We live in "already but not yet"</p>
-            <div class="highlight">You get to participate in God's plan to bless all nations!</div>
+        <!-- Slide 75: Time Marker -->
+        <div class="slide time-marker">
+            <div class="slide-number">75/87</div>
+            <div class="time-indicator">⏰ 70 min</div>
+            <h1>🎯 Bringing It All Together</h1>
+            <h2>What This Means for You</h2>
         </div>
 
-        <!-- Slide 77: The Ultimate Ending -->
+        <!-- Slide 76: Every Promise Fulfilled -->
         <div class="slide">
-            <div class="slide-number">77/78</div>
-            <h2>The Ultimate Ending 👑</h2>
+            <div class="slide-number">76/87</div>
+            <h2>Do You See It Now? 👁️</h2>
+            <p>Every Old Testament promise finds its YES in Jesus:</p>
+            <ul>
+                <li><strong>Abrahamic:</strong> All nations blessed through Jesus</li>
+                <li><strong>Mosaic:</strong> Jesus kept the law perfectly for us</li>
+                <li><strong>Davidic:</strong> Jesus reigns on an eternal throne</li>
+                <li><strong>New Covenant:</strong> Written on hearts by the Spirit</li>
+            </ul>
+        </div>
+
+        <!-- Slide 77: It's All Grace -->
+        <div class="slide">
+            <div class="slide-number">77/87</div>
+            <h2>You Can't Earn This!</h2>
             <div class="scripture">
-                "Look! God's dwelling place is now among the people... He will wipe every tear from their eyes"
-                <br><em>- Revelation 21:3-4</em>
+                "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast."
+                <br><em>- Ephesians 2:8-9</em>
             </div>
-            <p>The wedding of the Lamb!</p>
+            <p>Everything we couldn't do, Jesus did. Everything we deserved, Jesus took. <span class="highlight">It's all grace!</span></p>
         </div>
 
-        <!-- Slide 78: Final -->
+        <!-- Slide 78: The Pattern Completed -->
+        <div class="slide">
+            <div class="slide-number">78/87</div>
+            <h2>Remember the Pattern?</h2>
+            <div class="covenant-box">
+                <p>When covenants depend on human faithfulness → ALWAYS BROKEN</p>
+                <p>When covenants depend on God's faithfulness → NEVER BROKEN</p>
+                <p style="margin-top: 20px;"><strong>The New Covenant depends entirely on Jesus' faithfulness!</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 79: Jesus Is Coming Back -->
+        <div class="slide">
+            <div class="slide-number">79/87</div>
+            <h2>The Story's Not Over! 🎺</h2>
+            <div class="scripture">
+                "Look! He is coming with the clouds, and every eye will see him, even those who pierced him; and all peoples on earth will mourn because of him."
+                <br><em>- Revelation 1:7</em>
+            </div>
+            <p>Jesus promised He would return. When He does, He'll make all things new - no more tears, no more death, no more pain. We'll be with Him forever!</p>
+        </div>
+
+        <!-- Slide 80: Living Between Times -->
+        <div class="slide">
+            <div class="slide-number">80/87</div>
+            <h2>Until He Comes...</h2>
+            <p>We live between His first coming (to save) and His second coming (to reign). We're:</p>
+            <ul>
+                <li>Saved by grace through faith</li>
+                <li>Indwelt by the Holy Spirit</li>
+                <li>Part of His body, the church</li>
+                <li>Ambassadors of His kingdom</li>
+                <li>Waiting with hope for His return</li>
+            </ul>
+        </div>
+
+        <!-- Slide 81: What Will You Do? -->
+        <div class="slide">
+            <div class="slide-number">81/87</div>
+            <h2>What Will You Do with Jesus?</h2>
+            <p>Jesus has:</p>
+            <ul>
+                <li>Lived the perfect life you couldn't live</li>
+                <li>Died the death you deserved to die</li>
+                <li>Rose again to give you new life</li>
+                <li>Sent His Spirit to live in you</li>
+            </ul>
+            <p style="margin-top: 25px;">The only question is: Will you trust Him? Will you receive this free gift?</p>
+        </div>
+
+        <!-- Slide 82: We're Part of the Story -->
+        <div class="slide">
+            <div class="slide-number">82/87</div>
+            <h2>The Story Continues... 📖</h2>
+            <p>The book of Acts ends abruptly - because the story isn't over! Every time someone trusts in Jesus, every time the gospel spreads to a new place, every time a life is transformed - the story continues.</p>
+            <p style="margin-top: 25px;"><span class="highlight">You're not reading about ancient history. You're part of God's ongoing story of redemption!</span></p>
+        </div>
+
+        <!-- Slide 83: The Wedding Feast -->
+        <div class="slide">
+            <div class="slide-number">83/87</div>
+            <h2>The Ultimate Wedding! 💒</h2>
+            <div class="scripture">
+                "Let us rejoice and be glad and give him glory! For the wedding of the Lamb has come, and his bride has made herself ready."
+                <br><em>- Revelation 19:7</em>
+            </div>
+            <p>Remember the love letter analogy? One day we'll meet our Bridegroom face to face! The church is the bride, and Jesus is preparing for the greatest wedding celebration ever!</p>
+        </div>
+
+        <!-- Slide 84: All Things New -->
+        <div class="slide">
+            <div class="slide-number">84/87</div>
+            <h2>Paradise Restored! 🌳</h2>
+            <p>The Bible ends where it began - in a garden paradise:</p>
+            <ul>
+                <li>The Tree of Life returns</li>
+                <li>No more curse</li>
+                <li>Perfect fellowship with God</li>
+                <li>Nations healed</li>
+                <li>God dwelling with His people forever</li>
+            </ul>
+            <p><span class="highlight">Everything lost in Genesis is restored in Revelation!</span></p>
+        </div>
+
+        <!-- Slide 85: The Best Is Yet to Come -->
+        <div class="slide">
+            <div class="slide-number">85/87</div>
+            <h2>The Best Is Yet to Come! 🎊</h2>
+            <div class="scripture">
+                "He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain, for the old order of things has passed away."
+                <br><em>- Revelation 21:4</em>
+            </div>
+            <p>One day, Jesus will return and make all things new. Until then, we live as His witnesses, filled with His Spirit, sharing His love.</p>
+        </div>
+
+        <!-- Slide 86: How Then Shall We Live? -->
+        <div class="slide">
+            <div class="slide-number">86/87</div>
+            <h2>How Then Shall We Live?</h2>
+            <p>Knowing all this changes everything:</p>
+            <ul>
+                <li>We live with gratitude, not guilt</li>
+                <li>We serve from love, not duty</li>
+                <li>We face trials with hope, not despair</li>
+                <li>We share boldly, not timidly</li>
+                <li>We love sacrificially, as we've been loved</li>
+            </ul>
+            <p><span class="highlight">The gospel isn't just something we believe - it's something we live!</span></p>
+        </div>
+
+        <!-- Slide 87: Final -->
         <div class="slide title-slide">
-            <div class="slide-number">78/78</div>
-            <h1>🎉 God Kept Every Promise!</h1>
-            <h2>When we couldn't keep our promises to Him, He kept all His promises to us through Jesus</h2>
-            <div class="highlight" style="margin-top: 30px; font-size: 32px;">God's hesed love never fails!</div>
+            <div class="slide-number">87/87</div>
+            <h1>✨ God Kept Every Promise!</h1>
+            <p style="font-size: 40px; margin: 30px 0;">When we couldn't keep our covenants with God,<br>He kept all His covenants for us through Jesus!</p>
+            <p style="font-size: 36px;">This is the gospel - the good news that changes everything.</p>
+            <div class="highlight" style="margin-top: 40px; font-size: 38px;">God's hesed love never fails!</div>
+            <p style="margin-top: 30px; font-style: italic; font-size: 32px;">What's your response to this amazing love?</p>
         </div>
 
         <button class="nav-button prev" onclick="changeSlide(-1)">‹</button>
@@ -1074,8 +1251,8 @@
             const diffY = startY - endY;
             
             if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (diffX > 50) changeSlide(1);
-                if (diffX < -50) changeSlide(-1);
+                if (diffX > 50) changeSlide(1); // Swipe left
+                if (diffX < -50) changeSlide(-1); // Swipe right
             }
             
             startX = 0;
