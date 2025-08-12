@@ -321,29 +321,105 @@
         <div class="activity" id="activity1">
             <h2>🔤 Complete the Key Concepts</h2>
             <div class="question">
-                1. The Bible contains <input type="text" class="fill-blank" id="books" placeholder="number"> books, written by 
-                <input type="text" class="fill-blank" id="authors" placeholder="number"> different authors over 
-                <input type="text" class="fill-blank" id="years" placeholder="time period">.
-                <button class="hint-btn" onclick="showHint('hint1')">💡 Hint</button>
-                <div class="hint" id="hint1">66 books, 40 authors, 1,500 years</div>
+                1. The Bible contains <input type="text" class="fill-blank" id="books" placeholder="number" data-answer="66"> books, written by 
+                <input type="text" class="fill-blank" id="authors" placeholder="number" data-answer="40"> different authors over 
+                <input type="text" class="fill-blank" id="years" placeholder="time period" data-answer="1500">.
+                <button class="hint-btn" onclick="showHint('hint1', this)">💡 Hint</button>
+                <div class="hint" id="hint1">Click again for more help!</div>
             </div>
             
             <div class="question">
-                2. Yet it tells <input type="text" class="fill-blank" id="story" placeholder="how many?"> story about 
-                <input type="text" class="fill-blank" id="hero" placeholder="who?">.
-                <button class="hint-btn" onclick="showHint('hint2')">💡 Hint</button>
-                <div class="hint" id="hint2">ONE story, Jesus Christ</div>
+                2. Yet it tells <input type="text" class="fill-blank" id="story" placeholder="how many?" data-answer="one"> story about 
+                <input type="text" class="fill-blank" id="hero" placeholder="who?" data-answer="jesus">.
+                <button class="hint-btn" onclick="showHint('hint2', this)">💡 Hint</button>
+                <div class="hint" id="hint2">Click again for more help!</div>
             </div>
             
             <div class="question">
-                3. <em>Hesed</em> is the Hebrew word for God's <input type="text" class="fill-blank" id="hesed" placeholder="type of love">, 
+                3. <em>Hesed</em> is the Hebrew word for God's <input type="text" class="fill-blank" id="hesed" placeholder="type of love" data-answer="steadfast">, 
                 covenant-keeping love.
-                <button class="hint-btn" onclick="showHint('hint3')">💡 Hint</button>
-                <div class="hint" id="hint3">steadfast (or loyal)</div>
+                <button class="hint-btn" onclick="showHint('hint3', this)">💡 Hint</button>
+                <div class="hint" id="hint3">Click again for more help!</div>
             </div>
             
             <div class="feedback" id="feedback1"></div>
         </div>
+
+        <script>
+        // Replace the showHint and checkFillBlanks functions
+        let hintClicks = {};
+
+        function showHint(hintId, button) {
+            if (!hintClicks[hintId]) hintClicks[hintId] = 0;
+            hintClicks[hintId]++;
+            
+            const hint = document.getElementById(hintId);
+            const hints = {
+                'hint1': [
+                    'Numbers: 6_, 4_, 1,5__',
+                    '66 books, 40 authors, 1,500 years'
+                ],
+                'hint2': [
+                    'First word: opposite of many. Second: starts with J...',
+                    'ONE story, JESUS Christ'
+                ],
+                'hint3': [
+                    'Starts with "st..." and means loyal or faithful',
+                    'steadfast (or loyal)'
+                ]
+            };
+            
+            const clickCount = hintClicks[hintId];
+            if (clickCount === 1) {
+                hint.textContent = hints[hintId][0];
+                hint.style.display = 'block';
+                button.style.background = '#f39c12';
+            } else if (clickCount >= 2) {
+                hint.textContent = hints[hintId][1];
+                hint.style.color = '#d4af37';
+                hint.style.fontWeight = 'bold';
+                button.style.background = '#e67e22';
+            }
+        }
+
+        // Add real-time feedback for fill-in-blanks
+        document.querySelectorAll('.fill-blank').forEach(input => {
+            input.addEventListener('input', function() {
+                const answer = this.dataset.answer || this.getAttribute('data-answer');
+                const userAnswer = this.value.trim().toLowerCase();
+                const correctAnswer = answer.toLowerCase();
+                
+                if (userAnswer === correctAnswer || 
+                    (this.id === 'years' && (userAnswer === '1500' || userAnswer === '1,500')) ||
+                    (this.id === 'hero' && (userAnswer === 'jesus' || userAnswer === 'christ' || userAnswer === 'jesus christ')) ||
+                    (this.id === 'hesed' && (userAnswer === 'steadfast' || userAnswer === 'loyal'))) {
+                    this.style.background = '#d4edda';
+                    this.style.borderColor = '#28a745';
+                    checkAllFillBlanks();
+                } else if (userAnswer.length >= correctAnswer.length) {
+                    this.style.background = '#f8d7da';
+                    this.style.borderColor = '#dc3545';
+                } else {
+                    this.style.background = 'rgba(244, 241, 232, 0.9)';
+                    this.style.borderColor = '#d4af37';
+                }
+            });
+        });
+
+        function checkAllFillBlanks() {
+            const allCorrect = 
+                (document.getElementById('books').value === '66') &&
+                (document.getElementById('authors').value === '40') &&
+                (document.getElementById('years').value.includes('1500') || document.getElementById('years').value.includes('1,500')) &&
+                (document.getElementById('story').value.toLowerCase() === 'one') &&
+                (document.getElementById('hero').value.toLowerCase().includes('jesus') || document.getElementById('hero').value.toLowerCase().includes('christ')) &&
+                (document.getElementById('hesed').value.toLowerCase() === 'steadfast' || document.getElementById('hesed').value.toLowerCase() === 'loyal');
+            
+            if (allCorrect) {
+                showFeedback(1, true, '🎉 Excellent! You understand the Bible\'s amazing unity and God\'s hesed love!');
+            }
+        }
+        </script>
 
         <!-- Activity 2: Scripture Matching -->
         <div class="activity" id="activity2">
@@ -352,36 +428,76 @@
             
             <div style="margin: 15px 0;">
                 <label style="display: block; margin-bottom: 5px;">"All Scripture is God-breathed..."</label>
-                <select id="verse1" onchange="checkVerse(1)">
+                <select id="verse1" onchange="checkVerse(1, this)">
                     <option value="">Choose reference...</option>
                     <option value="2Timothy3:16">2 Timothy 3:16</option>
                     <option value="Genesis1:31">Genesis 1:31</option>
                     <option value="Genesis3:15">Genesis 3:15</option>
                 </select>
+                <span id="verse1-indicator" style="margin-left: 10px; font-size: 20px;"></span>
             </div>
             
             <div style="margin: 15px 0;">
                 <label style="display: block; margin-bottom: 5px;">"God saw all that he had made, and it was very good"</label>
-                <select id="verse2" onchange="checkVerse(2)">
+                <select id="verse2" onchange="checkVerse(2, this)">
                     <option value="">Choose reference...</option>
                     <option value="2Timothy3:16">2 Timothy 3:16</option>
                     <option value="Genesis1:31">Genesis 1:31</option>
                     <option value="Genesis3:15">Genesis 3:15</option>
                 </select>
+                <span id="verse2-indicator" style="margin-left: 10px; font-size: 20px;"></span>
             </div>
             
             <div style="margin: 15px 0;">
                 <label style="display: block; margin-bottom: 5px;">The woman's offspring will crush the serpent's head</label>
-                <select id="verse3" onchange="checkVerse(3)">
+                <select id="verse3" onchange="checkVerse(3, this)">
                     <option value="">Choose reference...</option>
                     <option value="2Timothy3:16">2 Timothy 3:16</option>
                     <option value="Genesis1:31">Genesis 1:31</option>
                     <option value="Genesis3:15">Genesis 3:15</option>
                 </select>
+                <span id="verse3-indicator" style="margin-left: 10px; font-size: 20px;"></span>
             </div>
             
             <div class="feedback" id="feedback2"></div>
         </div>
+
+        <script>
+        function checkVerse(verseNum, selectElement) {
+            const correct = {
+                1: '2Timothy3:16',
+                2: 'Genesis1:31',
+                3: 'Genesis3:15'
+            };
+            
+            const indicator = document.getElementById(`verse${verseNum}-indicator`);
+            const selected = selectElement.value;
+            
+            if (selected === '') {
+                indicator.textContent = '';
+                selectElement.style.borderColor = '#8b6f47';
+                selectElement.style.background = 'rgba(244, 241, 232, 0.9)';
+            } else if (selected === correct[verseNum]) {
+                indicator.textContent = '✅';
+                selectElement.style.borderColor = '#28a745';
+                selectElement.style.background = '#d4edda';
+                
+                // Check if all are correct
+                const allCorrect = 
+                    document.getElementById('verse1').value === '2Timothy3:16' &&
+                    document.getElementById('verse2').value === 'Genesis1:31' &&
+                    document.getElementById('verse3').value === 'Genesis3:15';
+                
+                if (allCorrect) {
+                    showFeedback(2, true, '📖 Perfect! You know your key verses from Session 1!');
+                }
+            } else {
+                indicator.textContent = '❌';
+                selectElement.style.borderColor = '#dc3545';
+                selectElement.style.background = '#f8d7da';
+            }
+        }
+        </script>
 
         <!-- Activity 3: True/False with Immediate Feedback -->
         <div class="activity" id="activity3">

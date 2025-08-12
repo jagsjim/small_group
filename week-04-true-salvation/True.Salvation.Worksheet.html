@@ -558,17 +558,91 @@
                 
                 <div class="question">
                     <div class="question-text">Match the theological terms with their definitions:</div>
-                    <div class="memory-grid" id="memoryGrid">
-                        <div class="memory-card" onclick="flipCard(this, &#39;grace&#39;)" data-value="grace">Grace</div>
-                        <div class="memory-card" onclick="flipCard(this, &#39;grace-def&#39;)" data-value="grace-def">Undeserved favor</div>
-                        <div class="memory-card" onclick="flipCard(this, &#39;propitiation&#39;)" data-value="propitiation">Propitiation</div>
-                        <div class="memory-card" onclick="flipCard(this, &#39;propitiation-def&#39;)" data-value="propitiation-def">Satisfying God's wrath</div>
-                        <div class="memory-card" onclick="flipCard(this, &#39;justification&#39;)" data-value="justification">Justification</div>
-                        <div class="memory-card" onclick="flipCard(this, &#39;justification-def&#39;)" data-value="justification-def">Declared righteous</div>
-                    </div>
+                    <div class="memory-grid" id="memoryGrid"></div>
                     <div class="feedback" id="memory-feedback"></div>
                 </div>
             </div>
+
+            <script>
+            // Replace the memory game initialization
+            const memoryCards = [
+                {id: 'grace', text: 'Grace', match: 'grace-def'},
+                {id: 'grace-def', text: 'Undeserved favor', match: 'grace'},
+                {id: 'propitiation', text: 'Propitiation', match: 'propitiation-def'},
+                {id: 'propitiation-def', text: 'Satisfying God\'s wrath', match: 'propitiation'},
+                {id: 'justification', text: 'Justification', match: 'justification-def'},
+                {id: 'justification-def', text: 'Declared righteous', match: 'justification'}
+            ];
+
+            // Shuffle array
+            function shuffle(array) {
+                const newArray = [...array];
+                for (let i = newArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+                }
+                return newArray;
+            }
+
+            // Initialize memory game
+            function initMemoryGame() {
+                const grid = document.getElementById('memoryGrid');
+                grid.innerHTML = '';
+                const shuffled = shuffle(memoryCards);
+                
+                shuffled.forEach(card => {
+                    const cardDiv = document.createElement('div');
+                    cardDiv.className = 'memory-card';
+                    cardDiv.textContent = '?';
+                    cardDiv.dataset.value = card.id;
+                    cardDiv.dataset.text = card.text;
+                    cardDiv.dataset.match = card.match;
+                    cardDiv.onclick = () => flipCard(cardDiv);
+                    grid.appendChild(cardDiv);
+                });
+            }
+
+            let firstCard = null;
+            let matchedPairs = 0;
+
+            function flipCard(card) {
+                if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+                
+                card.classList.add('flipped');
+                card.textContent = card.dataset.text;
+                
+                if (!firstCard) {
+                    firstCard = card;
+                } else {
+                    const isMatch = (firstCard.dataset.value === card.dataset.match);
+                    
+                    if (isMatch) {
+                        firstCard.classList.add('matched');
+                        card.classList.add('matched');
+                        matchedPairs++;
+                        
+                        if (matchedPairs === 3) {
+                            document.getElementById('memory-feedback').textContent = '🎉 All matched! Great job learning these important terms!';
+                            document.getElementById('memory-feedback').className = 'feedback correct';
+                            document.getElementById('memory-feedback').style.display = 'block';
+                            updateProgress();
+                        }
+                        firstCard = null;
+                    } else {
+                        setTimeout(() => {
+                            firstCard.classList.remove('flipped');
+                            card.classList.remove('flipped');
+                            firstCard.textContent = '?';
+                            card.textContent = '?';
+                            firstCard = null;
+                        }, 1000);
+                    }
+                }
+            }
+
+            // Initialize on load
+            initMemoryGame();
+            </script>
 
             <!-- Section 6: What Would You Say Scenarios -->
             <div class="section">
@@ -675,18 +749,33 @@
                         
                         <div class="match-item">
                             <span class="match-term">Jesus never sinned:</span>
-                            <select onchange="checkMatch(3, this.value, &#39;Hebrews 4:15&#39;)">
+                            <select onchange="checkMatch(3, this)">
                                 <option value="">Choose verse...</option>
                                 <option value="Romans 3:23">Romans 3:23</option>
                                 <option value="Ephesians 2:8">Ephesians 2:8</option>
                                 <option value="1 John 2:2">1 John 2:2</option>
-                                <option value="Hebreus 4:15">Hebrews 4:15</option>
+                                <option value="Hebrews 4:15">Hebrews 4:15</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="feedback" id="match-feedback"></div>
-                </div>
-            </div>
+
+                        <script>
+                        function checkMatch(questionNum, selectElement) {
+                            const correct = {
+                                1: 'Romans 3:23',
+                                2: 'Ephesians 2:8', 
+                                3: 'Hebrews 4:15'
+                            };
+                            
+                            if (selectElement.value === correct[questionNum]) {
+                                selectElement.style.borderColor = '#28a745';
+                                selectElement.style.background = '#d4edda';
+                                updateProgress();
+                            } else if (selectElement.value !== '') {
+                                selectElement.style.borderColor = '#dc3545';
+                                selectElement.style.background = '#f8d7da';
+                            }
+                        }
+                        </script>
 
             <!-- Section 9: Personal Reflection -->
             <div class="section">
