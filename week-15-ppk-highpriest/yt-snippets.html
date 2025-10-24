@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bible Study — 4 Snippets</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto; margin:0; padding:1rem; background:#f8fafc; color:#0f172a; }
+  .player { max-width:900px; margin:0 auto; }
+  .controls { display:flex; gap:.5rem; margin:.75rem 0; flex-wrap:wrap; }
+  button { font-size:1rem; padding:.6rem 1rem; border-radius:12px; border:1px solid #cbd5e1; background:#fff; cursor:pointer; box-shadow:0 4px 10px rgba(2,6,23,0.06); }
+  button.big { font-size:1.1rem; padding:.8rem 1.2rem; border-radius:14px; }
+  .clip-list { margin-top:1rem; display:grid; gap:.5rem; }
+  .clip { padding:.6rem; border-radius:10px; background:#fff; border:1px solid #e6eef8; display:flex; justify-content:space-between; align-items:center; }
+  .meta { font-size:.95rem; }
+  .active { outline:2px solid #60a5fa; }
+  footer { margin-top:1rem; font-size:.85rem; color:#475569; }
+</style>
+</head>
+<body>
+<div class="player">
+  <h1>Bible study — 4 clips</h1>
+  <div id="player"></div>
+
+  <div class="controls">
+    <button id="playAll" class="big">Play All</button>
+    <button id="prev">◀ Prev</button>
+    <button id="next">Next ▶</button>
+    <button id="pause">Pause</button>
+    <button id="stop">Stop</button>
+  </div>
+
+  <div class="clip-list" id="clipList"></div>
+
+  <footer>
+    Open this file in a browser (or host via GitHub Pages). Uses YouTube IFrame API so start/end times are enforced.
+  </footer>
+</div>
+
+<script>
+/* ========== YOUR CLIP LIST ========== */
+const clips = [
+  { id: 'y6p_6sTwRVs', title: 'Clip 1', start: 2897, end: 3000 },
+  { id: 'Ncd8bwMcXMI', title: 'Clip 2', start: 2833, end: 3028 },
+  { id: 'y6p_6sTwRVs', title: 'Clip 3', start: 3000, end: 5054 },
+  { id: 'Ncd8bwMcXMI', title: 'Clip 4', start: 4295, end: 5311 }
+];
+/* ===================================== */
+
+let player, currentIndex = 0, pollTimer = null, playingSequence = false;
+
+function createClipListUI() {
+  const el = document.getElementById('clipList');
+  clips.forEach((c,i) => {
+    const div = document.createElement('div');
+    div.className = 'clip';
+    div.id = 'clip-'+i;
+    div.innerHTML = `<div class="meta"><strong>${c.title}</strong><div>${formatTime(c.start)} → ${formatTime(c.end)}</div></div>
+                     <div><button data-i="${i}" class="jump">Play</button></div>`;
+    el.appendChild(div);
+  });
+}
+function formatTime(s) {
+  const h = Math.floor(s/3600); s%=3600;
+  const m = Math.floor(s/60); const sec = s%60;
+  return (h? h+':' : '') + String(m).padStart(h?2:1,'0') + ':' + String(sec).padStart(2,'0');
+}
+
+/* Load YouTube IFrame API */
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '360', width: '640',
+    playerVars: { 'autoplay': 0, 'controls': 1, 'rel': 0 },
+    events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+  });
+}
+
+function playClip(index) {
+  if (!player) return;
+  if (index < 0) index = 0;
+  if (index >= clips.length) { stopSequence(); return; }
+  currentIndex = index;
+  highlightActive();
+  const c = clips[index];
+  player.loadVideoById({ videoId: c.id, startSeconds: c.start, endSeconds: c.end, suggestedQuality: 'large' });
+  startPoll();
+}
+
+function startPoll() {
+  clearInterval(pollTimer);
+  pollTimer = setInterval(() => {
+    if (!player || player.getPlayerState() !== YT.PlayerState.PLAYING) return;
+    const t = player.getCurrentTime();
+    const c = clips[currentIndex];
+    // If current time reaches or exceeds end (with a small fudge), move next
+    if (t >= (c.end - 0.35)) {
+      // advance
+      playClip(currentIndex + 1);
+    }
+  }, 300);
+}
+
+function stopPoll() { clearInterval(pollTimer); pollTimer = null; }
+
+function onPlayerReady() {
+  // setup UI actions
+  document.getElementById('playAll').onclick = () => { playingSequence = true; playClip(0); };
+  document.getElementById('next').onclick = () => { playClip(currentIndex + 1); };
+  document.getElementById('prev').onclick = () => { playClip(currentIndex - 1); };
+  document.getElementById('pause').onclick = () => { player && player.pauseVideo(); stopPoll(); };
+  document.getElementById('stop').onclick = () => { player && player.stopVideo(); stopPoll(); };
+
+  document.querySelectorAll('.jump').forEach(btn => {
+    btn.onclick = (e) => { const i = +e.currentTarget.dataset.i; playingSequence = false; playClip(i); };
+  });
+}
+
+function onPlayerStateChange(e) {
+  // if user stops or ends naturally, stop poll if appropriate
+  if (e.data === YT.PlayerState.ENDED || e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.CUED) {
+    // if ended unexpectedly (e.g., video ended before endSeconds), advance
+    if (e.data === YT.PlayerState.ENDED) {
+      playClip(currentIndex + 1);
+    } else {
+      stopPoll();
+    }
+  }
+}
+
+function highlightActive() {
+  document.querySelectorAll('.clip').forEach((el,i) => el.classList.toggle('active', i===currentIndex));
+}
+
+function stopSequence() {
+  playingSequence = false;
+  stopPoll();
+  if (player) player.stopVideo();
+  currentIndex = 0;
+  highlightActive();
+}
+
+/* initialize UI */
+createClipListUI();
+</script>
+</body>
+</html>
