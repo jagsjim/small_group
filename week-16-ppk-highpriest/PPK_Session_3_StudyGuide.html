@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 3: Our Great High Priest - Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f8f9fa;
+            padding: 20px;
+            max-width: 7in;
+            margin: 0 auto;
+        }
+        
+        .page {
+            background: white;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            min-height: 30 lines;
+        }
+        
+        h1 {
+            color: #c0392b;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 24px;
+            margin: 25px 0 12px 0;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .video-button {
+            display: block;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+            padding: 18px 40px;
+            margin: 30px auto;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            transition: all 0.3s ease;
+            max-width: 400px;
+        }
+        
+        .video-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+        
+        .summary {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+        
+        .highlight {
+            background: #fffbea;
+            border: 3px solid #f39c12;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-size: 26px;
+            font-style: italic;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .main-points {
+            list-style: none;
+            counter-reset: point-counter;
+        }
+        
+        .main-points li {
+            counter-increment: point-counter;
+            margin: 20px 0;
+            padding-left: 45px;
+            position: relative;
+            font-size: 24px;
+        }
+        
+        .main-points li::before {
+            content: counter(point-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #3498db;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .main-points li strong {
+            color: #2c3e50;
+            font-weight: 700;
+        }
+        
+        .segment-questions {
+            background: #f0f9ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .segment-questions h3 {
+            color: #0369a1;
+            margin-top: 0;
+        }
+        
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            font-size: 24px;
+        }
+        
+        .timestamp {
+            display: inline-block;
+            background: #0369a1;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .overview-questions {
+            list-style: none;
+            counter-reset: overview-counter;
+        }
+        
+        .overview-questions li {
+            counter-increment: overview-counter;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #27ae60;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+        
+        .overview-questions li::before {
+            content: counter(overview-counter) ". ";
+            font-weight: 700;
+            color: #27ae60;
+            font-size: 26px;
+        }
+        
+        .verses {
+            background: #fef7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .verse {
+            margin: 10px 0;
+            font-size: 24px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .verse:last-child {
+            border-bottom: none;
+        }
+        
+        .verse strong {
+            color: #8e44ad;
+            font-weight: 600;
+        }
+        
+        .transcript {
+            font-size: 24px;
+            line-height: 1.7;
+        }
+        
+        .transcript-section {
+            margin: 30px 0;
+        }
+        
+        .transcript-heading {
+            background: #34495e;
+            color: white;
+            padding: 12px 20px;
+            margin: 25px 0 15px 0;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 26px;
+        }
+        
+        .transcript ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .transcript li {
+            margin: 12px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .transcript .level-1 {
+            margin-left: 0;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 26px;
+            margin-top: 20px;
+        }
+        
+        .transcript .level-2 {
+            margin-left: 30px;
+            font-size: 24px;
+        }
+        
+        .transcript .level-3 {
+            margin-left: 60px;
+            font-size: 24px;
+        }
+        
+        .transcript .level-4 {
+            margin-left: 90px;
+            font-size: 24px;
+        }
+        
+        .scripture-emphasis {
+            font-style: italic;
+            color: #8e44ad;
+            font-weight: 600;
+        }
+        
+        .key-truth {
+            font-weight: 700;
+            color: #c0392b;
+        }
+        
+        .video-note {
+            background: #fff3e0;
+            border: 2px dashed #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 24px;
+            color: #e65100;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .page {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 22px;
+            }
+            
+            .video-button {
+                font-size: 20px;
+                padding: 15px 30px;
+            }
+            
+            .main-points li,
+            .question,
+            .overview-questions li,
+            .verse,
+            .transcript {
+                font-size: 20px;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .page {
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1 -->
+    <div class="page">
+        <h1>PROPHET, PRIEST, KING</h1>
+        <div class="subtitle">Session 3 of 5</div>
+        <h1>OUR GREAT HIGH PRIEST</h1>
+        
+        <a href="https://jagsjim.github.io/small_group/week-16-ppk-highpriest/yt-snippets.html" class="video-button" target="_blank">▶ WATCH VIDEO</a>
+        
+        <div class="note">
+            <strong>Note:</strong> This session combines portions of two related messages for a cohesive study on Jesus as our Great High Priest.
+        </div>
+        
+        <h2>Summary</h2>
+        <div class="summary">
+            This session explores Jesus as our Great High Priest, examining what priests did in the Old Testament and how Jesus perfectly fulfills and surpasses that role. We'll discover how the priesthood began in the Garden of Eden, was formalized under Moses, and ultimately points to Jesus who offered himself as both priest and sacrifice. Most importantly, we'll see how Jesus' priestly work means we can now approach God directly and confidently—and that every believer is now part of God's priesthood.
+        </div>
+        
+        <h2>Highlight Sentence</h2>
+        <div class="highlight">
+            Jesus is our Great High Priest who offered himself as the ultimate sacrifice, satisfying God's justice and removing our sin completely, so that we can now enter God's presence with confidence and become part of his priesthood forever.
+        </div>
+        
+        <h2>Main Points</h2>
+        <ul class="main-points">
+            <li>A priest mediates between God and people—representing them, preparing them, and going before them into God's presence.</li>
+            
+            <li>Priesthoods appear in nearly every culture throughout history, revealing humanity's universal awareness of sin, our lack of merit to deal with it ourselves, and the need for substitutionary sacrifice.</li>
+            
+            <li>The priesthood concept began in the Garden of Eden when God covered Adam and Eve with animal skins—the first substitutionary sacrifice.</li>
+            
+            <li><strong>Old Testament priests had two key qualifications: they had to be appointed by God and they had to be holy (set apart).</strong></li>
+            
+            <li><strong>Jesus perfectly fulfilled both qualifications—appointed by God as the eternal priest-king in the order of Melchizedek, and completely holy through his perfect obedience to the Father.</strong></li>
+            
+            <li>The two essential functions of priests were: (1) leading worship through sacrifices that made it possible to approach God, and (2) interceding on behalf of the people.</li>
+            
+            <li><strong>On the Day of Atonement, two goats were used: one was sacrificed to satisfy God's justice (propitiation), and one was sent away carrying the people's sin-guilt (expiation). Jesus fulfilled both roles—he satisfied the Father's justice through his death AND carried our sin away completely.</strong></li>
+            
+            <li>Jesus' priestly work continues in heaven—not by begging the Father on our behalf, but through his resurrected presence at God's right hand, bearing the scars that prove "it is finished."</li>
+        </ul>
+        
+        <h2>Segment Discussion Questions</h2>
+        <div class="segment-questions">
+            <h3>Pause the video at these timestamps:</h3>
+            
+            <div class="question">
+                <span class="timestamp">50:00</span>
+                What went through your mind when you heard that the priesthood concept started in the Garden of Eden with God himself acting as priest?
+            </div>
+            
+            <div class="question">
+                <span class="timestamp">1:08:49</span>
+                What went through your mind when you heard that Jesus doesn't just forgive our sin—he also gives us his perfect record and righteousness? Why is getting his righteousness just as important as getting forgiveness?
+            </div>
+            
+            <div class="question">
+                <span class="timestamp">1:24:14</span>
+                Have you ever felt like you needed someone else to approach God for you—like you couldn't go directly to him yourself?
+            </div>
+            
+            <div class="question">
+                <span class="timestamp">End</span>
+                Be honest: Are you letting someone else be your priest—waiting for them to get close to God for you—instead of going directly to God yourself?
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px;">&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+    </div>
+    
+    <!-- PAGE 2 -->
+    <div class="page">
+        <h2>Overview Discussion Questions</h2>
+        <ul class="overview-questions">
+            <li>We often use "I don't feel worthy" as an excuse to stay away from God. But this text says we are worthy only because of Jesus. When you let your feelings stop you from going to God, are you basically telling God that Jesus's death on the cross wasn't powerful enough to make you clean?</li>
+            
+            <li>The message said some Christians are thoroughly saved but don't experience closeness with God because they don't understand their priesthood. What do you think keeps people from experiencing that closeness?</li>
+            
+            <li>What's one way this week you could live out your role as a "priest" in God's priesthood—whether that's approaching God directly, offering spiritual worship, or pointing someone else to Jesus?</li>
+        </ul>
+        
+        <h2>Bible Verses Quoted</h2>
+        <div class="verses">
+            <div class="verse"><strong>Hebrews 1:1-3</strong> ("In the past God spoke... by his Son")</div>
+            <div class="verse"><strong>Hebrews 8:1</strong> ("We do have such a high priest")</div>
+            <div class="verse"><strong>Hebrews 5:1,4-6</strong> ("Every high priest is selected... You are a priest forever")</div>
+            <div class="verse"><strong>Genesis 2:17</strong> ("If you eat of that fruit you shall surely die")</div>
+            <div class="verse"><strong>Romans 6:23</strong> ("The wages of sin is death")</div>
+            <div class="verse"><strong>Exodus 28:1</strong> ("Have Aaron your brother brought to you")</div>
+            <div class="verse"><strong>Numbers 18:22-23</strong> (Seriousness of priestly calling)</div>
+            <div class="verse"><strong>Psalm 110</strong> (Priest-king prophecy)</div>
+            <div class="verse"><strong>Leviticus 17:11</strong> ("Without the shedding of blood")</div>
+            <div class="verse"><strong>Hebrews 9:22</strong> ("Without the shedding of blood there is no forgiveness")</div>
+            <div class="verse"><strong>Hebrews 2:17</strong> ("He had to be made like them, fully human")</div>
+            <div class="verse"><strong>John 1:29</strong> ("Behold the Lamb of God")</div>
+            <div class="verse"><strong>Romans 8:1</strong> ("No more condemnation")</div>
+            <div class="verse"><strong>1 John 2:1-2</strong> ("He is the propitiation for our sins")</div>
+            <div class="verse"><strong>Hebrews 13:12</strong> (Crucified outside the city)</div>
+            <div class="verse"><strong>Romans 2</strong> (Inner awareness of sin)</div>
+            <div class="verse"><strong>Hebrews 9:7</strong> (High priest enters Most Holy Place)</div>
+            <div class="verse"><strong>Romans 8:33-34</strong> ("Who will bring a charge... Christ Jesus is interceding")</div>
+            <div class="verse"><strong>Hebrews 7:21-25</strong> ("You are a priest forever... permanent priesthood")</div>
+            <div class="verse"><strong>Hebrews 7:24</strong> ("He has a permanent priesthood")</div>
+            <div class="verse"><strong>Exodus 19:4-6</strong> ("You will be for me a kingdom of priests")</div>
+            <div class="verse"><strong>1 Samuel 2:35</strong> ("I will raise up for myself a faithful priest")</div>
+            <div class="verse"><strong>Hebrews 4:15</strong> ("Tempted in every way, yet did not sin")</div>
+            <div class="verse"><strong>Hebrews 7:27</strong> ("He does not need to offer sacrifices day after day")</div>
+            <div class="verse"><strong>Hebrews 10:5-7</strong> ("A body you prepared for me... I have come to do your will")</div>
+            <div class="verse"><strong>John 12:49</strong> (Spoke what the Father gave him)</div>
+            <div class="verse"><strong>John 5:19</strong> (Did what he saw the Father doing)</div>
+            <div class="verse"><strong>John 17:4</strong> (Glorified the Father)</div>
+            <div class="verse"><strong>2 Corinthians 5:21</strong> (His righteousness becomes ours)</div>
+            <div class="verse"><strong>1 Peter 2:4,9</strong> ("You are a chosen people, a royal priesthood")</div>
+            <div class="verse"><strong>Hebrews 10:19-22</strong> ("Confidence to enter the Most Holy Place")</div>
+        </div>
+    </div>
+    
+    <!-- TRANSCRIPT PAGES -->
+    <div class="page">
+        <h2>Transcript (Outline Format)</h2>
+        
+        <div class="transcript">
+            <div class="transcript-heading">1. INTRODUCTION (48:16)</div>
+            
+            <div class="level-1">1.1 Series Overview: Jesus Christ - Prophet, Priest and King</div>
+            <div class="level-2">1.1.1 Two weeks ago we began a series entitled Jesus Christ: Prophet, Priest and King.</div>
+            <div class="level-2">1.1.2 These three divinely instituted offices were first revealed in the Old Testament as ways God related to the ancient Israelites.</div>
+            <div class="level-2">1.1.3 Each office was anointed by God and fulfilled a specific relational purpose:</div>
+            <div class="level-3">(a) Through the prophet God spoke to his people.</div>
+            <div class="level-3">(b) Through the priest God brought his people to himself.</div>
+            <div class="level-3">(c) Through the king God protected his people.</div>
+            
+            <div class="level-1">1.2 Jesus Fulfills All Three Offices</div>
+            <div class="level-2">1.2.1 Ultimately these offices foreshadowed a superior and final Anointed One who embodied all three offices: Prophet, Priest and King—the Messiah revealed in the New Testament as Jesus Christ.</div>
+            <div class="level-2">1.2.2 Everything Jesus did before his incarnation (as revealed in the Old Testament), during his earthly ministry (the Gospels), and now in his heavenly ministry (the Epistles) he did as Prophet, Priest and King.</div>
+            <div class="level-2">1.2.3 Therefore, part of coming to know and trust Jesus is knowing him as Prophet, Priest and King.</div>
+            
+            <div class="level-1">1.3 Focus on High Priest</div>
+            <div class="level-2">1.3.1 Last week we looked at Jesus the Ultimate Prophet.</div>
+            <div class="level-2">1.3.2 This week we begin to look at Jesus the Superior High Priest, the predominant theme of Hebrews.</div>
+            <div class="level-2">1.3.3 The author summarizes in Hebrews 8:1: <span class="scripture-emphasis key-truth">"Now the main point of what we are saying is this: We do have such a high priest."</span></div>
+            
+            <div class="transcript-heading">2. WHAT IS A PRIEST? (48:54)</div>
+            
+            <div class="level-1">2.1 Basic Definition</div>
+            <div class="level-2">2.1.1 A priest mediates between God and humanity—particularly between God and his people—so that God will receive them into his holy presence and bless them.</div>
+            <div class="level-2">2.1.2 The priest represents the people, prepares them, and goes before them.</div>
+            <div class="level-2">2.1.3 In the Bible, representation, preparation and going before the people is the job of the priest.</div>
+            
+            <div class="level-1">2.2 Study Plan</div>
+            <div class="level-2">2.2.1 This morning and next week we will examine:</div>
+            <div class="level-3">(a) What a priest was under the Old Covenant</div>
+            <div class="level-3">(b) How Jesus fulfills the Old Covenant priesthood</div>
+            <div class="level-3">(c) How Jesus is our Priest under the New Covenant</div>
+            <div class="level-3">(d) How Jesus' priesthood impacts our lives</div>
+            
+            <div class="video-note">[VIDEO TRANSITION - PAUSE AT 50:00]</div>
+            
+            <div class="transcript-heading">3. OBSERVATIONS ABOUT PRIESTHOOD ACROSS CULTURES</div>
+            
+            <div class="level-1">3.1 Universal Presence of Priesthoods</div>
+            <div class="level-2">3.1.1 Priesthoods appear in nearly every society in human history.</div>
+            <div class="level-2">3.1.2 This reveals three important truths:</div>
+            
+            <div class="level-1">3.2 First Revelation: Universal Consciousness of Sin</div>
+            <div class="level-2">3.2.1 Romans 2 indicates people have an inner awareness of their sin even without God's written law.</div>
+            <div class="level-2">3.2.2 In nearly every religion this has given rise to some kind of priesthood to represent them before their god.</div>
+            
+            <div class="level-1">3.3 Second Revelation: Humans Feel Without Merit</div>
+            <div class="level-2">3.3.1 Humans feel they lack merit to atone for their own sin.</div>
+            <div class="level-2">3.3.2 They need a representative before God.</div>
+            <div class="level-2">3.3.3 They need someone special to go before them and represent them before whatever god is worshipped.</div>
+            <div class="level-2">3.3.4 This appears even in pagan religions, even in the worst of them.</div>
+            
+            <div class="level-1">3.4 Third Revelation: Common Belief in Substitution</div>
+            <div class="level-2">3.4.1 Many cultures practice offerings that involve substitutionary animal sacrifice.</div>
+            <div class="level-2">3.4.2 In nearly all cultures with a priesthood there is some form of offerings that involve substitutionary animal sacrifices.</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">4. ORIGIN - GARDEN OF EDEN</div>
+            
+            <div class="level-1">4.1 God's Warning to Adam</div>
+            <div class="level-2">4.1.1 Before the Fall, God told Adam that eating from the tree of the knowledge of good and evil would result in death.</div>
+            <div class="level-2">4.1.2 Adam and Eve disobeyed yet did not immediately die.</div>
+            
+            <div class="level-1">4.2 God's Merciful Covering</div>
+            <div class="level-2">4.2.1 God mercifully covered them with the skins of slain animals.</div>
+            <div class="level-2">4.2.2 Blood was apparently shed in their place by God (who momentarily acts as priest).</div>
+            <div class="level-2">4.2.3 Adam and Eve lived because a substitute died for them.</div>
+            
+            <div class="level-1">4.3 The Beginning of Priesthood Practice</div>
+            <div class="level-2">4.3.1 From that point, priesthood and substitutionary sacrifice became part of human religious practice.</div>
+            <div class="level-2">4.3.2 But it began with the One True God in the Garden.</div>
+            
+            <div class="transcript-heading">5. CODIFICATION UNDER MOSAIC LAW</div>
+            
+            <div class="level-1">5.1 The Law Formalizes What Began in Eden</div>
+            <div class="level-2">5.1.1 Centuries later the priesthood and sacrifices were codified in the Mosaic Law.</div>
+            <div class="level-2">5.1.2 The penalty of sin is death.</div>
+            <div class="level-2">5.1.3 <span class="scripture-emphasis key-truth">"Without the shedding of blood there is no forgiveness"</span> (Leviticus 17:11 / Hebrews 9:22).</div>
+            
+            <div class="level-1">5.2 The Gospel's Good News</div>
+            <div class="level-2">5.2.1 Someone must die for sin.</div>
+            <div class="level-2">5.2.2 The gospel's good news is that Someone did die—God himself in Christ.</div>
+            <div class="level-2">5.2.3 God himself became a man to become the ultimate priest who offered himself on the cross as the ultimate substitute.</div>
+            <div class="level-2">5.2.4 So that we could be completely forgiven and have complete access to God.</div>
+            
+            <div class="video-note">[VIDEO RESUMES]</div>
+            
+            <div class="transcript-heading">6. THE OLD TESTAMENT PRIESTHOOD (50:02)</div>
+            
+            <div class="level-1">6.1 Priesthood Before Moses</div>
+            <div class="level-2">6.1.1 When Christians think about priesthood they usually think of the Mosaic priesthood, but the priesthood existed long before Moses.</div>
+            <div class="level-2">6.1.2 Genesis 1-2 indicate Adam was to rule as king and function as a priest, tending the earth to make it suitable for God's presence.</div>
+            <div class="level-2">6.1.3 After the flood, Noah acted as priest for his family.</div>
+            <div class="level-2">6.1.4 Job functions as priest in his household.</div>
+            <div class="level-2">6.1.5 Abraham encounters Melchizedek, king and priest of Salem.</div>
+            <div class="level-2">6.1.6 Exodus 3 records Jethro as God's priest in Midian.</div>
+            
+            <div class="level-1">6.2 Official Priesthood Established</div>
+            <div class="level-2">6.2.1 These early priests appear without continuity until Moses.</div>
+            <div class="level-2">6.2.2 Through Moses, God established an official, exclusive priesthood: Aaron and his descendants from the tribe of Levi.</div>
+            
+            <div class="level-1">6.3 Both Point to Jesus</div>
+            <div class="level-2">6.3.1 Thus the Old Testament shows an unofficial priesthood followed by the Levitical priesthood.</div>
+            <div class="level-2">6.3.2 Both foreshadowed the ultimate priest, Jesus Christ.</div>
+            <div class="level-2">6.3.3 To understand Jesus' priestly ministry we must grasp key qualifications and functions of the Old Testament priesthood.</div>
+            
+            <div class="transcript-heading">7. QUALIFICATIONS OF THE PRIESTHOOD (52:33)</div>
+            
+            <div class="level-1">7.1 Two Key Requirements</div>
+            <div class="level-2">7.1.1 The Old Testament emphasizes two qualifications:</div>
+            <div class="level-3">(a) Priests must be appointed by God</div>
+            <div class="level-3">(b) They must be holy (set apart) before God</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">8. QUALIFICATION 1: PRIESTS WERE APPOINTED BY GOD</div>
+            
+            <div class="level-1">8.1 Divine Appointment Only</div>
+            <div class="level-2">8.1.1 Priests were never self-appointed.</div>
+            <div class="level-2">8.1.2 They were not chosen by other priests, kings, or the people.</div>
+            <div class="level-2">8.1.3 Only God appoints priests.</div>
+            
+            <div class="level-1">8.2 God's Command to Moses</div>
+            <div class="level-2">8.2.1 Exodus 28 commands Moses to have Aaron and his sons brought so they may serve as priests.</div>
+            <div class="level-2">8.2.2 Later, Numbers makes the calling serious: anyone who presumed to do priestly work outside Aaron's lineage faced death.</div>
+            
+            <div class="level-1">8.3 Exclusive to Aaron's Line</div>
+            <div class="level-2">8.3.1 The Mosaic priesthood was therefore exclusive to Aaron's family in the tribe of Levi.</div>
+            
+            <div class="level-1">8.4 Confirmed in Hebrews</div>
+            <div class="level-2">8.4.1 Hebrews 5 echoes this: <span class="scripture-emphasis key-truth">"Every high priest is selected from among the people and is appointed to represent the people... And no one takes this honor on himself, but he receives it when called by God, just as Aaron was."</span></div>
+            
+            <div class="transcript-heading">9. QUALIFICATION 2: PRIESTS WERE HOLY (SET APART)</div>
+            
+            <div class="level-1">9.1 Required Holiness</div>
+            <div class="level-2">9.1.1 Because priests served near God's special presence in the tabernacle and temple, they needed to be holy.</div>
+            <div class="level-2">9.1.2 By holy we mean not only morally but in being set apart.</div>
+            
+            <div class="level-1">9.2 Regulations Emphasized Separation</div>
+            <div class="level-2">9.2.1 The many regulations and ritual cleansings governed their lives and emphasized their separation for God's service.</div>
+            <div class="level-2">9.2.2 God's point was that these men were uniquely set apart.</div>
+            <div class="level-2">9.2.3 Access to God's presence required them.</div>
+            
+            <div class="transcript-heading">10. JESUS PERFECTLY FULFILLS THE QUALIFICATIONS (55:46)</div>
+            
+            <div class="transcript-heading">11. JESUS WAS APPOINTED</div>
+            
+            <div class="level-1">11.1 Divine Appointment Confirmed</div>
+            <div class="level-2">11.1.1 Hebrews 5 reiterates that no one takes the high priesthood on himself but is called by God.</div>
+            <div class="level-2">11.1.2 In the same way, Christ did not assume the glory of becoming high priest.</div>
+            <div class="level-2">11.1.3 God declared, <span class="scripture-emphasis key-truth">"You are my Son"</span> and elsewhere <span class="scripture-emphasis key-truth">"You are a priest forever, in the order of Melchizedek"</span> (Hebrews 5:1,4-6).</div>
+            
+            <div class="level-1">11.2 Anointing at Baptism</div>
+            <div class="level-2">11.2.1 Jesus' anointing at his baptism marks his divine appointment as Prophet, Priest and King.</div>
+            <div class="level-2">11.2.2 When the Father said, <span class="scripture-emphasis key-truth">"This is my Son; listen to him"</span>—this was his official appointment.</div>
+            <div class="level-2">11.2.3 This appointing took place in the Jordan River when Jesus was baptized by John and anointed with the Holy Spirit for his priestly ministry.</div>
+            
+            <div class="level-1">11.3 Not Levitical but Melchizedek</div>
+            <div class="level-2">11.3.1 Although Jesus is from Judah, not Levi, he fulfills the priesthood in the order of Melchizedek: a king-priest.</div>
+            <div class="level-2">11.3.2 But he was not appointed and anointed as simply another Levitical priest in the order of Aaron like all other priests of Israel.</div>
+            <div class="level-2">11.3.3 He was appointed as priest forever in the order of Melchizedek which identified Jesus as the Promised Messiah.</div>
+            <div class="level-2">11.3.4 According to Psalm 110, he would be both High Priest who served forever and King who ruled forever.</div>
+            <div class="level-2">11.3.5 This is exactly what God promised in 1 Samuel 2.</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="level-1">11.4 Significance of King-Priest</div>
+            <div class="level-2">11.4.1 Hebrews 7 argues that this shows:</div>
+            <div class="level-3">(a) Jesus is the promised Messiah, the king-priest</div>
+            <div class="level-3">(b) Salvation comes not through the Levitical law but through the priesthood and grace of King Jesus (cf. John 1:17)</div>
+            
+            <div class="level-1">11.5 Connection to Adam</div>
+            <div class="level-2">11.5.1 Other than Melchizedek and Jesus, the only other priest-king in Scripture was Adam.</div>
+            <div class="level-2">11.5.2 The first Adam failed.</div>
+            <div class="level-2">11.5.3 The second Adam (Christ) succeeded by obeying the Father in the second garden, saying, <span class="scripture-emphasis key-truth">"Not my will but your will be done."</span></div>
+            <div class="level-2">11.5.4 Because of that obedience we have salvation.</div>
+            
+            <div class="transcript-heading">12. JESUS WAS HOLY</div>
+            
+            <div class="level-1">12.1 Perfectly Set Apart</div>
+            <div class="level-2">12.1.1 Jesus was set apart and perfectly obedient to do the Father's will.</div>
+            <div class="level-2">12.1.2 He lived perfectly set apart to God.</div>
+            <div class="level-2">12.1.3 He was set apart or holy to the Lord.</div>
+            
+            <div class="level-1">12.2 Scripture Confirms His Holiness</div>
+            <div class="level-2">12.2.1 Hebrews 10:5-7 quotes Jesus: <span class="scripture-emphasis key-truth">"Sacrifice and offering you did not desire, but a body you prepared for me... I have come to do your will, my God."</span></div>
+            <div class="level-2">12.2.2 He spoke what the Father gave him to say (John 12:49).</div>
+            <div class="level-2">12.2.3 He did what he saw the Father doing (John 5:19).</div>
+            <div class="level-2">12.2.4 He perfectly glorified the Father (John 17:4).</div>
+            <div class="level-2">12.2.5 He did exactly what his Father commanded (John 14:23).</div>
+            
+            <div class="level-1">12.3 Sinless Life</div>
+            <div class="level-2">12.3.1 <span class="scripture-emphasis key-truth">"For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin"</span> (Hebrews 4:15).</div>
+            <div class="level-2">12.3.2 He did just that without the tiniest deviation.</div>
+            
+            <div class="level-1">12.4 No Need for His Own Sacrifice</div>
+            <div class="level-2">12.4.1 <span class="scripture-emphasis key-truth">"Unlike the other high priests, he does not need to offer sacrifices day after day, first for his own sins, and then for the sins of the people. He sacrificed for their sins once for all when he offered himself"</span> (Hebrews 7:27).</div>
+            
+            <div class="level-1">12.5 Result: His Righteousness Becomes Ours</div>
+            <div class="level-2">12.5.1 Through his obedience we are saved.</div>
+            <div class="level-2">12.5.2 <span class="key-truth">His righteousness becomes ours</span> (cf. 2 Corinthians 5:21).</div>
+            
+            <div class="transcript-heading">13. FUNCTIONS OF THE PRIESTHOOD (1:02:57)</div>
+            
+            <div class="level-1">13.1 Many Functions</div>
+            <div class="level-2">13.1.1 The priesthood had many functions.</div>
+            <div class="level-2">13.1.2 This message highlights two essential ones.</div>
+            
+            <div class="transcript-heading">14. FUNCTION 1: THE PRIESTS LED WORSHIP (1:03:02)</div>
+            
+            <div class="level-1">14.1 Making Worship Possible</div>
+            <div class="level-2">14.1.1 By worship we mean not only the act but the possibility of worship.</div>
+            <div class="level-2">14.1.2 Priests made it possible to come before God through sacrifices that atoned for sin.</div>
+            
+            <div class="level-1">14.2 Jesus Makes It Possible in a Greater Way</div>
+            <div class="level-2">14.2.1 In a far greater way Jesus makes it possible for us to enter God's presence.</div>
+            <div class="level-2">14.2.2 Not by bulls and goats but by his own blood.</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">15. THE DAY OF ATONEMENT (YOM KIPPUR)</div>
+            
+            <div class="level-1">15.1 Background and Setting</div>
+            <div class="level-2">15.1.1 The penalty for sin is death—someone must die.</div>
+            <div class="level-2">15.1.2 Because of our sin, all human beings deserve divine judgment.</div>
+            <div class="level-2">15.1.3 In the garden of Eden God said, <span class="scripture-emphasis key-truth">"If you eat of that fruit you shall surely die"</span> (Genesis 2:17).</div>
+            <div class="level-2">15.1.4 In Romans 6: <span class="scripture-emphasis key-truth">"The wages of sin is death"</span> (Romans 6:23).</div>
+            
+            <div class="level-1">15.2 God's Way of Escape</div>
+            <div class="level-2">15.2.1 In spite of this crushing reality God has provided a way of escape through substitutionary sacrifice.</div>
+            <div class="level-2">15.2.2 We first see it in the Garden when the life of an animal was taken to provide coverings for Adam and Eve.</div>
+            <div class="level-2">15.2.3 We see it again on the night of the Passover when the life blood of a lamb covered the people from divine judgment.</div>
+            <div class="level-2">15.2.4 Finally we see substitutionary sacrifice codified in the law of Moses God through the various animal sacrifices offered by the priests.</div>
+            
+            <div class="level-1">15.3 Temporary Nature of Old Testament Sacrifices</div>
+            <div class="level-2">15.3.1 But none of these sacrifices throughout the Old Testament provided permanent forgiveness of sin.</div>
+            <div class="level-2">15.3.2 Yes, through them God forgave his people but not on the basis of the value or merit of the offering itself.</div>
+            <div class="level-2">15.3.3 Rather on what they pointed forward to, the ultimate final sacrifice—the sacrifice of Jesus revealed in the New Testament.</div>
+            
+            <div class="level-1">15.4 Annual Renewal Required</div>
+            <div class="level-2">15.4.1 Since these sacrifices in the Old Testament were temporary in nature they needed to be renewed over and over each year on the Day of Atonement (Yom Kippur).</div>
+            
+            <div class="level-1">15.5 The Tabernacle Structure</div>
+            <div class="level-2">15.5.1 From the days of Moses to David this took place in the Tabernacle.</div>
+            <div class="level-2">15.5.2 The Tabernacle was a three-part, tent-like structure:</div>
+            <div class="level-3">(a) A fenced off courtyard</div>
+            <div class="level-3">(b) A large covered room called the holy place</div>
+            <div class="level-3">(c) In the rear of that large room a small room cordoned off with a very thick curtain called the most holy place</div>
+            
+            <div class="transcript-heading">16. THE TWO GOATS CEREMONY</div>
+            
+            <div class="level-1">16.1 Preparation</div>
+            <div class="level-2">16.1.1 On the Day of Atonement, after the high priest offered a bull for his own sin and that of his household, there was brought before him two goats.</div>
+            <div class="level-2">16.1.2 These goats had to be as similar in appearance as possible.</div>
+            <div class="level-2">16.1.3 They also had to be unblemished to represent sinlessness.</div>
+            <div class="level-2">16.1.4 Just like the original lambs that were offered on the night of the first Passover in Egypt.</div>
+            <div class="level-2">16.1.5 Then lots were cast to determined what happened next to each goat.</div>
+            
+            <div class="level-1">16.2 First Goat: The Sacrifice (Propitiation)</div>
+            <div class="level-2">16.2.1 One goat was slain.</div>
+            <div class="level-2">16.2.2 Its blood was carried by the High Priest past the thick curtain into the most holy place of the Tabernacle/Temple.</div>
+            <div class="level-2">16.2.3 He sprinkled it over the mercy seat (Hebrews 9:7).</div>
+            
+            <div class="level-1">16.3 The Mercy Seat Explained</div>
+            <div class="level-2">16.3.1 The mercy seat was a lid of a gold covered wood box called the ark of the covenant.</div>
+            <div class="level-2">16.3.2 Above the mercy seat was the manifested presence of God.</div>
+            <div class="level-2">16.3.3 Below it were the stone tablets of the law of Moses.</div>
+            
+            <div class="level-1">16.4 What the Blood Accomplished</div>
+            <div class="level-2">16.4.1 The sprinkled blood covered over the law which the people had broken.</div>
+            <div class="level-2">16.4.2 So that when God looked down their sins were covered or atoned for.</div>
+            <div class="level-2">16.4.3 <span class="key-truth">That was atonement.</span></div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="level-1">16.5 Propitiation Defined</div>
+            <div class="level-2">16.5.1 But this offering of blood on the mercy seat did something else.</div>
+            <div class="level-2">16.5.2 It satisfied the demand of God's justice that the sin be judged.</div>
+            <div class="level-2">16.5.3 Instead of the people being judged the animal was judged as their substitute.</div>
+            <div class="level-2">16.5.4 Now God is free to bless instead of judge the sinner because their sin had been judged in a substitute.</div>
+            <div class="level-2">16.5.5 <span class="key-truth">That's called propitiation.</span></div>
+            <div class="level-2">16.5.6 It's a lamb for God in that he came to satisfy God's justice.</div>
+            
+            <div class="level-1">16.6 Second Goat: The Scapegoat (Expiation)</div>
+            <div class="level-2">16.6.1 Then the High Priest would come back out into the courtyard.</div>
+            <div class="level-2">16.6.2 He would lay his hands on the remaining goat to symbolically transfer the people's sin-guilt to the goat.</div>
+            <div class="level-2">16.6.3 After which it was then taken outside the camp into the wilderness to die as the scapegoat (Hebrews 13:12).</div>
+            
+            <div class="level-1">16.7 Expiation Defined</div>
+            <div class="level-2">16.7.1 This represented the carrying away or removal of the people's sin-guilt.</div>
+            <div class="level-2">16.7.2 Now the sinner is free from their sin and able to enter God's presence.</div>
+            <div class="level-2">16.7.3 Because their sin had been carried away by a substitute.</div>
+            <div class="level-2">16.7.4 <span class="key-truth">That's called expiation.</span></div>
+            <div class="level-2">16.7.5 It's a lamb for us in that he takes away our sin like the scapegoat.</div>
+            
+            <div class="video-note">[DISCUSSION PAUSE AT 1:08:49]</div>
+            
+            <div class="transcript-heading">17. JESUS FULFILLS THE DAY OF ATONEMENT</div>
+            
+            <div class="level-1">17.1 Why Jesus Came</div>
+            <div class="level-2">17.1.1 This is why the Son of God, Jesus Christ came into the world through the incarnation.</div>
+            <div class="level-2">17.1.2 <span class="scripture-emphasis key-truth">"For this reason he had to be made like them, fully human in every way, in order that he might become a merciful and faithful high priest in service to God, and that he might make atonement for the sins of the people"</span> (Hebrews 2:17).</div>
+            
+            <div class="level-1">17.2 Jesus as Both Priest and Sacrifice</div>
+            <div class="level-2">17.2.1 Without a doubt, Jesus' death on the cross was the greatest way Jesus functioned in his priestly ministry.</div>
+            <div class="level-2">17.2.2 It was also unique in the fact that Jesus not only made the offering for our sin, he also became that offering for our sin.</div>
+            <div class="level-2">17.2.3 He was not only the ultimate priest who made the offering, he was the ultimate, once and for all, final sacrifice, the lamb of God.</div>
+            
+            <div class="level-1">17.3 Old Testament Priests vs. Jesus</div>
+            <div class="level-2">17.3.1 The Old Testament priests were responsible for continually offering a variety of offerings and sacrifices on behalf of the people.</div>
+            <div class="level-2">17.3.2 Over the centuries there were millions of bulls, lambs and goats offered.</div>
+            <div class="level-2">17.3.3 None of them permanently took away sin.</div>
+            <div class="level-2">17.3.4 None of them permanently satisfied the justice of God.</div>
+            <div class="level-2">17.3.5 But every one of them foreshadowed the ultimate sacrificial offering that Jesus rendered when he died on the cross.</div>
+            
+            <div class="level-1">17.4 John's Declaration</div>
+            <div class="level-2">17.4.1 One day as John was baptizing at the Jordan River he looked up and saw Jesus.</div>
+            <div class="level-2">17.4.2 He said, <span class="scripture-emphasis key-truth">"Behold the Lamb of God who takes away the sin of the world"</span> (John 1:29).</div>
+            
+            <div class="level-1">17.5 Three Aspects of the Lamb</div>
+            <div class="level-2">17.5.1 He is firstly a <span class="key-truth">Lamb from God</span>.</div>
+            <div class="level-3">(a) He is God's provision to bear the judgment for our sin.</div>
+            <div class="level-3">(b) For only God could bear the wrath of God.</div>
+            <div class="level-2">17.5.2 He is secondly a <span class="key-truth">Lamb for God</span>.</div>
+            <div class="level-3">(a) In that he came to satisfy God's justice or propitiate God.</div>
+            <div class="level-2">17.5.3 He is thirdly a <span class="key-truth">Lamb for us</span>.</div>
+            <div class="level-3">(a) In that he takes away our sin like the scapegoat (expiation).</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="level-1">17.6 What "God So Loved" Means</div>
+            <div class="level-2">17.6.1 When the Bible says <span class="scripture-emphasis key-truth">"God so loved the world he gave his one and only son"</span> this is exactly what it means.</div>
+            <div class="level-2">17.6.2 God loved us so much He gave up his own Son as a sacrifice on the cross.</div>
+            <div class="level-2">17.6.3 In order to propitiate or satisfy the demands of his own justice.</div>
+            <div class="level-2">17.6.4 That's why Jesus said, <span class="scripture-emphasis key-truth">"It is finished."</span></div>
+            <div class="level-2">17.6.5 Why? The Father is satisfied.</div>
+            
+            <div class="level-1">17.7 No More Condemnation</div>
+            <div class="level-2">17.7.1 This is also why in Romans 8 <span class="scripture-emphasis key-truth">"There is no more condemnation for those who are in Christ Jesus"</span> (Romans 8:1).</div>
+            <div class="level-2">17.7.2 Jesus satisfied the justice of God by taking our judgment upon himself.</div>
+            <div class="level-2">17.7.3 He paid the penalty in full.</div>
+            
+            <div class="level-1">17.8 Propitiation for All</div>
+            <div class="level-2">17.8.1 In 1 John 2 the Apostle John says:</div>
+            <div class="level-2">17.8.2 <span class="scripture-emphasis key-truth">"My little children, I am writing these things to you so that you may not sin. But if anyone does sin, we have an advocate with the Father, Jesus Christ the righteous. He is the propitiation for our sins, and not for ours only but also for the sins of the whole world"</span> (1 John 2:1-2 ESV).</div>
+            
+            <div class="level-1">17.9 Expiation - Removal of Sin-Guilt</div>
+            <div class="level-2">17.9.1 But Jesus not only provided propitiation he also provided expiation or removal of sin-guilt from us.</div>
+            <div class="level-2">17.9.2 He is not only seen in the goat that was slain at the altar of the temple.</div>
+            <div class="level-2">17.9.3 He is also the goat that was taken to the wilderness to die.</div>
+            <div class="level-2">17.9.4 He bears our sin-penalty and removes our sin-guilt.</div>
+            
+            <div class="level-1">17.10 One Story, One Hero</div>
+            <div class="level-2">17.10.1 <span class="key-truth">That is why Jesus, like the scapegoat, was taken outside the city to be crucified.</span></div>
+            <div class="level-2">17.10.2 Because Jesus also removes sin-guilt (like the scapegoat), he was crucified outside the city.</div>
+            <div class="level-2">17.10.3 One story, one hero: Jesus bore our penalty and carried our guilt away.</div>
+            
+            <div class="transcript-heading">18. PASTORAL APPLICATION: DOUBT ABOUT FORGIVENESS</div>
+            
+            <div class="level-1">18.1 Question for Those Who Doubt God's Forgiveness</div>
+            <div class="level-2">18.1.1 Now in the light of such a Great High Priest how can we ever say "I don't know if God can forgive me? I don't know if God will forgive me"?</div>
+            <div class="level-2">18.1.2 The only reason you would say that is that you have yet to take him as your Lamb and Priest.</div>
+            <div class="level-2">18.1.3 Take him as your high priest. Take him as your lamb.</div>
+            <div class="level-2">18.1.4 He satisfied the Father. He took away your sin.</div>
+            
+            <div class="level-1">18.2 Question for Those Who Can't Forgive Themselves</div>
+            <div class="level-2">18.2.1 But even more, how can we say "I know God forgives me I just can't seem to forgive myself"?</div>
+            <div class="level-2">18.2.2 Why would you need to forgive yourself with such a Great High Priest forgiving you?</div>
+            <div class="level-2">18.2.3 In essence that is saying "I need something more than this Great High Priest in order to be whole."</div>
+            <div class="level-2">18.2.4 Why would you need to forgive yourself if He is your lamb of God?</div>
+            <div class="level-2">18.2.5 Why would you need to carry your sins outside the city if he carried them away for you?</div>
+            <div class="level-2">18.2.6 By faith, take him as your High Priest who gave himself for you.</div>
+            
+            <div class="video-note">[VIDEO TRANSITION - PAUSE AT 1:24:14]</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">19. FUNCTION 2: INTERCESSION CONTINUES IN HEAVEN</div>
+            
+            <div class="level-1">19.1 Hebrews: Permanent Priesthood</div>
+            <div class="level-2">19.1.1 Because <span class="scripture-emphasis key-truth">"The Lord has sworn... 'You are a priest forever,'"</span> Jesus is the guarantor of a better covenant (Hebrews 7:21-25).</div>
+            <div class="level-2">19.1.2 He lives forever and therefore has a permanent priesthood.</div>
+            
+            <div class="level-1">19.2 Complete Salvation</div>
+            <div class="level-2">19.2.1 He is able to save completely those who come to God through Him.</div>
+            <div class="level-2">19.2.2 Because He always lives to intercede for them.</div>
+            
+            <div class="level-1">19.3 Jesus' Priestly Ministry Continues Now</div>
+            <div class="level-2">19.3.1 On earth—He interceded by prayer.</div>
+            <div class="level-2">19.3.2 On the cross—He interceded by sacrifice.</div>
+            <div class="level-2">19.3.3 In heaven—He intercedes now by living for us (His resurrected presence at the Father's right hand).</div>
+            
+            <div class="level-1">19.4 Romans Affirms This</div>
+            <div class="level-2">19.4.1 Romans 8:33-34: <span class="scripture-emphasis key-truth">"Who will bring a charge against God's elect? It is God who justifies. Who is to condemn? Christ Jesus... is at the right hand of God and is also interceding for us."</span></div>
+            
+            <div class="transcript-heading">20. WHAT "INTERCEDING" MEANS</div>
+            
+            <div class="level-1">20.1 Common Misunderstanding</div>
+            <div class="level-2">20.1.1 Many assume these verses mean Jesus is verbally praying for you in heaven.</div>
+            <div class="level-2">20.1.2 The texts say He intercedes—which is broader than "is praying."</div>
+            
+            <div class="level-1">20.2 Broader Definition</div>
+            <div class="level-2">20.2.1 Prayer is one means of intercession.</div>
+            <div class="level-2">20.2.2 But intercession broadly can be action on behalf of someone—mediation, advocacy, representation.</div>
+            
+            <div class="level-1">20.3 How Jesus Intercedes</div>
+            <div class="level-2">20.3.1 The writer argues Jesus intercedes by His resurrected, ascended presence at the Father's right hand.</div>
+            <div class="level-2">20.3.2 Not by continually begging the Father to be satisfied.</div>
+            <div class="level-2">20.3.3 Scripture repeatedly says Jesus is <span class="key-truth">seated</span>.</div>
+            
+            <div class="level-1">20.4 Picture of Intercession</div>
+            <div class="level-2">20.4.1 Personification: imagine the Father looking to the armrest.</div>
+            <div class="level-2">20.4.2 Seeing the nail-pierced hands of His Son.</div>
+            <div class="level-2">20.4.3 And nodding in affirmation: <span class="scripture-emphasis key-truth">"It is finished."</span></div>
+            <div class="level-2">20.4.4 Nothing more needs to be added.</div>
+            
+            <div class="transcript-heading">21. WHY NO FURTHER PLEADING IS NECESSARY</div>
+            
+            <div class="level-1">21.1 What Would Jesus Plead For?</div>
+            <div class="level-2">21.1.1 When we pray we ask for what we lack.</div>
+            <div class="level-2">21.1.2 What would Jesus plead for that the cross has not already provided?</div>
+            <div class="level-2">21.1.3 Was the Father somehow not satisfied with the Son's work on the cross?</div>
+            <div class="level-2">21.1.4 Was his blood not enough?</div>
+            <div class="level-2">21.1.5 Is the Father somehow not favorably disposed to us?</div>
+            <div class="level-2">21.1.6 Does Jesus need to convince him to help us?</div>
+            
+            <div class="level-1">21.2 Questions About Our Standing</div>
+            <div class="level-2">21.2.1 Was our redemption price too small?</div>
+            <div class="level-2">21.2.2 Has our justification been revoked?</div>
+            <div class="level-2">21.2.3 Have our adoption papers been lost?</div>
+            <div class="level-2">21.2.4 Has our heavenly inheritance been amended?</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="level-1">21.3 The Cross is Sufficient</div>
+            <div class="level-2">21.3.1 No, the cross is sufficient.</div>
+            <div class="level-2">21.3.2 The work of salvation is finished and there is nothing else to be done or added to it.</div>
+            <div class="level-2">21.3.3 There are no more prayers to be made.</div>
+            
+            <div class="level-1">21.4 "It Is Finished" (Tetelestai)</div>
+            <div class="level-2">21.4.1 <span class="scripture-emphasis key-truth">"It is finished"</span> (tetelestai).</div>
+            <div class="level-2">21.4.2 The work has been completed with results that remain finished forever.</div>
+            <div class="level-2">21.4.3 The cross is sufficient: redemption stands, justification is not revoked, adoption papers are not lost.</div>
+            
+            <div class="level-1">21.5 Physical Presence, Not Verbal Prayers</div>
+            <div class="level-2">21.5.1 Jesus intercedes not primarily by adding words.</div>
+            <div class="level-2">21.5.2 But by His physical, resurrected, ascended, and eternal presence.</div>
+            <div class="level-2">21.5.3 His "scarred hands and side presence" in heaven as our Great High Priest.</div>
+            <div class="level-2">21.5.4 Bearing the scars that prove "it is finished."</div>
+            
+            <div class="transcript-heading">22. SECURITY OF SALVATION</div>
+            
+            <div class="level-1">22.1 Permanent Security</div>
+            <div class="level-2">22.1.1 Because Jesus lives forever and intercedes forever as the eternal high priest, our salvation is permanently secure.</div>
+            <div class="level-2">22.1.2 For our salvation to fail the high priest would have to die.</div>
+            <div class="level-2">22.1.3 But he cannot die for he is our priest forever.</div>
+            <div class="level-2">22.1.4 Because our Great high Priest Jesus lives and intercedes forever as the ultimate mediator our salvation is permanently secure.</div>
+            
+            <div class="level-1">22.2 Scripture Support</div>
+            <div class="level-2">22.2.1 <span class="scripture-emphasis key-truth">"Because Jesus lives forever, he has a permanent priesthood"</span> (Hebrews 7:24).</div>
+            
+            <div class="transcript-heading">23. THE PRIESTHOOD BELONGS TO BELIEVERS</div>
+            
+            <div class="level-1">23.1 Important Nuance in Hebrews 7:24</div>
+            <div class="level-2">23.1.1 Notice it does not say because Jesus lives forever he is a permanent priest.</div>
+            <div class="level-2">23.1.2 That is true.</div>
+            <div class="level-2">23.1.3 But Jesus is not only a permanent priest, <span class="key-truth">he has a permanent priesthood.</span></div>
+            <div class="level-2">23.1.4 And the Bible says that priesthood is made up of all who believe in him.</div>
+            
+            <div class="level-1">23.2 God's Original Design - Exodus 19</div>
+            <div class="level-2">23.2.1 From the very beginning that has been God's design.</div>
+            <div class="level-2">23.2.2 At Sinai God said He desired Israel to be "a kingdom of priests" if they would obey His covenant.</div>
+            <div class="level-2">23.2.3 <span class="scripture-emphasis key-truth">"You yourselves have seen what I did to Egypt, and how I carried you on eagles' wings and brought you to myself. Now if you obey me fully and keep my covenant, then out of all nations you will be my treasured possession. Although the whole earth is mine, you will be for me a kingdom of priests and a holy nation"</span> (Exodus 19:4-6).</div>
+            <div class="level-2">23.2.4 From the beginning God's design was inclusive priesthood for His people.</div>
+            
+            <div class="level-1">23.3 Historical Failure</div>
+            <div class="level-2">23.3.1 So what God was saying was that He wanted all of them to be a priesthood.</div>
+            <div class="level-2">23.3.2 But they couldn't because of their sin.</div>
+            <div class="level-2">23.3.3 They couldn't go up the mountain of God and stand in the presence of God.</div>
+            
+            <div class="level-1">23.4 God's Remedy Through Mediators</div>
+            <div class="level-2">23.4.1 So the people chose Moses to approach God for them.</div>
+            <div class="level-2">23.4.2 Basically, they said "Moses you go up the mountain for us. Be our priest."</div>
+            <div class="level-2">23.4.3 Not long afterwards, God tells Moses to consecrate the sons of Aaron, the Levites, to serve as priests for the people.</div>
+            <div class="level-2">23.4.4 Israel could not fully be that priesthood because of sin.</div>
+            <div class="level-2">23.4.5 They chose Moses and later the Aaronic priests as representatives.</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="level-1">23.5 God's Desire Remained</div>
+            <div class="level-2">23.5.1 But God's desire remained.</div>
+            <div class="level-2">23.5.2 Generations later, the prophet like Moses, the priest like Melchizedek and the King like David came into the world.</div>
+            <div class="level-2">23.5.3 To form the priesthood God desired from the very beginning.</div>
+            
+            <div class="transcript-heading">24. JESUS MAKES PRIESTHOOD POSSIBLE FOR BELIEVERS</div>
+            
+            <div class="level-1">24.1 Qualifications Made Possible</div>
+            <div class="level-2">24.1.1 Jesus came to make it possible for us to meet the qualifications of the priesthood.</div>
+            <div class="level-2">24.1.2 To be appointed and holy.</div>
+            
+            <div class="level-1">24.2 Duties Made Possible</div>
+            <div class="level-2">24.2.1 And Jesus came to make it possible for us to fulfill the duties of the priesthood.</div>
+            <div class="level-2">24.2.2 To worship, offer sacrifices and intercede.</div>
+            
+            <div class="transcript-heading">25. PETER'S LANGUAGE (1 PETER 2:4, 9)</div>
+            
+            <div class="level-1">25.1 Qualifications and Duties Matrix</div>
+            <div class="level-2">Qualifications:</div>
+            <div class="level-3">- Appointed by God</div>
+            <div class="level-3">- Holy to God</div>
+            <div class="level-2">Duties:</div>
+            <div class="level-3">- Worship</div>
+            <div class="level-3">- Offerings (spiritual sacrifices)</div>
+            <div class="level-3">- Intercession (declaring God's praises)</div>
+            
+            <div class="level-1">25.2 1 Peter 2:4,9</div>
+            <div class="level-2">25.2.1 <span class="scripture-emphasis key-truth">"As you come to him, the living Stone—rejected by humans but chosen by God and precious to him— you also, like living stones, are being built into a spiritual house to be a holy priesthood, offering spiritual sacrifices acceptable to God through Jesus Christ."</span></div>
+            <div class="level-2">25.2.2 <span class="scripture-emphasis key-truth">"But you are a chosen people, a royal priesthood, a holy nation, God's special possession, that you may declare the praises of him who called you out of darkness into his wonderful light"</span> (1 Peter 2:4,9).</div>
+            
+            <div class="level-1">25.3 Peter Uses Similar Language to Exodus 19</div>
+            <div class="level-2">25.3.1 In language very similar to Exodus 19 Peter writes about our priesthood in Jesus.</div>
+            <div class="level-2">25.3.2 How God qualifies us for the new covenant priesthood.</div>
+            <div class="level-2">25.3.3 And how we fulfill the duties of our priesthood.</div>
+            
+            <div class="transcript-heading">26. HOW "DECLARING HIS PRAISE" IS PRIESTLY INTERCESSION</div>
+            
+            <div class="level-1">26.1 What It Means</div>
+            <div class="level-2">26.1.1 Declaring his praise means proclaiming the excellencies of God.</div>
+            <div class="level-2">26.1.2 The idea is not praising God but declaring his praise or the things he should be praised for.</div>
+            <div class="level-2">26.1.3 <span class="scripture-emphasis key-truth">"Proclaim the excellencies"</span> (ESV, NASB).</div>
+            
+            <div class="level-1">26.2 Explaining to Others</div>
+            <div class="level-2">26.2.1 It's saying to those in darkness let me explain to you why I praise God.</div>
+            <div class="level-2">26.2.2 Through the excellencies of the gospel, Jesus' death and resurrection, he has brought me out of darkness into his wonderful light.</div>
+            
+            <div class="level-1">26.3 Greatest Form of Intercession</div>
+            <div class="level-2">26.3.1 This declaration is priestly intercession.</div>
+            <div class="level-2">26.3.2 Standing between people and Christ by pointing them to Jesus and the gospel (the greatest kind of intercession).</div>
+            <div class="level-2">26.3.3 And that declaration is the greatest kind of priestly intercession.</div>
+            
+            <div class="level-1">26.4 Active Mediation</div>
+            <div class="level-2">26.4.1 It is standing between them and Jesus and pointing them to Jesus.</div>
+            <div class="level-2">26.4.2 It's interceding in their life in the greatest way.</div>
+            <div class="level-2">26.4.3 It is an active mediation.</div>
+            <div class="level-2">26.4.4 It's saying <span class="scripture-emphasis key-truth">"Here is who Jesus is and what he has done, put your trust in him and join his priesthood."</span></div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">27. CONCLUSION (APPLICATION & EXHORTATION)</div>
+            
+            <div class="transcript-heading">28. BEING PART OF CHRIST'S PRIESTHOOD CHANGES YOUR RELATIONSHIP WITH GOD</div>
+            
+            <div class="level-1">28.1 Access, Closeness, and Intimacy</div>
+            <div class="level-2">28.1.1 Being part of Christ's priesthood completely changes the way you relate to God.</div>
+            <div class="level-2">28.1.2 As a priest you have access, closeness, and intimacy with God.</div>
+            <div class="level-2">28.1.3 Since you're a priest you have access and access means closeness and intimacy with God.</div>
+            
+            <div class="level-1">28.2 Saved But Not Close</div>
+            <div class="level-2">28.2.1 It is possible to be saved yet not experience closeness.</div>
+            <div class="level-2">28.2.2 It is possible and it's sometimes the case that a person can be a thoroughly saved Christian and yet have no experiential closeness with God.</div>
+            <div class="level-2">28.2.3 Due to pride or ignorance of our blood-bought priesthood.</div>
+            
+            <div class="level-1">28.3 Causes of Distance</div>
+            <div class="level-2">28.3.1 This can be caused by several things.</div>
+            <div class="level-2">28.3.2 Sometimes by pride that refuses to come before God like a little child.</div>
+            <div class="level-2">28.3.3 But <span class="key-truth">also</span> an ignorance of our blood-bought priesthood.</div>
+            
+            <div class="level-1">28.4 Serving Without Closeness</div>
+            <div class="level-2">28.4.1 You can serve God and be faithful to God and experience His faithfulness.</div>
+            <div class="level-2">28.4.2 But until you see yourself as a priest in God's priesthood you will find it very difficult to be close to God.</div>
+            
+            <div class="level-1">28.5 Waiting vs. Going</div>
+            <div class="level-2">28.5.1 Priests go to God; they do not wait just for God to come to them.</div>
+            <div class="level-2">28.5.2 We are called to enter God's presence.</div>
+            <div class="level-2">28.5.3 You will wait for Him to come to you but you will rarely go to Him.</div>
+            <div class="level-2">28.5.4 And yet that is what priests do, they go to God.</div>
+            <div class="level-2">28.5.5 They go into the garden, up the mountain, into the holy place.</div>
+            
+            <div class="level-1">28.6 Belief Determines Experience</div>
+            <div class="level-2">28.6.1 Until you really believe that you by virtue of Christ's death and resurrection have been made a part of a holy priesthood where you have unhindered access there will always be some distance.</div>
+            
+            <div class="level-1">28.7 Looking for Other Priests</div>
+            <div class="level-2">28.7.1 And therefore, you will always be more inclined to look for a priest of some sorts.</div>
+            <div class="level-2">28.7.2 An intermediary, a go-between.</div>
+            <div class="level-2">28.7.3 Someone who goes in for you.</div>
+            <div class="level-2">28.7.4 A very spiritual spouse, parent, friend that will go in for you.</div>
+            <div class="level-2">28.7.5 Get close for you, pray your prayers, sing your praises, lift their hands for you, experience the joy of the Lord for you.</div>
+            
+            <div class="level-1">28.8 God's Longing</div>
+            <div class="level-2">28.8.1 And all the while God is longing for you to come in to his presence.</div>
+            <div class="level-2">28.8.2 To come into his holy place.</div>
+            <div class="level-2">28.8.3 To experience the joy of your priesthood.</div>
+            
+            <div class="transcript-heading">29. IF YOU DON'T FEEL WORTHY—REMEMBER</div>
+            
+            <div class="level-1">29.1 Our Confidence is in Jesus</div>
+            <div class="level-2">29.1.1 You say "I just don't feel worthy."</div>
+            <div class="level-2">29.1.2 You're not, I'm not, none of us are.</div>
+            <div class="level-2">29.1.3 But Jesus is.</div>
+            <div class="level-2">29.1.4 And our confidence is in Him.</div>
+            
+            <div class="level-1">29.2 Hebrews' Exhortation</div>
+            <div class="level-2">29.2.1 The writer of Hebrews says:</div>
+            <div class="level-2">29.2.2 <span class="scripture-emphasis key-truth">"Therefore, brothers, since we have confidence to enter the Most Holy Place by the blood of Jesus, by a new and living way opened for us through the curtain, that is, his body, and since we have a great priest over the house of God, let us draw near to God with a sincere heart in full assurance of faith"</span> (Hebrews 10:19-22).</div>
+            
+            <div class="transcript-heading">30. DO NOT LET ANYONE BE YOUR PRIEST</div>
+            
+            <div class="level-1">30.1 Direct Access Through Jesus</div>
+            <div class="level-2">30.1.1 Don't let anyone be your priest.</div>
+            <div class="level-2">30.1.2 Jesus died to give you direct access to God by making the priesthood inclusive for all believers.</div>
+            
+            <div class="level-1">30.2 Must Come Through the New and Living Way</div>
+            <div class="level-2">30.2.1 But to be part of that priesthood you must come to Him by the "new and living way."</div>
+            <div class="level-2">30.2.2 To be in this priesthood you have to come to him by "the new and living way."</div>
+        </div>
+    </div>
+</body>
+</html>

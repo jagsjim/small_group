@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Session 3: Our Great High Priest - Slideshow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #1a1a2e;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5vh 8vw;
+            color: white;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        
+        /* Title Slide */
+        .slide-title {
+            background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%);
+        }
+        
+        .slide-title h1 {
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 800;
+            margin-bottom: 2vh;
+            line-height: 1.2;
+        }
+        
+        .slide-title .session-number {
+            font-size: clamp(22px, 4vw, 32px);
+            opacity: 0.9;
+            margin-bottom: 4vh;
+        }
+        
+        .slide-title .subtitle {
+            font-size: clamp(32px, 6vw, 54px);
+            font-weight: 700;
+            margin-top: 2vh;
+        }
+        
+        /* Explanation Slide */
+        .slide-explanation {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+        
+        .slide-explanation h2 {
+            font-size: clamp(28px, 5vw, 42px);
+            margin-bottom: 3vh;
+            font-weight: 700;
+        }
+        
+        .slide-explanation p {
+            font-size: clamp(22px, 4vw, 32px);
+            line-height: 1.6;
+            max-width: 90%;
+            margin: 1.5vh auto;
+        }
+        
+        /* Question Slides */
+        .slide-question {
+            background: linear-gradient(135deg, #16a085 0%, #27ae60 100%);
+        }
+        
+        .slide-question .pause-label {
+            font-size: clamp(20px, 3.5vw, 28px);
+            font-weight: 700;
+            background: rgba(255,255,255,0.2);
+            padding: 1.5vh 4vw;
+            border-radius: 50px;
+            margin-bottom: 3vh;
+        }
+        
+        .slide-question .question-text {
+            font-size: clamp(26px, 5vw, 42px);
+            line-height: 1.5;
+            font-weight: 600;
+            max-width: 90%;
+        }
+        
+        .slide-question .next-pause {
+            font-size: clamp(18px, 3vw, 24px);
+            margin-top: 4vh;
+            opacity: 0.85;
+            font-weight: 600;
+        }
+        
+        /* Overview Question Slides */
+        .slide-overview {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+        }
+        
+        .slide-overview .label {
+            font-size: clamp(22px, 4vw, 32px);
+            font-weight: 700;
+            margin-bottom: 3vh;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .slide-overview .question-text {
+            font-size: clamp(24px, 4.5vw, 38px);
+            line-height: 1.5;
+            font-weight: 600;
+            max-width: 90%;
+        }
+        
+        /* Highlight Slide */
+        .slide-highlight {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+        }
+        
+        .slide-highlight .content {
+            font-size: clamp(28px, 5.5vw, 48px);
+            line-height: 1.6;
+            font-weight: 700;
+            font-style: italic;
+            max-width: 85%;
+            padding: 4vh;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Main Point Slides */
+        .slide-point {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+        
+        .slide-point .point-number {
+            font-size: clamp(48px, 10vw, 80px);
+            font-weight: 900;
+            margin-bottom: 3vh;
+            color: #3498db;
+        }
+        
+        .slide-point .point-text {
+            font-size: clamp(24px, 4.5vw, 40px);
+            line-height: 1.6;
+            max-width: 90%;
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            position: fixed;
+            bottom: 3vh;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-btn:active {
+            transform: scale(0.95);
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        /* Slide Counter */
+        .slide-counter {
+            position: fixed;
+            top: 2vh;
+            right: 3vw;
+            background: rgba(0,0,0,0.5);
+            padding: 1vh 2vw;
+            border-radius: 20px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-weight: 600;
+            z-index: 1000;
+        }
+        
+        /* Touch indicator */
+        .touch-indicator {
+            position: fixed;
+            bottom: 12vh;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(14px, 2.5vw, 18px);
+            opacity: 0.7;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 4vh 6vw;
+            }
+            
+            .nav-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (orientation: landscape) and (max-height: 600px) {
+            .slide {
+                padding: 3vh 8vw;
+            }
+            
+            .slide-title h1 {
+                font-size: clamp(28px, 6vw, 48px);
+            }
+            
+            .slide-question .question-text,
+            .slide-overview .question-text {
+                font-size: clamp(20px, 4vw, 32px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">18</span>
+        </div>
+        
+        <!-- Slide 1: Title -->
+        <div class="slide slide-title active">
+            <h1>PROPHET, PRIEST, KING</h1>
+            <div class="session-number">Session 3 of 5</div>
+            <div class="subtitle">OUR GREAT HIGH PRIEST</div>
+        </div>
+        
+        <!-- Slide 2: Explanation -->
+        <div class="slide slide-explanation">
+            <h2>A NOTE ABOUT THIS SESSION</h2>
+            <p>We're combining portions of two related messages to give you a complete picture of Jesus as our Great High Priest.</p>
+            <p>The video will pause a few times as we switch between segments, but don't worry—it's all one continuous teaching that builds on itself.</p>
+            <p>Thank you for your patience as we navigate these transitions together!</p>
+        </div>
+        
+        <!-- Slide 3: Segment Question 1 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 50:00</div>
+            <div class="question-text">
+                What went through your mind when you heard that the priesthood concept started in the Garden of Eden with God himself acting as priest?
+            </div>
+            <div class="next-pause">Next pause at 1:08:49</div>
+        </div>
+        
+        <!-- Slide 4: Segment Question 2 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:08:49</div>
+            <div class="question-text">
+                What went through your mind when you heard that Jesus doesn't just forgive our sin—he also gives us his perfect record and righteousness? Why is getting his righteousness just as important as getting forgiveness?
+            </div>
+            <div class="next-pause">Next pause at 1:24:14</div>
+        </div>
+        
+        <!-- Slide 5: Segment Question 3 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:24:14</div>
+            <div class="question-text">
+                Have you ever felt like you needed someone else to approach God for you—like you couldn't go directly to him yourself?
+            </div>
+            <div class="next-pause">Next pause at end of video</div>
+        </div>
+        
+        <!-- Slide 6: Segment Question 4 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT THE END</div>
+            <div class="question-text">
+                Be honest: Are you letting someone else be your priest—waiting for them to get close to God for you—instead of going directly to God yourself?
+            </div>
+        </div>
+        
+        <!-- Slide 7: Overview Question 1 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                We often use "I don't feel worthy" as an excuse to stay away from God. But this text says we are worthy only because of Jesus. When you let your feelings stop you from going to God, are you basically telling God that Jesus's death on the cross wasn't powerful enough to make you clean?
+            </div>
+        </div>
+        
+        <!-- Slide 8: Overview Question 2 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                The message said some Christians are thoroughly saved but don't experience closeness with God because they don't understand their priesthood. What do you think keeps people from experiencing that closeness?
+            </div>
+        </div>
+        
+        <!-- Slide 9: Overview Question 3 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                What's one way this week you could live out your role as a "priest" in God's priesthood—whether that's approaching God directly, offering spiritual worship, or pointing someone else to Jesus?
+            </div>
+        </div>
+        
+        <!-- Slide 10: Highlight Sentence -->
+        <div class="slide slide-highlight">
+            <div class="content">
+                Jesus is our Great High Priest who offered himself as the ultimate sacrifice, satisfying God's justice and removing our sin completely, so that we can now enter God's presence with confidence and become part of his priesthood forever.
+            </div>
+        </div>
+        
+        <!-- Slide 11: Main Point 1 -->
+        <div class="slide slide-point">
+            <div class="point-number">1</div>
+            <div class="point-text">
+                A priest mediates between God and people—representing them, preparing them, and going before them into God's presence.
+            </div>
+        </div>
+        
+        <!-- Slide 12: Main Point 2 -->
+        <div class="slide slide-point">
+            <div class="point-number">2</div>
+            <div class="point-text">
+                Priesthoods appear in nearly every culture throughout history, revealing humanity's universal awareness of sin, our lack of merit to deal with it ourselves, and the need for substitutionary sacrifice.
+            </div>
+        </div>
+        
+        <!-- Slide 13: Main Point 3 -->
+        <div class="slide slide-point">
+            <div class="point-number">3</div>
+            <div class="point-text">
+                The priesthood concept began in the Garden of Eden when God covered Adam and Eve with animal skins—the first substitutionary sacrifice.
+            </div>
+        </div>
+        
+        <!-- Slide 14: Main Point 4 -->
+        <div class="slide slide-point">
+            <div class="point-number">4</div>
+            <div class="point-text">
+                Old Testament priests had two key qualifications: they had to be appointed by God and they had to be holy (set apart).
+            </div>
+        </div>
+        
+        <!-- Slide 15: Main Point 5 -->
+        <div class="slide slide-point">
+            <div class="point-number">5</div>
+            <div class="point-text">
+                Jesus perfectly fulfilled both qualifications—appointed by God as the eternal priest-king in the order of Melchizedek, and completely holy through his perfect obedience to the Father.
+            </div>
+        </div>
+        
+        <!-- Slide 16: Main Point 6 -->
+        <div class="slide slide-point">
+            <div class="point-number">6</div>
+            <div class="point-text">
+                The two essential functions of priests were: (1) leading worship through sacrifices that made it possible to approach God, and (2) interceding on behalf of the people.
+            </div>
+        </div>
+        
+        <!-- Slide 17: Main Point 7 -->
+        <div class="slide slide-point">
+            <div class="point-number">7</div>
+            <div class="point-text">
+                On the Day of Atonement, two goats were used: one was sacrificed to satisfy God's justice (propitiation), and one was sent away carrying the people's sin-guilt (expiation). Jesus fulfilled both roles—he satisfied the Father's justice through his death AND carried our sin away completely.
+            </div>
+        </div>
+        
+        <!-- Slide 18: Main Point 8 -->
+        <div class="slide slide-point">
+            <div class="point-number">8</div>
+            <div class="point-text">
+                Jesus' priestly work continues in heaven—not by begging the Father on our behalf, but through his resurrected presence at God's right hand, bearing the scars that prove "it is finished."
+            </div>
+        </div>
+        
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">←</button>
+            <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">→</button>
+        </div>
+        
+        <div class="touch-indicator">
+            Swipe or tap arrows to navigate
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentSlideSpan = document.getElementById('current-slide');
+        
+        function showSlide(n) {
+            if (n >= totalSlides) {
+                currentSlide = totalSlides - 1;
+            } else if (n < 0) {
+                currentSlide = 0;
+            } else {
+                currentSlide = n;
+            }
+            
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            
+            currentSlideSpan.textContent = currentSlide + 1;
+            
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Home') showSlide(0);
+            if (e.key === 'End') showSlide(totalSlides - 1);
+        });
+        
+        // Touch/swipe navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                changeSlide(1); // Swipe left
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                changeSlide(-1); // Swipe right
+            }
+        }
+        
+        // Initialize
+        showSlide(0);
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        // Hide touch indicator after a few seconds
+        setTimeout(() => {
+            document.querySelector('.touch-indicator').style.opacity = '0';
+        }, 5000);
+    </script>
+</body>
+</html>

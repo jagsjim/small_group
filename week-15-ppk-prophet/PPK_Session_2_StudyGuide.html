@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 2: Jesus the Prophet - Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto 30px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #764ba2;
+            font-size: 32pt;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 28pt;
+            margin: 30px 0 20px;
+            font-weight: 600;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 24pt;
+            margin: 25px 0 15px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 24pt;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .video-button {
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 20px 40px;
+            margin: 30px auto;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 28pt;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            max-width: 400px;
+        }
+
+        .video-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-left: 6px solid #e17055;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            font-size: 26pt;
+            font-weight: 600;
+            font-style: italic;
+            color: #2d3436;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .main-points {
+            margin: 25px 0;
+            counter-reset: point-counter;
+        }
+
+        .main-points li {
+            font-size: 24pt;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            list-style: none;
+            counter-increment: point-counter;
+            position: relative;
+        }
+
+        .main-points li::before {
+            content: counter(point-counter) ".";
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 28pt;
+            position: absolute;
+            left: -10px;
+        }
+
+        .main-points li strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .segment-question {
+            background: #e8f4f8;
+            border-left: 6px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 24pt;
+        }
+
+        .timestamp {
+            color: #3498db;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 26pt;
+        }
+
+        .overview-questions {
+            margin: 25px 0;
+            counter-reset: overview-counter;
+        }
+
+        .overview-questions li {
+            font-size: 24pt;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 6px solid #764ba2;
+            list-style: none;
+            counter-increment: overview-counter;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .overview-questions li::before {
+            content: counter(overview-counter);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #764ba2;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 22pt;
+        }
+
+        .scripture-list {
+            background: #fff8e1;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #ffd54f;
+        }
+
+        .scripture-list p {
+            font-size: 22pt;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .transcript {
+            font-size: 22pt;
+            line-height: 1.7;
+        }
+
+        .transcript strong {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .transcript em {
+            color: #764ba2;
+            font-style: italic;
+        }
+
+        .transcript blockquote {
+            background: #f0f7ff;
+            border-left: 6px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            border-radius: 8px;
+        }
+
+        .outline-1 {
+            margin-top: 30px;
+            font-weight: 700;
+            color: #764ba2;
+            font-size: 26pt;
+        }
+
+        .outline-1 .ts {
+            color: #3498db;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .outline-2 {
+            margin-left: 30px;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #667eea;
+            font-size: 23pt;
+        }
+
+        .outline-3 {
+            margin-left: 60px;
+            margin-top: 10px;
+            font-size: 22pt;
+        }
+
+        .outline-4 {
+            margin-left: 90px;
+            margin-top: 8px;
+            font-size: 22pt;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .page {
+                box-shadow: none;
+                border-radius: 0;
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .page {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 28pt;
+            }
+
+            h2 {
+                font-size: 24pt;
+            }
+
+            p, .main-points li, .segment-question, .overview-questions li {
+                font-size: 24pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1 -->
+    <div class="page">
+        <h1>Prophet Priest King (2 of 5)<br>Jesus the Prophet</h1>
+        
+        <a href="https://www.youtube.com/live/XdwzssPVXlc?si=w5vErwsAfT9HnRY1&t=2666" class="video-button" target="_blank">
+            ▶ WATCH VIDEO
+        </a>
+
+        <h2>Summary</h2>
+        <p>In this message, we discover that Jesus isn't just another prophet among many - He is THE ultimate Prophet who has been speaking God's truth from the beginning of creation. Unlike Old Testament prophets who merely communicated God's message, Jesus both speaks and IS the Living Word of God. Through vivid examples and Scripture, we learn how Jesus continues His prophetic ministry today by opening our spiritually blind eyes to understand and delight in His truth. Just as the disciples needed Jesus to "open their minds" after His resurrection, we too need Him to remove our spiritual cataracts so we can truly see and experience the transforming power of His Word.</p>
+
+        <div class="highlight-box">
+            Jesus is not only the ultimate prophet who speaks God's truth - He IS the Living Truth who opens our blind eyes to understand and delight in Him.
+        </div>
+
+        <h2>Main Points</h2>
+        <ol class="main-points">
+            <li>
+                <strong>What is a prophet?</strong>
+                A prophet is God's spokesman who communicates divine revelation - not just foretelling the future, but speaking God's authoritative truth to His people.
+            </li>
+            <li>
+                <strong>Jesus is a prophet</strong>
+                As the Son of God, Jesus has always been THE Prophet - speaking and revealing God's will from creation through the incarnation and continuing today.
+            </li>
+            <li>
+                <strong>Jesus is a prophet like Moses</strong>
+                Both were endangered as babies, tested in the desert, covenant mediators, brought God's Word, performed miracles, and delivered God's people - but Jesus is infinitely superior.
+            </li>
+            <li>
+                <strong>Jesus is the unique prophet</strong>
+                Unlike other prophets who only communicated God's content, Jesus originates content as God - He IS the Living Word, the Truth itself, and the One who determines the future.
+            </li>
+            <li>
+                <strong>We need Jesus to open our minds</strong>
+                Even after three years with Jesus, the disciples couldn't understand Scripture until Jesus "opened" (dianoigo) their minds - like removing cataracts that we can't remove ourselves.
+            </li>
+            <li>
+                <strong>Jesus brings illumination through understanding</strong>
+                He assembles the puzzle pieces of Scripture so we can "get it" - connecting content we knew externally into internal understanding that transforms us.
+            </li>
+            <li>
+                <strong>Three signs Jesus is opening your heart</strong>
+                Freshness: Scripture never gets old; familiar passages suddenly reveal new truth. Delight: The Word produces joy in obedience, not just duty. Authority: God's truth produces power for actual change and transformation.
+            </li>
+            <li>
+                <strong>Jesus continues this prophetic work today</strong>
+                Through the Holy Spirit and the preaching of His Word, Jesus still actively opens minds, defeats strongholds, and reveals Himself so we can be saved and grow.
+            </li>
+        </ol>
+
+        <h2>Segment Questions</h2>
+        <p style="font-size: 22pt; font-style: italic; color: #666; margin-bottom: 25px;">
+            These questions are designed for discussion during natural pause points in the video. The timestamp indicates when to pause the video for each question.
+        </p>
+
+        <div class="segment-question">
+            <span class="timestamp">[52:17]</span>
+            What went through your mind when you heard that Jesus was acting as a prophet even before his incarnation - speaking to Adam and Eve in the garden, calling Abraham, wrestling with Jacob?
+        </div>
+
+        <div class="segment-question">
+            <span class="timestamp">[1:13:42]</span>
+            Have you ever experienced a time when something you'd read in the Bible many times suddenly 'clicked' for you in a new way?
+        </div>
+
+        <div class="segment-question">
+            <span class="timestamp">[1:26:04]</span>
+            Why do you think God chooses to work gradually through trials rather than instantly removing our struggles?
+        </div>
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <h2>Overview Discussion Questions</h2>
+        <p style="font-size: 22pt; font-style: italic; color: #666; margin-bottom: 25px;">
+            Use these questions after watching the complete video to reflect on the entire message together.
+        </p>
+
+        <ol class="overview-questions">
+            <li>Jesus Christ is Prophet, Priest and King. How does scripture reveal Jesus as the ultimate Prophet? How does he still function in the office of a prophet today in our lives?</li>
+            <li>The disciples listened to Jesus for three years, yet still needed him to 'open their minds' to the Scriptures after his resurrection. Why do we need this same divine help to understand God's Word, and how have you experienced that need recently?</li>
+            <li>Can you describe the time in your life when the spiritual cataracts first fell off your eyes? What was that like?</li>
+            <li>The sermon describes three signs that Jesus is opening your heart: freshness, delight, and authority. Which of these three do you see most in your life right now? Which one feels like it's missing?</li>
+            <li>What's one small step you could take this week to invite Jesus the Prophet to speak more clearly into your life?</li>
+        </ol>
+
+        <h2>Bible Verses Quoted</h2>
+        <div class="scripture-list">
+            <p>Acts 3:17-26 (main passage - Peter's sermon about Jesus the Prophet)</p>
+            <p>Numbers 12:6-8 (revelation through visions and dreams)</p>
+            <p>Jeremiah 1:2 (supernatural impartation)</p>
+            <p>2 Peter 1:20-21 ("no prophecy of Scripture came about by the prophet's own interpretation")</p>
+            <p>Matthew 13:57 (Jesus referred to himself as a prophet)</p>
+            <p>Luke 13:33 (Jesus as prophet)</p>
+            <p>Matthew 21:11, 26, 46 (people called him a prophet)</p>
+            <p>Matthew 17 (Mount of Transfiguration - "This is my Son... Listen to him!")</p>
+            <p>Hebrews 1:1-2 (God spoke through prophets, now through His Son)</p>
+            <p>Luke 7:16 ("A great prophet has risen among us")</p>
+            <p>John 6:14 ("Surely this is the Prophet")</p>
+            <p>John 6:38 (came down from heaven)</p>
+            <p>Deuteronomy 34:10 (no prophet greater than Moses)</p>
+            <p>Deuteronomy 18 (God's promise of a prophet like Moses)</p>
+            <p>1 Peter 1:11 (Christ prophesying through OT prophets)</p>
+            <p>Luke 24:44, 45 ("Then he opened their minds so they could understand")</p>
+            <p>Mark 7:34 (opening of deaf ears)</p>
+            <p>Luke 2:23 (opening of a womb)</p>
+            <p>Acts 16:14 (Lord opening Lydia's heart)</p>
+            <p>Acts 17:3 (opening Thessalonians' hearts)</p>
+            <p>Luke 24:31, 32, 45, 52-53 (disciples' eyes opened; they worshipped with great joy)</p>
+            <p>Acts 3:26 ("When God raised up his servant, he sent him first to you")</p>
+            <p>Ephesians 2:17 ("He came and preached peace to you")</p>
+            <p>Hebrews 4:12 (Word of God is alive and has inherent power)</p>
+            <p>Psalm 37:4 ("Delight yourself in the Lord")</p>
+            <p>Luke 4:31-32 ("his words had authority")</p>
+            <p>1 Corinthians 6:18-20 ("Do you not know that your body is a temple?")</p>
+            <p>1 Corinthians 2 (natural man perceives not the things of the Spirit)</p>
+            <p>James 4:6 (God opposes the proud but gives grace to the humble)</p>
+        </div>
+    </div>
+
+    <!-- PAGE 3+ TRANSCRIPT -->
+    <div class="page">
+        <h2>Transcript (Outline Format)</h2>
+        <div class="transcript">
+            
+            <p class="outline-1">1. Introduction <span class="ts">[44:23]</span></p>
+            <p class="outline-3">Last week we began a new series entitled Jesus Christ: Prophet, Priest and King. These three divinely instituted offices were first revealed in the Old Testament as a way for God to have a relationship with his people, the ancient Israelites.</p>
+            <p class="outline-3">Each of these offices was anointed by God and each fulfilled a specific purpose:</p>
+            <p class="outline-4">The prophet represented God before the people</p>
+            <p class="outline-4">The priest represented the people before God</p>
+            <p class="outline-4">The king represented God's rule over the people</p>
+            <p class="outline-4"><em>Through the prophet God spoke to his people.</em></p>
+            <p class="outline-4"><em>Through the priest God brought his people to himself.</em></p>
+            <p class="outline-4"><em>Through the king God protected his people.</em></p>
+            
+            <p class="outline-3">Ultimately the anointed prophets, priests and kings were a foreshadowing of the superior and final Anointed One who embodied all three ministries. That Anointed One - aka Messiah - is <strong>Jesus Christ</strong>. He is the ultimate prophet, priest and king.</p>
+            <p class="outline-3">And everything he did prior to his incarnation and during his earthly ministry he did as either prophet, priest or king. And everything he does today seated at the right hand of the Father, he does as either prophet, priest or king.</p>
+            <p class="outline-3">Therefore, <strong>understanding these offices of Jesus can greatly help us know him more fully, worship him more deeply and serve him more joyfully.</strong></p>
+
+            <p class="outline-1">2. What is a Prophet? <span class="ts">[44:29]</span></p>
+            <p class="outline-2">2.1 Common Misconception</p>
+            <p class="outline-3">This message today is Jesus the Prophet. This week we're going to look at prophet, next week priest, and next week king. So the first thing we have to ask is what is a prophet?</p>
+            <p class="outline-3">When most people hear that word prophet, they tend to think of somebody who foretells future events. And while that's true, it's only part of the prophet's ministry. In fact, some Old Testament prophets didn't tell you anything about the future. Their ministry was really always directed at the present moment of God's people.</p>
+
+            <p class="outline-2">2.2 True Definition</p>
+            <p class="outline-3">Although Old Testament prophets had many functions, basically <strong>they were spokesmen for God who communicated divine revelation to the people</strong>, especially obviously the people of Israel.</p>
+            <p class="outline-3">Now that revelation for the Old Testament prophet was authoritative. And what I mean by that is when the prophet spoke, God spoke. The prophet's word was God's word. Jeremiah's word is God's word. Jeremiah spoke that, that was always speaking - it is the equivalent of God's word. So to reject the prophet was to reject God. To disobey his words was to disobey God. And this is what made the Old Testament prophet unique from a New Testament prophet.</p>
+            <p class="outline-4">Under the new covenant the office of a prophet still exists but the revelation is not authoritative. It is not the Word of God but rather must be judged by the Word of God.</p>
+            <p class="outline-4">Nor is the revelation directive. It is only intended to confirm God's will rather than direct people into God's will, because under the new covenant every believer is indwelled by the Holy Spirit and can hear God.</p>
+
+            <p class="outline-2">2.3 How Revelation Came</p>
+            <p class="outline-3">Now the revelation came through visions, dreams, verbal communication - <em>Numbers 12:6-8</em> - and supernatural impartation - <em>Jeremiah 1:2</em>. Through this revelation God taught his truth, announced his will or foretold his plans.</p>
+
+            <p class="outline-2">2.4 The Prophet as Mouthpiece</p>
+            <p class="outline-3">In short, <strong>a prophet was a mouthpiece of God</strong>. Another way of saying it is the prophet was not involved in content creation, only content communication.</p>
+            <blockquote><em>Above all, you must understand that no prophecy of Scripture came about by the prophet's own interpretation of things. For prophecy never had its origin in the human will, but prophets, though human, spoke from God as they were carried along by the Holy Spirit. (2 Peter 1:20-21)</em></blockquote>
+
+            <p class="outline-1">3. Jesus: More Than a Prophet <span class="ts">[46:48]</span></p>
+            <p class="outline-2">3.1 Jesus Originates Content</p>
+            <p class="outline-3">But when we come to Jesus the prophet, <strong>he not only communicates content from God, he originates content as God.</strong></p>
+            <p class="outline-3">He not only speaks the Word of God, <strong>he is the Living Word of God</strong>. He not only speaks the truth of God, <strong>he is the truth of God</strong>.</p>
+            <p class="outline-3">He not only foretells the future, <strong>he determines the future</strong>. He not only says, "Thus says the Lord," he says, "Truly I say unto you." So Jesus is not only a prophet among many, <strong>he is the ultimate prophet.</strong></p>
+
+            <p class="outline-2">3.2 The Text: Acts 3</p>
+            <p class="outline-3">But he is not only the ultimate prophet of God, he is the unique Prophet of God. And that is exactly what Peter preached in his second sermon, which is our text today.</p>
+            <blockquote><strong><em>Now, fellow Israelites, I know that you acted in ignorance, as did your leaders. But this is how God fulfilled what he had foretold through all the prophets, saying that his Messiah would suffer. Repent, then, and turn to God, so that your sins may be wiped out, that times of refreshing may come from the Lord, and that he may send the Messiah, who has been appointed for you—even Jesus. Heaven must receive him until the time comes for God to restore everything, as he promised long ago through his holy prophets. For Moses said, 'The Lord your God will raise up for you a prophet like me from among your own people; you must listen to everything he tells you. Anyone who does not listen to him will be completely cut off from their people.' Indeed, beginning with Samuel, all the prophets who have spoken have foretold these days. And you are heirs of the prophets and of the covenant God made with your fathers. He said to Abraham, 'Through your offspring all peoples on earth will be blessed.' When God raised up his servant, he sent him first to you to bless you by turning each of you from your wicked ways. (Acts 3:17-26)</em></strong></blockquote>
+
+            <p class="outline-3">Four things I want to draw your attention to concerning Jesus: 1) Jesus is a prophet. 2) Jesus is a prophet like Moses. 3) Jesus is a unique prophet. 4) Why we need Jesus the prophet.</p>
+
+            <p class="outline-1">4. [1] Jesus is a Prophet <span class="ts">[48:05]</span></p>
+            <blockquote><em>For Moses said, 'The Lord your God will raise up for you a prophet like me from among your own people'</em></blockquote>
+
+            <p class="outline-2">4.1 Before the Incarnation</p>
+            <p class="outline-3">In the context of the passage "prophet" refers to Jesus. And as the Son of God his prophetic ministry began long before his earthly ministry. He has always been a prophet in the sense that he is the member of the Godhead who goes forth and speaks forth the will of the triune God.</p>
+            <p class="outline-3"><strong>He is the One who conversed with Adam and Eve in the garden, the One who called Abraham, who wrestled with Jacob and spoke to Moses from within the burning bush.</strong></p>
+            <p class="outline-3">Elsewhere he is revealed as the Angel of the Lord who provided a substitute ram for Isaac on Mount Moriah, comforted Hagar in the wilderness and defeated 185,000 Assyrian soldiers in one night.</p>
+
+            <p class="outline-2">4.2 Through the Prophets</p>
+            <p class="outline-3">Before the Son of God entered the world through the incarnation, he acted in the office of a prophet by communicating divine revelation personally <strong>but also through the prophets</strong>.</p>
+            <p class="outline-3">Peter tells us in his first letter that when the Old Testament prophets were prophesying about the salvation to come, that it was actually Christ prophesying through them (<em>1 Peter 1:11</em>).</p>
+            <p class="outline-3"><strong>Jesus was the ultimate prophet behind the prophets</strong>, the member of the Godhead who made known the will of God.</p>
+
+            <p class="outline-2">4.3 During His Earthly Ministry</p>
+            <p class="outline-3">Jesus was not only a prophet before he came into the world but also during his earthly ministry. He referred to himself as a prophet (<em>Matthew 13:57; Luke 13:33</em>), the people called him a prophet (<em>Matthew 21:11,26,46</em>) and most importantly the Father identified him as the supreme prophet.</p>
+            <p class="outline-3">It happened on the Mount of Transfiguration where Jesus appeared in glory with Moses and Elijah, the two greatest Old Testament prophets. Taken up in the moment, Peter suggested building three tabernacles to worship Jesus, Moses and Elijah.</p>
+            <p class="outline-3">All of a sudden God spoke: <em><strong>"This is my Son... Listen to him!" (Matthew 17)</strong></em> In other words, <strong>Jesus is the Ultimate Prophet</strong>. And with that Moses and Elijah disappeared (<em>Hebrews 1:1-2</em>).</p>
+
+            <p class="outline-1">5. [2] Jesus is a Prophet Like Moses <span class="ts">[52:17]</span></p>
+            <p class="outline-2">5.1 The Greatest Prophet</p>
+            <p class="outline-3">There were many prophets under the old covenant but none greater than Moses (<em>Deuteronomy 34:10</em>). But Moses himself prophesied of another prophet yet to come who would be greater than him.</p>
+            <blockquote><em>For Moses said, 'The Lord your God will raise up for you a prophet like me from among your own people; you must listen to everything he tells you. Anyone who does not listen to him will be completely cut off from their people.' (Acts 3:22-23)</em></blockquote>
+
+            <p class="outline-2">5.2 Jewish Expectation</p>
+            <p class="outline-3">Every Jew in Jesus' day was expecting the prophet that Moses said would one day be sent to them.</p>
+            <p class="outline-3">They were looking for him because the ministry of John the Baptist had produced a national revival of repentance. It was so profound that the religious leaders asked him if he was the Messiah, Elijah, or "the Prophet" Moses spoke about.</p>
+            <p class="outline-3">As John's ministry decreased and Jesus' ministry increased, people began to identify Jesus as "The Prophet" Moses spoke about.</p>
+            <p class="outline-4">After Jesus raised the widow's son from the dead, the people said, <em>"A great prophet has risen among us" (Luke 7:16).</em></p>
+            <p class="outline-4">After feeding the 5,000, the people began to say, <em>"Surely this is the Prophet who is to come into the world" (John 6:14).</em></p>
+
+            <p class="outline-2">5.3 Similarities Between Jesus and Moses</p>
+            <p class="outline-3">Jesus was a prophet like Moses in that there were many similarities between them.</p>
+            <p class="outline-3">Both were endangered as babies. Both were tested in the desert - 40 days and 40 years. Both were covenant mediators - old covenant and new covenant.</p>
+            <p class="outline-3">Both came down to bring the Word of the Lord to the people - Moses down Mount Sinai, Jesus down from heaven (<em>John 6:38</em>).</p>
+            <p class="outline-3">Both did extraordinary miracles. Both were revealers of a new age in God's plan; Moses revealed the law, Jesus revealed the kingdom.</p>
+            <p class="outline-3">Finally, both were deliverers. Just as Moses delivered the people of Israel from Egypt to receive God's Word at Sinai, so Jesus has delivered his people from sin in order to inscribe his Word on their hearts.</p>
+
+            <p class="outline-2">5.4 Yet Very Different</p>
+            <p class="outline-3">Jesus was a prophet like Moses but also very different.</p>
+
+            <p class="outline-1">6. [3] Jesus is the Unique Prophet <span class="ts">[57:02]</span></p>
+            <p class="outline-2">6.1 Infinitely Superior</p>
+            <p class="outline-3">Moses gave the law, Jesus fulfilled it. Moses built the tabernacle, Jesus was the ultimate tabernacle. Moses called for a Passover lamb, Jesus was the Passover Lamb of God. Moses met God face to face, Jesus is the face of God. <strong>Jesus is like Moses but infinitely superior to him.</strong></p>
+
+            <p class="outline-2">6.2 The Ultimate Difference</p>
+            <p class="outline-3">In our text there is one more difference that Peter points to in regards to their respective prophetic ministries. And he does this by quoting from <em>Deuteronomy 18</em> where God says you must listen to this prophet and receive his words, and if you don't, I will personally judge you.</p>
+            <p class="outline-3">In Acts 3 Peter adds, if you don't listen to him - and the implication is if you don't believe in him - you'll be completely cut off.</p>
+
+            <p class="outline-2">6.3 Why This Matters</p>
+            <p class="outline-3">Why? <strong>Because the only way to be saved is through the Son of God</strong>, the Messiah, the Anointed One. Salvation comes exclusively through him.</p>
+            <p class="outline-3">And this was not only the message of Jesus the Prophet in his earthly ministry, it is the current message of Jesus the Prophet in his heavenly ministry.</p>
+            <p class="outline-3"><strong>He is the Way, Truth and Life and no one goes to the Father except through him.</strong> He is still the ultimate prophet revealing the ultimate truth of the gospel - Jesus Christ and him crucified.</p>
+
+            <p class="outline-1">7. [4] Why We Need Jesus "the Prophet" <span class="ts">[1:00:24]</span></p>
+            <p class="outline-2">7.1 The Disciples' Need</p>
+            <p class="outline-3">After the resurrection Jesus appeared to the disciples many times over a period of 40 days before his final ascension into heaven. One of the first appearances is recorded in Luke 24 to the two disciples on the road to Emmaus.</p>
+            <p class="outline-3">As they were explaining their encounter with Jesus to ten of the main disciples, Jesus appeared. After eating, he began where he left off teaching them. Why? <strong>Because although they had heard him teach for three years, they didn't get it.</strong></p>
+            <p class="outline-3">They had the information but not illumination. They had light but not sight. They had the external Word spoken to their ear but not the internal Word penetrating their heart.</p>
+            <blockquote><em>"He said to them, 'This is what I told you while I was still with you: Everything must be fulfilled that is written about me in the Law of Moses, the Prophets and the Psalms.'" (Luke 24:44)</em></blockquote>
+
+            <p class="outline-2">7.2 Already Had the External Word</p>
+            <p class="outline-3">The disciples already had the external Word. They already had the information. They heard everything in the gospels. Jesus said, <em>"this is what I told you while I was still with you."</em> But they couldn't see it. <strong>They needed Christ the prophet to reveal it to them.</strong></p>
+            <blockquote><strong><em>"Then he opened their minds so they could understand the Scriptures." (Luke 24:45)</em></strong></blockquote>
+
+            <p class="outline-2">7.3 Two Greek Words for "Opened" <span class="ts">[1:02:33]</span></p>
+            <p class="outline-3">There are two Greek words for "opened" that could have been used. One is <strong>anoigo</strong> (a-noy-go) which means to open something that's openable - like a door with a latch.</p>
+            <p class="outline-3">The other word is <strong>dianoigo</strong> (dee-a-noy-go) which means to open something that has not been opened and is very difficult to open.</p>
+            <p class="outline-4">In <em>Mark 7:34</em> it's used to describe the opening of deaf ears.</p>
+            <p class="outline-4">In <em>Luke 2:23</em> it's used to describe the opening of a womb with a firstborn child.</p>
+
+            <p class="outline-2">7.4 Which Word Luke Uses</p>
+            <p class="outline-3">Now which word do you think Luke uses when Jesus says he opened up their hearts? You're right - <strong>dianoigo</strong>. Why is that? Because opening the human heart is very, very difficult. It's difficult to open up the heart in order to have it receive spiritual truth.</p>
+            <p class="outline-4">The same word is used over in <em>Acts 16</em> where it says the Lord opened up the heart of Lydia to receive the things spoken to her by the Apostle Paul.</p>
+            <p class="outline-4">The Lord opened up hearts over in <em>Acts 17</em> - it talks about the Lord opening up the hearts of the Thessalonians to receive the word of God.</p>
+            <p class="outline-4">The same thing is used of those two disciples on the road to Emmaus - the same word: he opened up their heart.</p>
+            <p class="outline-4">The same word is used here of the disciples, the ten disciples - the Lord opened up their hearts so they could understand the Scripture.</p>
+            <blockquote><strong><em>"Dianoigo" - opening up something that's never been opened up, it's very difficult to open.</em></strong></blockquote>
+
+            <p class="outline-2">7.5 The Cataracts Illustration <span class="ts">[1:04:25]</span></p>
+            <p class="outline-3">Why? Because they couldn't see. I mean they had sight - they had light, they had the light of the word, he lived with them, they heard everything - but they couldn't see it. They didn't have sight.</p>
+            <p class="outline-3">A good illustration of this would be cataracts, which of course is the gradual clouding of the lens of the eye that sometimes takes place when you get a little bit older. You can see but it's not clear. But you don't realize the extent to which it's not clear because that happens so gradually.</p>
+            <p class="outline-3">Now you can't get rid of them by rubbing your eyes or by washing your eye out or putting eye drops in. The only way you can deal with it is surgery. You've got to remove the cloudy lens and replace it with a clear artificial lens.</p>
+            <p class="outline-3">So you get surgery and after the Band-Aids come off, the bandages come off, you know everything is - wow! And you never realized how much you couldn't see before. It's not only clear, it's bright, it's vivid, right? Everything's so much more alive and brighter to you.</p>
+
+            <p class="outline-2">7.6 Spiritual Application</p>
+            <p class="outline-3">Now the same thing is true spiritually. You can comprehend the scripture, you can rationally grasp the concepts of the Bible, but not see it clear enough to actually understand it.</p>
+            <p class="outline-3">I'm going to give you a good case in point. I'm not judging anyone here, I'm just throwing out an illustration, but you can really know a lot about the Bible and yet not really get it. Jordan Peterson - there's a great example. If you've ever listened to him, that guy - I mean he has a psychological understanding of the Bible that is incredible. But if you ask me, is that man born again? I would say no. I would say he has tons of light but no sight. Not yet, right? He understands the external word but not the internal word.</p>
+            <p class="outline-3"><strong>So you can understand the external word but not the internal word. You need Christ the prophet to come along through the Holy Spirit and give you understanding</strong> because the natural man perceives not the things of the Spirit of God (<em>1 Corinthians 2</em>).</p>
+            <p class="outline-3">That's why sometimes a person will say, you know, you'll hear this: "I became a Christian six months ago but I've always considered myself a Christian. I've always believed the teachings of Jesus. I always believed Jesus died for sin but I never realized it personally. I knew God loved me but I really never experienced his love. I understood the basic teachings of Christianity but never really understood the significance of the gospel. And then one day, one day it just popped out at me. I saw it and I thought to myself, why did I never see that before?"</p>
+
+            <p class="outline-2">7.7 What Happened?</p>
+            <p class="outline-3">I'll tell you why: <strong>dianoigo</strong>. Your eyes were opened by the prophet of all prophets and now you see. Now you have understanding. That's why it happened. Jesus the revealer, Jesus the ultimate prophet gave sight to your eyes.</p>
+            <p class="outline-3">Because <strong>spiritual blindness is not just the inability to know the truth, it's the inability to internalize the truth, to value it, to appreciate it and to worship God for it.</strong></p>
+
+            <p class="outline-1">8. How Jesus Brings the Internal Word <span class="ts">[1:07:36]</span></p>
+            <p class="outline-2">8.1 Through Understanding</p>
+            <p class="outline-3">Now how does Jesus bring the internal word to us? How does he take the external word that comes in our ear and place it in our hearts? How does he bring illumination? How does he remove the cataracts, would be another way of saying that?</p>
+            <p class="outline-3">It says here: <em>"Then he opened their minds so they could <strong>understand</strong> the Scripture."</em></p>
+            <p class="outline-3">Now that word <strong>understand</strong> is from a Greek word - it means to put together the pieces or to assemble the parts. Put together the pieces or assemble the parts. That's what it means to understand - to put together the pieces.</p>
+            <p class="outline-3">So think of a puzzle. We've got a table up here, 500 pieces. We dump them out, right? And you know, you look at it, doesn't look like anything. They're laying on the table, you can't see what it is. There's no - you can't tell what it is. There's content but there's no connection. And all of a sudden, slowly, you begin to connect the pieces together.</p>
+            <p class="outline-3">And what happens slowly? What happens? The content starts becoming visible to you. You see it. And when you finish it, you finally see it.</p>
+            <p class="outline-3">Now it's the same - when that puzzle's all put together, it's the same content as when you started. Nothing's changed there. But now you have a totally different understanding. You get it now. Why? Because the pieces have come together. You have <strong>spiritual understanding</strong>. That's what this word means.</p>
+
+            <p class="outline-2">8.2 What Jesus Does</p>
+            <p class="outline-3">And that's what the Lord does for us. That's what Jesus does. He puts the pieces together. And we need him. We can't do that ourselves. We can all hear the external word, but only the Spirit - only Jesus through the Spirit - can take that external word and make it, lodge it in our hearts so we have a spiritual understanding.</p>
+            <p class="outline-3">And that's what Jesus was doing for the disciples here in Luke, and that's what he does for us. And Peter says that's what he was doing for the people he was preaching to at that very moment, at the end of that text in chapter 3.</p>
+
+            <p class="outline-2">8.3 Jesus Sent Again <span class="ts">[1:09:39]</span></p>
+            <blockquote><em>"When God raised up his servant, he sent him first to you to bless you by turning each of you from your wicked ways." (Acts 3:26)</em></blockquote>
+            <p class="outline-3">Little focus here: <em>"When God raised up his servant, he sent..."</em> It doesn't say God sent his servant into the world to go to the cross. That's not talking about God sending Jesus for the first advent. Nor is it talking here about God sending Jesus for the second coming. It says when God raised him up - he's resurrected from the dead - then he sent him.</p>
+            <p class="outline-3">Sent him to who? He sent him to this crowd. He's saying first to you Jews - we know that, then to Gentiles - but he sent him to you. And why did God, after the resurrection, send Jesus to these people? He sent them to bless them. Well how did he bless them? He turned each one of them from their wicked ways in connection to believe the gospel.</p>
+            <p class="outline-3">So Peter says after God raised Jesus from the dead, he sent him again, first to Jews, then to Gentiles. God sent him to bless each person in that audience - turning each of you - to bless each person in that audience by turning them from their sin to believe the gospel, to become children of God. <strong>Jesus does that by opening up their minds so they can understand the gospel.</strong></p>
+
+            <p class="outline-2">8.4 Continues After Ascension</p>
+            <p class="outline-3">Do you realize that you're a Christian because Jesus came to you and opened up your mind so you could understand the truth? Do you realize that? Do you realize that he does that for every single person? It says for each of you.</p>
+            <p class="outline-3">This is after the resurrection. He does that for each of - I mean <strong>Jesus loves you so much that he not only gives you the word, he turns you to the word, and then he imparts the word so that you have understanding.</strong> Why? Because he's the ultimate prophet who reveals himself to you so you can be saved.</p>
+
+            <p class="outline-1">9. Changes How We View Scripture <span class="ts">[1:12:14]</span></p>
+            <p class="outline-2">9.1 Christ Still Active</p>
+            <p class="outline-3">Now once we realize that <strong>Christ is still active in his prophetic ministry</strong>, it changes the way that we view reading the scripture or listening to preaching. Because Christ the revealer is still speaking. He's still giving understanding.</p>
+
+            <p class="outline-2">9.2 Paul's Example</p>
+            <p class="outline-3">When Paul wrote the Ephesians and spoke of their conversion through his preaching, he did not say "I came and preached to you," but rather:</p>
+            <blockquote><em>"He came and preached peace to you who were far away and peace to those who were near." (Ephesians 2:17)</em></blockquote>
+            <p class="outline-3"><strong>Jesus the prophet was preaching through Paul's preaching.</strong> The same is true whenever you share the Word of God with someone - Christ the revealer is speaking through you to open minds so they can understand.</p>
+
+            <p class="outline-1">10. How to Know Jesus is Opening Your Heart <span class="ts">[1:13:42]</span></p>
+            <p class="outline-2">10.1 The Question</p>
+            <p class="outline-3">Now how do you know that Christ the prophet is opening up <strong>your</strong> heart by illuminating his Word? How do you know you are getting the internal Word with the external Word? How do you know you don't have spiritual cataracts?</p>
+
+            <p class="outline-2">10.2 [1] There is a Freshness</p>
+            <p class="outline-3">When you hear, read or study the Word, there is often a freshness or a newness. It's not all the time, but often enough where you realize it.</p>
+            <p class="outline-4">If you were reading any other book, you would reach a point where you simply lose interest because it gets old.</p>
+            <p class="outline-4"><strong>Scripture never gets old because it is alive and has inherent power</strong> (<em>Hebrews 4:12</em>). You read a familiar passage and all of a sudden you say, "I've never seen that before." And there's a freshness to it.</p>
+            <p class="outline-4">That's what the disciples were experiencing. The external Word was becoming the internal Word.</p>
+            <p class="outline-3">When you hear the Word taught, sometimes it's like God is talking to you directly. He's talking to you every time you hear the Word, but sometimes you sense that more strongly. There is a supernatural working that increases your love for God.</p>
+            <p class="outline-3">When that happens, <strong>it's Christ the prophet delivering the internal Word to you through the Holy Spirit.</strong> That's when he is illuminating the external Word and it is coming alive to you. That's when the Word of God becomes God's Word to you.</p>
+
+            <p class="outline-2">10.3 [2] There is a Delight <span class="ts">[1:17:14]</span></p>
+            <p class="outline-3">When Jesus opened up the disciples' minds and gave them understanding, what did they do? The end of the text in Luke 24 says that <em>"they worshipped him and returned to Jerusalem"</em> (as Jesus had commanded them) <em>"with great joy and were continually in the temple blessing God" (Luke 24:52-53).</em> They worshipped, joyfully obeyed and continually praised. Why? <strong>Delight.</strong></p>
+            <p class="outline-3">When the Word goes from external to internal, from revelation to illumination, it not only affects our minds but also our wills and emotions to the point where there is joy - delight - in obedience. <strong>We don't just go through the motions, we delight in the Lord, even in our sufferings.</strong></p>
+            <p class="outline-3">And this delight captures our hearts. And when we experience it, we don't want to leave that moment like Peter on the Mount. You want to pitch a tent and set up a tabernacle. But ah, we must come down the mountain for we still live in the flesh and our life with God is full of ebbs and flows.</p>
+            <p class="outline-3">Still, we are not powerless. When delight does not come to us, the Psalmist says go get delight. <em>"Delight yourself in the Lord" (Psalm 37:4).</em></p>
+            <p class="outline-4">In other words, delight before you feel delight. How do you do that? By faith. What's that faith look like?</p>
+            <p class="outline-4">It looks like you reading your Bible every morning or night, starting with the prayer: "Lord, thank you for the light - the Bible - please give me sight. Please take the external Word and make it the internal Word."</p>
+            <p class="outline-4">You know Christ is opening up your heart to understand when there is a freshness, delight, and...</p>
+
+            <p class="outline-2">10.4 [3] There is Authority <span class="ts">[1:20:50]</span></p>
+            <blockquote><em>"Then he went down to Capernaum, a town in Galilee, and on the Sabbath he taught the people. They were amazed at his teaching, because his words had authority." (Luke 4:31-32)</em></blockquote>
+            <p class="outline-3"><strong>Jesus' prophetic ministry is accompanied by authority to produce change.</strong></p>
+            <p class="outline-4">When he opens our minds and internally illumines the Word, it comes with an authority and power that produces a desire to act and experience change and transformation.</p>
+            <p class="outline-4">You're no longer a hearer of the Word but a doer of the Word. God's power is at work in you. But how does that happen?</p>
+
+            <p class="outline-3">God's power is primarily revealed two ways: instantaneously and gradually. It can come dramatically in a moment of time like a sonic boom, or it can come organically over a period of time like a growing plant. Jesus works both ways. He instantaneously heals and he gradually transforms. He does both.</p>
+            <p class="outline-3">But usually we want him to work instantaneously, and so that's how we pray.</p>
+            <p class="outline-4">For example, if someone is struggling with lust and they realize it's a problem, so they pray to God, "Just take this lust away from me." They want the sonic boom.</p>
+            <p class="outline-4">But Jesus more often works like a growing plant. He takes us to the scriptures and begins to open up our heart and give us understanding, through which we experience his power. For example, 1 Corinthians 6 where Paul says:</p>
+            <blockquote><em>"Flee from sexual immorality. Do you not <strong>know</strong> that your body is a temple of the Holy Spirit, who is in you, whom you have received from God? You are not your own; you were bought at a price. Therefore, honor God with your body." (1 Corinthians 6:18a,19-20)</em></blockquote>
+
+            <p class="outline-3">Paul says, "Do you not know?" What's he doing? He's calling them to realize what Jesus has done for them through the gospel. He's saying, look at what Jesus has done for you.</p>
+            <p class="outline-4">He bought you out of slavery to sin at an infinite cost to himself. Look at the price he paid. Think about the sacrifice. Think about how much he loves you.</p>
+            <p class="outline-4">And look what Jesus has put in you - the Holy Spirit! Your body is the temple of God! The Holy Spirit dwells in you not in concept but in reality.</p>
+
+            <p class="outline-3">The reason you are having problems with lust is that you don't realize these things. "Do you not know?" Oh, you know them externally but you don't know them internally. You have light but not sight.</p>
+            <p class="outline-4">You need Jesus the prophet to take the external Word and make it the internal Word. And that happens organically like a plant grows as you meditate on the scripture.</p>
+            <p class="outline-4">You meditate on it, talk to others about it, worship with it, pray with it. And as you do, your spiritual cataracts begin to clear up and you see more clearly, and gradually his authority and power free you from whatever the sin is.</p>
+
+            <p class="outline-1">11. Conclusion: Two Questions <span class="ts">[1:26:03]</span></p>
+            <p class="outline-2">11.1 First Question</p>
+            <p class="outline-3">We're getting near that time. Let me close with a couple questions.</p>
+            <p class="outline-3">After you become a Christian and Jesus heals your cataracts, you can see. Do you know it's still possible for those things to come back? You know it's possible, don't you? If you've had cataracts before, your eyes cloud up again, right? And you've got to do what? You've got to go back to the doctor.</p>
+            <p class="outline-3">Now that's true spiritually as well. Do you remember a time - here's the first question - do you remember a time when the word of God just seemed so alive to you? It's like you would listen to preaching or you'd be reading the word - it was just so alive. It was like honey. It was sweet. It was just like honey to you.</p>
+
+            <p class="outline-2">11.2 Second Question</p>
+            <p class="outline-3">Okay, here's the second question: <strong>Was the word that alive to you and sweet to you like that last week? Was it like that last week? Was it like that the week before? How about the week before that?</strong></p>
+            <p class="outline-3">Oh, okay, never to fear. There's a way out. There's a way back. There's a way back to sight. It's not hard either, unless you consider humility a hard thing. But if it's not, it's very easy.</p>
+            <p class="outline-3">You know how you go back? You know how you get back to that? You know how you get back to that freshness? You know how you get back to seeing all the pieces fit together? You know how you get back to having that clear vision, all the floaties are gone?</p>
+            <p class="outline-3">You begin by saying, "Lord, I can't see." Because <strong>the moment you admit that is when you start seeing</strong>. You say, "Lord, it's not sweet like honey anymore." The moment you do that, the word will start to regain its sweetness again.</p>
+            <p class="outline-3">And why is that? Why? Because God gives grace to the humble. Your only need in life is for his grace, and he has got loads of it for you. And the reason that we don't access how much he has for us is only because of one reason: pride. The pride we can't see, but the pride we have nonetheless. Why can't we see it? There's a cataract in the way.</p>
+            <p class="outline-3">The answer all the time is: humble yourself before the Lord and he will lift you up. Humble yourself. God opposes the proud, even the proud person who doesn't know he's proud. We can't access God's grace when we're unwilling to admit, "Lord, I can't see. Give me sight. Lord, it's no longer sweet to me. It's just words on a page. Make it like honey again."</p>
+            <p class="outline-3">And stay in that place of humility before the Lord. Without you, Lord, I can do nothing. And don't give up. Don't give up on that process. Get rid of some things in your life that aren't absolutely necessary that are stealing time away from you. Make this your daily bread. It'll taste sweet again. Your sight will come back. That delight will come.</p>
+            <p class="outline-3">God doesn't want you to live without that delight. That's the fuel of Christianity. That's how the whole thing's supposed to work - through delight. Jesus is more valuable. His word, his truth, his Spirit, everything about him is more valuable than anything else.</p>
+            <p class="outline-3">I said last week: he is the pearl of great price. He is the treasure hidden in the field that's worth everything, worth selling everything so you can buy that field so you can have that treasure. That is Jesus. You pursue that way, you'll have delight. You'll have joy. You'll have authority. You'll have freedom. You'll have the honey. No more cataracts.</p>
+            <p class="outline-3"><strong>In Jesus' name, amen.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

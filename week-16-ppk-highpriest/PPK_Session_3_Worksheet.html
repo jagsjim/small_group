@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 3: Our Great High Priest - Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #c0392b;
+            text-align: center;
+            font-size: clamp(28px, 5vw, 36px);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: clamp(16px, 3vw, 20px);
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: clamp(16px, 3vw, 20px);
+            text-align: center;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            font-size: clamp(22px, 4vw, 28px);
+            margin-bottom: 20px;
+        }
+        
+        .question {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .question-label {
+            font-weight: 700;
+            color: #34495e;
+            margin-bottom: 15px;
+            font-size: clamp(18px, 3.5vw, 22px);
+        }
+        
+        /* Fill in the blanks */
+        .fill-blank {
+            display: inline-block;
+            min-width: 120px;
+            padding: 8px 15px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            background: #fff;
+            font-size: clamp(16px, 3vw, 20px);
+            margin: 0 5px;
+        }
+        
+        .fill-blank:focus {
+            outline: none;
+            border-color: #2980b9;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .fill-blank.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+        
+        .hint-btn {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 8px 15px;
+            background: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(14px, 2.5vw, 16px);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .hint-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .hint-text {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff3cd;
+            border-radius: 5px;
+            font-size: clamp(14px, 2.5vw, 18px);
+        }
+        
+        /* True/False */
+        .tf-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .tf-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px 25px;
+            border: 3px solid #95a5a6;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: clamp(18px, 3.5vw, 22px);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .tf-btn:active {
+            transform: scale(0.97);
+        }
+        
+        .tf-btn.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+        
+        .tf-btn.incorrect {
+            border-color: #e74c3c;
+            background: #fadbd8;
+            color: #e74c3c;
+        }
+        
+        /* Scripture Matching */
+        .match-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .match-item {
+            padding: 15px;
+            background: white;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: clamp(16px, 3vw, 20px);
+        }
+        
+        .match-item.selected {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+        
+        .match-item.matched {
+            border-color: #27ae60;
+            background: #d5f4e6;
+            cursor: default;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            background: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        /* Text areas */
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-family: inherit;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .btn:active {
+            transform: scale(0.97);
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+        }
+        
+        /* Feedback messages */
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+        
+        .feedback.show {
+            display: block;
+        }
+        
+        .feedback.correct {
+            background: #d5f4e6;
+            color: #27ae60;
+            border: 2px solid #27ae60;
+        }
+        
+        .feedback.incorrect {
+            background: #fadbd8;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+        
+        /* Interactive cards */
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .flip-card {
+            background: white;
+            border: 3px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(16px, 3vw, 20px);
+            text-align: center;
+        }
+        
+        .flip-card:active {
+            transform: scale(0.98);
+        }
+        
+        .flip-card .back {
+            display: none;
+        }
+        
+        .flip-card.flipped .front {
+            display: none;
+        }
+        
+        .flip-card.flipped .back {
+            display: block;
+        }
+        
+        .flip-card.flipped {
+            background: #e3f2fd;
+        }
+        
+        /* Copy button */
+        .copy-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff3cd;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .match-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .tf-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OUR GREAT HIGH PRIEST</h1>
+        <div class="subtitle">Session 3 Interactive Worksheet</div>
+        
+        <div class="intro">
+            <strong>📝 This worksheet is for learning, not testing!</strong><br>
+            Take your time, use the hints, and enjoy discovering what God has done through Jesus our High Priest.
+        </div>
+        
+        <!-- Section 1: Fill in the Blanks -->
+        <div class="section">
+            <h2>🔤 Fill in the Blanks</h2>
+            
+            <div class="question">
+                <div class="question-label">1. A priest mediates between God and <input type="text" class="fill-blank" id="blank1" data-answer="people" placeholder="______"> —representing them, preparing them, and going before them.</div>
+                <button class="hint-btn" onclick="showHint('hint1', 'peo')">💡 Hint</button>
+                <div class="hint-text" id="hint1"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. The priesthood concept began in the Garden of <input type="text" class="fill-blank" id="blank2" data-answer="Eden" placeholder="______"> when God covered Adam and Eve with animal skins.</div>
+                <button class="hint-btn" onclick="showHint('hint2', 'Ede')">💡 Hint</button>
+                <div class="hint-text" id="hint2"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. Old Testament priests had to be appointed by <input type="text" class="fill-blank" id="blank3" data-answer="God" placeholder="______"> and had to be holy (set apart).</div>
+                <button class="hint-btn" onclick="showHint('hint3', 'God')">💡 Hint</button>
+                <div class="hint-text" id="hint3"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">4. Jesus is our priest forever in the order of <input type="text" class="fill-blank" id="blank4" data-answer="Melchizedek" placeholder="______">, not the order of Aaron.</div>
+                <button class="hint-btn" onclick="showHint('hint4', 'Mel')">💡 Hint</button>
+                <div class="hint-text" id="hint4"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">5. On the Day of Atonement, one goat satisfied God's justice (<input type="text" class="fill-blank" id="blank5" data-answer="propitiation" placeholder="______">) and one goat carried away sin-guilt (<input type="text" class="fill-blank" id="blank6" data-answer="expiation" placeholder="______">).</div>
+                <button class="hint-btn" onclick="showHint('hint5', 'pro / exp')">💡 Hint</button>
+                <div class="hint-text" id="hint5"></div>
+            </div>
+        </div>
+        
+        <!-- Section 2: True or False -->
+        <div class="section">
+            <h2>✅ True or False</h2>
+            
+            <div class="question">
+                <div class="question-label">1. Jesus continues to verbally plead with the Father in heaven to forgive us.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="checkTF(this, false)">TRUE</button>
+                    <button class="tf-btn" onclick="checkTF(this, true)">FALSE</button>
+                </div>
+                <div class="feedback" id="tf1-feedback"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. All believers are now part of God's priesthood through Jesus.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="checkTF(this, true)">TRUE</button>
+                    <button class="tf-btn" onclick="checkTF(this, false)">FALSE</button>
+                </div>
+                <div class="feedback" id="tf2-feedback"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. Jesus only forgives our sin but doesn't give us his righteousness.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="checkTF(this, false)">TRUE</button>
+                    <button class="tf-btn" onclick="checkTF(this, true)">FALSE</button>
+                </div>
+                <div class="feedback" id="tf3-feedback"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">4. Priests go to God; they don't wait for God to come to them.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="checkTF(this, true)">TRUE</button>
+                    <button class="tf-btn" onclick="checkTF(this, false)">FALSE</button>
+                </div>
+                <div class="feedback" id="tf4-feedback"></div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Scripture Matching -->
+        <div class="section">
+            <h2>📖 Match the Scripture</h2>
+            
+            <div class="question">
+                <div class="question-label">Match each concept with its Bible verse:</div>
+                
+                <div style="margin: 20px 0;">
+                    <strong>1. "Behold the Lamb of God who takes away the sin of the world"</strong>
+                    <select onchange="checkMatch(this, 'John 1:29')">
+                        <option value="">Choose...</option>
+                        <option value="Hebrews 4:15">Hebrews 4:15</option>
+                        <option value="John 1:29">John 1:29</option>
+                        <option value="Romans 8:1">Romans 8:1</option>
+                        <option value="1 Peter 2:9">1 Peter 2:9</option>
+                    </select>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <strong>2. "There is no more condemnation for those who are in Christ Jesus"</strong>
+                    <select onchange="checkMatch(this, 'Romans 8:1')">
+                        <option value="">Choose...</option>
+                        <option value="Hebrews 4:15">Hebrews 4:15</option>
+                        <option value="John 1:29">John 1:29</option>
+                        <option value="Romans 8:1">Romans 8:1</option>
+                        <option value="1 Peter 2:9">1 Peter 2:9</option>
+                    </select>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <strong>3. "You are a chosen people, a royal priesthood"</strong>
+                    <select onchange="checkMatch(this, '1 Peter 2:9')">
+                        <option value="">Choose...</option>
+                        <option value="Hebrews 4:15">Hebrews 4:15</option>
+                        <option value="John 1:29">John 1:29</option>
+                        <option value="Romans 8:1">Romans 8:1</option>
+                        <option value="1 Peter 2:9">1 Peter 2:9</option>
+                    </select>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <strong>4. "Tempted in every way, just as we are—yet he did not sin"</strong>
+                    <select onchange="checkMatch(this, 'Hebrews 4:15')">
+                        <option value="">Choose...</option>
+                        <option value="Hebrews 4:15">Hebrews 4:15</option>
+                        <option value="John 1:29">John 1:29</option>
+                        <option value="Romans 8:1">Romans 8:1</option>
+                        <option value="1 Peter 2:9">1 Peter 2:9</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Tap to Reveal -->
+        <div class="section">
+            <h2>👆 Tap to Reveal Key Truths</h2>
+            
+            <div class="card-container">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="front"><strong>What does "propitiation" mean? (Tap to reveal)</strong></div>
+                    <div class="back">Satisfying God's justice. Jesus took our judgment so God can bless us instead of judge us.</div>
+                </div>
+                
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="front"><strong>What does "expiation" mean? (Tap to reveal)</strong></div>
+                    <div class="back">Carrying away our sin-guilt. Like the scapegoat, Jesus removes our sin completely.</div>
+                </div>
+                
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="front"><strong>How does Jesus intercede for us now? (Tap to reveal)</strong></div>
+                    <div class="back">By His resurrected presence at God's right hand, bearing nail-pierced hands that prove "it is finished."</div>
+                </div>
+                
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="front"><strong>Why can't our salvation fail? (Tap to reveal)</strong></div>
+                    <div class="back">Because Jesus lives forever as our High Priest. For our salvation to fail, He would have to die—but He cannot die.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 5: Personal Reflection -->
+        <div class="section">
+            <h2>💭 Personal Reflection</h2>
+            
+            <div class="question">
+                <div class="question-label">1. What's one way you've been waiting for God to come to you instead of going directly to Him? How can you start "going to God" this week?</div>
+                <textarea id="reflection1" placeholder="Write your thoughts here..."></textarea>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. Are you letting someone else be your "priest" (spouse, friend, pastor) instead of approaching God yourself? What makes you do that?</div>
+                <textarea id="reflection2" placeholder="Write your thoughts here..."></textarea>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. How does knowing Jesus gives you both forgiveness AND his perfect righteousness change how you feel about approaching God?</div>
+                <textarea id="reflection3" placeholder="Write your thoughts here..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Copy Responses Section -->
+        <div class="copy-section">
+            <h2>💾 Save Your Responses</h2>
+            <p>Click below to copy all your responses to save for your personal records.</p>
+            <button class="btn btn-success" onclick="copyResponses()">📋 Copy All Responses</button>
+            <div class="feedback" id="copy-feedback"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Hint system
+        let hintClicks = {};
+        
+        function showHint(hintId, hintText) {
+            if (!hintClicks[hintId]) hintClicks[hintId] = 0;
+            hintClicks[hintId]++;
+            
+            const hintElement = document.getElementById(hintId);
+            const inputId = hintId.replace('hint', 'blank');
+            const input = document.getElementById(inputId);
+            
+            if (hintClicks[hintId] === 1) {
+                // First click: show first 3 letters
+                hintElement.textContent = `Starts with: ${hintText}`;
+                hintElement.style.display = 'block';
+            } else {
+                // Second click: show full word
+                hintElement.textContent = `Answer: ${input.dataset.answer}`;
+                input.value = input.dataset.answer;
+                checkFillBlank(input);
+            }
+        }
+        
+        // Check fill-in-the-blank answers
+        document.querySelectorAll('.fill-blank').forEach(input => {
+            input.addEventListener('input', function() {
+                checkFillBlank(this);
+            });
+        });
+        
+        function checkFillBlank(input) {
+            const answer = input.dataset.answer.toLowerCase();
+            const value = input.value.toLowerCase().trim();
+            
+            if (value === answer) {
+                input.classList.add('correct');
+            } else {
+                input.classList.remove('correct');
+            }
+        }
+        
+        // True/False checking
+        let tfCounter = 1;
+        function checkTF(button, isCorrect) {
+            const parent = button.parentElement;
+            const buttons = parent.querySelectorAll('.tf-btn');
+            const feedback = parent.nextElementSibling;
+            
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.6';
+            });
+            
+            if (isCorrect) {
+                button.classList.add('correct');
+                feedback.textContent = '✓ Correct! Great job!';
+                feedback.classList.add('show', 'correct');
+            } else {
+                button.classList.add('incorrect');
+                feedback.textContent = '✗ Not quite. Think about what the sermon taught.';
+                feedback.classList.add('show', 'incorrect');
+            }
+        }
+        
+        // Scripture matching
+        function checkMatch(select, correctAnswer) {
+            if (select.value === correctAnswer) {
+                select.style.borderColor = '#27ae60';
+                select.style.background = '#d5f4e6';
+                select.disabled = true;
+            } else if (select.value !== '') {
+                select.style.borderColor = '#e74c3c';
+                setTimeout(() => {
+                    select.style.borderColor = '#bdc3c7';
+                }, 1000);
+            }
+        }
+        
+        // Flip cards
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+        
+        // Copy responses
+        function copyResponses() {
+            let text = 'MY RESPONSES - Session 3: Our Great High Priest\n\n';
+            
+            text += '=== FILL IN THE BLANKS ===\n';
+            document.querySelectorAll('.fill-blank').forEach((input, i) => {
+                text += `${i + 1}. ${input.value || '(not answered)'}\n`;
+            });
+            
+            text += '\n=== PERSONAL REFLECTIONS ===\n';
+            const reflections = [
+                document.getElementById('reflection1').value,
+                document.getElementById('reflection2').value,
+                document.getElementById('reflection3').value
+            ];
+            
+            reflections.forEach((reflection, i) => {
+                text += `\nQuestion ${i + 1}:\n${reflection || '(not answered)'}\n`;
+            });
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const feedback = document.getElementById('copy-feedback');
+                feedback.textContent = '✓ Copied to clipboard!';
+                feedback.classList.add('show', 'correct');
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>

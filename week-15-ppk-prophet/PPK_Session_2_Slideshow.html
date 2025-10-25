@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 2: Jesus the Prophet - Slideshow (Updated)</title>
+    <style>
+        /* Reset and base */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f1724;
+            color: white;
+            overflow: hidden; /* keep presentation feel */
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
+
+        /* Container */
+        .slide-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: env(safe-area-inset-top,40px) 40px env(safe-area-inset-bottom,120px);
+            margin: 0 auto;
+        }
+
+        /* Individual slide */
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex: 1 1 auto;
+            animation: fadeIn 0.45s ease-in;
+            padding: 10px;
+            gap: 20px;
+        }
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scalable type using clamp for better mobile fit */
+        h1 {
+            font-size: clamp(28px, 4.5vw, 48px);
+            margin-bottom: 18px;
+            color: #00d4ff;
+            text-shadow: 0 0 12px rgba(0,212,255,0.35);
+        }
+        h2 {
+            font-size: clamp(22px, 4vw, 42px);
+            margin-bottom: 14px;
+            color: #ffd700;
+            text-shadow: 0 0 12px rgba(255,215,0,0.35);
+        }
+        .subtitle {
+            font-size: clamp(16px, 3.2vw, 36px);
+            color: #a8dadc;
+            margin-bottom: 12px;
+        }
+
+        .video-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: clamp(10px,2.5vw,25px) clamp(18px,5vw,60px);
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: clamp(16px,3.6vw,32px);
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.35);
+            transition: transform .25s ease, box-shadow .25s ease;
+            display: inline-block;
+        }
+        .video-button:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(102,126,234,0.45); }
+
+        .pause-instruction {
+            background: rgba(231,76,60,0.12);
+            border: 2px solid rgba(231,76,60,0.8);
+            border-radius: 14px;
+            padding: clamp(10px,2.5vw,30px);
+            font-size: clamp(16px,3.2vw,36px);
+            color: #e74c3c;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .timestamp {
+            color: #00d4ff;
+            font-size: clamp(18px,3.6vw,42px);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0,212,255,0.45);
+        }
+        .question, .overview-question {
+            font-size: clamp(14px,2.8vw,34px);
+            line-height: 1.5;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: clamp(12px,2.5vw,30px);
+            background: rgba(255,255,255,0.06);
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            text-align: left;
+        }
+
+        .highlight-sentence {
+            font-size: clamp(16px,3.2vw,38px);
+            line-height: 1.5;
+            max-width: 1000px;
+            padding: clamp(12px,2.5vw,40px);
+            background: linear-gradient(135deg, rgba(255,215,0,0.12), rgba(255,107,107,0.08));
+            border-radius: 12px;
+            border: 2px solid rgba(255,215,0,0.18);
+            font-weight: 600;
+            font-style: italic;
+            color: #ffd700;
+        }
+
+        .main-point {
+            font-size: clamp(14px,2.6vw,30px);
+            line-height: 1.45;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: clamp(10px,2.2vw,30px);
+            background: rgba(255,255,255,0.05);
+            border-left: 6px solid #00d4ff;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .main-point strong {
+            color: #ffd700;
+            display: block;
+            margin-bottom: 10px;
+            font-size: clamp(16px,3vw,34px);
+        }
+
+        /* Navigation and slide counter */
+        .navigation {
+            position: fixed;
+            bottom: env(safe-area-inset-bottom,30px);
+            right: 30px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+        .nav-button {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: clamp(12px,2.6vw,22px);
+            cursor: pointer;
+            transition: transform .15s ease, background .15s ease;
+            backdrop-filter: blur(6px);
+        }
+        .nav-button:hover { transform: scale(1.03); background: rgba(255,255,255,0.12); }
+
+        .slide-counter {
+            position: fixed;
+            bottom: env(safe-area-inset-bottom,30px);
+            left: 30px;
+            font-size: clamp(12px,2.4vw,20px);
+            color: rgba(255,255,255,0.8);
+            z-index: 1000;
+        }
+
+        /* Small screens adjustments */
+        @media (max-width: 700px) {
+            .slide-container { padding: 18px 18px 100px; }
+            .question, .main-point, .overview-question { text-align: left; }
+        }
+
+        /* Make slides keyboard-focusable for accessibility */
+        .slide:focus { outline: none; box-shadow: 0 0 0 3px rgba(0,212,255,0.12); }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- SLIDE 1: Title & Video Button -->
+        <div class="slide active" tabindex="0">
+            <h1>Prophet Priest King (2 of 5)</h1>
+            <div class="subtitle">Jesus the Prophet</div>
+            <a href="https://www.youtube.com/live/XdwzssPVXlc?si=w5vErwsAfT9HnRY1&t=2666" class="video-button" target="_blank" rel="noopener">
+                ▶ WATCH VIDEO
+            </a>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" tabindex="0">
+            <div class="pause-instruction">PAUSE VIDEO</div>
+            <div class="timestamp">[52:17]</div>
+            <div class="question">
+                What went through your mind when you heard that Jesus was acting as a prophet even before his incarnation - speaking to Adam and Eve in the garden, calling Abraham, wrestling with Jacob?
+            </div>
+            <div class="next-pause" style="margin-top:12px; font-size:clamp(12px,2.2vw,20px); color:#ffd700; font-style:italic;">Next pause at: 1:13:42</div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" tabindex="0">
+            <div class="pause-instruction">PAUSE VIDEO</div>
+            <div class="timestamp">[1:13:42]</div>
+            <div class="question">
+                Have you ever experienced a time when something you'd read in the Bible many times suddenly 'clicked' for you in a new way?
+            </div>
+            <div class="next-pause" style="margin-top:12px; font-size:clamp(12px,2.2vw,20px); color:#ffd700; font-style:italic;">Next pause at: 1:26:04</div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" tabindex="0">
+            <div class="pause-instruction">PAUSE VIDEO</div>
+            <div class="timestamp">[1:26:04]</div>
+            <div class="question">
+                Why do you think God chooses to work gradually through trials rather than instantly removing our struggles?
+            </div>
+            <div class="next-pause" style="margin-top:12px; font-size:clamp(12px,2.2vw,20px); color:#ffd700; font-style:italic;">Resume video for conclusion</div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" tabindex="0">
+            <h2>Key Truth</h2>
+            <div class="highlight-sentence">
+                Jesus is not only the ultimate prophet who speaks God's truth - He IS the Living Truth who opens our blind eyes to understand and delight in Him.
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" tabindex="0">
+            <h2>Main Points</h2>
+            <div class="subtitle">8 Key Truths from This Message</div>
+        </div>
+
+        <!-- INDIVIDUAL MAIN POINT SLIDES (one per slide) -->
+        <div class="slide" tabindex="0">
+            <div class="main-point">
+                <strong>1. What is a prophet?</strong>
+                A prophet is God's spokesman who communicates divine revelation - not just foretelling the future, but speaking God's authoritative truth to His people.
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <div class="main-point">
+                <strong>2. Jesus is a prophet</strong>
+                As the Son of God, Jesus has always been THE Prophet - speaking and revealing God's will from creation through the incarnation and continuing today.
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <div class="main-point">
+                <strong>3. Jesus is a prophet like Moses</strong>
+                Both were endangered as babies, tested in the desert, covenant mediators, brought God's Word, performed miracles, and delivered God's people - but Jesus is infinitely superior.
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <div class="main-point">
+                <strong>4. Jesus is the unique prophet</strong>
+                Unlike other prophets who only communicated God's content, Jesus originates content as God - He IS the Living Word, the Truth itself, and the One who determines the future.
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <div class="main-point">
+                <strong>5. We need Jesus to open our minds</strong>
+                Even after three years with Jesus, the disciples couldn't understand Scripture until Jesus "opened" (dianoigo) their minds - like removing cataracts that we can't remove ourselves.
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <div class="main-point">
+                <strong>6. Jesus brings illumination through understanding</strong>
+                He assembles the puzzle pieces of Scripture so we can "get it" - connecting content we knew externally into internal understanding that transforms us.
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <div class="main-point">
+                <strong>7. Three signs Jesus is opening your heart</strong>
+                Freshness: Scripture never gets old; familiar passages suddenly reveal new truth. Delight: The Word produces joy in obedience, not just duty. Authority: God's truth produces power for actual change and transformation.
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <div class="main-point">
+                <strong>8. Jesus continues this prophetic work today</strong>
+                Through the Holy Spirit and the preaching of His Word, Jesus still actively opens minds, defeats strongholds, and reveals Himself so we can be saved and grow.
+            </div>
+        </div>
+
+        <!-- Discussion / Overview slides -->
+        <div class="slide" tabindex="0">
+            <h2>Discussion Questions</h2>
+            <div class="subtitle">After Video - Reflect Together</div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <h2>Question 1</h2>
+            <div class="overview-question">
+                Jesus Christ is Prophet, Priest and King. How does scripture reveal Jesus as the ultimate Prophet? How does he still function in the office of a prophet today in our lives?
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <h2>Question 2</h2>
+            <div class="overview-question">
+                The disciples listened to Jesus for three years, yet still needed him to 'open their minds' to the Scriptures after his resurrection. Why do we need this same divine help to understand God's Word, and how have you experienced that need recently?
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <h2>Question 3</h2>
+            <div class="overview-question">
+                Can you describe the time in your life when the spiritual cataracts first fell off your eyes? What was that like?
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <h2>Question 4</h2>
+            <div class="overview-question">
+                The sermon describes three signs that Jesus is opening your heart: freshness, delight, and authority. Which of these three do you see most in your life right now? Which one feels like it's missing?
+            </div>
+        </div>
+
+        <div class="slide" tabindex="0">
+            <h2>Question 5</h2>
+            <div class="overview-question">
+                What's one small step you could take this week to invite Jesus the Prophet to speak more clearly into your life?
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation" aria-hidden="false">
+        <button class="nav-button" onclick="previousSlide()" aria-label="Previous slide">◀</button>
+        <button class="nav-button" onclick="nextSlide()" aria-label="Next slide">▶</button>
+    </div>
+
+    <div class="slide-counter" aria-live="polite">
+        <span id="current-slide">1</span> / <span id="total-slides">1</span>
+    </div>
+
+    <script>
+        // Slide JS - dynamically reads slides so total updates automatically
+        let currentSlide = 0;
+        const slides = Array.from(document.querySelectorAll('.slide'));
+        const totalSlides = slides.length;
+        const currentSlideEl = document.getElementById('current-slide');
+        const totalSlidesEl = document.getElementById('total-slides');
+
+        totalSlidesEl.textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            currentSlideEl.textContent = currentSlide + 1;
+            // ensure focus for keyboard users / mobile screen readers
+            slides[currentSlide].focus();
+        }
+
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function previousSlide() { showSlide(currentSlide - 1); }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                event.preventDefault();
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Touch navigation for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        document.addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        }, {passive:true});
+        document.addEventListener('touchend', function(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive:true});
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 40) nextSlide();
+            if (touchEndX > touchStartX + 40) previousSlide();
+        }
+
+        // Improve accessibility: allow tapping anywhere to advance on narrow screens
+        document.querySelectorAll('.slide').forEach(s => {
+            s.addEventListener('click', function(e) {
+                // prevent clicks that target links or interactive controls
+                if (e.target.closest('a, button, input')) return;
+                nextSlide();
+            });
+        });
+
+        // ensure first slide is focused on load
+        slides[0].focus();
+    </script>
+</body>
+</html>
