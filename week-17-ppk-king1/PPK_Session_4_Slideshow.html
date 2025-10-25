@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Session 4: Jesus the King (Part 1) - Slideshow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #1a1a2e;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5vh 8vw;
+            color: white;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        
+        /* Title Slide */
+        .slide-title {
+            background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%);
+        }
+        
+        .slide-title h1 {
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 800;
+            margin-bottom: 2vh;
+            line-height: 1.2;
+        }
+        
+        .slide-title .session-number {
+            font-size: clamp(22px, 4vw, 32px);
+            opacity: 0.9;
+            margin-bottom: 4vh;
+        }
+        
+        .slide-title .subtitle {
+            font-size: clamp(32px, 6vw, 54px);
+            font-weight: 700;
+            margin-top: 2vh;
+        }
+        
+        /* Explanation Slide */
+        .slide-explanation {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+        
+        .slide-explanation h2 {
+            font-size: clamp(28px, 5vw, 42px);
+            margin-bottom: 3vh;
+            font-weight: 700;
+        }
+        
+        .slide-explanation p {
+            font-size: clamp(22px, 4vw, 32px);
+            line-height: 1.6;
+            max-width: 90%;
+            margin: 1.5vh auto;
+        }
+        
+        /* Question Slides */
+        .slide-question {
+            background: linear-gradient(135deg, #16a085 0%, #27ae60 100%);
+        }
+        
+        .slide-question .pause-label {
+            font-size: clamp(20px, 3.5vw, 28px);
+            font-weight: 700;
+            background: rgba(255,255,255,0.2);
+            padding: 1.5vh 4vw;
+            border-radius: 50px;
+            margin-bottom: 3vh;
+        }
+        
+        .slide-question .question-text {
+            font-size: clamp(26px, 5vw, 42px);
+            line-height: 1.5;
+            font-weight: 600;
+            max-width: 90%;
+        }
+        
+        .slide-question .next-pause {
+            font-size: clamp(18px, 3vw, 24px);
+            margin-top: 4vh;
+            opacity: 0.85;
+            font-weight: 600;
+        }
+        
+        /* Overview Question Slides */
+        .slide-overview {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+        }
+        
+        .slide-overview .label {
+            font-size: clamp(22px, 4vw, 32px);
+            font-weight: 700;
+            margin-bottom: 3vh;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .slide-overview .question-text {
+            font-size: clamp(24px, 4.5vw, 38px);
+            line-height: 1.5;
+            font-weight: 600;
+            max-width: 90%;
+        }
+        
+        /* Highlight Slide */
+        .slide-highlight {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+        }
+        
+        .slide-highlight .content {
+            font-size: clamp(28px, 5.5vw, 48px);
+            line-height: 1.6;
+            font-weight: 700;
+            font-style: italic;
+            max-width: 90%;
+        }
+        
+        /* Main Point Slides */
+        .slide-point {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+        }
+        
+        .slide-point .point-number {
+            font-size: clamp(48px, 10vw, 96px);
+            font-weight: 900;
+            margin-bottom: 3vh;
+            background: rgba(255,255,255,0.2);
+            width: clamp(80px, 15vw, 140px);
+            height: clamp(80px, 15vw, 140px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide-point .point-text {
+            font-size: clamp(24px, 4.5vw, 38px);
+            line-height: 1.5;
+            font-weight: 600;
+            max-width: 90%;
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            position: fixed;
+            bottom: 4vh;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-btn:active {
+            transform: scale(0.95);
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        /* Slide Counter */
+        .slide-counter {
+            position: fixed;
+            top: 2vh;
+            right: 3vw;
+            background: rgba(0,0,0,0.5);
+            padding: 1vh 2vw;
+            border-radius: 20px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-weight: 600;
+            z-index: 1000;
+        }
+        
+        /* Touch indicator */
+        .touch-indicator {
+            position: fixed;
+            bottom: 12vh;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(14px, 2.5vw, 18px);
+            opacity: 0.7;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 4vh 6vw;
+            }
+            
+            .nav-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (orientation: landscape) and (max-height: 600px) {
+            .slide {
+                padding: 3vh 8vw;
+            }
+            
+            .slide-title h1 {
+                font-size: clamp(28px, 6vw, 48px);
+            }
+            
+            .slide-question .question-text,
+            .slide-overview .question-text {
+                font-size: clamp(20px, 4vw, 32px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">19</span>
+        </div>
+        
+        <!-- Slide 1: Title -->
+        <div class="slide slide-title active">
+            <h1>PROPHET, PRIEST, KING</h1>
+            <div class="session-number">Session 4 of 5</div>
+            <div class="subtitle">JESUS THE KING (PART 1)</div>
+        </div>
+        
+        <!-- Slide 2: Explanation -->
+        <div class="slide slide-explanation">
+            <h2>A NOTE ABOUT THIS SESSION</h2>
+            <p>We're combining portions of two related messages to give you a complete picture of Jesus as our King.</p>
+            <p>The video will pause a few times as we switch between segments, but don't worry—it's all one continuous teaching that builds on itself.</p>
+            <p>Thank you for your patience as we navigate these transitions together!</p>
+        </div>
+        
+        <!-- Slide 3: Segment Question 1 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:02:00</div>
+            <div class="question-text">
+                What went through your mind when you heard that some people use morality and religion to avoid truly depending on Jesus as King?
+            </div>
+            <div class="next-pause">Next pause at 1:19:15</div>
+        </div>
+        
+        <!-- Slide 4: Segment Question 2 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:19:15</div>
+            <div class="question-text">
+                What stands out to you most about the idea that Jesus had to go to the cross before ascending the throne—that our greatest problem is sin, not our circumstances?
+            </div>
+            <div class="next-pause">Next pause at 1:05:58</div>
+        </div>
+        
+        <!-- Slide 5: Segment Question 3 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:05:58</div>
+            <div class="question-text">
+                Have you ever found yourself wanting what Jesus can do for you more than wanting Jesus himself? What does that look like in everyday life?
+            </div>
+            <div class="next-pause">Next pause at 1:36:22</div>
+        </div>
+        
+        <!-- Slide 6: Segment Question 4 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:36:22</div>
+            <div class="question-text">
+                Which of the four ways to come before King Jesus (obey, trust, love, expect) feels most challenging for you right now, and why?
+            </div>
+            <div class="next-pause">Discussion after video ends</div>
+        </div>
+        
+        <!-- Slide 7: Overview Question 1 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                The message talked about how we all have "false kings" in our lives—good things we've made into ultimate things (like success, approval, security, or even family). What false king might be competing with Jesus for control of your heart right now?
+            </div>
+        </div>
+        
+        <!-- Slide 8: Overview Question 2 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                When you think about Jesus as King rather than just Savior or Friend, how does that change the way you approach him in prayer or make decisions?
+            </div>
+        </div>
+        
+        <!-- Slide 9: Overview Question 3 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                The sermon said that taking Jesus' yoke leads to freedom, like how piano practice feels restrictive at first but eventually leads to the freedom to play beautiful music. What's something in your life where submitting to God's way has led to more freedom than you expected?
+            </div>
+        </div>
+        
+        <!-- Slide 10: Overview Question 4 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                Jesus calls us to surrender everything and "lose our life" to find it. What's one area of your life that you've been holding back from his kingship, and what would it look like to surrender that to him this week?
+            </div>
+        </div>
+        
+        <!-- Slide 11: Highlight Sentence -->
+        <div class="slide slide-highlight">
+            <div class="content">
+                Jesus is the eternal King—both fully human and fully divine—who conquered sin and death through the cross, and now calls us to willing submission under his gracious rule, where we find true freedom, refuge, and blessing.
+            </div>
+        </div>
+        
+        <!-- Slide 12: Main Point 1 -->
+        <div class="slide slide-point">
+            <div class="point-number">1</div>
+            <div class="point-text">
+                We were designed to live under a King—the one true and eternal King who rules over all kings and authorities, fulfilling humanity's deep longing for benevolent rule that began in Eden.
+            </div>
+        </div>
+        
+        <!-- Slide 13: Main Point 2 -->
+        <div class="slide slide-point">
+            <div class="point-number">2</div>
+            <div class="point-text">
+                Jesus is the King above all kings, not merely replacing earthly rulers but sovereign over them, and our hearts are made to be ruled by him rather than ruling ourselves.
+            </div>
+        </div>
+        
+        <!-- Slide 14: Main Point 3 -->
+        <div class="slide slide-point">
+            <div class="point-number">3</div>
+            <div class="point-text">
+                The natural inclination of every human heart is rebellion—we want to throw off God's yoke and be our own sovereign, refusing to acknowledge that God is our Creator and Owner who has absolute rights over us.
+            </div>
+        </div>
+        
+        <!-- Slide 15: Main Point 4 -->
+        <div class="slide slide-point">
+            <div class="point-number">4</div>
+            <div class="point-text">
+                Rebellion against God takes many forms: some openly defy him, others domesticate him into a manageable "president," and still others use morality and religion to avoid true dependence on King Jesus.
+            </div>
+        </div>
+        
+        <!-- Slide 16: Main Point 5 -->
+        <div class="slide slide-point">
+            <div class="point-number">5</div>
+            <div class="point-text">
+                People often want the Messiah's benefits without his Lordship—they desire what a king can do for them without surrendering control to him as their sovereign King.
+            </div>
+        </div>
+        
+        <!-- Slide 17: Main Point 6 -->
+        <div class="slide slide-point">
+            <div class="point-number">6</div>
+            <div class="point-text">
+                Jesus' first coming required the cross before the throne—he came to deliver us from our greatest problem (sin and its guilt) rather than our temporal problems, because only the cross could satisfy God's justice.
+            </div>
+        </div>
+        
+        <!-- Slide 18: Main Point 7 -->
+        <div class="slide slide-point">
+            <div class="point-number">7</div>
+            <div class="point-text">
+                Jesus is both King and Priest—as King he has absolute authority over us, but as Priest in the order of Melchizedek, he offers grace and mercy when we fail to honor his kingship.
+            </div>
+        </div>
+        
+        <!-- Slide 19: Main Point 8 -->
+        <div class="slide slide-point">
+            <div class="point-number">8</div>
+            <div class="point-text">
+                We submit to King Jesus through four practices: obeying his commands from the heart, trusting his ordering of our lives even when we don't understand, loving him for who he is rather than what he provides, and expecting great things from a great King.
+            </div>
+        </div>
+        
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">←</button>
+            <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">→</button>
+        </div>
+        
+        <div class="touch-indicator">
+            Swipe or tap arrows to navigate
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentSlideSpan = document.getElementById('current-slide');
+        
+        function showSlide(n) {
+            if (n >= totalSlides) {
+                currentSlide = totalSlides - 1;
+            } else if (n < 0) {
+                currentSlide = 0;
+            } else {
+                currentSlide = n;
+            }
+            
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            
+            currentSlideSpan.textContent = currentSlide + 1;
+            
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Home') showSlide(0);
+            if (e.key === 'End') showSlide(totalSlides - 1);
+        });
+        
+        // Touch/swipe navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                changeSlide(1); // Swipe left
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                changeSlide(-1); // Swipe right
+            }
+        }
+        
+        // Initialize
+        showSlide(0);
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        // Hide touch indicator after a few seconds
+        setTimeout(() => {
+            document.querySelector('.touch-indicator').style.opacity = '0';
+        }, 5000);
+    </script>
+</body>
+</html>

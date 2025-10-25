@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 4: Jesus the King (Part 1) - Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #c0392b;
+            text-align: center;
+            font-size: clamp(28px, 5vw, 36px);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: clamp(16px, 3vw, 20px);
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: clamp(16px, 3vw, 20px);
+            text-align: center;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #c0392b;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            font-size: clamp(22px, 4vw, 28px);
+            margin-bottom: 20px;
+        }
+        
+        .question {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .question-label {
+            font-weight: 700;
+            color: #34495e;
+            margin-bottom: 15px;
+            font-size: clamp(18px, 3.5vw, 22px);
+        }
+        
+        /* Fill in the blanks */
+        .fill-blank {
+            display: inline-block;
+            min-width: 150px;
+            padding: 8px 15px;
+            border: 2px solid #c0392b;
+            border-radius: 5px;
+            background: #fff;
+            font-size: clamp(16px, 3vw, 20px);
+            margin: 0 5px;
+        }
+        
+        .fill-blank:focus {
+            outline: none;
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
+        }
+        
+        .fill-blank.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+        
+        .hint-btn {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 8px 15px;
+            background: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(14px, 2.5vw, 16px);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .hint-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .hint-text {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff3cd;
+            border-radius: 5px;
+            font-size: clamp(14px, 2.5vw, 18px);
+        }
+        
+        /* True/False */
+        .tf-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .tf-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px 25px;
+            border: 3px solid #95a5a6;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: clamp(18px, 3.5vw, 22px);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .tf-btn:active {
+            transform: scale(0.97);
+        }
+        
+        .tf-btn.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+        
+        .tf-btn.incorrect {
+            border-color: #e74c3c;
+            background: #fadbd8;
+            color: #e74c3c;
+        }
+        
+        /* Text Areas */
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #c0392b;
+            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
+        }
+        
+        /* Copy Button */
+        .copy-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: clamp(16px, 3vw, 18px);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #2980b9;
+        }
+        
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .copy-feedback {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: #d5f4e6;
+            color: #27ae60;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Interactive Cards */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .flip-card {
+            perspective: 1000px;
+            height: 150px;
+            cursor: pointer;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            font-size: clamp(16px, 3vw, 18px);
+            font-weight: 600;
+        }
+        
+        .flip-card-front {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+        }
+        
+        .flip-card-back {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .question {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JESUS THE KING (PART 1)</h1>
+        <div class="subtitle">Session 4 Interactive Worksheet</div>
+        
+        <div class="intro">
+            <strong>📝 This is for learning, not testing!</strong><br>
+            Take your time exploring these concepts from the sermon. Expected completion: 8-12 minutes.
+        </div>
+        
+        <!-- Section 1: Fill in the Blanks -->
+        <div class="section">
+            <h2>Fill in the Blanks</h2>
+            
+            <div class="question">
+                <div class="question-label">1. Complete this key truth:</div>
+                <p>We were <input type="text" class="fill-blank" id="blank1" data-answer="designed"> to live under a King—the one true and <input type="text" class="fill-blank" id="blank2" data-answer="eternal"> King who rules over all kings and authorities.</p>
+                <button class="hint-btn" onclick="showHint('hint1', 'blank1', 'blank2')">Need a hint?</button>
+                <div class="hint-text" id="hint1"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. About rebellion:</div>
+                <p>The natural inclination of every human heart is <input type="text" class="fill-blank" id="blank3" data-answer="rebellion">. We want to throw off God's yoke and be our own <input type="text" class="fill-blank" id="blank4" data-answer="sovereign">, refusing to acknowledge that God is our Creator and Owner.</p>
+                <button class="hint-btn" onclick="showHint('hint2', 'blank3', 'blank4')">Need a hint?</button>
+                <div class="hint-text" id="hint2"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. About Jesus' mission:</div>
+                <p>Jesus' first coming required the <input type="text" class="fill-blank" id="blank5" data-answer="cross"> before the throne. He came to deliver us from our greatest problem—<input type="text" class="fill-blank" id="blank6" data-answer="sin">—because only the cross could satisfy God's justice.</p>
+                <button class="hint-btn" onclick="showHint('hint3', 'blank5', 'blank6')">Need a hint?</button>
+                <div class="hint-text" id="hint3"></div>
+            </div>
+        </div>
+        
+        <!-- Section 2: True or False -->
+        <div class="section">
+            <h2>True or False?</h2>
+            
+            <div class="question">
+                <div class="question-label">1. Freedom is the lack of having a master or king.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="checkTF(this, false)">TRUE</button>
+                    <button class="tf-btn" onclick="checkTF(this, true)">FALSE</button>
+                </div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. The Israelites wanted Jesus as a political king who would free them from Roman rule.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="checkTF(this, true)">TRUE</button>
+                    <button class="tf-btn" onclick="checkTF(this, false)">FALSE</button>
+                </div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. People can only rebel against God through obvious sin like disobedience and immorality.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="checkTF(this, false)">TRUE</button>
+                    <button class="tf-btn" onclick="checkTF(this, true)">FALSE</button>
+                </div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">4. Jesus is both our King (with authority) and our Priest (offering grace when we fail).</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="checkTF(this, true)">TRUE</button>
+                    <button class="tf-btn" onclick="checkTF(this, false)">FALSE</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Learning Cards -->
+        <div class="section">
+            <h2>Four Ways to Come Before King Jesus</h2>
+            <p style="margin-bottom: 15px; font-size: clamp(16px, 3vw, 18px);">Tap each card to reveal what it means:</p>
+            
+            <div class="card-container">
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            OBEY HIM
+                        </div>
+                        <div class="flip-card-back">
+                            Do the King's commands from the heart, with an internal desire to do God's will
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            TRUST HIM
+                        </div>
+                        <div class="flip-card-back">
+                            Submit to God's ordering even when we don't understand, with committed confidence
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            LOVE HIM
+                        </div>
+                        <div class="flip-card-back">
+                            Love Christ for who He is, not just for the benefits He brings
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            EXPECT FROM HIM
+                        </div>
+                        <div class="flip-card-back">
+                            Come with large petitions before a great King with vast resources
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Personal Reflection -->
+        <div class="section">
+            <h2>Personal Reflection</h2>
+            
+            <div class="question">
+                <div class="question-label">1. What "false king" (a good thing you've made into an ultimate thing) might be competing with Jesus in your heart right now?</div>
+                <textarea id="reflection1" placeholder="Type your thoughts here..."></textarea>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. Of the four ways to come before King Jesus (obey, trust, love, expect), which one feels most challenging for you right now, and why?</div>
+                <textarea id="reflection2" placeholder="Type your thoughts here..."></textarea>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. What's one specific way you could submit to Jesus as King this week?</div>
+                <textarea id="reflection3" placeholder="Type your thoughts here..."></textarea>
+            </div>
+            
+            <button class="copy-btn" onclick="copyAllResponses()">📋 Copy All My Responses</button>
+            <div class="copy-feedback" id="copyFeedback">✓ Copied to clipboard!</div>
+        </div>
+        
+        <div class="intro" style="margin-top: 30px;">
+            Great work! Remember: This is about growing in your relationship with King Jesus, not about getting perfect answers. Take what you've learned and live it out this week.
+        </div>
+    </div>
+    
+    <script>
+        // Hint system
+        let hintClicks = {};
+        
+        function showHint(hintId, ...blankIds) {
+            const hintElement = document.getElementById(hintId);
+            
+            if (!hintClicks[hintId]) {
+                hintClicks[hintId] = 0;
+            }
+            hintClicks[hintId]++;
+            
+            if (hintClicks[hintId] === 1) {
+                // First click: show first 3 letters
+                const hints = blankIds.map(id => {
+                    const input = document.getElementById(id);
+                    const answer = input.getAttribute('data-answer');
+                    return answer.substring(0, 3) + '...';
+                });
+                hintElement.textContent = `Hint: ${hints.join(', ')}`;
+                hintElement.style.display = 'block';
+            } else {
+                // Second click: show full answer
+                const answers = blankIds.map(id => {
+                    const input = document.getElementById(id);
+                    return input.getAttribute('data-answer');
+                });
+                hintElement.textContent = `Answer: ${answers.join(', ')}`;
+            }
+        }
+        
+        // Check fill-in-the-blank answers
+        document.querySelectorAll('.fill-blank').forEach(input => {
+            input.addEventListener('input', function() {
+                const answer = this.getAttribute('data-answer').toLowerCase();
+                const userAnswer = this.value.trim().toLowerCase();
+                
+                if (userAnswer === answer) {
+                    this.classList.add('correct');
+                } else {
+                    this.classList.remove('correct');
+                }
+            });
+        });
+        
+        // True/False checking
+        function checkTF(button, isCorrect) {
+            const buttons = button.parentElement.querySelectorAll('.tf-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('correct', 'incorrect');
+                btn.style.pointerEvents = 'none';
+            });
+            
+            if (isCorrect) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('incorrect');
+            }
+            
+            setTimeout(() => {
+                buttons.forEach(btn => btn.style.pointerEvents = 'auto');
+            }, 1500);
+        }
+        
+        // Copy all responses
+        function copyAllResponses() {
+            const responses = [];
+            responses.push('SESSION 4: JESUS THE KING - MY REFLECTIONS\n');
+            responses.push('='.repeat(50) + '\n\n');
+            
+            const reflection1 = document.getElementById('reflection1').value;
+            const reflection2 = document.getElementById('reflection2').value;
+            const reflection3 = document.getElementById('reflection3').value;
+            
+            if (reflection1) {
+                responses.push('1. False kings in my life:\n' + reflection1 + '\n\n');
+            }
+            if (reflection2) {
+                responses.push('2. Most challenging practice:\n' + reflection2 + '\n\n');
+            }
+            if (reflection3) {
+                responses.push('3. This week I will:\n' + reflection3 + '\n\n');
+            }
+            
+            const text = responses.join('');
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const feedback = document.getElementById('copyFeedback');
+                feedback.style.display = 'block';
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Week 17 — YouTube Snippets Player</title>
+  <title>Week 18 — YouTube Snippets Player</title>
   <style>
     :root{
       --bg:#f7fbff; --card:#fff; --accent:#0ea5e9; --muted:#475569; --radius:12px; --text:#0f172a;
@@ -12,7 +12,6 @@
     body{
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
       background:var(--bg); color:var(--text); padding:18px; box-sizing:border-box;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
     .wrap{max-width:980px;margin:0 auto;}
     header{text-align:center;margin-bottom:12px;}
@@ -36,8 +35,8 @@
 <body>
   <div class="wrap">
     <header>
-      <h1>Week 17 — YouTube Snippets</h1>
-      <p class="sub">Three clipped segments. Press <strong>Play All</strong> to run them in sequence. Use the little buttons to jump to a clip.</p>
+      <h1>Week 18 — YouTube Snippets</h1>
+      <p class="sub">Four clipped segments (auto-advance). Press <strong>Play All</strong> to run them in sequence or jump to any clip.</p>
     </header>
 
     <div class="player-box" role="region" aria-label="YouTube snippets player">
@@ -57,41 +56,44 @@
     </div>
 
     <footer>
-      <a href="index.html" style="color:inherit;text-decoration:none;">◀ Back to Week 17 index</a>
-      <div style="margin-top:6px;color:var(--muted);font-size:12px;">If a clip shows a YouTube embed error, that clip may be private/unembeddable — in that case upload an unlisted copy or use a different source.</div>
+      <a href="index.html" style="color:inherit;text-decoration:none;">◀ Back to Week 18 index</a>
+      <div style="margin-top:6px;color:var(--muted);font-size:12px;">If a clip errors on the live page, the uploader may have disabled embedding — in that case use an unlisted upload or a different source.</div>
     </footer>
   </div>
 
   <script>
-/* ========== EDIT THESE CLIPS IF NEEDED ========== */
+/* ========== CLIP CONFIG ========== */
 const clips = [
-  // Clip 1: live/jjXk-ucpg7k 47:34 → 1:19:15  (2854 → 4755)
-  { id: 'jjXk-ucpg7k', title: 'Clip 1', start: 2854, end: 4755 },
+  // Clip 1: bU2-E0TIDx4 58:58 → 1:22:20  (3538 → 4940)
+  { id: 'bU2-E0TIDx4', title: 'Clip 1', start: 3538, end: 4940 },
 
-  // Clip 2: PEj2Jv1tXxk 57:07 → 1:05:58 (3427 → 3958)
-  { id: 'PEj2Jv1tXxk', title: 'Clip 2', start: 3427, end: 3958 },
+  // Clip 2: PEj2Jv1tXxk 1:05:59 → 1:14:22 (3959 → 4462)
+  { id: 'PEj2Jv1tXxk', title: 'Clip 2', start: 3959, end: 4462 },
 
-  // Clip 3: live/jjXk-ucpg7k 1:19:16 → 1:36:22 (4756 → 5782)
-  { id: 'jjXk-ucpg7k', title: 'Clip 3', start: 4756, end: 5782 }
+  // Clip 3: bU2-E0TIDx4 1:22:20 → 1:38:39 (4940 → 5919)
+  { id: 'bU2-E0TIDx4', title: 'Clip 3', start: 4940, end: 5919 },
+
+  // Clip 4: PEj2Jv1tXxk 1:16:37 → 1:31:16 (4597 → 5476)
+  { id: 'PEj2Jv1tXxk', title: 'Clip 4', start: 4597, end: 5476 }
 ];
-/* ================================================= */
+/* ================================ */
 
 let player = null;
 let currentIndex = 0;
 let pollTimer = null;
 
 function formatTime(s) {
-  const h = Math.floor(s/3600); s %= 3600;
-  const m = Math.floor(s/60); const sec = s % 60;
-  return (h ? h+':' : '') + String(m).padStart(h?2:1,'0') + ':' + String(sec).padStart(2,'0');
+  const h = Math.floor(s / 3600); s %= 3600;
+  const m = Math.floor(s / 60); const sec = s % 60;
+  return (h ? h + ':' : '') + String(m).padStart(h ? 2 : 1, '0') + ':' + String(sec).padStart(2, '0');
 }
 
 function createUI() {
   const el = document.getElementById('clipList');
-  clips.forEach((c,i) => {
+  clips.forEach((c, i) => {
     const div = document.createElement('div');
     div.className = 'clip';
-    div.id = 'clip-'+i;
+    div.id = 'clip-' + i;
     div.innerHTML = `<div class="meta"><strong>${c.title}</strong><div class="muted-time">${formatTime(c.start)} → ${formatTime(c.end)}</div></div>
                      <div><button data-i="${i}" class="jump">Play</button></div>`;
     el.appendChild(div);
@@ -136,7 +138,6 @@ function playClip(i) {
   highlight();
   const c = clips[i];
   if (!player) return;
-  // loadVideoById with startSeconds and endSeconds
   player.loadVideoById({ videoId: c.id, startSeconds: c.start, endSeconds: c.end, suggestedQuality: 'large' });
   startPoll();
 }
@@ -149,7 +150,6 @@ function startPoll() {
     if (state !== YT.PlayerState.PLAYING) return;
     const t = player.getCurrentTime();
     const c = clips[currentIndex];
-    // advance when at or slightly beyond end
     if (t >= (c.end - 0.35)) {
       playClip(currentIndex + 1);
     }
@@ -169,7 +169,7 @@ function highlight() {
   document.querySelectorAll('.clip').forEach((el, idx) => el.classList.toggle('active', idx === currentIndex));
 }
 
-/* Initialize */
+/* initialize UI */
 createUI();
 </script>
 </body>

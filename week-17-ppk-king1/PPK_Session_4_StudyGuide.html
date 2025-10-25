@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 4: Jesus the King (Part 1) - Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f8f9fa;
+            padding: 20px;
+            max-width: 7in;
+            margin: 0 auto;
+        }
+        
+        .page {
+            background: white;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            min-height: 30 lines;
+        }
+        
+        h1 {
+            color: #c0392b;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 24px;
+            margin: 25px 0 12px 0;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .video-button {
+            display: block;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+            padding: 18px 40px;
+            margin: 30px auto;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            transition: all 0.3s ease;
+            max-width: 400px;
+        }
+        
+        .video-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+        
+        .summary {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+        
+        .highlight {
+            background: #fffbea;
+            border: 3px solid #f39c12;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-size: 26px;
+            font-style: italic;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .main-points {
+            list-style: none;
+            counter-reset: point-counter;
+        }
+        
+        .main-points li {
+            counter-increment: point-counter;
+            margin: 20px 0;
+            padding-left: 45px;
+            position: relative;
+            font-size: 24px;
+        }
+        
+        .main-points li::before {
+            content: counter(point-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #3498db;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .main-points li strong {
+            color: #2c3e50;
+            font-weight: 700;
+        }
+        
+        .segment-questions {
+            background: #f0f9ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .segment-questions h3 {
+            color: #0369a1;
+            margin-top: 0;
+        }
+        
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            font-size: 24px;
+        }
+        
+        .timestamp {
+            display: inline-block;
+            background: #0369a1;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .overview-questions {
+            list-style: none;
+            counter-reset: overview-counter;
+        }
+        
+        .overview-questions li {
+            counter-increment: overview-counter;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #27ae60;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+        
+        .overview-questions li::before {
+            content: counter(overview-counter) ". ";
+            font-weight: 700;
+            color: #27ae60;
+            font-size: 26px;
+        }
+        
+        .verses {
+            background: #fef7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .verse {
+            margin: 10px 0;
+            font-size: 24px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .verse:last-child {
+            border-bottom: none;
+        }
+        
+        .verse strong {
+            color: #8e44ad;
+            font-weight: 600;
+        }
+        
+        .transcript {
+            font-size: 24px;
+            line-height: 1.7;
+        }
+        
+        .transcript-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .transcript-heading {
+            background: #34495e;
+            color: white;
+            padding: 12px 20px;
+            margin: 25px 0 15px 0;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 26px;
+        }
+        
+        .transcript p {
+            margin: 15px 0;
+        }
+        
+        .transcript strong {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .scripture-emphasis {
+            font-style: italic;
+            color: #8e44ad;
+            font-weight: 600;
+        }
+        
+        .key-truth {
+            font-weight: 700;
+            color: #c0392b;
+        }
+        
+        .video-note {
+            background: #fff3e0;
+            border: 2px dashed #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 24px;
+            color: #e65100;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .page {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            h3 {
+                font-size: 22px;
+            }
+            
+            .video-button {
+                font-size: 20px;
+                padding: 15px 30px;
+            }
+            
+            .main-points li,
+            .question,
+            .overview-questions li,
+            .verse,
+            .transcript {
+                font-size: 20px;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .page {
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1 -->
+    <div class="page">
+        <h1>PROPHET, PRIEST, KING</h1>
+        <div class="subtitle">Session 4 of 5</div>
+        <h1>JESUS THE KING (PART 1)</h1>
+        
+        <a href="https://jagsjim.github.io/small_group/week-17-ppk-king1/yt-snippets.html" class="video-button" target="_blank">▶ WATCH VIDEO</a>
+        
+        <div class="note">
+            <strong>Note:</strong> This session combines portions of two related messages to give you a complete picture of Jesus as our King.
+        </div>
+        
+        <h2>Summary</h2>
+        <div class="summary">
+            In this session, we explore Jesus as the King of kings through Psalm 2 and Mark 12. We'll see that humanity was designed to live under the rule of a King—not just any king, but the one true King who is both David's descendant and David's Lord. The natural human response is rebellion against God's authority, yet Jesus came not as a political deliverer but as the divine King who must first go to the cross before ascending to the throne. His kingship isn't optional—either we submit to him and find blessed refuge, or we face destruction. Taking his yoke leads to true freedom, and we respond by obeying, trusting, loving, and expecting great things from our King.
+        </div>
+        
+        <h2>Highlight Sentence</h2>
+        <div class="highlight">
+            Jesus is the eternal King—both fully human and fully divine—who conquered sin and death through the cross, and now calls us to willing submission under his gracious rule, where we find true freedom, refuge, and blessing.
+        </div>
+        
+        <h2>Main Points</h2>
+        <ul class="main-points">
+            <li>We were designed to live under a King—the one true and eternal King who rules over all kings and authorities, fulfilling humanity's deep longing for benevolent rule that began in Eden.</li>
+            
+            <li>Jesus is the King above all kings, not merely replacing earthly rulers but sovereign over them, and our hearts are made to be ruled by him rather than ruling ourselves.</li>
+            
+            <li>The natural inclination of every human heart is rebellion—we want to throw off God's yoke and be our own sovereign, refusing to acknowledge that God is our Creator and Owner who has absolute rights over us.</li>
+            
+            <li>Rebellion against God takes many forms: some openly defy him, others domesticate him into a manageable "president," and still others use morality and religion to avoid true dependence on King Jesus.</li>
+            
+            <li>People often want the Messiah's benefits without his Lordship—they desire what a king can do for them without surrendering control to him as their sovereign King.</li>
+            
+            <li><strong>Jesus' first coming required the cross before the throne—he came to deliver us from our greatest problem (sin and its guilt) rather than our temporal problems, because only the cross could satisfy God's justice.</strong></li>
+            
+            <li>Jesus is both King and Priest—as King he has absolute authority over us, but as Priest in the order of Melchizedek, he offers grace and mercy when we fail to honor his kingship.</li>
+            
+            <li><strong>We submit to King Jesus through four practices: obeying his commands from the heart, trusting his ordering of our lives even when we don't understand, loving him for who he is rather than what he provides, and expecting great things from a great King.</strong></li>
+        </ul>
+        
+        <h2>Segment Discussion Questions</h2>
+        <div class="segment-questions">
+            <h3>Pause the video at these timestamps:</h3>
+            
+            <div class="question">
+                <span class="timestamp">1:02:00</span>
+                What went through your mind when you heard that some people use morality and religion to avoid truly depending on Jesus as King?
+            </div>
+            
+            <div class="question">
+                <span class="timestamp">1:19:15</span>
+                What stands out to you most about the idea that Jesus had to go to the cross before ascending the throne—that our greatest problem is sin, not our circumstances?
+            </div>
+            
+            <div class="question">
+                <span class="timestamp">1:05:58</span>
+                Have you ever found yourself wanting what Jesus can do for you more than wanting Jesus himself? What does that look like in everyday life?
+            </div>
+            
+            <div class="question">
+                <span class="timestamp">1:36:22</span>
+                Which of the four ways to come before King Jesus (obey, trust, love, expect) feels most challenging for you right now, and why?
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px;">&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+    </div>
+    
+    <!-- PAGE 2 -->
+    <div class="page">
+        <h2>Overview Discussion Questions</h2>
+        <ul class="overview-questions">
+            <li>The message talked about how we all have "false kings" in our lives—good things we've made into ultimate things (like success, approval, security, or even family). What false king might be competing with Jesus for control of your heart right now?</li>
+            
+            <li>When you think about Jesus as King rather than just Savior or Friend, how does that change the way you approach him in prayer or make decisions?</li>
+            
+            <li>The sermon said that taking Jesus' yoke leads to freedom, like how piano practice feels restrictive at first but eventually leads to the freedom to play beautiful music. What's something in your life where submitting to God's way has led to more freedom than you expected?</li>
+            
+            <li>Jesus calls us to surrender everything and "lose our life" to find it. What's one area of your life that you've been holding back from his kingship, and what would it look like to surrender that to him this week?</li>
+        </ul>
+        
+        <h2>Bible Verses Quoted</h2>
+        <div class="note" style="background: #e8f5e9; border-left-color: #4caf50;">
+            <strong>In order of appearance:</strong>
+        </div>
+        <div class="verses">
+            <div class="verse"><strong>Psalm 2:1-12</strong> ("Why do the nations conspire... Blessed are all who take refuge in him")</div>
+            <div class="verse"><strong>Luke 24:44</strong> ("Everything must be fulfilled... in the Law, Prophets and Psalms")</div>
+            <div class="verse"><strong>Acts 13:32-33</strong> ("What God promised our ancestors he has fulfilled... by raising up Jesus")</div>
+            <div class="verse"><strong>Matthew 3:17</strong> ("This is my Son, whom I love; with him I am well pleased")</div>
+            <div class="verse"><strong>Matthew 17:5</strong> ("This is my Son... Listen to him!")</div>
+            <div class="verse"><strong>Colossians 1:13</strong> ("He has rescued us from the dominion of darkness")</div>
+            <div class="verse"><strong>Romans 13:1</strong> ("Everyone must submit himself to the governing authorities")</div>
+            <div class="verse"><strong>Matthew 6:33</strong> ("Seek first his kingdom and his righteousness")</div>
+            <div class="verse"><strong>John 8:31</strong> ("It's his truth that sets you free")</div>
+            <div class="verse"><strong>Colossians 1</strong> ("All things were created by him and for him")</div>
+            <div class="verse"><strong>Psalm 24</strong> ("The earth is the Lord's, and everything in it")</div>
+            <div class="verse"><strong>1 Corinthians 6:19-20</strong> ("You are not your own; you were bought at a price")</div>
+            <div class="verse"><strong>Romans 8:7</strong> ("The mind governed by the flesh is hostile to God")</div>
+            <div class="verse"><strong>Mark 12:35-37</strong> ("How is it that the teachers of the law say that the Christ is the son of David?")</div>
+            <div class="verse"><strong>Matthew 16:15-16</strong> ("Who do you say that I am?")</div>
+            <div class="verse"><strong>Psalm 110:1</strong> ("The Lord said to my Lord: 'Sit at my right hand'")</div>
+            <div class="verse"><strong>Matthew 9</strong> ("They move him with compassion")</div>
+            <div class="verse"><strong>Psalm 2:10-12</strong> ("Be wise... Kiss his son, or he will be angry")</div>
+            <div class="verse"><strong>Matthew 11:29-30</strong> ("Take my yoke upon you... and you will find rest")</div>
+            <div class="verse"><strong>Psalm 40:8</strong> ("I desire to do your will, my God")</div>
+            <div class="verse"><strong>Romans 10:9</strong> ("If you declare with your mouth, 'Jesus is Lord'")</div>
+            <div class="verse"><strong>Psalm 110:4</strong> ("You are a priest forever, in the order of Melchizedek")</div>
+            <div class="verse"><strong>Mark 8:35</strong> ("Whoever wants to save his life will lose it")</div>
+        </div>
+    </div>
+    
+    <!-- TRANSCRIPT PAGES -->
+    <div class="page">
+        <h2>Transcript (Annotated Outline)</h2>
+        
+        <div class="transcript">
+            <div class="transcript-heading">00:47:38 — INTRODUCTION: PSALM 2 AS FOUNDATION</div>
+            
+            <div class="transcript-section">
+                <strong>Series Context: Jesus Christ: Prophet, Priest and King</strong>
+                <p>Five weeks ago we began examining the three divinely anointed offices under the Old Covenant. Through the prophet, God spoke to his people. Through the priest, God brought his people to himself. Through the king, God ruled over and protected his people. These offices (Prophet, Priest, King) were a foreshadowing of Jesus Christ, the ultimate Anointed One. He is the ultimate prophet who sets us free with his truth. He is the Great High Priest who brings us into God's presence through his death and resurrection. He is the King of kings who laid down his life for us and rules over us. This morning we turn our attention to Jesus the King in Psalm 2.</p>
+                
+                <strong>Reading of Psalm 2:1-12</strong>
+                <p><span class="scripture-emphasis">"Why do the nations conspire and the peoples plot in vain? The kings of the earth rise up and the rulers band together against the Lord and against his anointed, saying, 'Let us break their chains and throw off their shackles.' The One enthroned in heaven laughs... 'I have installed my king on Zion, my holy mountain.' ... 'You are my son; today I have become your father. Ask me, and I will make the nations your inheritance...' ... 'Kiss the son, or he will be angry and your way will lead to destruction. Blessed are all who take refuge in him.'"</span></p>
+                
+                <p><strong>Blessed are all those who take refuge in him.</strong></p>
+            </div>
+            
+            <div class="transcript-heading">00:49:01 — INTERPRETING PSALM 2: MESSIANIC & TWO HORIZONS</div>
+            
+            <div class="transcript-section">
+                <strong>Understanding Messianic Psalms</strong>
+                <p>This Psalm is Messianic—one of 16 in the book of Psalms. Jesus himself told his disciples on the night of his resurrection: <span class="scripture-emphasis">"This is what I told you while I was still with you: Everything must be fulfilled that is written about me in the Law of Moses, the Prophets and the Psalms" (Luke 24:44)</span>.</p>
+                
+                <strong>Two Horizons</strong>
+                <p>Messianic psalms have two horizons:</p>
+                <p>• <strong>Near horizon</strong>: about a historical person—a coronation of a king in Israel, perhaps David or someone in his lineage, taking place on Mount Zion and immediately challenged by surrounding nations.</p>
+                <p>• <strong>Distant horizon</strong>: about the Messiah—the ultimate King, not only of Israel but all humanity, King Jesus.</p>
+                
+                <strong>Evidence This Psalm Is About Jesus</strong>
+                <p>First, the word <strong>"anointed"</strong> (Hebrew <em>mashiach</em>, meaning Messiah) appears in verse 2. Second, the New Testament cites this passage in reference to Jesus multiple times—in Acts, Hebrews (twice), and Revelation (three times). Third, if you read it carefully, you see this is about someone who is more than merely human. No earthly king's conspirators would offend God to the point where he threatens their destruction. No earthly king receives the nations of the earth as his inheritance. This Psalm is about a divine king—the King of all kings, King Jesus.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">00:53:05 — POINT ONE: WE WERE MADE FOR A KING</div>
+            
+            <div class="transcript-section">
+                <strong>God Has Installed His King (vv. 4-8)</strong>
+                <p>The Psalm begins with rebellion—nations and peoples plotting against God and his Anointed. But God replies, "I have installed my king." At the moment of this installation, the Anointed King says to the Lord: <span class="scripture-emphasis">"I will proclaim the Lord's decree: He said to me, 'You are my son; today I have become your father. Ask me, and I will make the nations your inheritance, the ends of the earth your possession'" (Psalm 2:7-8)</span>.</p>
+                
+                <strong>Understanding "You Are My Son" and "Today I Have Brought You Forth"</strong>
+                <p>The first phrase <strong>"You are my Son"</strong> was spoken of Jesus by the Father twice during Jesus' earthly ministry: at his baptism (<em>Matthew 3:17</em>) and at his transfiguration (<em>Matthew 17:5</em>). These were the two times the Father publicly verified Jesus as the Son of God. "You are my Son" means you are God the Son, part of the triune Godhead, co-equal with Father and Holy Spirit.</p>
+                
+                <p>The second phrase <strong>"today I have become your father"</strong> is not a good translation. The Hebrew literally says "today I have brought you forth" (as translated in NASB and ESV). There was a certain day when the Son was brought forth by the Father and installed as King over all humanity. <span class="scripture-emphasis">Acts 13 tells us that day was the day Jesus was raised from the dead by the Father: "We tell you the good news: What God promised our ancestors he has fulfilled for us, their children, by raising up Jesus. As it is written in the second Psalm: 'You are my son; today I have brought you forth'" (Acts 13:32-33)</span>.</p>
+                
+                <strong>What the Resurrection Means</strong>
+                <p>By raising King Jesus from the dead, God said: "I accept his substitutionary death as full payment for the penalty of sin." Anyone who believes in him will be transferred out of the kingdom of darkness into the kingdom of light (<em>Colossians 1</em>). They will be forgiven their sins and live forever.</p>
+            </div>
+            
+            <div class="transcript-heading">00:55:48 — THE SCOPE OF HIS KINGSHIP</div>
+            
+            <div class="transcript-section">
+                <strong>We Have a King and Therefore Were Made for a King</strong>
+                <p>He is the One and True King and Eternal King who will rule forever. He is the <strong>King above all kings</strong>—not the King who replaces all kings but the King who is above and over kings. This implies that kings, rulership, and authorities are part of God's plan for the human race.</p>
+                
+                <strong>The Human Race Needs Kings and Governing Authority</strong>
+                <p>The fact that the human race needs kings, rulers, and authorities in order to function is obvious. Societies cannot survive without someone or some authoritative governing body ruling over them. Without governing authority, human beings would destroy each other. As bad as most forms of government are, even a dictatorship is better than anarchy. That's why <strong>God established governing authority</strong> in the human race (<em>Romans 13:1</em>).</p>
+                
+                <strong>Historical Context of Kings</strong>
+                <p>Today, we're used to rulers with titles like President or Prime Minister. But for most of human history, rulers were called something akin to the English word "kings." Kings had great power: legislative, executive, judiciary, economic, and military authority. They were not voted into office. They were not voted out of office. They either died or were assassinated. Their power over the life and properties of their subjects could be either benevolent or tyrannical, good or bad. A quick perusal through the book of Kings reveals they were mostly bad.</p>
+                
+                <strong>Humanity's Longing for the "Good King"</strong>
+                <p>In spite of that abysmal track record, it seems that within our constitution there remains a subconscious longing for the "good king." We long for the good king we had in the Garden before the fall, when God's benevolent rule produced ultimate flourishing. That was the original design.</p>
+                
+                <p>You see this longing in our literature and the often-repeated theme of the "good king": Books and movies depict a great king ruling with wisdom, power, justice, and mercy, causing the people to flourish. But something happened—the good king was taken away and replaced by an oppressive king. Everything became dark and decay set in, leaving the people only with hope that the good king might return one day. You see this narrative in King Arthur's Camelot, Robin Hood, Lord of the Rings, Princess Bride, even The Little Mermaid. <span class="key-truth">It's like humanity longs for a king even though our experience with kings has been abysmal.</span></p>
+                
+                <strong>Democracy as a Stop-Gap Measure</strong>
+                <p>This abysmal track record is one of the things that gave rise to various forms of democracy. The founding fathers of our own nation were particularly averse to the idea of kings and sovereigns. But they also knew that democracy wasn't the ultimate answer—it was simply a stop-gap measure to avoid a king. And it was a frail one at that, because democracy (republic) only works well for a moral people—a people with the virtues espoused by Christianity. No matter how well thought out the constitution and bill of rights are, they were no guarantee of protection from oppressive leaders. They could be ignored, misinterpreted, and twisted to mean something far from original intent. And of course, that is often the case in our country.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">01:05:04 — OUR HEARTS ARE MADE FOR A KING</div>
+            
+            <div class="transcript-section">
+                <strong>Our Deeper Need: A King for Our Hearts</strong>
+                <p>This longing reveals a deeper reality: <span class="key-truth">our hearts are made for a King.</span> We were not designed to rule ourselves; we were made to be ruled by God. Jesus taught constantly about the coming of the kingdom: "The king is here—repent and believe." "You must be born again to enter the kingdom." <span class="scripture-emphasis">"Seek first his kingdom and his righteousness" (Matthew 6:33)</span>. "Pray, 'Your kingdom come.'"</p>
+                
+                <strong>We Will Inevitably Seek and Serve Something</strong>
+                <p>The NT teaches that the only way to true freedom is by seeking and serving the True King. Don't go seeking after other things, because <strong>whatever we seek after first, we will inevitably serve.</strong> Most people don't see this, so I defer to Bob Dylan, who wrote "You Gotta Serve Somebody." Bob wasn't saying you have to serve, but rather you can't help but serve something or someone. It's part of the human condition: whatever you seek first, you inevitably serve. That thing becomes an idol, lord, or king to you.</p>
+                
+                <strong>False Kings vs. the True King</strong>
+                <p>If we don't seek first the True King, we will inevitably seek after and serve false kings. The false kings are many, and often these are good things we make into ultimate things: Success, wealth, financial security. Good health, independence, leisure. Respect, acceptance, or the approval of others. A godly spouse, our children's wellbeing, family unity.</p>
+                
+                <p><span class="key-truth">If a good thing takes the place of the ultimate thing, it becomes like a god to us—a false king.</span> In the end, false kings will always let you down, disappoint you, and leave you empty. Emptiness is what often leads to seeking and serving destructive kings: 1 in 5 of all Americans have a drinking problem. 1 in 4 use illegal or abuse legal drugs. 7/10 men between 18-34 are addicted to pornography.</p>
+                
+                <p>Why do people destroy themselves this way? Their kings have left them empty. Whatever they sought first and served did not deliver. To cope with that, they turned to kings that promised to alleviate their suffering, but lied.</p>
+                
+                <strong>Jesus Commands Us to Seek First the Kingdom</strong>
+                <p>Knowing that we will inevitably seek after and serve something that will destroy us, Jesus rescues us by commanding us to seek first the kingdom of God. Remember, all his commands are good and for our good. It's not that other things are not important, but rather there is one who is ultimate. If you seek him first, you'll have the capacity to enjoy every other good gift and steer clear of the landmines. But if you seek first the good gift, it will eventually become a false king and control you. It can potentially deceive you into serving other destructive false kings that will ruin your life.</p>
+                
+                <strong>No One Is Free from Serving Something</strong>
+                <p>No matter what, something is your king. You don't belong to yourself. There is nobody who is not seeking and serving something. No one is truly free from serving something. So you have to realize: <strong>Christianity is not saying "You free people become captive to King Jesus."</strong> The message of Christianity is: "You're a captive to something. Your hearts are captive to what you are seeking and serving—the things you feel like you have to have." But those things will eventually control you and tyrannize you. So Christianity says, "Stop being ruled by things that tyrannize you and start being ruled by the one King whose <span class="scripture-emphasis">yoke is easy and his burden is light (Matthew 11:30)</span>, because he is your rightful King."</p>
+                
+                <strong>Freedom Is Found in the True King</strong>
+                <p>Therefore, to become a Christian you don't go from freedom to slavery. You go from slavery to freedom. <span class="key-truth">Freedom is not the lack of a master or king; freedom is found in submitting to the True King.</span> And it's his truth that sets you free (<em>John 8:31</em>).</p>
+            </div>
+            
+            <div class="video-note">[VIDEO TRANSITION - PAUSE AT 1:02:00]</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">01:09:14 — POINT TWO: WE REBELLED AGAINST THE KING</div>
+            
+            <div class="transcript-section">
+                <strong>The Natural Inclination: Rebellion (vv. 1-3)</strong>
+                <p>The natural inclination of the human heart is rebellion. Psalm 2's opening shows nations and peoples (not just rulers) saying, "Let us break their chains and throw off their shackles." The Hebrew words more accurately picture a halter or fetter and a yoke. They mean, "We refuse to be yoked. We refuse to be owned."</p>
+                
+                <strong>Human Beings Prefer Autonomy</strong>
+                <p>Human beings prefer autonomy and resent being owned. But Scripture consistently presents God as Creator and Owner: <em>Colossians 1</em>: "All things were created by him and for him." <em>Psalm 24</em>: "The earth is the Lord's, and everything in it." Believers are "not their own" because we were bought with a price (<em>1 Corinthians 6:19-20</em>).</p>
+                
+                <strong>Different Manifestations of Rebellion</strong>
+                <p>This rebellion looks different depending on the person: Some openly defy God. Others adopt a domesticated god—a "president" rather than a king—someone they can manage and disobey when it's inconvenient. Some chase moral performance and religiosity as a way to avoid true dependence and repentance. They appear pious but are not submitted to King Jesus. <strong>The mind governed by the flesh is hostile to God</strong> (<em>Romans 8:7</em>). The unbeliever, in essence, hates the God who demands absolute loyalty.</p>
+                
+                <strong>Using Religion to Avoid King Jesus</strong>
+                <p>Instead of throwing off God's yoke through disobedience, immorality, and irreligion, some throw it off through obedience, morality, and religion. They do this in order to avoid King Jesus so that they're not totally dependent upon his mercy and completely submitted to him. There are many people in churches this morning who regularly attend, who meet all the external requirements, who are good moral people. But they are using all of that to avoid humbling themselves as sinners before the King who owns them and has the right to rule over them.</p>
+                
+                <strong>A Self-Assessment Question</strong>
+                <p>Allow me to ask you a question: <strong>Do you believe you're a pretty upstanding, decent person who lives by their moral standards?</strong> <strong>Do you feel like if God showed up now and was going to decide who he was going to accept into his heaven, you would have as good a chance as anybody?</strong> <em>OR</em> <strong>Do you believe you are such a helpless sinner that you have absolutely no hope of ever being saved by God except that Jesus Christ mercifully died for you?</strong> Do you think you're a helpless sinner, or do you think you're a fairly moral person?</p>
+                
+                <strong>Rebellion Is Universal</strong>
+                <p>So rebellion is universal. Children first express it. Adults rationalize it through ideology, pleasure, or moralism. The cry "let us break the yoke" is the human desire to be our own sovereign. The Gospel confronts this: either we acknowledge our need and receive Christ, or we continue in rebellion.</p>
+            </div>
+            
+            <div class="video-note">[VIDEO SEGMENT BREAK - SWITCHING TO PART 07]</div>
+            
+            <div class="transcript-heading">00:57:07 — TUESDAY IN FOCUS: TEMPLE DEBATES & JESUS' QUESTION (MARK 12:35-37)</div>
+            
+            <div class="transcript-section">
+                <strong>Context: The Final Week of Jesus' Ministry</strong>
+                <p>This passage takes place on Tuesday when Jesus debates the religious and political authorities in the temple court area (<em>Mark 11:27-12:34</em>). In essence, they are holding a press conference, asking him very difficult questions in an attempt to discredit him and get the people to turn against him. But Jesus answers every question with brilliant and penetrating answers. Every answer was a slam dunk. Matthew tells us that no one could say a word in reply, nor dared to ask him any more questions.</p>
+                
+                <strong>Jesus Turns the Table</strong>
+                <p>Then Jesus turns the table and asks a question of his own. This question was not designed to trick or trap them but to force his detractors to realize who he really is. They must decide what side of the fence they were going to stay on—whether they were going to believe in him or reject him. In effect, Jesus is asking the same thing he asked of Peter: <span class="scripture-emphasis">"Who do you say that I am?" (Matthew 16:15-16)</span>. It is the most important question that a human being will ever answer.</p>
+                
+                <strong>Jesus Quotes Psalm 110</strong>
+                <p><span class="scripture-emphasis">"While Jesus was teaching in the temple courts, he asked, 'How is it that the teachers of the law say that the Christ is the son of David? David himself, speaking by the Holy Spirit, declared: "The Lord said to my Lord: 'Sit at my right hand until I put your enemies under your feet.'" David himself calls him 'Lord.' How then can he be his son?' The large crowd listened to him with delight" (Mark 12:35-37)</span>.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">00:59:01 — EXEGESIS: PSALM 110 AS MESSIANIC PROOF</div>
+            
+            <div class="transcript-section">
+                <strong>Understanding Psalm 110</strong>
+                <p>Jesus is quoting <strong>Psalm 110</strong>, which is a messianic psalm—a psalm that speaks about Messiah, the coming Anointed One who would fulfill all three offices of Prophet, Priest, and King. It is the most quoted Old Testament Scripture in the New Testament—quoted or alluded to 27 times.</p>
+            </div>
+            
+            <div class="transcript-heading">01:00:05 — POLITICAL HOPES VS. MESSIAH'S MISSION</div>
+            
+            <div class="transcript-section">
+                <strong>The Israelites' Expectations</strong>
+                <p>At the time Jesus quoted Psalm 110, the Israelites were weary of years of living under subjugation to other kings and kingdoms—presently the Romans. Many people believed Jesus to be the Messiah King who would supernaturally deliver them from Roman occupation and reestablish them as a sovereign nation. That is why they spread their garments before him, laid down palm branches, shouted "Hosanna," and hailed Jesus as the "Son of David" as he rode into Jerusalem. They were looking for a political king who would bring national deliverance. <strong>But their expectation was mis-timed.</strong></p>
+            </div>
+            
+            <div class="transcript-heading">01:01:15 — MESSIAH'S FIRST COMING: CROSS BEFORE THRONE</div>
+            
+            <div class="transcript-section">
+                <strong>The Prophets' Dual Message</strong>
+                <p>Yes, the Old Testament prophets said one day Messiah would take the government of the whole world upon his shoulders. But the prophets also said he would be stricken for our sin and led like a lamb to the slaughter. Therefore, his first coming was not about delivering them from Rome but delivering them from sin. <span class="key-truth">Their/our greatest problem is not the oppression of Rome or any other adversity, but the enslavement to sin.</span> For that, he would have to ascend not a throne but rather a cross. But they really didn't want a Messiah like that.</p>
+            </div>
+            
+            <div class="transcript-heading">01:02:19 — HUMAN RESPONSE PATTERN</div>
+            
+            <div class="transcript-section">
+                <strong>Wanting the Messiah's Benefits Without His Lordship</strong>
+                <p>In fact, they really didn't want a messiah but rather what a messiah could do. I say that because as soon as he didn't fulfill their desire, they turned on him. They didn't say, "We must have misunderstood him. Maybe we should go back and reexamine the prophecies." No, they turned on him. <strong>People do the same thing today because it's human nature.</strong></p>
+            </div>
+            
+            <div class="transcript-heading">01:02:50 — CONTEMPORARY ILLUSTRATION: CELEBRITY CONVERSION & ABANDONMENT</div>
+            
+            <div class="transcript-section">
+                <strong>A Modern Example</strong>
+                <p>I just read an article about a very famous celebrity who a few years ago went through a crisis where he was losing his family to divorce. So he reportedly turned to faith in Christ. Everything was going great—he came out with a Christian album and was platformed by a number of high-profile churches. But the divorce went through. And when he didn't get the results/messiah he wanted, he abandoned him and actually turned on him.</p>
+            </div>
+            
+            <div class="transcript-heading">01:03:46 — JESUS' COMPASSION VS. ULTIMATE PRIORITY</div>
+            
+            <div class="transcript-section">
+                <strong>What We Need vs. What We Need Most</strong>
+                <p>Now our earthly needs are important to Jesus. <em>Matthew 9</em> says they move him with compassion. But his love for us is so deep that he will not let what we need keep us from getting what we need most. Think about it: If he simply frees the Jews from the captivity of Rome, what would they do about their captivity to sin and the weight of guilt that comes with sin? And what would keep them from becoming the oppressors of some other people? Even more, what would they do about standing before God on the day of judgment? <strong>That's why this Messiah needed to go to the cross before he ascended the throne.</strong></p>
+            </div>
+            
+            <div class="video-note">[VIDEO SEGMENT BREAK - PAUSE AT 1:19:15 BEFORE RESUMING PART 05]</div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="transcript">
+            <div class="transcript-heading">01:09:16 — POINT THREE: WE NEED TO SUBMIT TO THE KING</div>
+            
+            <div class="transcript-section">
+                <strong>The Warning (vv. 10-12)</strong>
+                <p>The final section of the Psalm is a warning to rulers and peoples: <span class="scripture-emphasis">"Therefore, you kings, be wise; be warned, you rulers of the earth. Serve the Lord with fear and celebrate his rule with trembling. Kiss his son, or he will be angry and your way will lead to your destruction, for his wrath can flare up in a moment. Blessed are all who take refuge in him" (Psalm 2:10-12)</span>.</p>
+                
+                <strong>Be Wise, Be Warned</strong>
+                <p>The warning found in verse 10 is: Be wise (instead of foolish). Be warned (instead of presumptive). Serve the Lord with fear (instead of serving your own agenda with pride). Celebrate his rule with trembling (instead of rising up against his rule with disdain). His kingship is not optional. Take refuge in it and you will be blessed. Reject it and it will lead to your destruction. <strong>There is no middle road.</strong></p>
+                
+                <strong>"Kiss the Son"</strong>
+                <p>Verse 12 says it very poetically: "Kiss his Son or your way will lead to destruction." <strong>"Kiss the Son"</strong> is an ancient expression that means to willingly submit and come under the authority of. In the ancient world, you expressed that by willingly bowing before a king and either kissing his feet or his hand. But willing submission is exactly what the rebel rulers and peoples of the world do not want to do. They are throwing off the yoke. They are being hostile to God. They are saying, "I do not belong to him and I will not be under him. I am my own."</p>
+                
+                <strong>The Day of Grace</strong>
+                <p>The Lord warns them that if they don't submit, he will one day judge them through his installed King. But the New Testament tells us that it is through the very same installed King—King Jesus—that they or anyone could escape the judgment their sins deserve. Jesus took the judgment for us on the cross. Jesus took the penalty of our sins for us. <strong>There is still time to kiss the son. We are still in the day of grace.</strong></p>
+                
+                <strong>His Yoke Is a Refuge</strong>
+                <p>Taking his yoke yields freedom. The yoke is not primarily restraint but the path to flourishing in God's design. Think of piano practice: At first, the yoke of discipline constrains—hours of scales, technique, repetition. But continued submission produces skill and creative freedom. The yoke becomes a refuge that produces blessedness—the ability to play beautiful music. Likewise, Jesus says, <span class="scripture-emphasis">"Take my yoke upon you and learn from me... and you will find rest for your souls" (Matthew 11:29-30)</span>.</p>
+                
+                <p>The same principle applies across all of life. The yoke of God's design is not oppressive but the path to flourishing. Submit to it, and you find freedom, blessing, and refuge.</p>
+            </div>
+            
+            <div class="transcript-heading">01:26:55 — APPLICATION: HOW TO COME BEFORE KING JESUS</div>
+            
+            <div class="transcript-section">
+                <strong>Four Practical Ways to Respond to Jesus as King</strong>
+                
+                <p><strong>1) OBEY HIM</strong> — Obedience is doing the King's commands—not treating them as optional suggestions. Biblical commands include: Have no other gods before me. Always tell the truth. Honor your mother and father. Never return evil for evil but return good for evil. Pursue sexual purity. Don't envy, don't be bitter. Always forgive. There's a difference between obedience as a performance or social habit and obedience as heartfelt submission. The latter flows from a heart that wants to do God's will. <span class="scripture-emphasis">"I desire to do your will, my God" (Psalm 40:8)</span>. If you obey because it feels good or is expected, you're treating Jesus like a consultant. <span class="key-truth">True obedience comes from an internal desire to do God's will.</span></p>
+                
+                <p><strong>2) TRUST HIM</strong> — Trust means submitting to God's ordering even when we don't understand. Trust involves struggle and wrestling (like Job). But it expects that trials shape us into gold. <strong>Trust is not naive cheerfulness but committed confidence: "Not my will, but yours be done."</strong> Apply trust when life is confusing—submit even without reasons. Trust produces purification. Trust involves wrestling—it's not blind resignation; it's faith through struggle.</p>
+                
+                <p><strong>3) LOVE HIM</strong> — Genuine faith loves Christ for who he is, not merely for the benefits he brings. Love is evidenced by the desire to be with him and obey for his sake. <strong>The King is not a means to an end but the end himself.</strong> Those who believed only for relief may not sustain love once relief passes. This is what happened to the celebrity mentioned earlier—when Jesus didn't deliver the result desired, he abandoned Jesus. <span class="key-truth">Loving Christ for himself produces sustained submission.</span></p>
+                
+                <p><strong>4) EXPECT FROM HIM</strong> — Come with large petitions because you come before a King. Treat him as the sovereign with vast resources and authority. Don't be pessimistic about what God can do. Bring big requests before a big King. As the hymn says: <span class="scripture-emphasis">"Thou art coming to a King—large petitions with thee bring; for his grace and power are such, none can ever ask too much."</span> If you are pessimistic about God's power, you're not treating him as King. Come boldly, expectantly, with confidence in his sovereignty.</p>
+            </div>
+            
+            <div class="video-note">[VIDEO PAUSE AT 1:36:22]</div>
+            
+            <div class="transcript-heading">01:35:18 — CLOSING</div>
+            
+            <div class="transcript-section">
+                <strong>Summary: Obey, Trust, Love, and Expect</strong>
+                <p>In short: <strong>obey, trust, love, and expect.</strong> Take his yoke and you will find true freedom and blessed refuge.</p>
+                
+                <strong>Final Call</strong>
+                <p>Come under the King's yoke to be truly free and blessed. Psalm 2's final beat insists there is no neutral ground: Either you kiss the Son and find refuge, or you face judgment. The day of grace remains open—respond now.</p>
+                
+                <strong>Benediction</strong>
+                <p><strong>Blessed are all those who take refuge in the King.</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
