@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Review Week Assignment - Template</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .purpose-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .purpose-box h2 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .instructions h3 {
+            font-size: 20px;
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+
+        .instructions ol, .instructions ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .tips {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .bible-note {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .week-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .week-card:hover {
+            box-shadow: 0 5px 15px rgba(33, 147, 176, 0.3);
+            border-color: #2193b0;
+        }
+
+        .week-card.active {
+            border-color: #28a745;
+            border-width: 3px;
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .week-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1565c0;
+        }
+
+        .week-topic {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .week-speaker {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .assign-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .assign-box strong {
+            color: #0d47a1;
+        }
+
+        .activate-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .assigned-name {
+            color: #0d47a1;
+            font-size: 18px;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .name-input {
+            border: 2px solid #1565c0;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0d47a1;
+            background: white;
+            width: 200px;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: #28a745;
+            background: #f0fff0;
+        }
+
+        .questions {
+            margin-top: 15px;
+        }
+
+        .question-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 3px solid #0d47a1;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .question-item strong {
+            color: #0d47a1;
+        }
+
+        .verse-hint {
+            background: #d4edda;
+            border-left: 3px solid #28a745;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .verse-hint strong {
+            color: #155724;
+        }
+
+        .notes-section {
+            display: none;
+            background: #fff9e6;
+            border: 3px solid #28a745;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .notes-section.active {
+            display: block;
+        }
+
+        .notes-section h3 {
+            color: #155724;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .note-field {
+            margin-bottom: 20px;
+        }
+
+        .note-field label {
+            display: block;
+            font-weight: bold;
+            color: #0d47a1;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .note-field textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .note-field textarea:focus {
+            outline: none;
+            border-color: #28a745;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #218838;
+        }
+
+        .btn-secondary {
+            background: #0d47a1;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0a3a7d;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .save-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .save-status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .save-status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .presentation-guide {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .presentation-guide h2 {
+            margin-bottom: 15px;
+            color: #e65100;
+        }
+
+        .example-format {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 4px solid #ff9800;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+
+            .assign-box {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Review Week Assignment</h1>
+        <p class="subtitle">Independent Bible Study Practice</p>
+
+        <div class="purpose-box">
+            <h2>📖 Purpose</h2>
+            <p>This week is for independent Bible study. Each person has been assigned a specific week from our previous lessons. Your task is to review that week's content, answer the questions using Scripture, and be prepared to share what you learned when we meet again.</p>
+        </div>
+
+        <div class="instructions">
+            <h3>✅ How This Works:</h3>
+            <ol>
+                <li><strong>Find your assigned week below</strong> - Each person has one specific week</li>
+                <li><strong>Click the checkbox next to your name</strong> - This opens your personal notes section</li>
+                <li><strong>Fill in your answers</strong> - Type directly into the note fields (they auto-save!)</li>
+                <li><strong>When done, click "Email My Notes"</strong> - This opens your email app with your notes ready to send to yourself</li>
+                <li><strong>Bring your notes to the next meeting</strong> - You'll share what you learned (3-5 minutes)</li>
+            </ol>
+
+            <div class="tips">
+                <strong>💡 Tips for Success:</strong>
+                <ul>
+                    <li>Your notes automatically save as you type - no need to click save repeatedly</li>
+                    <li>Use the "Email My Notes" button to send them to yourself - easiest way to keep them!</li>
+                    <li>If you prefer, you can also "Download as File" to save to your phone</li>
+                    <li>Want to do extra? Feel free to work on other weeks too!</li>
+                    <li>Access the original study guides at: <a href="https://jagsjim.github.io/small_group/" style="color: #0d47a1;">jagsjim.github.io/small_group</a></li>
+                </ul>
+            </div>
+
+            <div class="bible-note">
+                📖 Remember: Use your Bible! The study guides help understanding, but always quote Scripture itself in your answers.
+            </div>
+        </div>
+
+        <!-- Week 1 -->
+        <div class="week-card" data-week="1">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 1</div>
+                    <div class="week-topic">Are You Really a Christian?</div>
+                    <div class="week-speaker">Paul Washer on True Conversion</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week1" />
+                <label for="check-week1">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="1" id="name-week1" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to Scripture, what is the difference between God's grace that justifies us and God's grace that sanctifies us?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does the Bible mean when it says we are "a new creation" in Christ?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to Scripture, why can't someone truly love God and love the world at the same time?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What evidence does the Bible say we should see if God is truly working in our lives?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about being a new creation OR about evidence of true faith
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week1">
+                <h3>📝 Your Study Notes - Week 1</h3>
+                <div class="note-field">
+                    <label for="main-1">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-1" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-1">Answer to Question 1:</label>
+                    <textarea id="q1-1" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-1">Answer to Question 2:</label>
+                    <textarea id="q2-1" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-1">Answer to Question 3:</label>
+                    <textarea id="q3-1" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-1">Answer to Question 4:</label>
+                    <textarea id="q4-1" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-1">Supporting Scripture #1:</label>
+                    <textarea id="verse1-1" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-1">Supporting Scripture #2:</label>
+                    <textarea id="verse2-1" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-1">Personal Application:</label>
+                    <textarea id="app-1" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(1)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(1)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(1)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-1" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="week-card" data-week="2">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 2</div>
+                    <div class="week-topic">The Necessity of New Birth</div>
+                    <div class="week-speaker">Voddie Baucham on John 3</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week2" />
+                <label for="check-week2">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="2" id="name-week2" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to John 3:3-7, why did Jesus tell Nicodemus that he "must be born again"?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does the Bible teach about our spiritual condition before being born again?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to John 3:16, what does it mean to "believe" in Jesus?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> How does Ephesians 2:1-5 describe the change that happens when someone is born again?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about spiritual deadness OR about the new birth
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week2">
+                <h3>📝 Your Study Notes - Week 2</h3>
+                <div class="note-field">
+                    <label for="main-2">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-2" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-2">Answer to Question 1:</label>
+                    <textarea id="q1-2" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-2">Answer to Question 2:</label>
+                    <textarea id="q2-2" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-2">Answer to Question 3:</label>
+                    <textarea id="q3-2" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-2">Answer to Question 4:</label>
+                    <textarea id="q4-2" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-2">Supporting Scripture #1:</label>
+                    <textarea id="verse1-2" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-2">Supporting Scripture #2:</label>
+                    <textarea id="verse2-2" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-2">Personal Application:</label>
+                    <textarea id="app-2" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(2)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(2)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(2)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-2" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="week-card" data-week="3">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 3</div>
+                    <div class="week-topic">Saving Faith - Part 1</div>
+                    <div class="week-speaker">John Piper on Hebrews 11:1</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week3" />
+                <label for="check-week3">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="3" id="name-week3" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to Hebrews 11:1, what is faith?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does James 2:19 teach about the difference between intellectual belief and saving faith?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to Romans 10:9-10, what role does confession play in saving faith?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What does Hebrews 11:6 teach about the necessity of faith?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about faith OR about believing in Christ
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week3">
+                <h3>📝 Your Study Notes - Week 3</h3>
+                <div class="note-field">
+                    <label for="main-3">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-3" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-3">Answer to Question 1:</label>
+                    <textarea id="q1-3" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-3">Answer to Question 2:</label>
+                    <textarea id="q2-3" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-3">Answer to Question 3:</label>
+                    <textarea id="q3-3" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-3">Answer to Question 4:</label>
+                    <textarea id="q4-3" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-3">Supporting Scripture #1:</label>
+                    <textarea id="verse1-3" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-3">Supporting Scripture #2:</label>
+                    <textarea id="verse2-3" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-3">Personal Application:</label>
+                    <textarea id="app-3" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(3)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(3)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(3)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-3" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 4 -->
+        <div class="week-card" data-week="4">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 4</div>
+                    <div class="week-topic">Saving Faith - Part 2</div>
+                    <div class="week-speaker">John Piper on James 2:14-26</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week4" />
+                <label for="check-week4">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="4" id="name-week4" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to James 2:14-17, what does "dead faith" mean?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does James 2:19 teach about demons and faith?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to James 2:21-24, how was Abraham's faith "made complete" by his works?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What is the relationship between faith and works according to Scripture?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about faith producing works OR about true faith
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week4">
+                <h3>📝 Your Study Notes - Week 4</h3>
+                <div class="note-field">
+                    <label for="main-4">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-4" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-4">Answer to Question 1:</label>
+                    <textarea id="q1-4" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-4">Answer to Question 2:</label>
+                    <textarea id="q2-4" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-4">Answer to Question 3:</label>
+                    <textarea id="q3-4" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-4">Answer to Question 4:</label>
+                    <textarea id="q4-4" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-4">Supporting Scripture #1:</label>
+                    <textarea id="verse1-4" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-4">Supporting Scripture #2:</label>
+                    <textarea id="verse2-4" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-4">Personal Application:</label>
+                    <textarea id="app-4" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(4)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(4)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(4)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-4" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 5 -->
+        <div class="week-card" data-week="5">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 5</div>
+                    <div class="week-topic">Repentance - Turning from Sin to God</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week5" />
+                <label for="check-week5">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="5" id="name-week5" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to Acts 3:19 and Luke 13:3, what is repentance and why is it necessary?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does 2 Corinthians 7:10 teach about godly sorrow versus worldly sorrow?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to Acts 26:20, what is the relationship between repentance and changed behavior?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What does Luke 15:7 teach about heaven's response to repentance?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about repentance OR about turning from sin
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week5">
+                <h3>📝 Your Study Notes - Week 5</h3>
+                <div class="note-field">
+                    <label for="main-5">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-5" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-5">Answer to Question 1:</label>
+                    <textarea id="q1-5" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-5">Answer to Question 2:</label>
+                    <textarea id="q2-5" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-5">Answer to Question 3:</label>
+                    <textarea id="q3-5" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-5">Answer to Question 4:</label>
+                    <textarea id="q4-5" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-5">Supporting Scripture #1:</label>
+                    <textarea id="verse1-5" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-5">Supporting Scripture #2:</label>
+                    <textarea id="verse2-5" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-5">Personal Application:</label>
+                    <textarea id="app-5" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(5)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(5)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(5)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-5" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 6 -->
+        <div class="week-card" data-week="6">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 6</div>
+                    <div class="week-topic">Following Jesus - What It Really Means</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week6" />
+                <label for="check-week6">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="6" id="name-week6" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to Luke 9:23-24, what does Jesus say it means to follow Him?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does Matthew 16:24-26 teach about losing your life and finding it?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to John 14:15, what is the relationship between love for Jesus and obedience?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What does Luke 14:27-33 teach about counting the cost of following Jesus?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about discipleship OR about following Jesus
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week6">
+                <h3>📝 Your Study Notes - Week 6</h3>
+                <div class="note-field">
+                    <label for="main-6">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-6" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-6">Answer to Question 1:</label>
+                    <textarea id="q1-6" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-6">Answer to Question 2:</label>
+                    <textarea id="q2-6" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-6">Answer to Question 3:</label>
+                    <textarea id="q3-6" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-6">Answer to Question 4:</label>
+                    <textarea id="q4-6" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-6">Supporting Scripture #1:</label>
+                    <textarea id="verse1-6" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-6">Supporting Scripture #2:</label>
+                    <textarea id="verse2-6" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-6">Personal Application:</label>
+                    <textarea id="app-6" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(6)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(6)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(6)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-6" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 7 -->
+        <div class="week-card" data-week="7">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 7</div>
+                    <div class="week-topic">Lordship of Christ</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week7" />
+                <label for="check-week7">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="7" id="name-week7" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to Romans 10:9, what is the relationship between confessing Jesus as Lord and salvation?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does Luke 6:46 teach about calling Jesus "Lord" but not obeying Him?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to Philippians 2:9-11, what will every person eventually acknowledge about Jesus?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What does Colossians 1:18 teach about Christ's supremacy?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about Jesus as Lord OR about His authority
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week7">
+                <h3>📝 Your Study Notes - Week 7</h3>
+                <div class="note-field">
+                    <label for="main-7">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-7" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-7">Answer to Question 1:</label>
+                    <textarea id="q1-7" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-7">Answer to Question 2:</label>
+                    <textarea id="q2-7" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-7">Answer to Question 3:</label>
+                    <textarea id="q3-7" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-7">Answer to Question 4:</label>
+                    <textarea id="q4-7" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-7">Supporting Scripture #1:</label>
+                    <textarea id="verse1-7" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-7">Supporting Scripture #2:</label>
+                    <textarea id="verse2-7" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-7">Personal Application:</label>
+                    <textarea id="app-7" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(7)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(7)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(7)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-7" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 8 -->
+        <div class="week-card" data-week="8">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 8</div>
+                    <div class="week-topic">The Gospel vs. Cultural Christianity</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week8" />
+                <label for="check-week8">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="8" id="name-week8" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to Matthew 7:21-23, what did Jesus say about people who prophesied and did miracles in His name but were not saved?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does 2 Timothy 3:5 teach about having a "form of godliness" but denying its power?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to Matthew 15:8, what does Jesus say about people who honor Him with their lips but whose hearts are far from Him?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What does 1 John 2:4 teach about claiming to know God but not keeping His commands?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about false profession OR about true vs. false faith
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week8">
+                <h3>📝 Your Study Notes - Week 8</h3>
+                <div class="note-field">
+                    <label for="main-8">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-8" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-8">Answer to Question 1:</label>
+                    <textarea id="q1-8" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-8">Answer to Question 2:</label>
+                    <textarea id="q2-8" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-8">Answer to Question 3:</label>
+                    <textarea id="q3-8" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-8">Answer to Question 4:</label>
+                    <textarea id="q4-8" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-8">Supporting Scripture #1:</label>
+                    <textarea id="verse1-8" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-8">Supporting Scripture #2:</label>
+                    <textarea id="verse2-8" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-8">Personal Application:</label>
+                    <textarea id="app-8" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(8)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(8)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(8)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-8" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 9 -->
+        <div class="week-card" data-week="9">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 9</div>
+                    <div class="week-topic">The Narrow Gate - Part 1</div>
+                    <div class="week-speaker">Voddie Baucham on Matthew 7:13-14</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week9" />
+                <label for="check-week9">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="9" id="name-week9" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to Jesus in Matthew 7, why must the Christian life be "entered into intentionally" through repentance and faith?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does the Bible teach about why someone cannot be a Christian simply because they were raised in a Christian family or go to church?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to Scripture, what is the "doctrine of original sin" and why are we all born on the broad road?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What does Jesus's teaching reveal about "easy" gospel presentations that leave out sin, repentance, and God's holiness?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about repentance and faith OR about being born in sin
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week9">
+                <h3>📝 Your Study Notes - Week 9</h3>
+                <div class="note-field">
+                    <label for="main-9">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-9" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-9">Answer to Question 1:</label>
+                    <textarea id="q1-9" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-9">Answer to Question 2:</label>
+                    <textarea id="q2-9" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-9">Answer to Question 3:</label>
+                    <textarea id="q3-9" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-9">Answer to Question 4:</label>
+                    <textarea id="q4-9" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-9">Supporting Scripture #1:</label>
+                    <textarea id="verse1-9" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-9">Supporting Scripture #2:</label>
+                    <textarea id="verse2-9" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-9">Personal Application:</label>
+                    <textarea id="app-9" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(9)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(9)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(9)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-9" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 10 -->
+        <div class="week-card" data-week="10">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 10</div>
+                    <div class="week-topic">The Narrow Gate - Part 2</div>
+                    <div class="week-speaker">Voddie Baucham on Matthew 7:13-14</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week10" />
+                <label for="check-week10">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="10" id="name-week10" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> What does the Bible mean when it says "the one who endures to the end will be saved"?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> According to Romans 3, what does Scripture teach about human nature—are people basically good or basically sinful?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> Why does the Bible say there are "few" who find the narrow gate and many on the broad road?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What does Scripture teach about false assurance of salvation?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about perseverance OR about testing ourselves to see if we're in the faith
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week10">
+                <h3>📝 Your Study Notes - Week 10</h3>
+                <div class="note-field">
+                    <label for="main-10">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-10" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-10">Answer to Question 1:</label>
+                    <textarea id="q1-10" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-10">Answer to Question 2:</label>
+                    <textarea id="q2-10" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-10">Answer to Question 3:</label>
+                    <textarea id="q3-10" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-10">Answer to Question 4:</label>
+                    <textarea id="q4-10" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-10">Supporting Scripture #1:</label>
+                    <textarea id="verse1-10" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-10">Supporting Scripture #2:</label>
+                    <textarea id="verse2-10" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-10">Personal Application:</label>
+                    <textarea id="app-10" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(10)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(10)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(10)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-10" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 11 -->
+        <div class="week-card" data-week="11">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 11</div>
+                    <div class="week-topic">Sanctification - Growing in Grace</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week11" />
+                <label for="check-week11">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="11" id="name-week11" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> What is sanctification according to Scripture and how does it differ from justification?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> According to John 15, what does Jesus teach about "abiding in the vine" and how does this produce spiritual fruit?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> What does Ephesians 2:8-10 teach about the relationship between salvation by grace and good works?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> Why does the Bible teach that true faith in Jesus naturally produces a changed life?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about being transformed by God OR about faith producing works
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week11">
+                <h3>📝 Your Study Notes - Week 11</h3>
+                <div class="note-field">
+                    <label for="main-11">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-11" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-11">Answer to Question 1:</label>
+                    <textarea id="q1-11" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-11">Answer to Question 2:</label>
+                    <textarea id="q2-11" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-11">Answer to Question 3:</label>
+                    <textarea id="q3-11" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-11">Answer to Question 4:</label>
+                    <textarea id="q4-11" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-11">Supporting Scripture #1:</label>
+                    <textarea id="verse1-11" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-11">Supporting Scripture #2:</label>
+                    <textarea id="verse2-11" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-11">Personal Application:</label>
+                    <textarea id="app-11" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(11)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(11)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(11)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-11" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Week 12 -->
+        <div class="week-card" data-week="12">
+            <div class="week-header">
+                <div>
+                    <div class="week-number">Week 12</div>
+                    <div class="week-topic">Biblical Accountability vs. Being Judgmental</div>
+                </div>
+            </div>
+            <div class="assign-box">
+                <input type="checkbox" class="activate-checkbox" id="check-week12" />
+                <label for="check-week12">
+                    <strong>Person Assigned:</strong>
+                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="12" id="name-week12" />
+                </label>
+            </div>
+            <div class="questions">
+                <div class="question-item">
+                    <strong>Question 1:</strong> According to Matthew 7:1-5, what is the difference between hypocritical judgment and loving correction?
+                </div>
+                <div class="question-item">
+                    <strong>Question 2:</strong> What does 2 Corinthians 13:5 teach about testing ourselves to see if we're truly in the faith?
+                </div>
+                <div class="question-item">
+                    <strong>Question 3:</strong> According to Matthew 7:21-23, what will Jesus say to those who think they're saved but aren't?
+                </div>
+                <div class="question-item">
+                    <strong>Question 4:</strong> What does Scripture teach about the fruit that demonstrates genuine salvation?
+                </div>
+                <div class="verse-hint">
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about examining ourselves OR about the fruit of genuine faith
+                </div>
+            </div>
+            
+            <div class="notes-section" id="notes-week12">
+                <h3>📝 Your Study Notes - Week 12</h3>
+                <div class="note-field">
+                    <label for="main-12">Main Idea of This Week's Lesson:</label>
+                    <textarea id="main-12" placeholder="Summarize the main point in one sentence..."></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q1-12">Answer to Question 1:</label>
+                    <textarea id="q1-12" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q2-12">Answer to Question 2:</label>
+                    <textarea id="q2-12" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q3-12">Answer to Question 3:</label>
+                    <textarea id="q3-12" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="q4-12">Answer to Question 4:</label>
+                    <textarea id="q4-12" placeholder="What does Scripture teach about this?"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse1-12">Supporting Scripture #1:</label>
+                    <textarea id="verse1-12" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="verse2-12">Supporting Scripture #2:</label>
+                    <textarea id="verse2-12" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
+                </div>
+                <div class="note-field">
+                    <label for="app-12">Personal Application:</label>
+                    <textarea id="app-12" placeholder="How will this truth affect your life?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="emailNotes(12)">📧 Email My Notes</button>
+                    <button class="btn btn-secondary" onclick="downloadNotes(12)">💾 Download as File</button>
+                    <button class="btn btn-danger" onclick="clearNotes(12)">🗑️ Clear Notes</button>
+                </div>
+                <div id="status-12" class="save-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Presentation Guide -->
+        <div class="presentation-guide">
+            <h2>🎤 Presentation Guide</h2>
+            <p><strong>When You Share (3-5 minutes):</strong></p>
+            <ol>
+                <li><strong>Briefly summarize your week's topic</strong> - One sentence about the main idea</li>
+                <li><strong>Answer your four questions</strong> - Share what you learned from the Bible</li>
+                <li><strong>Share your supporting verses</strong> - Read them from your Bible and explain briefly how they connect</li>
+                <li><strong>Optional:</strong> Share one personal application - How will this affect your life?</li>
+            </ol>
+
+            <div class="example-format">
+                <strong>Example Format (using Week 1):</strong><br><br>
+                "My week was on 'Are You Really A Christian?' by Paul Washer. The main idea is that true Christianity involves a complete transformation, not just going to church or saying a prayer once.<br><br>
+                For question 1, the Bible teaches that God's grace not only saves us (justification) but also gives us power to become holy (sanctification). It's not just forgiveness—it's transformation.<br><br>
+                For question 2, I learned from 2 Corinthians 5:17 that being a 'new creation' means we have new desires, new affections, and a new heart that longs for holiness instead of sin.<br><br>
+                For question 3, James 4:4 teaches that friendship with the world is hostility toward God. We can't love God and love the world's values at the same time.<br><br>
+                For question 4, Scripture shows that if God is truly working in us, we'll see evidence: growing desire for holiness, conviction over sin, and progressive transformation—not perfection, but direction.<br><br>
+                My supporting verses were 2 Corinthians 5:17 which says 'Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!' and Philippians 1:6 which says 'He who began a good work in you will carry it on to completion.' These verses show that salvation includes transformation.<br><br>
+                One way I want to apply this is to regularly examine my life and ask: Is there evidence that God is making me holy? Am I more like Christ than I was last year?"
+            </div>
+
+            <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 5px;">
+                <strong>Remember:</strong>
+                <ul>
+                    <li>The study guide helps you understand, but quote from the Bible itself</li>
+                    <li>Goal is to practice studying God's Word independently</li>
+                    <li>We're learning together about the gospel</li>
+                    <li>No pressure to be perfect - we're all growing!</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <p style="font-size: 14px; color: #666;">
+                <strong>Access study guides at:</strong><br>
+                <a href="https://jagsjim.github.io/small_group/" style="color: #1565c0; text-decoration: none; font-weight: bold;">https://jagsjim.github.io/small_group/</a>
+            </p>
+            <p style="margin-top: 15px; font-style: italic; color: #999;">
+                Questions? Remember: the goal is to learn from God's Word, not to be an expert. We're all growing together.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Auto-save functionality using localStorage
+        const weekTopics = {
+            1: "Are You Really a Christian?",
+            2: "The Necessity of New Birth",
+            3: "Saving Faith - Part 1",
+            4: "Saving Faith - Part 2",
+            5: "Repentance - Turning from Sin to God",
+            6: "Following Jesus - What It Really Means",
+            7: "Lordship of Christ",
+            8: "The Gospel vs. Cultural Christianity",
+            9: "The Narrow Gate - Part 1",
+            10: "The Narrow Gate - Part 2",
+            11: "Sanctification - Growing in Grace",
+            12: "Biblical Accountability vs. Being Judgmental"
+        };
+
+        // Load saved names on page load
+        document.querySelectorAll('.name-input').forEach(input => {
+            const weekNum = input.getAttribute('data-week');
+            const savedName = localStorage.getItem('assignedName_week' + weekNum);
+            if (savedName) {
+                input.value = savedName;
+            }
+            
+            // Save name when changed
+            input.addEventListener('input', function() {
+                localStorage.setItem('assignedName_week' + weekNum, this.value);
+            });
+        });
+
+        // Handle checkbox activation
+        document.querySelectorAll('.activate-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const weekNum = this.id.replace('check-week', '');
+                const notesSection = document.getElementById('notes-week' + weekNum);
+                const weekCard = this.closest('.week-card');
+                
+                if (this.checked) {
+                    notesSection.classList.add('active');
+                    weekCard.classList.add('active');
+                    loadNotes(weekNum);
+                    // Scroll to notes section
+                    setTimeout(() => {
+                        notesSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                } else {
+                    notesSection.classList.remove('active');
+                    weekCard.classList.remove('active');
+                }
+            });
+        });
+
+        // Auto-save notes as user types
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                const weekNum = this.id.split('-')[1];
+                saveNotes(weekNum);
+            });
+        });
+
+        function saveNotes(weekNum) {
+            const data = {
+                main: document.getElementById('main-' + weekNum).value,
+                q1: document.getElementById('q1-' + weekNum).value,
+                q2: document.getElementById('q2-' + weekNum).value,
+                q3: document.getElementById('q3-' + weekNum).value,
+                q4: document.getElementById('q4-' + weekNum).value,
+                verse1: document.getElementById('verse1-' + weekNum).value,
+                verse2: document.getElementById('verse2-' + weekNum).value,
+                app: document.getElementById('app-' + weekNum).value,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('week' + weekNum + '_notes', JSON.stringify(data));
+            showStatus(weekNum, 'Notes auto-saved ✓', 'success');
+        }
+
+        function loadNotes(weekNum) {
+            const saved = localStorage.getItem('week' + weekNum + '_notes');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('main-' + weekNum).value = data.main || '';
+                document.getElementById('q1-' + weekNum).value = data.q1 || '';
+                document.getElementById('q2-' + weekNum).value = data.q2 || '';
+                document.getElementById('q3-' + weekNum).value = data.q3 || '';
+                document.getElementById('q4-' + weekNum).value = data.q4 || '';
+                document.getElementById('verse1-' + weekNum).value = data.verse1 || '';
+                document.getElementById('verse2-' + weekNum).value = data.verse2 || '';
+                document.getElementById('app-' + weekNum).value = data.app || '';
+                showStatus(weekNum, 'Previous notes loaded ✓', 'info');
+            }
+        }
+
+        function showStatus(weekNum, message, type) {
+            const status = document.getElementById('status-' + weekNum);
+            status.textContent = message;
+            status.className = 'save-status ' + type;
+            status.style.display = 'block';
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 3000);
+        }
+
+        function emailNotes(weekNum) {
+            const data = {
+                main: document.getElementById('main-' + weekNum).value,
+                q1: document.getElementById('q1-' + weekNum).value,
+                q2: document.getElementById('q2-' + weekNum).value,
+                q3: document.getElementById('q3-' + weekNum).value,
+                q4: document.getElementById('q4-' + weekNum).value,
+                verse1: document.getElementById('verse1-' + weekNum).value,
+                verse2: document.getElementById('verse2-' + weekNum).value,
+                app: document.getElementById('app-' + weekNum).value
+            };
+
+            const subject = `Bible Study Notes - Week ${weekNum}: ${weekTopics[weekNum]}`;
+            const body = `BIBLE STUDY NOTES\nWeek ${weekNum}: ${weekTopics[weekNum]}\n\n` +
+                `MAIN IDEA:\n${data.main}\n\n` +
+                `QUESTION 1:\n${data.q1}\n\n` +
+                `QUESTION 2:\n${data.q2}\n\n` +
+                `QUESTION 3:\n${data.q3}\n\n` +
+                `QUESTION 4:\n${data.q4}\n\n` +
+                `SUPPORTING SCRIPTURE #1:\n${data.verse1}\n\n` +
+                `SUPPORTING SCRIPTURE #2:\n${data.verse2}\n\n` +
+                `PERSONAL APPLICATION:\n${data.app}\n\n` +
+                `---\nSaved: ${new Date().toLocaleString()}`;
+
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            
+            showStatus(weekNum, 'Opening your email app... Send to yourself!', 'success');
+        }
+
+        function downloadNotes(weekNum) {
+            const data = {
+                main: document.getElementById('main-' + weekNum).value,
+                q1: document.getElementById('q1-' + weekNum).value,
+                q2: document.getElementById('q2-' + weekNum).value,
+                q3: document.getElementById('q3-' + weekNum).value,
+                q4: document.getElementById('q4-' + weekNum).value,
+                verse1: document.getElementById('verse1-' + weekNum).value,
+                verse2: document.getElementById('verse2-' + weekNum).value,
+                app: document.getElementById('app-' + weekNum).value
+            };
+
+            const content = `BIBLE STUDY NOTES\nWeek ${weekNum}: ${weekTopics[weekNum]}\n\n` +
+                `MAIN IDEA:\n${data.main}\n\n` +
+                `QUESTION 1:\n${data.q1}\n\n` +
+                `QUESTION 2:\n${data.q2}\n\n` +
+                `QUESTION 3:\n${data.q3}\n\n` +
+                `QUESTION 4:\n${data.q4}\n\n` +
+                `SUPPORTING SCRIPTURE #1:\n${data.verse1}\n\n` +
+                `SUPPORTING SCRIPTURE #2:\n${data.verse2}\n\n` +
+                `PERSONAL APPLICATION:\n${data.app}\n\n` +
+                `---\nSaved: ${new Date().toLocaleString()}`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Week_${weekNum}_Notes.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showStatus(weekNum, 'Downloaded! Check your Downloads folder.', 'success');
+        }
+
+        function clearNotes(weekNum) {
+            if (confirm('Are you sure you want to clear all notes for this week? This cannot be undone.')) {
+                document.getElementById('main-' + weekNum).value = '';
+                document.getElementById('q1-' + weekNum).value = '';
+                document.getElementById('q2-' + weekNum).value = '';
+                document.getElementById('q3-' + weekNum).value = '';
+                document.getElementById('q4-' + weekNum).value = '';
+                document.getElementById('verse1-' + weekNum).value = '';
+                document.getElementById('verse2-' + weekNum).value = '';
+                document.getElementById('app-' + weekNum).value = '';
+                localStorage.removeItem('week' + weekNum + '_notes');
+                showStatus(weekNum, 'Notes cleared', 'info');
+            }
+        }
+    </script>
+</body>
+</html>

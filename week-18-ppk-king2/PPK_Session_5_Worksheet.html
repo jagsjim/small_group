@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 5: The King Who Rescues - Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #c0392b;
+            text-align: center;
+            font-size: clamp(28px, 5vw, 36px);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: clamp(16px, 3vw, 20px);
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: clamp(16px, 3vw, 20px);
+            text-align: center;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            font-size: clamp(22px, 4vw, 28px);
+            margin-bottom: 20px;
+        }
+        
+        .question {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .question-label {
+            font-weight: 700;
+            color: #34495e;
+            margin-bottom: 15px;
+            font-size: clamp(18px, 3.5vw, 22px);
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            margin-top: 10px;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .tf-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .tf-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px 25px;
+            border: 3px solid #95a5a6;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: clamp(18px, 3.5vw, 22px);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .tf-btn:active {
+            transform: scale(0.97);
+        }
+        
+        .tf-btn.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+        
+        .tf-btn.incorrect {
+            border-color: #e74c3c;
+            background: #fadbd8;
+            color: #e74c3c;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            background: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-family: inherit;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .btn:active {
+            transform: scale(0.97);
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .hint-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(14px, 2.5vw, 16px);
+            font-weight: 600;
+        }
+        
+        .hint-text {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff3cd;
+            border-radius: 5px;
+            font-size: clamp(14px, 2.5vw, 18px);
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: clamp(16px, 3vw, 20px);
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+        
+        .feedback.show {
+            display: block;
+        }
+        
+        .feedback.correct {
+            background: #d5f4e6;
+            color: #27ae60;
+            border: 2px solid #27ae60;
+        }
+        
+        .feedback.incorrect {
+            background: #fadbd8;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+        
+        .flip-card {
+            background: white;
+            border: 3px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .flip-card:active {
+            transform: scale(0.98);
+        }
+        
+        .flip-card-front {
+            font-size: clamp(18px, 3.5vw, 22px);
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .flip-card-back {
+            display: none;
+            font-size: clamp(16px, 3vw, 20px);
+            color: #34495e;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #ecf0f1;
+        }
+        
+        .flip-card.flipped .flip-card-front {
+            color: #7f8c8d;
+        }
+        
+        .flip-card.flipped .flip-card-back {
+            display: block;
+        }
+        
+        .copy-btn {
+            background: #9b59b6;
+            margin-top: 20px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .btn, .hint-btn, .copy-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Session 5 Worksheet</h1>
+        <div class="subtitle">The King Who Rescues and Rules Our Hearts</div>
+        
+        <div class="intro">
+            <strong>📝 For Learning, Not Testing</strong><br>
+            This worksheet is designed to help you think more deeply about what you learned. Take your time and be honest with yourself. There are no wrong answers in the reflection questions!
+        </div>
+        
+        <!-- Section 1: Fill in the Blanks -->
+        <div class="section">
+            <h2>Part 1: Key Concepts</h2>
+            
+            <div class="question">
+                <div class="question-label">1. Complete this sentence from the message:</div>
+                <p style="font-size: clamp(16px, 3vw, 20px); margin-top: 10px;">
+                    "Whatever you <input type="text" id="q1" style="width: 150px; display: inline-block;" placeholder="seek"> first, you will inevitably end up <input type="text" id="q2" style="width: 150px; display: inline-block;" placeholder="serving">."
+                </p>
+                <button class="hint-btn" onclick="showHint('hint1')">Need a hint?</button>
+                <div id="hint1" class="hint-text">Think about what we pursue and what controls us as a result.</div>
+                <button class="btn" onclick="checkQ1()">Check Answer</button>
+                <div id="feedback1" class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. A stronghold is:</div>
+                <p style="font-size: clamp(16px, 3vw, 20px);">
+                    A false <input type="text" id="q3" style="width: 200px; display: inline-block;" placeholder="belief"> system that has fortified itself in your mind and heart.
+                </p>
+                <button class="btn" onclick="checkQ3()">Check Answer</button>
+                <div id="feedback3" class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. The kingship of Jesus in your life is directly proportional to:</div>
+                <select id="q4">
+                    <option value="">Choose an answer...</option>
+                    <option value="wrong1">How much you pray</option>
+                    <option value="wrong2">How many people you witness to</option>
+                    <option value="correct">The word of Jesus in your life</option>
+                    <option value="wrong3">How many good deeds you do</option>
+                </select>
+                <button class="btn" onclick="checkQ4()">Check Answer</button>
+                <div id="feedback4" class="feedback"></div>
+            </div>
+        </div>
+        
+        <!-- Section 2: True/False -->
+        <div class="section">
+            <h2>Part 2: True or False</h2>
+            
+            <div class="question">
+                <div class="question-label">1. Good things can become false kings when we make them ultimate things.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF(1, true, this)">TRUE</button>
+                    <button class="tf-btn" onclick="answerTF(1, false, this)">FALSE</button>
+                </div>
+                <div id="tf-feedback1" class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. Jesus uses force and coercion to demolish strongholds in our hearts.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF(2, true, this)">TRUE</button>
+                    <button class="tf-btn" onclick="answerTF(2, false, this)">FALSE</button>
+                </div>
+                <div id="tf-feedback2" class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. The widow's offering teaches us primarily about generous giving.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF(3, true, this)">TRUE</button>
+                    <button class="tf-btn" onclick="answerTF(3, false, this)">FALSE</button>
+                </div>
+                <div id="tf-feedback3" class="feedback"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">4. Jesus is both the King who demands obedience AND the High Priest who forgives disobedience.</div>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF(4, true, this)">TRUE</button>
+                    <button class="tf-btn" onclick="answerTF(4, false, this)">FALSE</button>
+                </div>
+                <div id="tf-feedback4" class="feedback"></div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Scripture Matching -->
+        <div class="section">
+            <h2>Part 3: Match the Verse</h2>
+            
+            <div class="question">
+                <div class="question-label">Match each teaching to its Bible reference:</div>
+                
+                <p style="margin-top: 20px; font-size: clamp(16px, 3vw, 20px);"><strong>1.</strong> "Seek first the kingdom of God and his righteousness"</p>
+                <select id="match1" onchange="checkMatch(1)">
+                    <option value="">Select verse...</option>
+                    <option value="wrong1">Mark 8:35</option>
+                    <option value="correct">Matthew 6:33</option>
+                    <option value="wrong2">John 10:10</option>
+                    <option value="wrong3">James 4:6</option>
+                </select>
+                <div id="match-feedback1" class="feedback"></div>
+                
+                <p style="margin-top: 20px; font-size: clamp(16px, 3vw, 20px);"><strong>2.</strong> "I have come that they might have life and have it abundantly"</p>
+                <select id="match2" onchange="checkMatch(2)">
+                    <option value="">Select verse...</option>
+                    <option value="wrong1">Matthew 6:33</option>
+                    <option value="wrong2">Mark 8:35</option>
+                    <option value="correct">John 10:10</option>
+                    <option value="wrong3">James 4:6</option>
+                </select>
+                <div id="match-feedback2" class="feedback"></div>
+                
+                <p style="margin-top: 20px; font-size: clamp(16px, 3vw, 20px);"><strong>3.</strong> "God resists the proud but gives grace to the humble"</p>
+                <select id="match3" onchange="checkMatch(3)">
+                    <option value="">Select verse...</option>
+                    <option value="wrong1">Matthew 6:33</option>
+                    <option value="wrong2">John 10:10</option>
+                    <option value="wrong3">Mark 8:35</option>
+                    <option value="correct">James 4:6</option>
+                </select>
+                <div id="match-feedback3" class="feedback"></div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Interactive Learning Cards -->
+        <div class="section">
+            <h2>Part 4: Tap to Learn</h2>
+            <p style="font-size: clamp(16px, 3vw, 20px); margin-bottom: 15px;">Tap each card to reveal the answer</p>
+            
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-front">
+                    What are the two components of a stronghold?
+                </div>
+                <div class="flip-card-back">
+                    <strong>1. Arguments</strong> - False belief systems that seem logical but contradict God's truth<br><br>
+                    <strong>2. Pretensions</strong> - Pride and self-will that refuses to submit to God's authority
+                </div>
+            </div>
+            
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-front">
+                    What does it mean to "take every thought captive to obey Christ"?
+                </div>
+                <div class="flip-card-back">
+                    When a thought comes that doesn't align with God's truth, we capture it and examine it. We ask: "Is this thought true according to God's word? Does it lead me to trust Jesus or something else?" We don't let false thoughts run free and rule us.
+                </div>
+            </div>
+            
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-front">
+                    What was the main lesson from the Blondin tightrope story?
+                </div>
+                <div class="flip-card-back">
+                    We must put ALL our trust in Jesus and stop trying to "balance ourselves" or maintain control. Just as Colcord had to become "one with Blondin" to make it across safely, we must surrender completely to Jesus and trust Him with everything.
+                </div>
+            </div>
+            
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-front">
+                    Why did the widow's two coins mean more than the rich people's large gifts?
+                </div>
+                <div class="flip-card-back">
+                    She gave "everything she had to live on" (Greek: <em>bios</em> - her whole life). Money represents control, and she gave up what little control she had. This passage is primarily about trust and relinquishing control, not just about financial giving.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 5: Personal Reflection -->
+        <div class="section">
+            <h2>Part 5: Personal Application</h2>
+            
+            <div class="question">
+                <div class="question-label">1. What's one "good thing" in your life that sometimes tries to become an "ultimate thing" (a false king)?</div>
+                <textarea id="reflection1" placeholder="Be honest with yourself..."></textarea>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">2. Can you identify a "stronghold" in your own life—a false belief that has controlled you? What truth from God's word contradicts that lie?</div>
+                <textarea id="reflection2" placeholder="Example: Lie - 'I have to be perfect for God to love me.' Truth - 'God loves me because of what Christ did, not what I do.'"></textarea>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">3. What's one specific area where you need to "relinquish control" and trust Jesus more fully this week?</div>
+                <textarea id="reflection3" placeholder="What would surrender look like in this area?"></textarea>
+            </div>
+            
+            <div class="question">
+                <div class="question-label">4. What's one practical step you can take this week to increase "the word of Jesus" in your life?</div>
+                <textarea id="reflection4" placeholder="Ideas: Read a Psalm each morning, memorize a verse, join a Bible study, etc."></textarea>
+            </div>
+        </div>
+        
+        <!-- Copy Responses Button -->
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="btn copy-btn" onclick="copyResponses()">📋 Copy All My Responses</button>
+            <p style="font-size: clamp(14px, 2.5vw, 16px); color: #7f8c8d; margin-top: 10px;">
+                Click to copy your answers for your personal records
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Question 1 & 2 Check
+        function checkQ1() {
+            const q1 = document.getElementById('q1').value.toLowerCase().trim();
+            const q2 = document.getElementById('q2').value.toLowerCase().trim();
+            const feedback = document.getElementById('feedback1');
+            
+            if ((q1 === 'seek' || q1 === 'seek after') && (q2 === 'serving' || q2 === 'serve')) {
+                feedback.className = 'feedback correct show';
+                feedback.textContent = '✓ Correct! Whatever we seek first becomes our master.';
+            } else {
+                feedback.className = 'feedback incorrect show';
+                feedback.textContent = '✗ Try again. What do we pursue first, and what happens as a result?';
+            }
+        }
+        
+        // Question 3 Check
+        function checkQ3() {
+            const q3 = document.getElementById('q3').value.toLowerCase().trim();
+            const feedback = document.getElementById('feedback3');
+            
+            if (q3 === 'belief' || q3 === 'believe') {
+                feedback.className = 'feedback correct show';
+                feedback.textContent = '✓ Correct! A stronghold is a false belief system.';
+            } else {
+                feedback.className = 'feedback incorrect show';
+                feedback.textContent = '✗ Try again. What type of system is a stronghold?';
+            }
+        }
+        
+        // Question 4 Check
+        function checkQ4() {
+            const q4 = document.getElementById('q4').value;
+            const feedback = document.getElementById('feedback4');
+            
+            if (q4 === 'correct') {
+                feedback.className = 'feedback correct show';
+                feedback.textContent = '✓ Correct! The more we're in His word, the more His kingdom rules in our hearts.';
+            } else if (q4 !== '') {
+                feedback.className = 'feedback incorrect show';
+                feedback.textContent = '✗ Not quite. Think about what increases Jesus\' rule in our lives.';
+            }
+        }
+        
+        // True/False
+        const tfAnswers = {
+            1: true,  // Good things become false kings
+            2: false, // Jesus doesn't use force
+            3: false, // Not primarily about giving
+            4: true   // Jesus is both King and Priest
+        };
+        
+        function answerTF(num, answer, btn) {
+            const feedback = document.getElementById(`tf-feedback${num}`);
+            const buttons = btn.parentElement.querySelectorAll('.tf-btn');
+            
+            // Remove previous styling
+            buttons.forEach(b => {
+                b.classList.remove('correct', 'incorrect');
+            });
+            
+            if (answer === tfAnswers[num]) {
+                btn.classList.add('correct');
+                feedback.className = 'feedback correct show';
+                feedback.textContent = '✓ Correct!';
+            } else {
+                btn.classList.add('incorrect');
+                feedback.className = 'feedback incorrect show';
+                feedback.textContent = '✗ Not quite. Try again!';
+            }
+        }
+        
+        // Scripture Matching
+        function checkMatch(num) {
+            const select = document.getElementById(`match${num}`);
+            const feedback = document.getElementById(`match-feedback${num}`);
+            
+            if (select.value === 'correct') {
+                feedback.className = 'feedback correct show';
+                feedback.textContent = '✓ Perfect match!';
+                select.style.borderColor = '#27ae60';
+            } else if (select.value !== '') {
+                feedback.className = 'feedback incorrect show';
+                feedback.textContent = '✗ Try again!';
+                select.style.borderColor = '#e74c3c';
+            }
+        }
+        
+        // Flip Cards
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+        
+        // Hint Function
+        function showHint(hintId) {
+            const hint = document.getElementById(hintId);
+            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Copy Responses
+        function copyResponses() {
+            let text = '=== MY SESSION 5 WORKSHEET RESPONSES ===\n\n';
+            
+            text += 'PERSONAL REFLECTION QUESTIONS:\n\n';
+            
+            text += '1. What\'s one "good thing" that sometimes tries to become an "ultimate thing"?\n';
+            text += document.getElementById('reflection1').value || '[No response yet]';
+            text += '\n\n';
+            
+            text += '2. Can you identify a "stronghold" - a false belief that has controlled you?\n';
+            text += document.getElementById('reflection2').value || '[No response yet]';
+            text += '\n\n';
+            
+            text += '3. What area do you need to "relinquish control" and trust Jesus more?\n';
+            text += document.getElementById('reflection3').value || '[No response yet]';
+            text += '\n\n';
+            
+            text += '4. What practical step can you take to increase "the word of Jesus" in your life?\n';
+            text += document.getElementById('reflection4').value || '[No response yet]';
+            text += '\n';
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✓ Your responses have been copied! You can paste them into your notes app or journal.');
+            }).catch(() => {
+                alert('Unable to copy. Please manually select and copy your responses above.');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prophet, Priest & King - Session 1 Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 7in;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+
+        .instructions {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            margin: 2.5rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section h2 {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            font-size: 1.8rem;
+        }
+
+        /* Fill in the Blank */
+        .fill-blank {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .fill-blank p {
+            font-size: 1.15rem;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .blank-input {
+            display: inline-block;
+            min-width: 150px;
+            padding: 0.5rem 1rem;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+            background: #f0f4ff;
+            transition: all 0.3s;
+        }
+
+        .blank-input:focus {
+            outline: none;
+            border-color: #4facfe;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+        }
+
+        .hint-button {
+            display: inline-block;
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .hint-button:hover {
+            background: #ffb300;
+            transform: scale(1.05);
+        }
+
+        .hint-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Scripture Matching */
+        .match-item {
+            margin: 1rem 0;
+            padding: 1.2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .match-item label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+        }
+
+        .match-select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1.05rem;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            background: #f0f4ff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .match-select:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+        }
+
+        /* True/False */
+        .tf-item {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tf-item p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .tf-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .tf-button {
+            flex: 1;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tf-button:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .tf-button.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .tf-button.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        /* Interactive Cards */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        /* Text Areas */
+        .reflection-area {
+            margin: 1.5rem 0;
+        }
+
+        .reflection-area label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+        }
+
+        .reflection-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            font-size: 1.05rem;
+            font-family: inherit;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            background: #f0f4ff;
+            resize: vertical;
+            transition: all 0.3s;
+        }
+
+        .reflection-textarea:focus {
+            outline: none;
+            border-color: #4facfe;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+        }
+
+        /* Tap to Reveal */
+        .reveal-item {
+            margin: 1rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .reveal-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .reveal-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .reveal-answer {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e0e0e0;
+            font-size: 1.05rem;
+            color: #555;
+            display: none;
+        }
+
+        .reveal-item.revealed .reveal-answer {
+            display: block;
+        }
+
+        .reveal-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .reveal-item.revealed .reveal-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Copy Button */
+        .copy-section {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .copy-button {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.3);
+            transition: all 0.3s;
+        }
+
+        .copy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        .copy-button:active {
+            transform: translateY(-1px);
+        }
+
+        .copy-feedback {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #4caf50;
+            font-weight: 600;
+            display: none;
+        }
+
+        .copy-feedback.show {
+            display: block;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .section h2 {
+                font-size: 1.4rem;
+            }
+
+            .tf-buttons {
+                flex-direction: column;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(255,255,255,0.3);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="container">
+    <h1>Prophet, Priest & King</h1>
+    <div class="subtitle">Session 1 Interactive Worksheet</div>
+
+    <div class="instructions">
+        📝 <strong>This is for learning, not testing!</strong><br>
+        Take your time, use the hints, and enjoy exploring what you learned.
+    </div>
+
+    <!-- Section 1: Fill in the Blanks -->
+    <div class="section">
+        <h2><span class="section-icon">✏️</span> Fill in the Blanks</h2>
+        
+        <div class="fill-blank">
+            <p>
+                In the Old Testament, God related to His people through three divinely instituted offices: 
+                <input type="text" class="blank-input" data-answer="prophet" placeholder="?" id="blank1">
+                <button class="hint-button" onclick="giveHint('blank1', 'prophet')">💡 Hint</button>,
+                <input type="text" class="blank-input" data-answer="priest" placeholder="?" id="blank2">
+                <button class="hint-button" onclick="giveHint('blank2', 'priest')">💡 Hint</button>, and
+                <input type="text" class="blank-input" data-answer="king" placeholder="?" id="blank3">
+                <button class="hint-button" onclick="giveHint('blank3', 'king')">💡 Hint</button>.
+            </p>
+        </div>
+
+        <div class="fill-blank">
+            <p>
+                The <input type="text" class="blank-input" data-answer="prophet" placeholder="?" id="blank4">
+                <button class="hint-button" onclick="giveHint('blank4', 'prophet')">💡 Hint</button>
+                represented God before the people.
+            </p>
+        </div>
+
+        <div class="fill-blank">
+            <p>
+                The <input type="text" class="blank-input" data-answer="priest" placeholder="?" id="blank5">
+                <button class="hint-button" onclick="giveHint('blank5', 'priest')">💡 Hint</button>
+                represented the people before God.
+            </p>
+        </div>
+
+        <div class="fill-blank">
+            <p>
+                The <input type="text" class="blank-input" data-answer="king" placeholder="?" id="blank6">
+                <button class="hint-button" onclick="giveHint('blank6', 'king')">💡 Hint</button>
+                represented God's rule over the people.
+            </p>
+        </div>
+
+        <div class="fill-blank">
+            <p>
+                Jesus is not only the one who provides us with the gift of salvation—He is the 
+                <input type="text" class="blank-input" data-answer="gift" placeholder="?" id="blank7">
+                <button class="hint-button" onclick="giveHint('blank7', 'gift')">💡 Hint</button>
+                Himself.
+            </p>
+        </div>
+    </div>
+
+    <!-- Section 2: Scripture Matching -->
+    <div class="section">
+        <h2><span class="section-icon">📖</span> Match the Scripture</h2>
+        
+        <div class="match-item">
+            <label>What did God say at Jesus' baptism?</label>
+            <select class="match-select" onchange="checkMatch(this, 'matthew3')">
+                <option value="">Choose a verse...</option>
+                <option value="matthew3">"This is my Son, whom I love; with him I am well pleased."</option>
+                <option value="wrong1">"Today this scripture is fulfilled in your hearing."</option>
+                <option value="wrong2">"You shall know the truth, and the truth will set you free."</option>
+                <option value="wrong3">"My kingdom is not of this world."</option>
+            </select>
+        </div>
+
+        <div class="match-item">
+            <label>What did Jesus say when He read from Isaiah 61?</label>
+            <select class="match-select" onchange="checkMatch(this, 'luke4')">
+                <option value="">Choose a verse...</option>
+                <option value="wrong1">"I have installed my king on Zion."</option>
+                <option value="luke4">"Today this scripture is fulfilled in your hearing."</option>
+                <option value="wrong2">"A prophet is not without honor except in his own town."</option>
+                <option value="wrong3">"This is my Son, whom I love."</option>
+            </select>
+        </div>
+
+        <div class="match-item">
+            <label>What does Hebrews 12:2 tell us to do?</label>
+            <select class="match-select" onchange="checkMatch(this, 'hebrews12')">
+                <option value="">Choose a verse...</option>
+                <option value="wrong1">"Come before the throne of grace with confidence."</option>
+                <option value="wrong2">"You are my son; today I have become your father."</option>
+                <option value="hebrews12">"Fix your eyes on Jesus, the author and finisher of your faith."</option>
+                <option value="wrong3">"Let us hold firmly to the faith we profess."</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Section 3: True or False -->
+    <div class="section">
+        <h2><span class="section-icon">✓✗</span> True or False</h2>
+        
+        <div class="tf-item">
+            <p>The Old Testament prophets, priests, and kings perfectly fulfilled their offices.</p>
+            <div class="tf-buttons">
+                <button class="tf-button" onclick="checkTF(this, false)">TRUE</button>
+                <button class="tf-button" onclick="checkTF(this, true)">FALSE</button>
+            </div>
+        </div>
+
+        <div class="tf-item">
+            <p>Jesus was anointed by the Holy Spirit at His baptism.</p>
+            <div class="tf-buttons">
+                <button class="tf-button" onclick="checkTF(this, true)">TRUE</button>
+                <button class="tf-button" onclick="checkTF(this, false)">FALSE</button>
+            </div>
+        </div>
+
+        <div class="tf-item">
+            <p>We need Jesus equally as Prophet, Priest, and King—not just one or two.</p>
+            <div class="tf-buttons">
+                <button class="tf-button" onclick="checkTF(this, true)">TRUE</button>
+                <button class="tf-button" onclick="checkTF(this, false)">FALSE</button>
+            </div>
+        </div>
+
+        <div class="tf-item">
+            <p>When we believe in Jesus, we share in His ministry as prophet, priest, and king.</p>
+            <div class="tf-buttons">
+                <button class="tf-button" onclick="checkTF(this, true)">TRUE</button>
+                <button class="tf-button" onclick="checkTF(this, false)">FALSE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Flip Cards - Office Roles -->
+    <div class="section">
+        <h2><span class="section-icon">🔄</span> Tap to Learn: What Each Office Does</h2>
+        
+        <div class="card-container">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div>👨‍🏫<br><strong>PROPHET</strong></div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div>Speaks the Word of the Lord to the people</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div>🙏<br><strong>PRIEST</strong></div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div>Offers sacrifices on behalf of the people</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div>👑<br><strong>KING</strong></div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div>Governs and protects the people</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Tap to Reveal -->
+    <div class="section">
+        <h2><span class="section-icon">👆</span> Tap to Reveal</h2>
+        
+        <div class="reveal-item" onclick="this.classList.toggle('revealed')">
+            <div class="reveal-question">
+                Who was anointed king in 1 Samuel 16?
+                <span class="reveal-icon">▼</span>
+            </div>
+            <div class="reveal-answer">
+                <strong>David</strong> was anointed king by Samuel.
+            </div>
+        </div>
+
+        <div class="reveal-item" onclick="this.classList.toggle('revealed')">
+            <div class="reveal-question">
+                Who was anointed priest in Leviticus 8?
+                <span class="reveal-icon">▼</span>
+            </div>
+            <div class="reveal-answer">
+                <strong>Aaron</strong> was anointed as priest.
+            </div>
+        </div>
+
+        <div class="reveal-item" onclick="this.classList.toggle('revealed')">
+            <div class="reveal-question">
+                Who was anointed prophet in 1 Kings 19?
+                <span class="reveal-icon">▼</span>
+            </div>
+            <div class="reveal-answer">
+                <strong>Elisha</strong> was anointed as prophet.
+            </div>
+        </div>
+
+        <div class="reveal-item" onclick="this.classList.toggle('revealed')">
+            <div class="reveal-question">
+                What does "Christ" mean?
+                <span class="reveal-icon">▼</span>
+            </div>
+            <div class="reveal-answer">
+                <strong>"The Anointed One"</strong> - It's not Jesus' last name, it's His title!
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: How Jesus IS Different -->
+    <div class="section">
+        <h2><span class="section-icon">⭐</span> How Jesus IS Different</h2>
+        
+        <div class="card-container">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div>He doesn't just reveal the Word...</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div>He <strong>IS</strong> the Word!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div>He doesn't just offer a sacrifice...</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div>He <strong>IS</strong> the sacrifice!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div>He doesn't just rule as King...</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div>He <strong>IS</strong> the servant King who laid down His life!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 7: Personal Reflection -->
+    <div class="section">
+        <h2><span class="section-icon">💭</span> Personal Reflection</h2>
+        
+        <div class="reflection-area">
+            <label>Which office—prophet, priest, or king—feels most meaningful to you right now? Why?</label>
+            <textarea class="reflection-textarea" id="reflection1" placeholder="Type your thoughts here..."></textarea>
+        </div>
+
+        <div class="reflection-area">
+            <label>Have you ever wanted Jesus as your Savior but resisted Him as your Prophet or King? What areas of your life do you need to surrender to Him?</label>
+            <textarea class="reflection-textarea" id="reflection2" placeholder="Type your thoughts here..."></textarea>
+        </div>
+
+        <div class="reflection-area">
+            <label>What's one thing from this lesson that you want to remember this week?</label>
+            <textarea class="reflection-textarea" id="reflection3" placeholder="Type your thoughts here..."></textarea>
+        </div>
+    </div>
+
+    <!-- Copy Responses -->
+    <div class="copy-section">
+        <button class="copy-button" onclick="copyResponses()">📋 Copy My Responses</button>
+        <div class="copy-feedback" id="copyFeedback">✓ Copied to clipboard!</div>
+    </div>
+
+</div>
+
+<script>
+    // Hint System
+    let hintClicks = {};
+    
+    function giveHint(inputId, answer) {
+        if (!hintClicks[inputId]) {
+            hintClicks[inputId] = 0;
+        }
+        
+        hintClicks[inputId]++;
+        const input = document.getElementById(inputId);
+        
+        if (hintClicks[inputId] === 1) {
+            // First tap: show first 3 letters
+            input.value = answer.substring(0, 3);
+            input.focus();
+        } else {
+            // Second tap: show full word
+            input.value = answer;
+            input.style.borderColor = '#4caf50';
+            input.style.background = '#e8f5e9';
+        }
+    }
+
+    // Scripture Matching
+    function checkMatch(select, correctAnswer) {
+        if (select.value === correctAnswer) {
+            select.style.borderColor = '#4caf50';
+            select.style.background = '#e8f5e9';
+        } else if (select.value !== '') {
+            select.style.borderColor = '#f44336';
+            select.style.background = '#ffebee';
+            setTimeout(() => {
+                select.style.borderColor = '#667eea';
+                select.style.background = '#f0f4ff';
+            }, 1000);
+        }
+        updateProgress();
+    }
+
+    // True/False
+    function checkTF(button, isCorrect) {
+        const buttons = button.parentElement.querySelectorAll('.tf-button');
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            btn.style.cursor = 'not-allowed';
+        });
+        
+        if (isCorrect) {
+            button.classList.add('correct');
+        } else {
+            button.classList.add('incorrect');
+        }
+        updateProgress();
+    }
+
+    // Copy Responses
+    function copyResponses() {
+        let responses = 'Prophet, Priest & King - Session 1 Responses\n\n';
+        
+        // Fill in the blanks
+        responses += '=== Fill in the Blanks ===\n';
+        for (let i = 1; i <= 7; i++) {
+            const input = document.getElementById('blank' + i);
+            if (input && input.value) {
+                responses += `${i}. ${input.value}\n`;
+            }
+        }
+        
+        // Reflections
+        responses += '\n=== Personal Reflections ===\n\n';
+        for (let i = 1; i <= 3; i++) {
+            const textarea = document.getElementById('reflection' + i);
+            if (textarea && textarea.value) {
+                const label = textarea.previousElementSibling.textContent;
+                responses += `${label}\n${textarea.value}\n\n`;
+            }
+        }
+        
+        // Copy to clipboard
+        navigator.clipboard.writeText(responses).then(() => {
+            const feedback = document.getElementById('copyFeedback');
+            feedback.classList.add('show');
+            setTimeout(() => {
+                feedback.classList.remove('show');
+            }, 3000);
+        });
+    }
+
+    // Progress tracking
+    function updateProgress() {
+        const totalItems = 15; // Approximate interactive items
+        let completed = 0;
+        
+        // Count filled blanks
+        for (let i = 1; i <= 7; i++) {
+            const input = document.getElementById('blank' + i);
+            if (input && input.value) completed++;
+        }
+        
+        // Count answered TF questions
+        const tfItems = document.querySelectorAll('.tf-item');
+        tfItems.forEach(item => {
+            if (item.querySelector('.tf-button.correct, .tf-button.incorrect')) {
+                completed++;
+            }
+        });
+        
+        const percentage = (completed / totalItems) * 100;
+        document.getElementById('progressBar').style.width = percentage + '%';
+    }
+
+    // Track interactions
+    document.querySelectorAll('.blank-input').forEach(input => {
+        input.addEventListener('input', updateProgress);
+    });
+
+    document.querySelectorAll('.reflection-textarea').forEach(textarea => {
+        textarea.addEventListener('input', updateProgress);
+    });
+
+    // Initialize
+    updateProgress();
+</script>
+
+</body>
+</html>

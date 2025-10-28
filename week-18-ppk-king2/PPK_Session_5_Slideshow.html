@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Session 5: The King Who Rescues and Rules Our Hearts - Slideshow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #1a1a2e;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5vh 8vw;
+            color: white;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        
+        /* Title Slide */
+        .slide-title {
+            background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%);
+        }
+        
+        .slide-title h1 {
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 800;
+            margin-bottom: 2vh;
+            line-height: 1.2;
+        }
+        
+        .slide-title .session-number {
+            font-size: clamp(22px, 4vw, 32px);
+            opacity: 0.9;
+            margin-bottom: 4vh;
+        }
+        
+        .slide-title .subtitle {
+            font-size: clamp(32px, 6vw, 54px);
+            font-weight: 700;
+            margin-top: 2vh;
+        }
+        
+        /* Explanation Slide */
+        .slide-explanation {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+        
+        .slide-explanation h2 {
+            font-size: clamp(28px, 5vw, 42px);
+            margin-bottom: 3vh;
+            font-weight: 700;
+        }
+        
+        .slide-explanation p {
+            font-size: clamp(22px, 4vw, 32px);
+            line-height: 1.6;
+            max-width: 90%;
+            margin: 1.5vh auto;
+        }
+        
+        /* Question Slides */
+        .slide-question {
+            background: linear-gradient(135deg, #16a085 0%, #27ae60 100%);
+        }
+        
+        .slide-question .pause-label {
+            font-size: clamp(20px, 3.5vw, 28px);
+            font-weight: 700;
+            background: rgba(255,255,255,0.2);
+            padding: 1.5vh 4vw;
+            border-radius: 50px;
+            margin-bottom: 3vh;
+        }
+        
+        .slide-question .question-text {
+            font-size: clamp(26px, 5vw, 42px);
+            line-height: 1.5;
+            font-weight: 600;
+            max-width: 90%;
+        }
+        
+        .slide-question .next-pause {
+            font-size: clamp(18px, 3vw, 24px);
+            margin-top: 4vh;
+            opacity: 0.85;
+            font-weight: 600;
+        }
+        
+        /* Overview Question Slides */
+        .slide-overview {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+        }
+        
+        .slide-overview .label {
+            font-size: clamp(22px, 4vw, 32px);
+            font-weight: 700;
+            margin-bottom: 3vh;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .slide-overview .question-text {
+            font-size: clamp(24px, 4.5vw, 38px);
+            line-height: 1.5;
+            font-weight: 600;
+            max-width: 90%;
+        }
+        
+        /* Highlight Slide */
+        .slide-highlight {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+        }
+        
+        .slide-highlight .content {
+            font-size: clamp(28px, 5.5vw, 48px);
+            line-height: 1.6;
+            font-weight: 700;
+            font-style: italic;
+            max-width: 85%;
+            padding: 4vh;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Main Point Slides */
+        .slide-point {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+        
+        .slide-point .point-number {
+            font-size: clamp(48px, 10vw, 80px);
+            font-weight: 900;
+            margin-bottom: 3vh;
+            color: #3498db;
+        }
+        
+        .slide-point .point-text {
+            font-size: clamp(24px, 4.5vw, 40px);
+            line-height: 1.6;
+            max-width: 90%;
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            position: fixed;
+            bottom: 3vh;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-btn:active {
+            transform: scale(0.95);
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        /* Slide Counter */
+        .slide-counter {
+            position: fixed;
+            top: 2vh;
+            right: 3vw;
+            background: rgba(0,0,0,0.5);
+            padding: 1vh 2vw;
+            border-radius: 20px;
+            font-size: clamp(14px, 2.5vw, 20px);
+            z-index: 1000;
+        }
+        
+        .touch-indicator {
+            position: fixed;
+            bottom: 10vh;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: clamp(14px, 2.5vw, 18px);
+            z-index: 999;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            Slide <span id="current-slide">1</span> / <span id="total-slides">19</span>
+        </div>
+        
+        <!-- Slide 1: Title -->
+        <div class="slide slide-title active">
+            <div class="session-number">SESSION 5</div>
+            <h1>PROPHET, PRIEST, KING<br>(5 of 5)</h1>
+            <div class="subtitle">The King Who Rescues and Rules Our Hearts</div>
+        </div>
+        
+        <!-- Slide 2: Explanation -->
+        <div class="slide slide-explanation">
+            <h2>A Note About Today's Session</h2>
+            <p>This session combines segments from two related sermons on King Jesus.</p>
+            <p>We've woven them together to give you the fullest picture of how Jesus rescues us from false kings and establishes His loving rule in our hearts.</p>
+            <p>We apologize that the transitions between video segments may not be completely seamless, but we believe the combined message will be powerful and encouraging.</p>
+        </div>
+        
+        <!-- Slide 3: Segment Question 1 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:22:20</div>
+            <div class="question-text">
+                Have you ever experienced a moment when God's word suddenly became alive to you and you felt His love in a new way?
+            </div>
+            <div class="next-pause">Next pause at 1:14:22</div>
+        </div>
+        
+        <!-- Slide 4: Segment Question 2 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:14:22</div>
+            <div class="question-text">
+                Have you ever experienced God showing you that something you believed about life or yourself wasn't actually true?
+            </div>
+            <div class="next-pause">Next pause at 1:38:39</div>
+        </div>
+        
+        <!-- Slide 5: Segment Question 3 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:38:39</div>
+            <div class="question-text">
+                What stands out to you most about the idea that God uses difficult situations to humble us and show us how much we need Him?
+            </div>
+            <div class="next-pause">Next pause at 1:31:16</div>
+        </div>
+        
+        <!-- Slide 6: Segment Question 4 -->
+        <div class="slide slide-question">
+            <div class="pause-label">PAUSE THE VIDEO AT 1:31:16</div>
+            <div class="question-text">
+                What's one area of your life where you're still trying to stay in control instead of trusting Jesus completely?
+            </div>
+        </div>
+        
+        <!-- Slide 7: Overview Question 1 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                Share about a time when a difficult situation helped you realize how much you needed God's help and strength.
+            </div>
+        </div>
+        
+        <!-- Slide 8: Overview Question 2 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                What is one good thing in your life that sometimes competes with Jesus for first place in your heart?
+            </div>
+        </div>
+        
+        <!-- Slide 9: Overview Question 3 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                What does it mean to take "every thought captive to obey Christ"? How can you apply this in your daily life?
+            </div>
+        </div>
+        
+        <!-- Slide 10: Overview Question 4 -->
+        <div class="slide slide-overview">
+            <div class="label">After the Video - Discussion Time</div>
+            <div class="question-text">
+                What's one specific way you could increase "the word of Jesus" in your life this week to experience more of His kingship?
+            </div>
+        </div>
+        
+        <!-- Slide 11: Highlight Sentence -->
+        <div class="slide slide-highlight">
+            <div class="content">
+                God made you to live under King Jesus, and since you will inevitably serve whatever you seek first, He wages war against false kings in your heart through His word and humbling circumstances to set you free for abundant life in Him.
+            </div>
+        </div>
+        
+        <!-- Slide 12: Main Point 1 -->
+        <div class="slide slide-point">
+            <div class="point-number">1</div>
+            <div class="point-text">
+                We were created to live under the perfect rule of King Jesus, not to rule ourselves.
+            </div>
+        </div>
+        
+        <!-- Slide 13: Main Point 2 -->
+        <div class="slide slide-point">
+            <div class="point-number">2</div>
+            <div class="point-text">
+                Whatever you seek after first, you will inevitably end up serving—this is part of the human condition.
+            </div>
+        </div>
+        
+        <!-- Slide 14: Main Point 3 -->
+        <div class="slide slide-point">
+            <div class="point-number">3</div>
+            <div class="point-text">
+                Good things become false kings when we make them ultimate things, and false kings always disappoint.
+            </div>
+        </div>
+        
+        <!-- Slide 15: Main Point 4 -->
+        <div class="slide slide-point">
+            <div class="point-number">4</div>
+            <div class="point-text">
+                Jesus rescues us by waging war against the lies and false beliefs that keep us from seeing His worth.
+            </div>
+        </div>
+        
+        <!-- Slide 16: Main Point 5 -->
+        <div class="slide slide-point">
+            <div class="point-number">5</div>
+            <div class="point-text">
+                King Jesus comes with meekness and gentleness, using His word as the weapon to demolish strongholds.
+            </div>
+        </div>
+        
+        <!-- Slide 17: Main Point 6 -->
+        <div class="slide slide-point">
+            <div class="point-number">6</div>
+            <div class="point-text">
+                He targets both our false arguments (wrong belief systems) and our pretensions (pride and self-will).
+            </div>
+        </div>
+        
+        <!-- Slide 18: Main Point 7 -->
+        <div class="slide slide-point">
+            <div class="point-number">7</div>
+            <div class="point-text">
+                God uses humbling circumstances and trials to bring down our pride so we can see how much we need Him.
+            </div>
+        </div>
+        
+        <!-- Slide 19: Main Point 8 -->
+        <div class="slide slide-point">
+            <div class="point-number">8</div>
+            <div class="point-text">
+                The kingship of Jesus in our life is directly proportional to the word of Jesus in our life.
+            </div>
+        </div>
+        
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">←</button>
+            <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">→</button>
+        </div>
+        
+        <div class="touch-indicator">
+            Swipe or tap arrows to navigate
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentSlideSpan = document.getElementById('current-slide');
+        
+        function showSlide(n) {
+            if (n >= totalSlides) {
+                currentSlide = totalSlides - 1;
+            } else if (n < 0) {
+                currentSlide = 0;
+            } else {
+                currentSlide = n;
+            }
+            
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            
+            currentSlideSpan.textContent = currentSlide + 1;
+            
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Home') showSlide(0);
+            if (e.key === 'End') showSlide(totalSlides - 1);
+        });
+        
+        // Touch/swipe navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                changeSlide(1); // Swipe left
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                changeSlide(-1); // Swipe right
+            }
+        }
+        
+        // Initialize
+        showSlide(0);
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        // Hide touch indicator after a few seconds
+        setTimeout(() => {
+            document.querySelector('.touch-indicator').style.opacity = '0';
+        }, 5000);
+    </script>
+</body>
+</html>

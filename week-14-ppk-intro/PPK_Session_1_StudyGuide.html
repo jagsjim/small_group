@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prophet, Priest & King - Session 1 Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.8;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 7in;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+
+        /* Page styling */
+        .page {
+            page-break-after: always;
+            min-height: 30 lines;
+            margin-bottom: 3rem;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Title */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* Video Button */
+        .video-button-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .video-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(118, 75, 162, 0.3);
+            transition: all 0.3s;
+        }
+
+        .video-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(118, 75, 162, 0.4);
+        }
+
+        /* Summary */
+        .summary {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 5px solid #667eea;
+            font-size: 1.2rem;
+        }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            font-style: italic;
+            line-height: 1.8;
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.3);
+        }
+
+        /* Section Headers */
+        h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin: 2.5rem 0 1.5rem 0;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Main Points */
+        .main-points {
+            list-style: none;
+            counter-reset: point-counter;
+        }
+
+        .main-points li {
+            counter-increment: point-counter;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #4facfe;
+            font-size: 1.1rem;
+        }
+
+        .main-points li::before {
+            content: counter(point-counter) ". ";
+            font-weight: 700;
+            color: #4facfe;
+            font-size: 1.3rem;
+        }
+
+        .main-points strong {
+            display: block;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        /* Segment Questions */
+        .segment-questions {
+            background: #fff3cd;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 5px solid #ffc107;
+        }
+
+        .segment-questions .timestamp {
+            font-weight: 700;
+            color: #e65100;
+            font-size: 1.2rem;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .segment-questions .timestamp:first-child {
+            margin-top: 0;
+        }
+
+        .segment-questions p {
+            margin-left: 1rem;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Overview Questions */
+        .overview-questions {
+            list-style: none;
+            counter-reset: overview-counter;
+        }
+
+        .overview-questions li {
+            counter-increment: overview-counter;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: #e8f5e9;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+            font-size: 1.1rem;
+        }
+
+        .overview-questions li::before {
+            content: counter(overview-counter) ". ";
+            font-weight: 700;
+            color: #4caf50;
+            font-size: 1.3rem;
+        }
+
+        /* Bible Verses */
+        .bible-verses {
+            background: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 5px solid #2196f3;
+        }
+
+        .bible-verses p {
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .bible-verses p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Transcript */
+        .transcript {
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .transcript h3 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .transcript h4 {
+            font-size: 1.2rem;
+            color: #34495e;
+            margin: 1.5rem 0 0.8rem 0;
+            font-weight: 600;
+        }
+
+        .transcript p {
+            margin-bottom: 1rem;
+        }
+
+        .transcript strong {
+            color: #2c3e50;
+        }
+
+        .transcript em {
+            color: #7f8c8d;
+        }
+
+        .transcript .critical {
+            font-weight: 700;
+            font-style: italic;
+            color: #e74c3c;
+        }
+
+        .transcript blockquote {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            font-style: italic;
+            color: #555;
+        }
+
+        .transcript ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .transcript li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Page break fillers */
+        .spacer {
+            line-height: 1.8;
+        }
+
+        /* Mobile Optimization */
+        @media screen {
+            body {
+                font-size: 24pt;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 1in;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .video-button {
+                padding: 1rem 2rem;
+                font-size: 1.3rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- PAGE 1 -->
+<div class="page">
+    <h1>Prophet, Priest and King</h1>
+    <div class="subtitle">A Fresh Vision of Jesus - Session 1 of 5</div>
+
+    <div class="video-button-container">
+        <a href="https://www.youtube.com/live/JUBl0p4SPZA?si=6qIlZDaYERZ17LJN&t=2710" target="_blank" class="video-button">▶ WATCH VIDEO</a>
+    </div>
+
+    <div class="summary">
+        <strong>Summary:</strong> This opening message introduces a fresh way of understanding Jesus through the Old Testament offices of prophet, priest, and king. Just as God related to His people through these three divinely instituted offices in the Old Testament, Jesus perfectly fulfills all three roles. He is the ultimate Prophet who reveals God's truth, the ultimate Priest who offers Himself as the perfect sacrifice, and the ultimate King who rules with servant leadership. This series will help us see a more complete portrait of Jesus and deepen our worship and love for Him.
+    </div>
+
+    <div class="highlight">
+        In the person of Christ we have the fulfillment of not one but all three offices, PPK.
+    </div>
+
+    <h2>Main Points</h2>
+    <ol class="main-points">
+        <li>
+            <strong>PPK is revealed in the Old Testament</strong>
+            God related to His people through three divinely instituted offices: prophet, priest, and king.
+        </li>
+        <li>
+            <strong>PPK is fulfilled in Christ's earthly ministry</strong>
+            Everything Jesus did in His earthly ministry fell into one of these three roles.
+        </li>
+        <li>
+            <strong>PPK is exemplified in Christ's heavenly ministry</strong>
+            Jesus was, is, and always will be Prophet, Priest, and King.
+        </li>
+        <li>
+            <strong>Jesus uniquely fulfills all three offices</strong>
+            He reveals the truth AND IS the truth; He offers the sacrifice AND IS the sacrifice; He rules as King AND serves as King.
+        </li>
+        <li>
+            <strong>PPK is a model for husbands and fathers</strong>
+            It provides a biblical pattern for how men are to spiritually lead their families.
+        </li>
+        <li>
+            <strong>The origin of PPK</strong>
+            After the fall, God temporarily met the need for a single Messiah through these three offices.
+        </li>
+        <li>
+            <strong>The fulfillment of PPK</strong>
+            Jesus was anointed at His baptism as the ultimate Prophet, Priest, and King.
+        </li>
+        <li>
+            <strong>Why we need all three equally</strong>
+            We can't have a partial Messiah—we need Jesus equally as Prophet, Priest, and King.
+        </li>
+    </ol>
+
+    <h2>Segment Questions (Pause Points During Video)</h2>
+    <div class="segment-questions">
+        <span class="timestamp">[1:04:47]</span>
+        <p>What went through your mind when you heard how Jesus fulfilled all three offices—prophet, priest, and king—perfectly when no one else could?</p>
+
+        <span class="timestamp">[1:12:02]</span>
+        <p>What stands out to you most about how Jesus doesn't just fulfill these roles but IS the truth, IS the sacrifice, and IS the servant King?</p>
+
+        <span class="timestamp">[1:17:16]</span>
+        <p>Have you ever caught yourself wanting Jesus to be your Savior but not wanting Him to speak truth into your life or rule over certain areas? What was that like?</p>
+    </div>
+
+    <!-- Spacers to reach minimum 30 lines -->
+    <div class="spacer">&nbsp;</div>
+    <div class="spacer">&nbsp;</div>
+    <div class="spacer">&nbsp;</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+    <h2>Overview Discussion Questions (After Video)</h2>
+    <ol class="overview-questions">
+        <li>Can 2-3 people explain in your own words what each office means? (Prophet, Priest, King)</li>
+        <li>Which office—prophet, priest, or king—do you favor, and why?</li>
+        <li>How could favoring one office over another negatively impact your walk with Christ?</li>
+        <li>What's one thing from this message that challenged you or that you want to remember this week?</li>
+    </ol>
+
+    <h2>Bible Verses Quoted</h2>
+    <div class="bible-verses">
+        <p>Hebrews 1:1-3 ("God has spoken to us by his Son...")</p>
+        <p>Matthew 3:17 ("This is my Son, whom I love; with him I am well pleased.")</p>
+        <p>Psalm 2:1-8 ("Why do the nations conspire... I have installed my king on Zion...")</p>
+        <p>Acts 10:38 ("God anointed Jesus of Nazareth with the Holy Spirit and power...")</p>
+        <p>Luke 4:18, 21 ("The Spirit of the Lord is on me... Today this scripture is fulfilled...")</p>
+        <p>Mark 6:4 ("A prophet is not without honor except in his own town...")</p>
+        <p>Matthew 21:11 ("This is Jesus, the prophet from Nazareth...")</p>
+        <p>Acts 3:22, 7:37 (References to Jesus as the ultimate prophet)</p>
+        <p>Hebrews 4:14-16 ("We have a great high priest...")</p>
+        <p>Hebrews 7:26-27 ("Such a high priest truly meets our need...")</p>
+        <p>Matthew 27:11 ("Are you the king of the Jews?")</p>
+        <p>John 18:36 ("My kingdom is not of this world...")</p>
+        <p>1 Samuel 16 (David anointed king)</p>
+        <p>Leviticus 8 (Aaron anointed priest)</p>
+        <p>1 Kings 19 (Elisha anointed prophet)</p>
+        <p>Genesis 3:15 (The seed of the woman)</p>
+        <p>Hebrews 12:2 ("Fix your eyes on Jesus, the author and finisher of your faith...")</p>
+        <p>John 8:32 ("You shall know the truth, and the truth will set you free...")</p>
+    </div>
+</div>
+
+<!-- PAGE 3+ TRANSCRIPT -->
+<div class="page transcript">
+    <h2>Transcript (Outline Format)</h2>
+
+    <h3>Introduction</h3>
+
+    <h4>1. A New Study About Jesus</h4>
+    <p>1.1 This morning we are going to begin a new study about Jesus; who He is and what He has done.</p>
+    <p>1.2 <strong>One of the ways the Bible reveals Jesus to us is through the Old Testament offices of prophet, priest and king.</strong></p>
+    <p>1.3 And that is the title of this new series: <strong><em>Jesus Christ: Prophet, Priest and King.</em></strong></p>
+
+    <h4>2. The Paint by Number Illustration</h4>
+    <p>2.1 This morning we are going to start by giving you a very broad overview of where we are headed in this teaching series over the next 4-6 weeks.</p>
+    <p>2.2 But before I start let me give you an illustration of what I hope God does through this series.</p>
+    <p>2.3 Recently, Violet completed a paint by number portrait that was given to her this Christmas by our son-in-law.</p>
+    
+    <p>2.3.1 The pattern printed on the canvas was taken from a photo of Violet and I walking down a road at Mercier orchards in Blue Ridge, Georgia.</p>
+    <p>2.3.2 The pattern was very intricate with many lines and many small spaces to fill with a couple dozen colors.</p>
+    
+    <p>2.4 And when Violet first started I thought that this was never going to look like the photo it was taken from.</p>
+    <p>2.5 It was just a bunch of squiggly lines and numbers so small you needed a magnifying glass.</p>
+    
+    <p>2.6 But as Violet progressed, day by day the canvas slowly but surely became the portrait that looked like the picture.</p>
+    <p>2.7 It all came together. I was amazed.</p>
+    <p>2.8 And after Violet brushed the final stroke we hung it on the wall.</p>
+
+    <h4>3. The Purpose of This Series</h4>
+    <p>3.1 Now in a similar way I hope that this series will do the same for you.</p>
+    <p>3.2 <strong>I pray that understanding Jesus as PPK will connect the dots and fill in the spaces for you so that you see a more complete portrait of Jesus.</strong></p>
+    <p>3.3 So that you have fresh vision of Jesus and would in turn deepen your worship and love for Him.</p>
+    <p>3.4 <strong>As we begin let me share five things you need to know about the Biblical paradigm of PPK.</strong></p>
+
+    <h3>[1] The Biblical Paradigm of PPK</h3>
+
+    <h4>1. PPK is Revealed in the Old Testament</h4>
+    <p>1.1 <strong>In the Old Testament, under the Old Covenant God related to His people through three divinely instituted offices: the prophet, priest and king.</strong></p>
+    
+    <ul>
+        <li><strong>The prophet represented God before the people.</strong></li>
+        <li><strong>The priest represented the people before God.</strong></li>
+        <li><strong>The king represented God's rule over the people.</strong></li>
+    </ul>
+    
+    <ul>
+        <li>The prophet spoke the Word of the Lord to the people.</li>
+        <li>The priest offered sacrifices on behalf of the people.</li>
+        <li>The king governed and protected the people.</li>
+    </ul>
+    
+    <p>1.2 Each of them was commissioned to serve by being anointed with oil which was a symbol that they had been anointed by the Holy Spirit.</p>
+
+    <h4>2. PPK is Fulfilled in Christ's Earthly Ministry</h4>
+    <p>2.1 In spite of God's anointing on the Old Testament prophets, priests and kings, they were only mere men and therefore imperfectly fulfilled their offices.</p>
+    
+    <ul>
+        <li>Some prophets were false and corrupted God's messages.</li>
+        <li>Some priests just went through the motions.</li>
+        <li>Most of the kings ruled unjustly and only served themselves.</li>
+    </ul>
+    
+    <p>2.2 In spite of their weaknesses God used them.</p>
+    <p>2.3 But even more, God ordained their PPK offices to be a foreshadowing of the ultimate prophet, priest and king, Jesus Christ, the ultimate Anointed One aka Messiah.</p>
+    <p>2.4 <strong>And everything that Jesus was and Jesus did in His earthly ministry falls into one of the three roles, PPK.</strong></p>
+    <p>2.5 But PPK is not just something Jesus fulfilled, it is something He continues to exemplify in His heavenly ministry.</p>
+
+    <h4>3. PPK is Exemplified in Christ's Heavenly Ministry</h4>
+    <p>3.1 <strong><em>Jesus was, is and always will be PPK.</em></strong></p>
+    <p>3.2 So understanding these offices will greatly help us more fully understand who Jesus is right now and what He is doing for us right now and what He will do for us in the future.</p>
+    <p>3.3 We'll see how each one of these offices of Christ addresses our deepest human needs: to know God, to be in right relationship with God and eventually to be restored to the glory God created us for in the beginning.</p>
+    <p>3.4 But the PPK paradigm will also help us understand more fully what He has called us to do because the offices of PPK are something He shares with all believers.</p>
+
+    <h4>4. PPK is Shared by All Believers</h4>
+    <p>4.1 When we believe in Jesus we become a part of the body of Christ and united with Christ in such a way that we share in His righteousness, sonship, inheritance and share in His ministry as PPK.</p>
+    
+    <ul>
+        <li>Like a prophet He has called us to speak the truth of His gospel to the world around us.</li>
+        <li>Like a priest He has called us to come before Him in worship and bring others before Him in intercessory prayer.</li>
+        <li>Like kings He has called us to resist the enemy and stand firm in the full armor of God. One day, when His kingdom fully comes, we will reign with Him.</li>
+    </ul>
+    
+    <p>4.2 So there is a sense in which we all share in Christ's ministry as PPK.</p>
+    <p>4.3 There is also a sense in which Christian husbands and fathers uniquely share in it.</p>
+
+    <h4>5. PPK is a Model for Husbands and Fathers</h4>
+    <p>5.1 It is a model that enables and guides men how to spiritually lead their wives and families.</p>
+    <p>5.2 We often say to men you need to be the spiritual leader of your home. But how do you do that? PPK gives us a model.</p>
+    <p>5.3 You are not the prophet, priest and king for your family. Only Jesus can fill those roles. You cannot replace Him but you should imitate Him.</p>
+    <p>5.4 And you do that through the PPK paradigm.</p>
+    <p>5.5 In it we find a model of how a husband and father is to lead and love his wife and family as Christ leads and loves the body of Christ.</p>
+    <p>5.6 And that will be the topic at our 2nd annual men's conference: <strong>As for Me and My House Men's Conference, February 24th from 8-1 pm.</strong></p>
+    <p>5.7 And because we will be using the PPK model to explain how a husband and father is to lead it would be very beneficial to be here on Sunday mornings in February.</p>
+    <p>5.8 And if you cannot, watch or listen to the messages on gracepsl.org, church center app, Spotify or iTunes.</p>
+
+    <h3>[2] The Origin of PPK</h3>
+
+    <h4>1. The Need for a Messiah</h4>
+    <p>1.1 <strong>When sin entered the world through the first Adam, humanity became blind to the truth of God, guilty before the presence of God and enslaved by a false god, Satan.</strong></p>
+    <p>1.2 <strong><em>This is why humanity needed a second Adam; a righteous prophet to open our eyes to God's truth, a priest to cleanse us from our sin and a king to conquer death and Satan on our behalf. In the OT this person was revealed as "The Messiah."</em></strong></p>
+
+    <h4>2. The Promise of the Messiah</h4>
+    <p>2.1 <strong>After the fall God announced that one of Eve's offspring, aka the seed of the woman, would be that Messiah and he would crush the head of the serpent Satan who introduced Adam and Eve to sin.</strong></p>
+    <p>2.2 Sometime later when Eve had her first son she said "I have gotten a man from the Lord." She thought Cain was the Messiah who would undo what happened in the garden. Obviously, he was not.</p>
+    <p>2.3 Nor was her second son, Abel the Messiah. It would be years later that Messiah would come on the scene.</p>
+
+    <h4>3. The Temporary Solution</h4>
+    <p>3.1 <strong>In the meantime, as the narrative of the Old Testament unfolds, God temporarily met the need for a single Messiah through three offices, PPK.</strong></p>
+    
+    <ul>
+        <li><strong>Prophets proclaimed to the people "thus says the Lord."</strong></li>
+        <li><strong>Priests presented sacrifices on behalf of the people.</strong></li>
+        <li><strong>Kings protected and governed the people.</strong></li>
+    </ul>
+
+    <h4>4. Examples of Anointing</h4>
+    <p>4.1 <strong>Each in a limited way was anointed. For example:</strong></p>
+    <ul>
+        <li><strong>David was anointed king (1 Samuel 16).</strong></li>
+        <li><strong>Aaron was anointed priest (Leviticus 8).</strong></li>
+        <li><strong>Elisha was anointed a prophet (1 Kings 19).</strong></li>
+    </ul>
+    <p>4.2 <strong>They were anointed and served a purpose but ultimately, they were not the Messiah.</strong></p>
+    <p>4.3 <strong>Collectively, PPK's were a foreshadowing of the future Messiah who would fulfill the PPK paradigm.</strong></p>
+
+    <h3>[3] The Fulfillment of PPK</h3>
+
+    <h4>1. John the Baptist Prepares the Way</h4>
+    <p>1.1 Many centuries later God sent John the Baptist to prepare the people of Israel to receive the Messiah God had promised in the Garden of Eden.</p>
+    <p>1.2 One day, during the height of John's ministry, Jesus comes to John and asks to be baptized.</p>
+    <p>1.3 It was a stunning request because John's baptism was for repentance and repentance is for sinners.</p>
+    <p>1.4 But Jesus wasn't repenting of sin, He was identifying with sinners so completely He takes their baptism.</p>
+    <p>1.5 As He comes out of the water He is anointed, not by man with oil like the OT PPK, but by God with the Holy Spirit.</p>
+    <p>1.6 And as the Spirit descends upon Him in the form of a dove God says <em>"This is my Son, whom I love, with Him I am well pleased"</em> (Matthew 3:17).</p>
+
+    <h4>2. The Anointing Fulfills Prophecy</h4>
+    <p>2.1 So at the moment of His baptism He was anointed by the Spirit and commissioned by the Father for His public ministry thus fulfilling the messianic prophecy of Psalm 2.</p>
+    
+    <blockquote>
+        <p><em>Why do the nations conspire and the peoples plot in vain? The kings of the earth rise up and the rulers band together against the Lord and against his anointed, saying, "Let us break their chains and throw off their shackles." The One enthroned in heaven laughs; the Lord scoffs at them. He rebukes them in his anger and terrifies them in his wrath, saying, "I have installed my king on Zion, my holy mountain." I will proclaim the Lord's decree: He said to me, "You are my son; today I have become your father. Ask me, and I will make the nations your inheritance, the ends of the earth your possession"</em> (Psalm 2:1-8)</p>
+    </blockquote>
+
+    <p>2.2 This unique heaven-sent anointing by the Father, through the Spirit upon the humanity of the son identified Him as the promised Anointed One foretold in Psalm 2 who came to rescue the nations from their rebellion.</p>
+    <p>2.3 In the OT Anointed One is translated from the Hebrew word "Mashiach"—Messiah. In the NT Anointed One is translated from the Greek word "Christos"—Christ. (BTW Christ is not Jesus' last name, it's His title as "The" Anointed One.)</p>
+    <p>2.4 Luke speaks of this anointing in Acts 10 when he says, <em>"God anointed Jesus of Nazareth with the Holy Spirit and power, and how he went around doing good and healing all who were under the power of the devil, because God was with him"</em> (Acts 10:38).</p>
+
+    <h4>3. Jesus Declares His Anointing</h4>
+    <p>3.1 <strong>Not long after Jesus' anointing at His baptism, He is asked to read the scripture in the synagogue of His hometown Nazareth.</strong></p>
+    <p>3.2 <strong>He turns to Isaiah 61 and reads; <em>"The Spirit of the Lord is on me because he has anointed me"</em> (Luke 4:18a).</strong></p>
+    <p>3.3 <strong>After He finishes reading the text He says, "Today this scripture is fulfilled in your hearing" (Luke 4:21).</strong></p>
+
+    <h4>4. Jesus Fulfills the PPK Offices</h4>
+    <p>4.1 <strong>From that point on we see Jesus perfectly fulfilling the role of the Anointed One through the ministries of PPK.</strong></p>
+    
+    <p>4.2 Jesus referred to Himself as a prophet when He said, <em>"A prophet is not without honor except in his own town"</em> (Mark 6:4).</p>
+    <p>4.3 When He entered Jerusalem at the end of His ministry the people proclaimed, <em>"This is Jesus, the prophet from Nazareth"</em> (Matthew 21:11).</p>
+    <p>4.4 In the book of Acts both Peter (3:22) and Stephen (7:37) refer to Him as the ultimate prophet.</p>
+    
+    <p>4.5 The book of Hebrews explicitly identifies Jesus as our great High Priest.</p>
+    <blockquote>
+        <p><em>"Therefore, since we have a great high priest who has ascended into heaven, Jesus the Son of God, let us hold firmly to the faith we profess. For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God's throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need"</em> (Hebrews 4:14-16).</p>
+    </blockquote>
+    
+    <p>4.6 And when Jesus was asked by Pilate, <em>"Are you the king of the Jews?"</em> (Matthew 27:11), Jesus replied, <em>"My kingdom is not of this world"</em> (John 18:36).</p>
+
+    <h3>[4] Jesus Uniquely Fulfills All Three Offices</h3>
+
+    <h4>1. Jesus IS the Roles He Fulfills</h4>
+    <p>1.1 <strong><em>But Jesus doesn't just fulfill these roles—He IS these roles in a way no one else ever could be.</em></strong></p>
+    
+    <p>1.2 <strong>He doesn't just reveal the Word of God—He IS the Word.</strong></p>
+    <p>1.3 <strong>He doesn't just offer a sacrifice—He IS the sacrifice.</strong></p>
+    <p>1.4 <strong>He doesn't just rule as King—He IS the servant King who laid down His life for us.</strong></p>
+
+    <h4>2. He is the Gift Himself</h4>
+    <p>2.1 <strong><em>He is not only the one who provides us with the gift of salvation—He is the gift Himself.</em></strong></p>
+    <p>2.2 <strong><em>He is the pearl of great price, the treasure hidden in the field who is worth everything to obtain.</em></strong></p>
+    <p>2.3 He is not the means to an end, He is the end.</p>
+    <p>2.4 He is the ultimate goal, the ultimate prize.</p>
+
+    <h3>[5] Why We Need All Three Equally</h3>
+
+    <h4>1. We Cannot Have a Partial Messiah</h4>
+    <p>1.1 <strong>We can't have a partial Messiah—we need Jesus equally as Prophet, Priest, and King.</strong></p>
+    <p>1.2 Some people emphasize grace over truth. They want Jesus as their priest but not as their prophet or king.</p>
+    <p>1.3 They want Him to save them, but they don't want Him to speak truth into their lives or rule over them.</p>
+
+    <h4>2. Examples of Partial Messiah</h4>
+    <p>2.1 Let me give you some examples of people who take Jesus as a partial Messiah:</p>
+    
+    <p>2.2 <strong>Example 1: Those who emphasize grace over truth (Priest over Prophet/King)</strong></p>
+    <p>2.2.1 There are those who say, "I believe in Jesus for my salvation, but I don't want to hear what He has to say about how I should live my life."</p>
+    <p>2.2.2 "Don't tell me what the Bible says about my relationship, my sexuality, my use of money, or how I should treat people."</p>
+    <p>2.2.3 "I just want grace. I just want to be accepted. Don't preach truth to me."</p>
+    <p>2.2.4 These people have taken Jesus as priest but rejected Him as prophet and king.</p>
+    
+    <p>2.3 <strong>Example 2: Those who emphasize truth over grace (Prophet/King over Priest)</strong></p>
+    <p>2.3.1 On the other hand, there are those who emphasize truth over grace.</p>
+    <p>2.3.2 They see Christianity primarily as a moral code to follow.</p>
+    <p>2.3.3 They know all the right answers, but they lack compassion for those who struggle.</p>
+    <p>2.3.4 They look down on others who don't "get it" as quickly as they do.</p>
+    <p>2.3.5 They've taken Jesus as prophet and king but minimized Him as priest.</p>
+    <p>2.3.6 They forget that they too needed a priest to intercede for them.</p>
+
+    <h4>3. The Problem with Partial Messiah</h4>
+    <p>3.1 The problem is that <strong><em>in the person of Christ we have the fulfillment of not one but all three offices, PPK.</em></strong></p>
+    <p>3.2 We need Him equally as all three.</p>
+    <p>3.3 When we minimize one office, we get an incomplete picture of Jesus.</p>
+    <p>3.4 We end up with a Jesus of our own making rather than the Jesus of Scripture.</p>
+
+    <h3>Conclusion: Center Your Life on Jesus</h3>
+
+    <h4>1. The Gospel Must Be Central</h4>
+    <p>1.1 Many Christians have never personally internalized the love of God revealed in the Gospel of Jesus Christ.</p>
+    <p>1.2 They've heard sermons about personal morality, social issues, marriage and family, money management but they've never personally internalized the gospel.</p>
+    <p>1.3 They know what the Bible says about stress, money management, success through their pastor's socially relevant sermons but they don't know the gospel.</p>
+    <p>1.4 They see it as a means of becoming a Christian but not as the endless well of water that continually cleanses and refreshes and enables a life of enjoying and exalting Christ and sharing Him with others.</p>
+    <p>1.5 They don't see that it's the fuel that makes us go.</p>
+
+    <h4>2. My Commitment to You</h4>
+    <p>2.1 Years ago I became convinced this was a big problem in the body of Christ and so I decided as much as I was able to center every message around Jesus and the gospel of His kingdom.</p>
+    <p>2.2 <strong>The biblical paradigm of prophet, priest and king is just one more attempt by me to do that for you.</strong></p>
+
+    <h4>3. Fix Your Eyes on Jesus</h4>
+    <p>3.1 When Jesus is your Prophet, Priest and King you stop looking to other things for happiness and satisfaction.</p>
+    <p>3.2 You stop looking out there or back there or over there.</p>
+    <p>3.3 Instead you fix your eyes on Jesus (Hebrews 12:2), the author and the finisher of your faith.</p>
+    
+    <p>3.4 <strong>He is the prophet who reveals the truth that brings you freedom.</strong> <em>"You shall know the truth and the truth will set you free"</em> (John 8:32).</p>
+    <p>3.5 <strong>He is the priest who offers His own life to cleanse and redeem us and continually cleanses us.</strong></p>
+    <p>3.6 <strong>He is the king who leads us by laying down His life for us and we owe Him everything.</strong></p>
+
+    <h4>4. My Admonition</h4>
+    <p>4.1 Therefore my admonition:</p>
+    
+    <p>4.2 <strong>Listen to Christ, Christ our Prophet who's revealed the truth of the Gospel to us and the truth about everything.</strong></p>
+    
+    <p>4.3 <strong>Find your rest in the finished work of Christ our great High Priest who has made a way for us to confidently come before the throne of grace.</strong></p>
+    <p>4.4 Do not neglect prayer. Look at what He's paid the price so you have access.</p>
+    <p>4.5 Think about the blood that was shed for that access. Don't waste the blood. Don't waste the sacrifice.</p>
+    <p>4.6 That's how you deal with prayerlessness. Think about how much He did and paid. Think about the sacrifice for you.</p>
+    
+    <p>4.7 <strong>And let's find our hope in Christ the King who one day will make all things right and will rule and reign in a perfect kingdom in a new heaven and new earth.</strong></p>
+    <p>4.8 That's our hope. That's what we have to look forward to. Christ the King, Christ the Priest, Christ the Prophet forever and ever.</p>
+    <p>4.9 In Jesus name, amen.</p>
+
+    <h4>5. Invitation to Respond</h4>
+    <p>5.1 Before we go, don't leave yet.</p>
+    <p>5.2 Maybe when I was talking about those examples you kind of identified with one of those.</p>
+    <p>5.3 Maybe you saw where you were elevating grace over truth. You were taking the priest more than you were the prophet and the king.</p>
+    <p>5.4 Today you want to embrace Him wholly. You want to recommit to Him, to all of Him, to the Anointed One.</p>
+    
+    <p>5.5 On the other hand maybe you were one of those who when I was talking about those that take Him as king and prophet but not so much as priest, you see yourself a little bit in that.</p>
+    <p>5.6 You see yourself saying things like "Why can't they just follow Jesus?"</p>
+    <p>5.7 You see that subtle downward gaze to others who are struggling or who are blinded by the world.</p>
+    <p>5.8 And instead of pouring out your heart in intercession for them, you judge them.</p>
+    <p>5.9 Today you need to realign yourself with the priest. You need to have that compassion in your life for people that are blinded or that don't get it.</p>
+    <p>5.10 It may be because of their own sin or just because of the world but you're not going to look down on them. You're going to lift them up from now on.</p>
+    
+    <p>5.11 Maybe you've never believed at all and you just heard an explanation of the Gospel clearly and in your heart there's something that says "I need that."</p>
+    <p>5.12 You don't get it all. You didn't understand everything he said but you know you need that.</p>
+
+    <h4>6. Prayer of Confession</h4>
+    <p>6.1 I'd like to lead you in a confession to say to God "I receive Jesus. I need that Jesus that you're talking about."</p>
+    <p>6.2 Let's confess together. For many of you this is going to be the beginning. For many of you it's a reaffirmation:</p>
+    
+    <blockquote>
+        <p><strong>"I believe in Jesus Christ, that He died on the cross for my sin and that He rose again to make me right with God. I'm a child of God by faith in Jesus Christ. I receive Him as the ultimate Prophet, the ultimate High Priest, the ultimate King of my life. In His name I pray, amen."</strong></p>
+    </blockquote>
+    
+    <p>6.3 Amen.</p>
+</div>
+
+</div>
+
+</body>
+</html>
