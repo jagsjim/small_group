@@ -6,52 +6,56 @@
     <title>📚 Review Week Assignment - Template</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 18px;
             line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             background: white;
-            padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 30px;
         }
 
         h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            text-align: center;
             font-size: 32px;
+            color: #1565c0;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
         .subtitle {
             text-align: center;
-            color: #7f8c8d;
-            font-size: 18px;
+            color: #666;
+            font-size: 16px;
             margin-bottom: 30px;
         }
 
         .purpose-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #1565c0;
             padding: 20px;
-            border-radius: 10px;
             margin-bottom: 30px;
+            border-radius: 8px;
         }
 
         .purpose-box h2 {
-            margin-bottom: 10px;
             font-size: 22px;
+            color: #1565c0;
+            margin-bottom: 10px;
         }
 
         .instructions {
@@ -84,6 +88,10 @@
             border-radius: 5px;
         }
 
+        .tips strong {
+            color: #856404;
+        }
+
         .bible-note {
             background: #d4edda;
             border-left: 5px solid #28a745;
@@ -105,12 +113,6 @@
         .week-card:hover {
             box-shadow: 0 5px 15px rgba(33, 147, 176, 0.3);
             border-color: #2193b0;
-        }
-
-        .week-card.active {
-            border-color: #28a745;
-            border-width: 3px;
-            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3);
         }
 
         .week-header {
@@ -142,46 +144,22 @@
 
         .assign-box {
             background: #e3f2fd;
-            padding: 15px;
+            padding: 10px;
             border-radius: 5px;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
         }
 
         .assign-box strong {
             color: #0d47a1;
         }
 
-        .activate-checkbox {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-        }
-
-        .assigned-name {
-            color: #0d47a1;
-            font-size: 18px;
-            font-weight: bold;
-            flex: 1;
-        }
-
-        .name-input {
-            border: 2px solid #1565c0;
-            border-radius: 5px;
-            padding: 8px 12px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #0d47a1;
-            background: white;
-            width: 200px;
-        }
-
-        .name-input:focus {
-            outline: none;
-            border-color: #28a745;
-            background: #f0fff0;
+        .assign-box input {
+            border: none;
+            border-bottom: 2px solid #1565c0;
+            padding: 5px;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 5px;
         }
 
         .questions {
@@ -194,7 +172,6 @@
             margin-bottom: 10px;
             border-left: 3px solid #0d47a1;
             border-radius: 5px;
-            font-size: 16px;
         }
 
         .question-item strong {
@@ -207,11 +184,97 @@
             padding: 10px;
             margin-top: 10px;
             border-radius: 5px;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .verse-hint strong {
             color: #155724;
+        }
+
+        .presentation-guide {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .presentation-guide h2 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+
+        .example-format {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-style: italic;
+            border-left: 4px solid #ff9800;
+        }
+
+        .notes-section {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .notes-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .note-field {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            min-height: 80px;
+        }
+
+        .note-field strong {
+            display: block;
+            color: #1565c0;
+            margin-bottom: 5px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            .week-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    
+        .week-card.active {
+            border-color: #28a745;
+            border-width: 3px;
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .activate-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
         }
 
         .notes-section {
@@ -323,41 +386,21 @@
             color: #0c5460;
         }
 
-        .presentation-guide {
-            background: #fff3e0;
-            border: 2px solid #ff9800;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        .presentation-guide h2 {
-            margin-bottom: 15px;
-            color: #e65100;
-        }
-
-        .example-format {
-            background: white;
-            padding: 15px;
+        .name-input {
+            border: 2px solid #1565c0;
             border-radius: 5px;
-            margin-top: 15px;
-            border-left: 4px solid #ff9800;
+            padding: 8px 12px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0d47a1;
+            background: white;
+            width: 200px;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 24px;
-            }
-
-            .assign-box {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
+        .name-input:focus {
+            outline: none;
+            border-color: #28a745;
+            background: #f0fff0;
         }
     </style>
 </head>
@@ -367,12 +410,12 @@
         <p class="subtitle">Independent Bible Study Practice</p>
 
         <div class="purpose-box">
-            <h2>📖 Purpose</h2>
-            <p>This week is for independent Bible study. Each person has been assigned a specific week from our previous lessons. Your task is to review that week's content, answer the questions using Scripture, and be prepared to share what you learned when we meet again.</p>
+            <h2>Purpose</h2>
+            <p>This week, we're practicing <strong>independent Bible study</strong>. Each person will review one week's lesson, answer four questions, and share their findings with the group. This helps us learn how to study God's Word on our own while also learning from each other.</p>
         </div>
 
         <div class="instructions">
-            <h3>✅ How This Works:</h3>
+                        <h3>✅ How This Works:</h3>
             <ol>
                 <li><strong>Find your assigned week below</strong> - Each person has one specific week</li>
                 <li><strong>Click the checkbox next to your name</strong> - This opens your personal notes section</li>
@@ -391,87 +434,6 @@
                     <li>Access the original study guides at: <a href="https://jagsjim.github.io/small_group/" style="color: #0d47a1;">jagsjim.github.io/small_group</a></li>
                 </ul>
             </div>
-
-            <div class="bible-note">
-                📖 Remember: Use your Bible! The study guides help understanding, but always quote Scripture itself in your answers.
-            </div>
-        </div>
-
-        <!-- Week 1 -->
-        <div class="week-card" data-week="1">
-            <div class="week-header">
-                <div>
-                    <div class="week-number">Week 1</div>
-                    <div class="week-topic">Are You Really a Christian?</div>
-                    <div class="week-speaker">Paul Washer on True Conversion</div>
-                </div>
-            </div>
-            <div class="assign-box">
-                <input type="checkbox" class="activate-checkbox" id="check-week1" />
-                <label for="check-week1">
-                    <strong>Person Assigned:</strong>
-                    <input type="text" class="assigned-name name-input" placeholder="Enter name..." data-week="1" id="name-week1" />
-                </label>
-            </div>
-            <div class="questions">
-                <div class="question-item">
-                    <strong>Question 1:</strong> According to Scripture, what is the difference between God's grace that justifies us and God's grace that sanctifies us?
-                </div>
-                <div class="question-item">
-                    <strong>Question 2:</strong> What does the Bible mean when it says we are "a new creation" in Christ?
-                </div>
-                <div class="question-item">
-                    <strong>Question 3:</strong> According to Scripture, why can't someone truly love God and love the world at the same time?
-                </div>
-                <div class="question-item">
-                    <strong>Question 4:</strong> What evidence does the Bible say we should see if God is truly working in our lives?
-                </div>
-                <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about being a new creation OR about evidence of true faith
-                </div>
-            </div>
-            
-            <div class="notes-section" id="notes-week1">
-                <h3>📝 Your Study Notes - Week 1</h3>
-                <div class="note-field">
-                    <label for="main-1">Main Idea of This Week's Lesson:</label>
-                    <textarea id="main-1" placeholder="Summarize the main point in one sentence..."></textarea>
-                </div>
-                <div class="note-field">
-                    <label for="q1-1">Answer to Question 1:</label>
-                    <textarea id="q1-1" placeholder="What does Scripture teach about this?"></textarea>
-                </div>
-                <div class="note-field">
-                    <label for="q2-1">Answer to Question 2:</label>
-                    <textarea id="q2-1" placeholder="What does Scripture teach about this?"></textarea>
-                </div>
-                <div class="note-field">
-                    <label for="q3-1">Answer to Question 3:</label>
-                    <textarea id="q3-1" placeholder="What does Scripture teach about this?"></textarea>
-                </div>
-                <div class="note-field">
-                    <label for="q4-1">Answer to Question 4:</label>
-                    <textarea id="q4-1" placeholder="What does Scripture teach about this?"></textarea>
-                </div>
-                <div class="note-field">
-                    <label for="verse1-1">Supporting Scripture #1:</label>
-                    <textarea id="verse1-1" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
-                </div>
-                <div class="note-field">
-                    <label for="verse2-1">Supporting Scripture #2:</label>
-                    <textarea id="verse2-1" placeholder="Book Chapter:Verse - and how it supports your answer"></textarea>
-                </div>
-                <div class="note-field">
-                    <label for="app-1">Personal Application:</label>
-                    <textarea id="app-1" placeholder="How will this truth affect your life?"></textarea>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="emailNotes(1)">📧 Email My Notes</button>
-                    <button class="btn btn-secondary" onclick="downloadNotes(1)">💾 Download as File</button>
-                    <button class="btn btn-danger" onclick="clearNotes(1)">🗑️ Clear Notes</button>
-                </div>
-                <div id="status-1" class="save-status" style="display: none;"></div>
-            </div>
         </div>
 
         <!-- Week 2 -->
@@ -479,8 +441,8 @@
             <div class="week-header">
                 <div>
                     <div class="week-number">Week 2</div>
-                    <div class="week-topic">The Necessity of New Birth</div>
-                    <div class="week-speaker">Voddie Baucham on John 3</div>
+                    <div class="week-topic">Enjoying God</div>
+                    <div class="week-speaker">John Piper</div>
                 </div>
             </div>
             <div class="assign-box">
@@ -492,22 +454,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to John 3:3-7, why did Jesus tell Nicodemus that he "must be born again"?
+                    <strong>Question 1:</strong> What is the difference between delighting in God versus just obeying Him out of duty? Why does this distinction matter?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does the Bible teach about our spiritual condition before being born again?
+                    <strong>Question 2:</strong> How does the Bible teach that loving God relates to loving other people?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to John 3:16, what does it mean to "believe" in Jesus?
+                    <strong>Question 3:</strong> What sin problem does the Bible say separates us from being able to enjoy God? How did Jesus solve this problem?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> How does Ephesians 2:1-5 describe the change that happens when someone is born again?
+                    <strong>Question 4:</strong> According to Scripture, what did Jesus do on the cross that allows us to enjoy fellowship with God?
                 </div>
                 <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about spiritual deadness OR about the new birth
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about treasuring/delighting in God OR about how Jesus reconciled us to God
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week2">
                 <h3>📝 Your Study Notes - Week 2</h3>
                 <div class="note-field">
@@ -548,16 +510,15 @@
                     <button class="btn btn-danger" onclick="clearNotes(2)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-2" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 3 -->
         <div class="week-card" data-week="3">
             <div class="week-header">
                 <div>
                     <div class="week-number">Week 3</div>
-                    <div class="week-topic">Saving Faith - Part 1</div>
-                    <div class="week-speaker">John Piper on Hebrews 11:1</div>
+                    <div class="week-topic">Forgiveness</div>
+                    <div class="week-speaker">Voddie Baucham</div>
                 </div>
             </div>
             <div class="assign-box">
@@ -569,22 +530,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to Hebrews 11:1, what is faith?
+                    <strong>Question 1:</strong> What does it mean to "cancel a debt" when we forgive someone? How do we punish people in relationships?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does James 2:19 teach about the difference between intellectual belief and saving faith?
+                    <strong>Question 2:</strong> Why does the Bible say we are able to forgive others? What makes forgiveness possible for Christians?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to Romans 10:9-10, what role does confession play in saving faith?
+                    <strong>Question 3:</strong> What does Scripture teach about the connection between how God forgave us and how we forgive others?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What does Hebrews 11:6 teach about the necessity of faith?
+                    <strong>Question 4:</strong> According to the Bible, what did Jesus do to pay our debt to God? Why couldn't we pay it ourselves?
                 </div>
                 <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about faith OR about believing in Christ
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about God's forgiveness of us OR about Jesus paying our debt
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week3">
                 <h3>📝 Your Study Notes - Week 3</h3>
                 <div class="note-field">
@@ -625,16 +586,14 @@
                     <button class="btn btn-danger" onclick="clearNotes(3)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-3" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 4 -->
         <div class="week-card" data-week="4">
             <div class="week-header">
                 <div>
                     <div class="week-number">Week 4</div>
-                    <div class="week-topic">Saving Faith - Part 2</div>
-                    <div class="week-speaker">John Piper on James 2:14-26</div>
+                    <div class="week-topic">True Salvation</div>
                 </div>
             </div>
             <div class="assign-box">
@@ -646,22 +605,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to James 2:14-17, what does "dead faith" mean?
+                    <strong>Question 1:</strong> According to Scripture, what is the sin problem that makes salvation necessary? What does the Bible mean by "total depravity"?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does James 2:19 teach about demons and faith?
+                    <strong>Question 2:</strong> Why does the Bible say our good works can't save us? What's wrong with trying to earn our way to heaven?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to James 2:21-24, how was Abraham's faith "made complete" by his works?
+                    <strong>Question 3:</strong> How did Jesus solve the problem of sin? What did He accomplish through His sinless life, death on the cross, and resurrection?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What is the relationship between faith and works according to Scripture?
+                    <strong>Question 4:</strong> What does the Bible mean when it says Jesus is our "substitute"? How does His righteousness become ours?
                 </div>
                 <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about faith producing works OR about true faith
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about our sin problem OR about what Jesus did to save us
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week4">
                 <h3>📝 Your Study Notes - Week 4</h3>
                 <div class="note-field">
@@ -702,15 +661,15 @@
                     <button class="btn btn-danger" onclick="clearNotes(4)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-4" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 5 -->
         <div class="week-card" data-week="5">
             <div class="week-header">
                 <div>
                     <div class="week-number">Week 5</div>
-                    <div class="week-topic">Repentance - Turning from Sin to God</div>
+                    <div class="week-topic">Why You Can Believe the Bible</div>
+                    <div class="week-speaker">Voddie Baucham</div>
                 </div>
             </div>
             <div class="assign-box">
@@ -722,22 +681,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to Acts 3:19 and Luke 13:3, what is repentance and why is it necessary?
+                    <strong>Question 1:</strong> What is Voddie's answer to "Why do you choose to believe the Bible?" Can you explain what each part of his answer means?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does 2 Corinthians 7:10 teach about godly sorrow versus worldly sorrow?
+                    <strong>Question 2:</strong> How does he address common objections like "the Bible has been translated so many times" or "it was changed by Constantine"?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to Acts 26:20, what is the relationship between repentance and changed behavior?
+                    <strong>Question 3:</strong> What does the Bible teach about Jesus being prophesied in the Old Testament? Give an example from Psalm 22 or Isaiah 53.
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What does Luke 15:7 teach about heaven's response to repentance?
+                    <strong>Question 4:</strong> According to Scripture quoted in this lesson, why did Jesus have to die? What problem did His death solve?
                 </div>
                 <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about repentance OR about turning from sin
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses from 2 Peter 1 or 1 John 1 about Scripture's reliability OR prophecy about Jesus
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week5">
                 <h3>📝 Your Study Notes - Week 5</h3>
                 <div class="note-field">
@@ -778,15 +737,14 @@
                     <button class="btn btn-danger" onclick="clearNotes(5)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-5" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 6 -->
         <div class="week-card" data-week="6">
             <div class="week-header">
                 <div>
                     <div class="week-number">Week 6</div>
-                    <div class="week-topic">Following Jesus - What It Really Means</div>
+                    <div class="week-topic">Bible History: Garden to Wilderness (Old Testament Part 1)</div>
                 </div>
             </div>
             <div class="assign-box">
@@ -798,22 +756,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to Luke 9:23-24, what does Jesus say it means to follow Him?
+                    <strong>Question 1:</strong> What pattern does the Bible show repeated throughout the Old Testament with God's covenants and humanity's response?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does Matthew 16:24-26 teach about losing your life and finding it?
+                    <strong>Question 2:</strong> How does Scripture in this lesson show that Old Testament events (like Abraham and Isaac, the Passover, the bronze serpent) point forward to Jesus?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to John 14:15, what is the relationship between love for Jesus and obedience?
+                    <strong>Question 3:</strong> What does the Bible teach about why Adam and Eve's sin affects all of us? How did death enter the world?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What does Luke 14:27-33 teach about counting the cost of following Jesus?
+                    <strong>Question 4:</strong> According to Scripture, what was God's first promise about a Savior after Adam and Eve sinned (Genesis 3:15)?
                 </div>
                 <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about discipleship OR about following Jesus
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about God's covenant promises OR about sin entering through Adam
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week6">
                 <h3>📝 Your Study Notes - Week 6</h3>
                 <div class="note-field">
@@ -854,15 +812,14 @@
                     <button class="btn btn-danger" onclick="clearNotes(6)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-6" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 7 -->
         <div class="week-card" data-week="7">
             <div class="week-header">
                 <div>
                     <div class="week-number">Week 7</div>
-                    <div class="week-topic">Lordship of Christ</div>
+                    <div class="week-topic">Bible History: Promised Land to Promised King (New Testament)</div>
                 </div>
             </div>
             <div class="assign-box">
@@ -874,22 +831,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to Romans 10:9, what is the relationship between confessing Jesus as Lord and salvation?
+                    <strong>Question 1:</strong> How does the Bible teach that Jesus fulfilled the Old Covenant and established the New Covenant? What changed?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does Luke 6:46 teach about calling Jesus "Lord" but not obeying Him?
+                    <strong>Question 2:</strong> What do the Scriptures quoted in this lesson teach about why Jesus had to be both fully God and fully man?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to Philippians 2:9-11, what will every person eventually acknowledge about Jesus?
+                    <strong>Question 3:</strong> According to the Bible, what did Jesus's death accomplish? What does "It is finished" mean?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What does Colossians 1:18 teach about Christ's supremacy?
+                    <strong>Question 4:</strong> Why does Scripture say the resurrection is essential? What would happen if Jesus had stayed dead?
                 </div>
                 <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about Jesus as Lord OR about His authority
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about the New Covenant OR about Jesus's death and resurrection
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week7">
                 <h3>📝 Your Study Notes - Week 7</h3>
                 <div class="note-field">
@@ -930,15 +887,15 @@
                     <button class="btn btn-danger" onclick="clearNotes(7)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-7" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 8 -->
         <div class="week-card" data-week="8">
             <div class="week-header">
                 <div>
                     <div class="week-number">Week 8</div>
-                    <div class="week-topic">The Gospel vs. Cultural Christianity</div>
+                    <div class="week-topic">Grumble-Free Living</div>
+                    <div class="week-speaker">John Piper on Philippians 2:14-18</div>
                 </div>
             </div>
             <div class="assign-box">
@@ -950,22 +907,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to Matthew 7:21-23, what did Jesus say about people who prophesied and did miracles in His name but were not saved?
+                    <strong>Question 1:</strong> According to Scripture in Philippians 2, why is grumbling such a serious issue? What does it reveal about our hearts?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does 2 Timothy 3:5 teach about having a "form of godliness" but denying its power?
+                    <strong>Question 2:</strong> How does the Bible teach that living without grumbling makes us "shine as lights" in the world?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to Matthew 15:8, what does Jesus say about people who honor Him with their lips but whose hearts are far from Him?
+                    <strong>Question 3:</strong> What does Scripture say about Jesus's example when He suffered? How did He respond without grumbling (Isaiah 53, 1 Peter 2)?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What does 1 John 2:4 teach about claiming to know God but not keeping His commands?
+                    <strong>Question 4:</strong> According to the Bible, why can we have joy even in suffering? What greater treasure do we have?
                 </div>
                 <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about false profession OR about true vs. false faith
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses from Philippians 2:14-18 OR about contentment and rejoicing in trials
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week8">
                 <h3>📝 Your Study Notes - Week 8</h3>
                 <div class="note-field">
@@ -1006,8 +963,7 @@
                     <button class="btn btn-danger" onclick="clearNotes(8)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-8" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 9 -->
         <div class="week-card" data-week="9">
@@ -1027,22 +983,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to Jesus in Matthew 7, why must the Christian life be "entered into intentionally" through repentance and faith?
+                    <strong>Question 1:</strong> According to Jesus in Matthew 7, why can't someone be a Christian just because they were raised in a Christian family or went to church? What does the Bible say is required?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does the Bible teach about why someone cannot be a Christian simply because they were raised in a Christian family or go to church?
+                    <strong>Question 2:</strong> What does Scripture teach about repentance and faith? Why are both necessary for salvation?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to Scripture, what is the "doctrine of original sin" and why are we all born on the broad road?
+                    <strong>Question 3:</strong> What does the Bible mean by "the doctrine of original sin"? Why are we all born on the broad road?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What does Jesus's teaching reveal about "easy" gospel presentations that leave out sin, repentance, and God's holiness?
+                    <strong>Question 4:</strong> According to Jesus's teaching, what's wrong with "easy" gospel presentations that leave out sin, repentance, and God's holiness?
                 </div>
                 <div class="verse-hint">
                     <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about repentance and faith OR about being born in sin
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week9">
                 <h3>📝 Your Study Notes - Week 9</h3>
                 <div class="note-field">
@@ -1083,8 +1039,7 @@
                     <button class="btn btn-danger" onclick="clearNotes(9)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-9" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 10 -->
         <div class="week-card" data-week="10">
@@ -1104,22 +1059,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> What does the Bible mean when it says "the one who endures to the end will be saved"?
+                    <strong>Question 1:</strong> What does the Bible mean by "endurance to the end"? How is it evidence of true salvation rather than earning salvation?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> According to Romans 3, what does Scripture teach about human nature—are people basically good or basically sinful?
+                    <strong>Question 2:</strong> According to Scripture in Romans 3, what does the Bible teach about human nature? Are people basically good or basically sinful?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> Why does the Bible say there are "few" who find the narrow gate and many on the broad road?
+                    <strong>Question 3:</strong> Why does the Bible say there are "few" who find the narrow gate? What keeps most people on the broad road?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What does Scripture teach about false assurance of salvation?
+                    <strong>Question 4:</strong> What does Scripture teach about false assurance? How can someone think they're saved but not be?
                 </div>
                 <div class="verse-hint">
                     <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about perseverance OR about testing ourselves to see if we're in the faith
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week10">
                 <h3>📝 Your Study Notes - Week 10</h3>
                 <div class="note-field">
@@ -1160,8 +1115,7 @@
                     <button class="btn btn-danger" onclick="clearNotes(10)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-10" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 11 -->
         <div class="week-card" data-week="11">
@@ -1180,22 +1134,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> What is sanctification according to Scripture and how does it differ from justification?
+                    <strong>Question 1:</strong> What is sanctification according to Scripture? How does it differ from justification, and why do we change BECAUSE we're God's children, not IN ORDER TO become His children?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> According to John 15, what does Jesus teach about "abiding in the vine" and how does this produce spiritual fruit?
+                    <strong>Question 2:</strong> What does the Bible teach in John 15 about "abiding in the vine"? How does this relate to producing spiritual fruit?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> What does Ephesians 2:8-10 teach about the relationship between salvation by grace and good works?
+                    <strong>Question 3:</strong> According to Ephesians 2:8-10, what is the right order: are we saved by works or FOR works? Why does this matter?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> Why does the Bible teach that true faith in Jesus naturally produces a changed life?
+                    <strong>Question 4:</strong> What does Scripture teach about how Jesus's perfect obedience and sacrifice enable us to grow in holiness?
                 </div>
                 <div class="verse-hint">
-                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about being transformed by God OR about faith producing works
+                    <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about being transformed OR about Christ's work making sanctification possible
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week11">
                 <h3>📝 Your Study Notes - Week 11</h3>
                 <div class="note-field">
@@ -1236,8 +1190,7 @@
                     <button class="btn btn-danger" onclick="clearNotes(11)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-11" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Week 12 -->
         <div class="week-card" data-week="12">
@@ -1256,22 +1209,22 @@
             </div>
             <div class="questions">
                 <div class="question-item">
-                    <strong>Question 1:</strong> According to Matthew 7:1-5, what is the difference between hypocritical judgment and loving correction?
+                    <strong>Question 1:</strong> What's the difference between hypocritical judgment and loving correction? What did Jesus actually teach in Matthew 7:1-5?
                 </div>
                 <div class="question-item">
-                    <strong>Question 2:</strong> What does 2 Corinthians 13:5 teach about testing ourselves to see if we're truly in the faith?
+                    <strong>Question 2:</strong> According to Scripture in 2 Corinthians 13:5, how can we "test ourselves" to see if we're truly in the faith? What are signs of genuine conversion?
                 </div>
                 <div class="question-item">
-                    <strong>Question 3:</strong> According to Matthew 7:21-23, what will Jesus say to those who think they're saved but aren't?
+                    <strong>Question 3:</strong> What does the Bible teach in Matthew 7:21-23 about people who think they're saved but aren't? What will Jesus say to them?
                 </div>
                 <div class="question-item">
-                    <strong>Question 4:</strong> What does Scripture teach about the fruit that demonstrates genuine salvation?
+                    <strong>Question 4:</strong> According to Scripture, what is the gospel that saves? How does true faith in Jesus lead to a changed life?
                 </div>
                 <div class="verse-hint">
                     <strong>📖 Supporting Verses to Find:</strong> 1-2 verses about examining ourselves OR about the fruit of genuine faith
                 </div>
             </div>
-            
+        
             <div class="notes-section" id="notes-week12">
                 <h3>📝 Your Study Notes - Week 12</h3>
                 <div class="note-field">
@@ -1312,8 +1265,7 @@
                     <button class="btn btn-danger" onclick="clearNotes(12)">🗑️ Clear Notes</button>
                 </div>
                 <div id="status-12" class="save-status" style="display: none;"></div>
-            </div>
-        </div>
+            </div></div>
 
         <!-- Presentation Guide -->
         <div class="presentation-guide">
@@ -1327,14 +1279,14 @@
             </ol>
 
             <div class="example-format">
-                <strong>Example Format (using Week 1):</strong><br><br>
-                "My week was on 'Are You Really A Christian?' by Paul Washer. The main idea is that true Christianity involves a complete transformation, not just going to church or saying a prayer once.<br><br>
-                For question 1, the Bible teaches that God's grace not only saves us (justification) but also gives us power to become holy (sanctification). It's not just forgiveness—it's transformation.<br><br>
-                For question 2, I learned from 2 Corinthians 5:17 that being a 'new creation' means we have new desires, new affections, and a new heart that longs for holiness instead of sin.<br><br>
-                For question 3, James 4:4 teaches that friendship with the world is hostility toward God. We can't love God and love the world's values at the same time.<br><br>
-                For question 4, Scripture shows that if God is truly working in us, we'll see evidence: growing desire for holiness, conviction over sin, and progressive transformation—not perfection, but direction.<br><br>
-                My supporting verses were 2 Corinthians 5:17 which says 'Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!' and Philippians 1:6 which says 'He who began a good work in you will carry it on to completion.' These verses show that salvation includes transformation.<br><br>
-                One way I want to apply this is to regularly examine my life and ask: Is there evidence that God is making me holy? Am I more like Christ than I was last year?"
+                <strong>Example Format:</strong><br><br>
+                "My week was on Forgiveness. The main idea is that the Bible teaches us to forgive others because God forgave us through Christ.<br><br>
+                For question 1, the Bible says... [explain]<br>
+                For question 2, I learned that Scripture teaches... [explain]<br>
+                For question 3... [explain]<br>
+                For question 4... [explain]<br><br>
+                The verses I found were [reference] which says [read from your Bible] and [reference] which says [read]. These verses show us that...<br><br>
+                One way I want to apply this is..."
             </div>
 
             <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 5px;">
@@ -1362,33 +1314,18 @@
     <script>
         // Auto-save functionality using localStorage
         const weekTopics = {
-            1: "Are You Really a Christian?",
-            2: "The Necessity of New Birth",
-            3: "Saving Faith - Part 1",
-            4: "Saving Faith - Part 2",
-            5: "Repentance - Turning from Sin to God",
-            6: "Following Jesus - What It Really Means",
-            7: "Lordship of Christ",
-            8: "The Gospel vs. Cultural Christianity",
+            2: "Enjoying God",
+            3: "Forgiveness",
+            4: "True Salvation",
+            5: "Why You Can Believe the Bible",
+            6: "Bible History: Garden to Wilderness (Old Testament Part 1)",
+            7: "Bible History: Promised Land to Promised King (New Testament)",
+            8: "Grumble-Free Living",
             9: "The Narrow Gate - Part 1",
             10: "The Narrow Gate - Part 2",
             11: "Sanctification - Growing in Grace",
             12: "Biblical Accountability vs. Being Judgmental"
         };
-
-        // Load saved names on page load
-        document.querySelectorAll('.name-input').forEach(input => {
-            const weekNum = input.getAttribute('data-week');
-            const savedName = localStorage.getItem('assignedName_week' + weekNum);
-            if (savedName) {
-                input.value = savedName;
-            }
-            
-            // Save name when changed
-            input.addEventListener('input', function() {
-                localStorage.setItem('assignedName_week' + weekNum, this.value);
-            });
-        });
 
         // Handle checkbox activation
         document.querySelectorAll('.activate-checkbox').forEach(checkbox => {
@@ -1401,7 +1338,6 @@
                     notesSection.classList.add('active');
                     weekCard.classList.add('active');
                     loadNotes(weekNum);
-                    // Scroll to notes section
                     setTimeout(() => {
                         notesSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }, 100);
@@ -1543,6 +1479,20 @@
                 showStatus(weekNum, 'Notes cleared', 'info');
             }
         }
+
+        // For template: save names
+        document.querySelectorAll('.name-input').forEach(input => {
+            const weekNum = input.getAttribute('data-week');
+            if (weekNum) {
+                const savedName = localStorage.getItem('assignedName_week' + weekNum);
+                if (savedName) {
+                    input.value = savedName;
+                }
+                input.addEventListener('input', function() {
+                    localStorage.setItem('assignedName_week' + weekNum, this.value);
+                });
+            }
+        });
     </script>
 </body>
 </html>
