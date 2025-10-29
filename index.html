@@ -3,121 +3,172 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bible Study</title>
+  <title>Bible Study - Weekly Materials</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 28px;
-      line-height: 1.8;
-      color: #1a1a1a;
-      background-color: #ffffff;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 24px;
-      width: 100%;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      padding: 20px;
+      line-height: 1.5;
+      font-size: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     h1 {
-      font-size: 46px;
-      color: #2c3e50;
+      font-size: 2.5rem;
+      color: #0b63a8;
       text-align: center;
-      margin-bottom: 30px;
-      border-bottom: 4px solid #3498db;
+      margin-bottom: 40px;
       padding-bottom: 20px;
+      border-bottom: 4px solid #0b63a8;
     }
 
+    /* Faith Assessment - Featured */
+    .featured {
+      background: #fff9e6;
+      border: 3px solid #f4d03f;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 35px;
+      text-align: center;
+    }
+
+    .featured h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #1a1a1a;
+    }
+
+    .featured a {
+      display: inline-block;
+      background: #0b63a8;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+      padding: 16px 32px;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    .featured a:hover {
+      background: #094d85;
+    }
+
+    /* Simple list */
     ul {
-      list-style-type: none;
-      padding-left: 0;
-      margin: 30px 0;
+      list-style: none;
     }
 
     li {
-      margin-bottom: 28px;
+      margin-bottom: 12px;
     }
 
-    a {
-      text-decoration: none;
-      color: #0c69a7;
-      font-weight: bold;
-      padding: 22px 24px;
+    li a {
       display: block;
-      background-color: #e6eef6;
-      border-left: 6px solid #3498db;
-      border-radius: 8px;
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 34px;
-    }
-
-    a:hover {
-      background-color: #e1eefb;
-    }
-
-    .nav {
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    .nav a {
-      background-color: #34495e;
-      color: white;
-      padding: 18px 36px;
+      padding: 18px 20px;
+      background: #f8fbff;
+      border-left: 6px solid #0b63a8;
       border-radius: 8px;
       text-decoration: none;
-      font-size: 30px;
+      color: #1a1a1a;
+      font-size: 1.3rem;
       font-weight: bold;
-      display: inline-block;
+      transition: all 0.2s;
     }
 
-    .nav a:hover {
-      background-color: #2c3e50;
+    li a:hover,
+    li a:focus {
+      background: #e6f2ff;
+      border-left-width: 10px;
+      transform: translateX(4px);
     }
 
-    @media (max-width: 480px) {
+    /* Alternating colors */
+    li:nth-child(5n+1) a { border-left-color: #0b63a8; }
+    li:nth-child(5n+2) a { border-left-color: #d8603e; }
+    li:nth-child(5n+3) a { border-left-color: #059669; }
+    li:nth-child(5n+4) a { border-left-color: #b91c5a; }
+    li:nth-child(5n+5) a { border-left-color: #6b21a8; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
       body {
-        font-size: 28px;
-        padding: 20px;
+        font-size: 18px;
+        padding: 15px;
       }
 
       h1 {
-        font-size: 40px;
+        font-size: 2rem;
+        margin-bottom: 30px;
       }
 
-      a {
-        font-size: 32px;
-        padding: 20px 22px;
+      .featured h2 {
+        font-size: 1.3rem;
       }
 
-      .nav a {
-        font-size: 28px;
-        padding: 16px 28px;
+      .featured a {
+        font-size: 1.2rem;
+        padding: 14px 24px;
+      }
+
+      li a {
+        font-size: 1.2rem;
+        padding: 16px 18px;
+      }
+    }
+
+    /* Accessibility */
+    a:focus {
+      outline: 3px solid rgba(11, 99, 168, 0.5);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+      }
+      li a:hover {
+        transform: none;
       }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Bible Study: Weekly Materials</h1>
 
-  <h1>Bible Study: Weekly Materials</h1>
+    <!-- Faith Assessment stays at top -->
+    <div class="featured">
+      <h2>Faith Assessment</h2>
+      <a href="./faith-assessment/">Begin Assessment</a>
+    </div>
 
-  <ul>
-    <li><a href="./faith-assessment/">Faith Assessment</a></li>
-    <li><a href="./week-01-introduction/">Week 1: Introduction</a></li>
-    <li><a href="./week-02-enjoy-god/">Week 2: What Is It Like to Enjoy God? – John Piper</a></li>
-    <li><a href="./week-03-forgiveness/">Week 3: Forgiveness – Voddie Baucham</a></li>
-    <li><a href="./week-04-true-salvation/">Week 4: True Salvation – Lesson</a></li>
-    <li><a href="./week-05-why-the-bible/">Week 5: Why You Can Believe the Bible – Voddie Baucham</a></li>
-    <li><a href="./week-06-bible-history-ot/">Week 6: Bible History| Garden to Wilderness – Lesson</a></li>
-    <li><a href="./week-07-bible-history-nt/">Week 7: Bible History| Promise Land to Promised King – Lesson</a></li>
-    <li><a href="./week-08-grumblefree/">Week 8: Grumble-Free for His Glory – John Piper</a></li>
-    <li><a href="./week-09-gates1/">Week 9: The Wide & Narrow Gate Session 1 – Voddie Baucham</a></li>
-    <li><a href="./week-10-gates2/">Week 10: The Wide & Narrow Gate Session 2 – Voddie Baucham</a></li>
-    <li><a href="./week-11-sanctification/">Week 11: Sanctification – Lesson</a></li>
-    <li><a href="./week-12-accountability-judgmental/">Week 12: Biblical Accountability vs. Being Judgmental – Lesson</a></li>
-  </ul>
-
-  <div class="nav">
-    <a href="./">Home</a>
+    <!-- Super simple list - just copy/paste <li> to add new weeks -->
+    <ul>
+      <li><a href="./week-01-introduction/">Week 1: Introduction</a></li>
+      <li><a href="./week-02-enjoy-god/">Week 2: What Is It Like to Enjoy God? – John Piper</a></li>
+      <li><a href="./week-03-forgiveness/">Week 3: Forgiveness – Voddie Baucham</a></li>
+      <li><a href="./week-04-true-salvation/">Week 4: True Salvation – Lesson</a></li>
+      <li><a href="./week-05-why-the-bible/">Week 5: Why You Can Believe the Bible – Voddie Baucham</a></li>
+      <li><a href="./week-06-bible-history-ot/">Week 6: Bible History: Garden to Wilderness – Lesson</a></li>
+      <li><a href="./week-07-bible-history-nt/">Week 7: Bible History: Promise Land to Promised King – Lesson</a></li>
+      <li><a href="./week-08-grumblefree/">Week 8: Grumble-Free for His Glory – John Piper</a></li>
+      <li><a href="./week-09-gates1/">Week 9: The Wide & Narrow Gate Session 1 – Voddie Baucham</a></li>
+      <li><a href="./week-10-gates2/">Week 10: The Wide & Narrow Gate Session 2 – Voddie Baucham</a></li>
+      <li><a href="./week-11-sanctification/">Week 11: Sanctification – Lesson</a></li>
+      <li><a href="./week-12-accountability-judgmental/">Week 12: Biblical Accountability vs. Being Judgmental – Lesson</a></li>
+    </ul>
   </div>
-
 </body>
 </html>
