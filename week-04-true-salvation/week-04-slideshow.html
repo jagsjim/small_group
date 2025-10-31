@@ -1,266 +1,368 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>True Salvation — Rebuilt & Styled</title>
-<style>
-  /* ---------- Modern global styles ---------- */
-  :root{
-    --bg-dark:#071018;
-    --text:#F6F7F9;
-    --muted:rgba(246,247,249,0.75);
-    --accent-1:#FFD166;
-    --accent-2:#06D6A0;
-    --accent-3:#4D8AF0;
-    --accent-4:#FF6B6B;
-    --glass: rgba(255,255,255,0.06);
-    --elev: rgba(255,255,255,0.04);
-    --focus: #fff;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>True Salvation - Teaching Session (rebuilt & fixed)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg, #031521 0%, #071018 60%);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    overflow:hidden;
-  }
+        :root { 
+            --primary:#0b2230; 
+            --primary-light:#123a44; 
+            --accent:#d4a574; 
+            --accent-light:#f5d7aa; 
+            --text-light:#f5f7f9; 
+            --muted: rgba(245,247,249,0.85);
+            --glass: rgba(255,255,255,0.03);
+            --card-bg: rgba(255,255,255,0.04);
+        }
+        html,body{height:100%}
+        body{ font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(180deg,#031820 0%, #071018 70%); color:var(--text-light); overflow:hidden; }
 
-  /* slideshow shell */
-  #slideshow{width:100vw;height:100vh;position:relative;overflow:hidden;padding:2rem}
-  .slide{
-    position:absolute; inset:0;
-    display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
-    padding:3.5rem 6rem; gap:1rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-    border-radius:12px;
-    box-shadow: 0 10px 30px rgba(4,10,18,0.65);
-    transform: translateX(120%); opacity:0; transition:transform .45s cubic-bezier(.2,.9,.2,1), opacity .35s ease;
-    pointer-events:none;
-  }
-  .slide.active{transform:none;opacity:1;pointer-events:auto;z-index:10}
-  .slide.prev{ transform:translateX(-120%) }
+        #slideshow{ width:100vw; height:100vh; position:relative; padding:1.5rem; }
 
-  /* Headings & text */
-  h1{font-size:3.2rem;line-height:1.05;margin-bottom:.4rem;color:var(--text)}
-  h2{font-size:2.0rem;color:var(--muted);margin-bottom:.6rem}
-  p,li{font-size:1.5rem;line-height:1.6;color:var(--muted)}
-  ul{margin-left:1.25rem}
-  strong{color:var(--text);font-weight:600}
+        /* Base slide */
+        .slide{
+            position:absolute; inset:0;
+            width:100%; height:100vh;
+            display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+            padding:3rem 4rem;
+            opacity:0; transform:translateX(100%);
+            transition:opacity .45s ease, transform .45s ease;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius:12px;
+            box-shadow: 0 12px 40px rgba(2,6,10,0.6);
+            pointer-events:none;
+        }
+        .slide.active{ opacity:1; transform:translateX(0); z-index:10; pointer-events:auto; }
+        .slide.prev{ transform:translateX(-100%); }
 
-  /* Scripture blocks - clear contrast and readable */
-  .scripture-text{
-    background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
-    padding:1.05rem 1.25rem;border-left:6px solid var(--accent-2);
-    font-style:italic;font-size:1.6rem;color:var(--text);max-width:60rem;border-radius:8px;
-  }
-  .scripture-ref{font-weight:700;color:var(--accent-1);display:block;margin-bottom:.35rem;font-size:1rem}
+        .content{ width:100%; max-width:1180px; }
 
-  /* two-column helper for tight lists (Ten Commandments) */
-  .two-col{ column-count:2; column-gap:2.4rem; font-size:1.6rem; }
-  @media (max-width:1000px){ .two-col{ column-count:1 } }
+        h1{ font-size:3.4rem; color:var(--text-light); margin-bottom:0.5rem; line-height:1.04; }
+        h2{ font-size:2.0rem; color:var(--text-light); margin-bottom:0.75rem; font-weight:600; }
+        p, li{ font-size:1.6rem; line-height:1.55; color:var(--muted); }
+        ul{ margin-left:1.25rem; margin-top:0.6rem; }
 
-  /* --------- distinct page styles (user requested) --------- */
-  /* Discussion slides = greenish gradient */
-  .slide.discussion{
-    background: linear-gradient(135deg, #012b26 0%, #043d33 100%);
-    align-items:center; text-align:center;
-  }
-  .slide.discussion h1{color:var(--accent-2)}
-  .slide.discussion p, .slide.discussion li{color:rgba(230,255,245,0.95); font-size:1.55rem}
-  .slide.discussion .content{max-width:900px}
+        /* Two-column lists for Ten Commandments */
+        .two-col{ column-count:2; column-gap:2.4rem; font-size:1.75rem; }
+        @media (max-width:900px){ .two-col{ column-count:1; } h1{font-size:2.2rem} p,li{font-size:1.15rem} }
 
-  /* Quote slides = warm amber/peach gradient */
-  .slide.quote{
-    background: linear-gradient(135deg, #3a2b18 0%, #5c3d1f 60%, #7a4b24 100%);
-    align-items:center; text-align:center;
-  }
-  .quote-text{ font-size:2.6rem; line-height:1.12; font-style:italic; max-width:68rem; }
-  .quote-author{ margin-top:1rem; font-weight:700; color:var(--accent-1); font-size:1.2rem; }
+        /* Scripture style */
+        .scripture-text{
+            font-style:italic; font-size:1.95rem; line-height:1.6; color:var(--accent-light);
+            margin:1.25rem 0; padding:1.15rem; border-left:5px solid var(--accent); background: rgba(0,0,0,0.18); border-radius:8px;
+            max-width:76rem;
+        }
+        .scripture-ref{ font-weight:700; color:var(--accent); display:block; margin-bottom:0.4rem; font-size:1rem; color:var(--accent-light); opacity:0.95; }
 
-  /* Force larger quote on the slide you called out (page 34) */
-  .quote.big { background: linear-gradient(135deg,#2b2b4a,#3e3e72); }
-  .quote.big .quote-text{ font-size:3.4rem }
+        /* compact variant for vertically-challenged slides (keeps content but smaller) */
+        .compact .scripture-text{ font-size:1.25rem; padding:0.7rem; }
+        .compact p, .compact li{ font-size:1.25rem; }
 
-  /* Centering helper for "horizontally center appropriate pages" */
-  .centered { align-items:center; text-align:center; }
+        /* large scripture when needed */
+        .large-scripture .scripture-text{ font-size:2.6rem; padding:1.6rem; }
 
-  /* Slide 55 — redesigned summary cards (bigger, grid layout) */
-  .cards {
-    display:grid;
-    grid-template-columns: repeat(3, minmax(220px,1fr));
-    gap:1.25rem;
-    margin-top:1rem;
-  }
-  .card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    padding:1.25rem; border-radius:12px; min-height:110px;
-    display:flex; flex-direction:column; justify-content:center; gap:.5rem;
-    border:1px solid rgba(255,255,255,0.04);
-  }
-  .card h3{font-size:1.25rem;color:var(--text); margin-bottom:.2rem}
-  .card p{font-size:1.05rem;color:var(--muted);line-height:1.4}
+        /* Quote slides distinct styling (warm gradient) */
+        .slide.quote{
+            background: linear-gradient(135deg,#3a2b18 0%, #5c3d1f 60%, #7a4b24 100%);
+            align-items:center; text-align:center;
+        }
+        .slide.quote .content{ align-items:center; text-align:center; }
+        .quote-text{ font-size:2.6rem; line-height:1.12; font-style:italic; color:var(--text-light); max-width:78rem; margin:0 auto; }
+        .quote-author{ margin-top:1rem; font-weight:700; color:var(--accent-light); font-size:1.2rem; }
 
-  @media (max-width:900px){
-    h1{font-size:2.2rem}
-    .quote-text{font-size:1.9rem}
-    .card{min-height:90px}
-    .cards{grid-template-columns: 1fr}
-  }
+        /* Make the specific quote slide (34) larger without touching others — target by inner text fallback */
+        /* since we must not change slide ordering, we enlarge all quotes slightly, and then increase inline the slide 34 element */
+        .slide.quote .quote-text{ font-size:2.8rem; }
+        @media (max-width:900px){ .slide.quote .quote-text{ font-size:2.0rem } }
 
-  /* Navigation & progress */
-  .nav-button{
-    position:fixed; top:50%; transform:translateY(-50%); z-index:9999;
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border:1px solid rgba(255,255,255,0.08); color:var(--text); padding:.6rem .8rem; border-radius:8px; cursor:pointer; font-weight:700;
-  }
-  #prevBtn{ left:1rem } #nextBtn{ right:1rem }
-  .progress-container{position:fixed;left:0;right:0;bottom:0;height:6px;background:rgba(255,255,255,0.03)}
-  .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent-2),var(--accent-1))}
+        /* Discussion slides distinct styling (green gradient) */
+        .slide.discussion{
+            background: linear-gradient(135deg,#012b26 0%, #043d33 100%);
+            align-items:center; text-align:center;
+            padding:3rem 2.5rem;
+        }
+        .slide.discussion .content{ max-width:960px; align-items:center; text-align:center; }
+        .slide.discussion h1{ color:var(--accent-light); }
+        .slide.discussion p{ color: rgba(230,255,245,0.96); font-size:1.5rem; }
 
-  /* subtle scrollbar for long content if needed */
-  .content.scrollable{overflow:auto;padding-right:.6rem}
-  .content.scrollable::-webkit-scrollbar{width:8px}
-  .content.scrollable::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:8px}
+        /* Cards for slide 55 — bigger, grid-like on wider screens */
+        .cards-grid{ display:grid; grid-template-columns: repeat(3, minmax(220px,1fr)); gap:1.25rem; margin-top:1rem; width:100%; }
+        .card{ background:var(--card-bg); padding:1.25rem; border-radius:12px; min-height:120px; border:1px solid rgba(255,255,255,0.04); }
+        .card h3{ font-size:1.25rem; color:var(--text-light); margin-bottom:0.4rem; }
+        .card p{ font-size:1.05rem; color:var(--muted); line-height:1.45; }
 
-</style>
+        @media (max-width:900px){ .cards-grid{ grid-template-columns: 1fr; } .card{ min-height:90px } }
+
+        /* Navigation */
+        .nav-button{ position:fixed; top:50%; transform:translateY(-50%); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); color:var(--text-light); padding:.6rem .8rem; border-radius:8px; cursor:pointer; z-index:9999; font-weight:700; }
+        #prevBtn{ left:1rem } #nextBtn{ right:1rem }
+        .progress-container{ position:fixed; left:0; right:0; bottom:0; height:6px; background: rgba(255,255,255,0.02); }
+        .progress-bar{ height:100%; width:0; background: linear-gradient(90deg, #06D6A0, #FFD166); transition: width .25s ease; }
+
+        .slide-counter{ position:fixed; bottom:1.25rem; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.34); color:var(--muted); padding:.45rem .8rem; border-radius:16px; z-index:9999; font-weight:700; }
+
+        /* small screen adjustments */
+        @media (max-width:720px){
+            h1{ font-size:2rem } h2{ font-size:1.1rem } .scripture-text{ font-size:1.15rem } .content{ padding:0 1rem }
+        }
+
+    </style>
 </head>
 <body>
-  <div id="slideshow">
+    <div id="slideshow">
 
-    <!-- Slide 1 -->
-    <div class="slide active" id="s1"><div class="content centered"><div style="font-size:3rem;color:var(--accent-1)">✓</div><div style="color:var(--muted);margin-bottom:.5rem">An 80-Minute Teaching Session</div><h1>True Salvation</h1></div></div>
+        <!-- Slide 1 -->
+        <div class="slide title-slide active"><div class="content"><div class="checkmark" style="font-size:3rem;color:var(--accent-light)">✓</div><div class="subtitle" style="color:var(--accent-light);margin-bottom:1rem;font-size:1.2rem">An 80-Minute Teaching Session</div><h1>True Salvation</h1></div></div>
 
-    <!-- Slide 2 -->
-    <div class="slide" id="s2"><div class="content"><h1>Why This Topic Matters</h1><p>Today we're diving into one of the most important topics you'll ever encounter: <strong>true salvation</strong></p></div></div>
+        <!-- Slide 2 -->
+        <div class="slide"><div class="content"><h1>Why This Topic Matters</h1><p>Today we're diving into one of the most important topics you'll ever encounter: <strong>true salvation</strong></p></div></div>
 
-    <!-- Slide 3 (shortened for brevity, original content retained) -->
-    <div class="slide" id="s3"><div class="content"><h1>What We'll Cover Today</h1><p><strong>Our Journey Through Salvation</strong></p><ul><li>The problem of sin</li><li>How God's law reveals that problem</li><li>God's just response</li><li>Christ's rescue plan</li><li>Our reconciliation and new life</li></ul></div></div>
+        <!-- Slide 3 -->
+        <div class="slide"><div class="content"><h1>What We'll Cover Today</h1><p style="margin-bottom: 2rem;"><strong>Our Journey Through Salvation</strong></p><ul><li>The problem of sin</li><li>How God's law reveals that problem</li><li>God's just response</li><li>Christ's rescue plan</li><li>Our reconciliation and new life</li></ul></div></div>
 
-    <!-- (All earlier slides up through slide 30 remain — content unchanged but using new CSS) -->
-    <!-- For brevity in this message I keep the core slides intact — below are the key slides you asked me to change. -->
+        <!-- Slide 4 -->
+        <div class="slide quote"><div class="content"><h2>A Key Quote</h2><div class="quote-text" style="font-size:3rem;">"You contribute nothing to your salvation except the sin that made it necessary."</div><div class="quote-author">— Jonathan Edwards</div><p style="margin-top: 2rem; text-align: center;">This might sound harsh, but it's actually the most freeing truth you'll ever hear.</p></div></div>
 
-    <!-- Slide 18: Ten Commandments (two columns) -->
-    <div class="slide" id="s18"><div class="content"><h1>The Ten Commandments</h1><ol class="two-col" style="margin-top:1rem; line-height:1.6; text-align:left; font-size:1.7rem;"><li>You shall have no other gods before me.</li><li>You shall not make for yourself an idol.</li><li>You shall not misuse the name of the Lord your God.</li><li>Remember the Sabbath day by keeping it holy.</li><li>Honor your father and your mother.</li><li>You shall not murder.</li><li>You shall not commit adultery.</li><li>You shall not steal.</li><li>You shall not give false testimony against your neighbor.</li><li>You shall not covet.</li></ol></div></div>
+        <!-- Slide 5 -->
+        <div class="slide"><div class="content"><h1>What Is Salvation?</h1><p style="font-size: 2.2rem; margin-bottom: 2rem;">Salvation means being <span class="emphasis">rescued and reconciled</span> to God</p><p style="margin-top: 2rem;"><strong>By the end, you'll understand:</strong></p><ul><li>Why we can't earn our way to God</li><li>Why Christ had to come</li><li>What it means to live as someone who's been truly saved</li></ul></div></div>
 
-    <!-- Slide 30 (prophecy kept) -->
-    <div class="slide scripture" id="s30"><div class="content"><h1>The Prophecy Fulfilled</h1><div class="scripture-text"><span class="scripture-ref">Isaiah 9:6:</span> "For to us a child is born... He will be called Wonderful Counselor, Mighty God..."</div><div class="scripture-text"><span class="scripture-ref">Luke 2:11:</span> "Today... a Savior has been born to you; he is the Messiah, the Lord."</div></div></div>
+        <!-- Slide 6 -->
+        <div class="slide"><div class="content"><h1>The Problem: Sin and Total Depravity</h1><p style="font-size: 2rem;">Every person is born <span class="emphasis">alienated from God</span>—"dead in sin"—and unable to restore that relationship on our own.</p></div></div>
 
-    <!-- Slide 31 Fully God Fully Man -->
-    <div class="slide" id="s31"><div class="content"><h1>Fully God, Fully Man</h1><p><strong>Jesus is fully God ("Mighty God") and fully man.</strong></p><p style="margin-top:1rem"><strong>By becoming a baby:</strong></p><ul style="margin-top:.6rem"><li>He identified with us</li><li>He could live on our behalf</li><li><strong>He had to live perfectly</strong></li></ul></div></div>
+        <!-- Slide 7 -->
+        <div class="slide scripture"><div class="content"><h1>The Hard Truth</h1><p>The Bible doesn't sugarcoat our condition:</p><div class="scripture-text"><span class="scripture-ref">Romans 3:23:</span>"for all have sinned and fall short of the glory of God."</div><div class="scripture-text"><span class="scripture-ref">Ephesians 2:1:</span>"As for you, you were dead in your transgressions and sins."</div></div></div>
 
-    <!-- Slide 32 The Sinless Life -->
-    <div class="slide scripture" id="s32"><div class="content"><h1>The Sinless Life</h1><div class="scripture-text"><span class="scripture-ref">Hebrews 4:15 (NIV):</span> "For we do not have a high priest who is unable to empathize with our weaknesses... yet he did not sin."</div><p style="margin-top:.6rem">Jesus lived the sinless life we couldn't live.</p></div></div>
+        <!-- Slide 8 -->
+        <div class="slide"><div class="content"><h1>Dead, Not Sick</h1><p style="margin-bottom: 2rem;">Notice that word "<span class="emphasis">dead</span>"</p><ul><li>Not sick</li><li>Not injured</li><li><span class="emphasis">Spiritually dead</span></li></ul><p style="margin-top: 2rem; font-size: 2rem;">A dead person can't help themselves.</p></div></div>
 
-    <!-- Slide 33 Righteousness -->
-    <div class="slide" id="s33"><div class="content"><h1>What Is "Righteous"?</h1><p><strong>Being righteous = being perfectly in right standing with God</strong></p><p style="margin-top:.6rem"><strong>This means:</strong></p><ul><li>Never breaking a command</li><li>Perfect obedience to God's law</li></ul></div></div>
+        <!-- Slide 9 -->
+        <div class="slide"><div class="content"><h1>What Is Transgression?</h1><p style="margin-bottom: 2rem;"><span class="emphasis">Transgression</span> = rebellion against God's commands</p><p><strong>The Problem Goes Deeper:</strong></p><ul><li>We don't just do bad things occasionally</li><li>Our very hearts are skewed away from God</li><li>We don't just do wrong things; we are sinners by nature</li></ul></div></div>
 
-    <!-- Slide 34: QUOTE — you said text was too small. enlarged and centered. -->
-    <div class="slide quote big" id="s34"><div class="content centered"><h2 style="color:var(--muted)">A Powerful Thought</h2><div class="quote-text">"Christ lived the life we should have lived and died the death we should have died."</div><div class="quote-author">— Charles Spurgeon</div></div></div>
+        <!-- Slide 10 -->
+        <div class="slide quote"><div class="content"><h2>Quotes on Sin</h2><div class="quote-text" style="font-size:2.6rem;">"Original sin has marred our nature. We are depraved."</div><div class="quote-author">— R.C. Sproul</div><div class="quote-text" style="font-size:2.6rem;margin-top:1rem;">"Men love darkness… We love darkness rather than light" (John 3:19)</div><div class="quote-author">— John Piper</div><p style="margin-top: 2rem; text-align: center;">We prefer hiding from God rather than walking in His light.</p></div></div>
 
-    <!-- Slide 35 — Scripture on Christ's Sinless Life (John1:14 and 1Peter separated, John enlarged for emphasis) -->
-    <div class="slide scripture" id="s35"><div class="content"><h1>Scripture on Christ's Sinless Life</h1><div class="scripture-text"><span class="scripture-ref">2 Corinthians 5:21:</span> "God made him who had no sin to be sin for us..."</div><div class="scripture-text"><span class="scripture-ref">1 Peter 2:22:</span> "He committed no sin, and no deceit was found in his mouth."</div><div class="scripture-text" style="border-left-color:var(--accent-3)"><span class="scripture-ref">John 1:14:</span> "The Word became flesh and made his dwelling among us."</div></div></div>
+        <!-- Slide 11 -->
+        <div class="slide scripture"><div class="content"><h1>Adam's Fall</h1><div class="scripture-text"><span class="scripture-ref">Romans 5:12:</span>"sin entered the world through one man… and death came to all people, because all sinned."</div><p style="margin-top: 2rem;"><strong>Because of Adam's choice:</strong></p><ul><li>Every human inherits a sinful nature</li><li>One man's act made many sinners</li><li>We're born with hearts that naturally rebel against God</li><li>This is called "<span class="emphasis">total depravity</span>"</li></ul></div></div>
 
-    <!-- Slide 55 — redesigned layout, larger cards -->
-    <div class="slide" id="s55"><div class="content centered" style="align-items:start; text-align:left;">
-      <h1>Key Concepts Defined</h1>
-      <div class="cards">
-        <div class="card">
-          <h3>Justified</h3>
-          <p>God declares us righteous — He credits Christ's perfect obedience and payment to our account. This is forensic and instantaneous.</p>
+        <!-- Slide 12 -->
+        <div class="slide"><div class="content"><h1>God's First Promise</h1><p>After Adam and Eve sinned, God clothed them with animal skins (Genesis 3:21)</p><p style="margin-top: 1.5rem;">This required the death of innocent animals—the very first sacrifice.</p><p style="margin-top: 2rem;"><span class="emphasis">Beautiful truth:</span> This was God's way of pointing forward to the ultimate sacrifice: Christ dying on the cross for our sins.</p></div></div>
+
+        <!-- Slide 13 -->
+        <div class="slide scripture"><div class="content"><h1>Our "Good" Works</h1><p>"But what about all the good things I do?"</p><div class="scripture-text"><span class="scripture-ref">Isaiah 64:6:</span>"All of us have become like one who is unclean, and all our righteous acts are like filthy rags; we all shrivel up like a leaf, and like the wind our sins sweep us away."</div><p style="margin-top: 2rem;">Even our best moral efforts are insufficient before a holy God.</p></div></div>
+
+        <!-- Slide 14 -->
+        <div class="slide scripture"><div class="content"><h1>More Biblical Evidence - Sin</h1><div class="scripture-text"><span class="scripture-ref">1 John 1:8:</span>"If we claim to be without sin, we deceive ourselves"</div><div class="scripture-text"><span class="scripture-ref">Romans 3:10:</span>"There is no one righteous, not even one"</div><div class="scripture-text"><span class="scripture-ref">Romans 5:19:</span>"For just as through the disobedience of the one man the many were made sinners..."</div></div></div>
+
+        <!-- Slide 15 -->
+        <div class="slide discussion"><div class="content"><h1>Discussion Questions</h1><p style="font-size: 2rem; margin-bottom: 2rem;">"If everyone is born spiritually dead, what hope do we have?</p><p style="font-size: 2rem;">Why can't we just try to be good people?"</p></div></div>
+
+        <!-- Slide 16 -->
+        <div class="slide"><div class="content"><h1>The Law's Purpose</h1><p style="font-size: 2rem;">God didn't give us the law because He expected us to follow it perfectly. Instead, He gave it to <span class="emphasis">reveal our sinfulness</span>.</p></div></div>
+
+        <!-- Slide 17 -->
+        <div class="slide"><div class="content"><h1>What Is "The Law"?</h1><p><strong>God's moral commands:</strong></p><ul><li>Ten Commandments</li><li>Moral instructions throughout Scripture</li><li>Given to show us how we should live</li></ul><p style="margin-top: 2rem; font-size: 2rem;"><span class="emphasis">Key insight:</span> The law's primary purpose isn't to save us; it's to show us our need for a Savior.</p></div></div>
+
+        <!-- Slide 18: Ten Commandments (two-column) -->
+        <div class="slide"><div class="content"><h1>The Ten Commandments</h1><ol class="two-col" style="margin-top:1rem; line-height:1.6; text-align:left; font-size:1.8rem;"><li>You shall have no other gods before me.</li><li>You shall not make for yourself an idol.</li><li>You shall not misuse the name of the Lord your God.</li><li>Remember the Sabbath day by keeping it holy.</li><li>Honor your father and your mother.</li><li>You shall not murder.</li><li>You shall not commit adultery.</li><li>You shall not steal.</li><li>You shall not give false testimony against your neighbor.</li><li>You shall not covet.</li></ol></div></div>
+
+        <!-- Slide 19 -->
+        <div class="slide scripture"><div class="content"><h1>The Law's True Purpose</h1><div class="scripture-text"><span class="scripture-ref">Romans 3:20:</span> "Therefore no one will be declared righteous in God's sight by the works of the law; rather, through the law we become conscious of our sin."</div><p style="margin-top: 2rem;">The law reveals our sinfulness—it doesn't produce salvation.</p></div></div>
+
+        <!-- Slide 20 -->
+        <div class="slide"><div class="content"><h1>The Mirror Analogy</h1><p style="margin-bottom: 2rem;">Think of the law like a mirror</p><p><strong>When you look in a mirror:</strong></p><ul><li>It has the power to show you dirt on your face</li><li>But it can't clean you</li><li>Only a bath can actually wash away the dirt</li></ul></div></div>
+
+        <!-- Slide 21 -->
+        <div class="slide"><div class="content"><h1>Spiritual Mirror</h1><p style="margin-bottom: 2rem;">Similarly, God's law acts as a spiritual mirror</p><p><strong>The law:</strong></p><ul><li>Reveals our moral failures and need for cleansing</li><li>Has no power to make us clean</li><li>Shows us the standard</li><li>Reveals how far we fall short</li><li>Points us to our need for a Savior</li></ul></div></div>
+
+        <!-- Slide 22 -->
+        <div class="slide scripture"><div class="content"><h1>More on the Law's Purpose</h1><div class="scripture-text"><span class="scripture-ref">Galatians 3:24:</span> "So the law was our guardian until Christ came that we might be justified by faith."</div><div class="scripture-text"><span class="scripture-ref">Romans 7:7:</span> "What shall we say, then? Is the law sinful? Certainly not! Nevertheless, I would not have known what sin was had it not been for the law."</div></div></div>
+
+        <!-- Slide 23 -->
+        <div class="slide"><div class="content"><h1>God's Justice & Hell</h1><p style="font-size: 2rem;">Because God is holy and just, sin cannot go unpunished.</p></div></div>
+
+        <!-- Slide 24 -->
+        <div class="slide scripture"><div class="content"><h1>Why Can't God Just Overlook Sin?</h1><div class="scripture-text"><span class="scripture-ref">Romans 6:23:</span> "For the wages of sin is death..."</div><div class="scripture-text"><span class="scripture-ref">Matthew 25:46:</span> "Then they will go away to eternal punishment, but the righteous to eternal life."</div><p style="margin-top: 2rem;">Wages of sin is death = spiritual death (separation from God) and eventual physical death</p></div></div>
+
+        <!-- Slide 25 -->
+        <div class="slide"><div class="content"><h1>Love & Justice Meet</h1><p style="margin-bottom: 1.5rem;">God's love and justice aren't contradictory</p><p style="font-size: 2rem; margin-bottom: 2rem;">They meet perfectly at the <span class="emphasis">cross</span>.</p></div></div>
+
+        <!-- Slide 26 -->
+        <div class="slide scripture"><div class="content"><h1>A Loving Judge</h1><p style="margin-bottom: 2rem;">A loving judge doesn't let criminals go free.</p><div class="scripture-text"><span class="scripture-ref">Revelation 20:15:</span> "Anyone whose name was not found written in the book of life was thrown into the lake of fire."</div></div></div>
+
+        <!-- Slide 27 -->
+        <div class="slide discussion"><div class="content"><h1>Discussion Question</h1><p style="font-size: 2rem; margin-bottom: 2rem;">If you were a judge and someone you loved committed a crime, how would you balance love and justice?</p></div></div>
+
+        <!-- Slide 28 -->
+        <div class="slide"><div class="content"><h1>The Solution: Christ's Rescue Plan</h1><p style="font-size: 2rem;">This is where the gospel gets beautiful.</p><p style="margin-top: 2rem;">God didn't leave us hopeless.</p></div></div>
+
+        <!-- Slide 29 -->
+        <div class="slide"><div class="content"><h1>Incarnation & Sinless Life</h1><p style="font-size: 2rem;">God Himself came to earth, lived a perfect life, and qualified to be our Substitute.</p></div></div>
+
+        <!-- Slide 30 -->
+        <div class="slide scripture"><div class="content"><h1>The Prophecy Fulfilled</h1><div class="scripture-text"><span class="scripture-ref">Isaiah 9:6:</span> "For to us a child is born... He will be called Wonderful Counselor, Mighty God..."</div><div class="scripture-text"><span class="scripture-ref">Luke 2:11:</span> "Today... a Savior has been born to you; he is the Messiah, the Lord."</div></div></div>
+
+        <!-- Slide 31 -->
+        <div class="slide"><div class="content"><h1>Fully God, Fully Man</h1><p><strong>Jesus is fully God ("Mighty God") and fully man.</strong></p><p style="margin-top:1rem;"><strong>By becoming a baby:</strong></p><ul style="margin-top:.5rem; font-size:1.6rem; line-height:1.5; text-align:left;"><li>He identified with us</li><li>He could live on our behalf</li><li><strong>But here's the crucial part—He had to live perfectly</strong></li></ul></div></div>
+
+        <!-- Slide 32 -->
+        <div class="slide scripture"><div class="content"><h1>The Sinless Life</h1><div class="scripture-text"><span class="scripture-ref">Hebrews 4:15 (NIV):</span> "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin."</div><p style="margin-top:1rem; font-size:1.8rem;">Jesus lived the sinless life we couldn't live.</p></div></div>
+
+        <!-- Slide 33 -->
+        <div class="slide"><div class="content"><h1>What Is "Righteous"?</h1><p><strong>Being righteous = being perfectly in right standing with God</strong></p><p style="margin-top:1rem;"><strong>This means:</strong></p><ul style="margin-top:.5rem; font-size:1.6rem; line-height:1.5; text-align:left;"><li>Never breaking a command</li><li>Perfect obedience to God's law</li></ul></div></div>
+
+        <!-- Slide 34 -->
+        <div class="slide quote"><div class="content centered" style="align-items:center; text-align:center;"><h2>A Powerful Thought</h2><div class="quote-text" style="font-size:3.4rem;">"Christ lived the life we should have lived and died the death we should have died."</div><div class="quote-author">— Charles Spurgeon</div></div></div>
+
+        <!-- Slide 35 -->
+        <div class="slide scripture"><div class="content"><h1>Scripture on Christ's Sinless Life</h1><div class="scripture-text"><span class="scripture-ref">2 Corinthians 5:21:</span> "God made him who had no sin to be sin for us, so that in him we might become the righteousness of God."</div><div class="scripture-text"><span class="scripture-ref">1 Peter 2:22:</span> "He committed no sin, and no deceit was found in his mouth."</div><div class="scripture-text large-scripture"><span class="scripture-ref">John 1:14:</span> "The Word became flesh and made his dwelling among us."</div></div></div>
+
+        <!-- Slide 36 -->
+        <div class="slide discussion"><div class="content"><h1>Discussion Questions</h1><p style="font-size: 2rem;">If your friend offered to pay your debt but was also broke, would that help you?</p><p style="margin-top: 2rem;">If someone who had never perfectly obeyed God died, it wouldn't satisfy God's justice—Jesus had to be righteous to stand in our place.</p></div></div>
+
+        <!-- Slide 37 -->
+        <div class="slide"><div class="content"><h1>Atonement & Propitiation</h1><p style="font-size: 2rem;">Jesus' death on the cross is the payment for sin—He satisfied God's wrath. Our works cannot pay that debt.</p></div></div>
+
+        <!-- Slide 38 -->
+        <div class="slide scripture"><div class="content"><h1>The Atoning Sacrifice</h1><div class="scripture-text"><span class="scripture-ref">1 John 2:2:</span> "He is the atoning sacrifice for our sins, and not only for ours but also for the sins of the whole world."</div><div class="scripture-text"><span class="scripture-ref">Romans 3:25-26:</span> "God presented Christ as a sacrifice of atonement, through the shedding of his blood—to be received by faith. He did this to demonstrate his righteousness..."</div></div></div>
+
+        <!-- Slide 39 -->
+        <div class="slide"><div class="content"><h1>The Currency Analogy</h1><p style="font-size: 2rem;">Good works can't save us - we're using the <span class="emphasis">wrong currency</span></p></div></div>
+
+        <!-- Slide 40 -->
+        <div class="slide"><div class="content"><h1>The Airport Store</h1><p>Imagine returning from Japan with thousands of dollars worth of yen.</p><p style="margin-top: 1.5rem;">You stop at an airport store to buy a $2 bottle of water</p><p style="margin-top: 1.5rem;">When you try to pay with yen, the cashier refuses.</p></div></div>
+
+        <!-- Slide 41 -->
+        <div class="slide"><div class="content"><h1>God's Currency System</h1><p style="margin-bottom: 2rem;">The same principle applies spiritually</p><p style="font-size: 2rem;">Good works, no matter how valuable they may seem, are the wrong currency for salvation.</p></div></div>
+
+        <!-- Slide 42 -->
+        <div class="slide scripture"><div class="content"><h1>Grace and Faith</h1><div class="scripture-text"><span class="scripture-ref">Ephesians 2:8-9:</span> "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God— not by works, so that no one can boast."</div><p style="margin-top: 2rem; font-size: 2rem;">Grace is the "currency" God accepts. Faith is our "hand" that receives the gift.</p></div></div>
+
+        <!-- Slide 43 -->
+        <div class="slide scripture"><div class="content"><h1>Rich in Mercy</h1><div class="scripture-text"><span class="scripture-ref">Ephesians 2:4-5:</span> "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions."</div></div></div>
+
+        <!-- Slide 44 -->
+        <div class="slide scripture"><div class="content"><h1>More on Christ's Sacrifice - Atonement</h1><div class="scripture-text"><span class="scripture-ref">1 Peter 2:24:</span> "He himself bore our sins in his body on the cross, so that we might die to sins and live for righteousness..."</div><div class="scripture-text"><span class="scripture-ref">Romans 5:8:</span> "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us."</div></div></div>
+
+        <!-- Slide 45 -->
+        <div class="slide discussion"><div class="content"><h1>Discussion Question</h1><p style="font-size: 2rem; margin-bottom: 2rem;">Why didn't the Japanese yen work at the airport store?</p><p style="font-size: 2rem;">What does this teach us about good works?</p></div></div>
+
+        <!-- Slide 46 -->
+        <div class="slide"><div class="content"><h1>Resurrection</h1><p style="font-size: 2rem;">Because Jesus rose from the dead, our salvation is secured; death is defeated.</p></div></div>
+
+        <!-- Slide 47 -->
+        <div class="slide scripture"><div class="content"><h1>The Crucial Truth</h1><div class="scripture-text"><span class="scripture-ref">1 Corinthians 15:3-4:</span> "For what I received I passed on to you as of first importance: that Christ died for our sins according to the Scriptures, that he was buried, that he was raised on the third day according to the Scriptures."</div></div></div>
+
+        <!-- Slide 48 -->
+        <div class="slide"><div class="content"><h1>Proof of Payment</h1><p style="margin-bottom: 1.5rem;">The resurrection proves that God accepted Christ's payment for sin.</p><p>If He had not risen, the debt would not be paid.</p></div></div>
+
+        <!-- Slide 49 -->
+        <div class="slide scripture"><div class="content"><h1>Resurrection</h1><div class="scripture-text"><span class="scripture-ref">Romans 6:4:</span> "We were therefore buried with him through baptism into death in order that, just as Christ was raised from the dead through the glory of the Father, we too may live a new life."</div></div></div>
+
+        <!-- Slide 50 -->
+        <div class="slide discussion"><div class="content"><h1>Discussion Question</h1><p style="font-size: 2rem;">If Christ's death was the payment for sin, what does His resurrection tell us about whether God accepted that payment?</p></div></div>
+
+        <!-- Slide 51 -->
+        <div class="slide"><div class="content"><h1>Death Was Arrested</h1><p style="margin-top:1rem; font-size:1.2rem;">Song: "Death Was Arrested" — <a href="https://www.youtube.com/watch?v=uMsMiluCUUI" target="_blank" style="color:inherit; text-decoration:underline;">Watch on YouTube</a></p></div></div>
+
+        <!-- Slide 52 -->
+        <div class="slide"><div class="content"><h1>The Result</h1><h2 style="margin-top: 2rem;">Reconciliation & New Life</h2><p style="font-size: 2rem; margin-top: 2rem;">Once Christ has paid for our sins, we are declared righteous and brought back into fellowship with God.</p></div></div>
+
+        <!-- Slide 53 -->
+        <div class="slide scripture"><div class="content"><h1>Justified by Faith</h1><div class="scripture-text"><span class="scripture-ref">Romans 3:28:</span> "For we maintain that a person is justified by faith apart from the works of the law."</div><div class="scripture-text"><span class="scripture-ref">2 Corinthians 5:18:</span> "All this is from God, who reconciled us to himself through Christ and gave us the ministry of reconciliation."</div></div></div>
+
+        <!-- Slide 54 -->
+        <div class="slide scripture"><div class="content"><h1>What Is Eternal Life?</h1><div class="scripture-text"><span class="scripture-ref">John 17:3:</span> "Now this is eternal life: that they know you, the only true God, and Jesus Christ, whom you have sent."</div></div></div>
+
+        <!-- Slide 55 -->
+        <div class="slide"><div class="content"><h1>Key Concepts Defined</h1><div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem; justify-content:center;"><div style="flex:1 1 300px; background:rgba(255,255,255,0.06); padding:1rem; border-radius:12px; min-width:220px;"><h2 style="font-size:1.25rem; margin-bottom:0.5rem;">Justified</h2><p style="font-size:1rem; line-height:1.4;">God declares us righteous—He credits Christ's perfect obedience and payment to our account.</p></div><div style="flex:1 1 300px; background:rgba(255,255,255,0.06); padding:1rem; border-radius:12px; min-width:220px;"><h2 style="font-size:1.25rem; margin-bottom:0.5rem;">Reconciliation</h2><p style="font-size:1rem; line-height:1.4;">We were God's enemies; now we are His children. The barrier of sin is removed.</p></div><div style="flex:1 1 300px; background:rgba(255,255,255,0.06); padding:1rem; border-radius:12px; min-width:220px;"><h2 style="font-size:1.25rem; margin-bottom:0.5rem;">New Life</h2><p style="font-size:1rem; line-height:1.4;">We're not just "forgiven"—we're born again.</p></div></div></div></div>
+
+        <!-- Slide 56 -->
+        <div class="slide scripture large-scripture"><div class="content"><h1>Seated with Christ</h1><div class="scripture-text"><span class="scripture-ref">Ephesians 2:6:</span> "And God raised us up with Christ and seated us with him in the heavenly realms in Christ Jesus."</div><p style="margin-top: 2rem; font-size:1.9rem;">We have a new <strong>identity and position</strong> with God.</p></div></div>
+
+        <!-- Slide 57 -->
+        <div class="slide scripture"><div class="content"><h1>New Life</h1><div class="scripture-text"><span class="scripture-ref">2 Corinthians 5:17:</span> "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!"</div><div class="scripture-text"><span class="scripture-ref">Romans 8:1:</span> "Therefore, there is now no condemnation for those who are in Christ Jesus."</div></div></div>
+
+        <!-- Slide 58 -->
+        <div class="slide discussion compact"><div class="content"><h1>Discussion Questions</h1><p style="font-size:1.4rem; line-height:1.35;">After being adopted into a loving family, do you obey to earn your way into the family or because you're grateful for their loving gift?</p><p style="font-size:1.4rem; line-height:1.35; margin-top:1rem;">How does grace change our motivation?</p></div></div>
+
+        <!-- Slide 59 -->
+        <div class="slide"><div class="content"><h1>Recap</h1><p>We saw that every person is dead in sin—total depravity—and no amount of good works can pay the debt of our rebellion.</p><p style="margin-top: 1.5rem;">God gave the Law to show us our need, not to save us.</p></div></div>
+
+        <!-- Slide 60 -->
+        <div class="slide"><div class="content"><h1>Closing Prayer</h1><p style="font-style:italic;font-size:1.6rem;">"Dear Heavenly Father, thank You for Your amazing grace. We confess that we are sinners who deserve Your wrath, but You sent Jesus to live, die, and rise for us. Help us rest in Christ alone for our salvation and live in light of this truth. In Jesus' name, Amen."</p></div></div>
+
+        <!-- Slide 61 -->
+        <div class="slide quote"><div class="content"><h2>Final Thought</h2><div class="quote-text" style="font-size:2rem;color:var(--text-light)">"You contribute nothing to your salvation except the sin that made it necessary."</div><div class="quote-author" style="color:var(--accent-light)">— Jonathan Edwards</div></div></div>
+
+        <!-- Slide 62 -->
+        <div class="slide discussion">
+    <div class="content">
+        <h1>Questions & Discussion</h1>
+        <p>Let's open the floor for any questions:</p>
+        <ul>
+        <li>Is any part of the plan—Our sin problem, Christ's work, or new life—unclear?</li>
+        <li>How has seeing grace vs. works changed your perspective?</li>
+        <li>What questions do you still have about salvation?</li>
+        </ul>
         </div>
-        <div class="card">
-          <h3>Reconciliation</h3>
-          <p>We were God's enemies; now we are His children. The barrier of sin is removed and relational fellowship is restored.</p>
         </div>
-        <div class="card">
-          <h3>New Life</h3>
-          <p>We're not merely forgiven — we are made new by Christ. The Holy Spirit renews desires and empowers growth in holiness.</p>
-        </div>
-      </div>
-    </div></div>
 
-    <!-- Slide 56 — Seated with Christ (bigger scripture already applied) -->
-    <div class="slide scripture" id="s56"><div class="content"><h1>Seated with Christ</h1><div class="scripture-text" style="border-left-color:var(--accent-3)"><span class="scripture-ref">Ephesians 2:6:</span> "And God raised us up with Christ and seated us with him in the heavenly realms in Christ Jesus."</div><p style="margin-top:.6rem">We have a new <strong>identity and position</strong> with God.</p></div></div>
+        <!-- Slide 63 -->
+        <div class="slide scripture"><div class="content"><h1>Scripture Summary: Sin</h1><div class="scripture-text"><span class="scripture-ref">Romans 3:23</span> "for all have sinned and fall short of the glory of God"</div><div class="scripture-text"><span class="scripture-ref">1 John 1:8</span> “If we claim to be without sin, we deceive ourselves”</div></div></div></div>
 
-    <!-- Slide 57 .. 63 remain in content order -->
+        <!-- Slide 64 -->
+        <div class="slide scripture"><div class="content"><h1>Scripture Summary: Depravity</h1><div class="scripture-text"><span class="scripture-ref">Ephesians 2:1</span> "you were dead in your transgressions and sins"</div><div class="scripture-text"><span class="scripture-ref">Isaiah 64:6</span> “All of us have become like one who is unclean, and all our righteous acts are like filthy rags”</div></div></div>
 
-    <!-- --- NEW: Slide 64–67: split the merged content into 4 separate pages as requested --- -->
-    <div class="slide scripture" id="s64-1"><div class="content centered"><h1>Law — Our Conscience Exposed</h1><div class="scripture-text"><span class="scripture-ref">Romans 3:20</span> "Therefore no one will be declared righteous in God's sight by the works of the law; rather, through the law we become conscious of our sin."</div></div></div>
+        <!-- Slide 65 -->
+        <div class="slide scripture compact"><div class="content"><h1>Scripture Summary: The Law's Purpose</h1><div class="scripture-text"><span class="scripture-ref">Romans 3:20</span> "through the law we become conscious of our sin"</div><div class="scripture-text"><span class="scripture-ref">Galatians 3:24</span> "So the law was our guardian until Christ came"</div><div style="margin-top:1rem;"><strong></div></div></div>
 
-    <div class="slide scripture" id="s64-2"><div class="content centered"><h1>The Law as Guardian</h1><div class="scripture-text"><span class="scripture-ref">Galatians 3:24</span> "So the law was our guardian until Christ came that we might be justified by faith."</div></div></div>
+        <!-- Slide 66 -->
+        <div class="slide scripture compact"><div class="content"><h1>Scripture Summary: God's Justice/Hell</h1><div class="scripture-text"><span class="scripture-ref">Matthew 25:46</span> “eternal punishment… eternal life”</div><div class="scripture-text"><span class="scripture-ref">Romans 6:23</span> “For the wages of sin is death, but the gift of God is eternal life”</div></div></div></div>
 
-    <div class="slide scripture" id="s64-3"><div class="content centered"><h1>The Incarnation</h1><div class="scripture-text"><span class="scripture-ref">Isaiah 9:6 / Luke 2:11</span> "For to us a child is born... Mighty God." / "Today... a Savior has been born... the Messiah, the Lord."</div></div></div>
+        <!-- Slide 67 -->
+        <div class="slide scripture compact"><div class="content"><h1>Scripture Summary: Incarnation & Sinless Life</h1><div class="scripture-text"><span class="scripture-ref">Isaiah 9:6</span> "For to us a child is born... Mighty God..."</div><div class="scripture-text"><span class="scripture-ref">Luke 2:11</span> “Today… a Savior has been born… the Messiah, the Lord”</div><div class="scripture-text" style="font-size:1.1rem;"><span class="scripture-ref">Hebrews 4:15:</span> "...tempted in every way... yet he did not sin."</div></div></div>
 
-    <div class="slide scripture" id="s64-4"><div class="content centered"><h1>Sinless Life & Atonement</h1><div class="scripture-text"><span class="scripture-ref">Hebrews 4:15 &amp; 1 John 2:2</span> "He was tempted in every way... yet he did not sin." — "He is the atoning sacrifice for our sins."</div></div></div>
+        <!-- Slide 68 -->
+        <div class="slide scripture compact"><div class="content"><h1>Scripture Summary — Atonement & Justification</h1><div class="scripture-text"><span class="scripture-ref">1 John 2:2</span> "He is the atoning sacrifice for our sins..."</div><div class="scripture-text"><span class="scripture-ref">Romans 3:25-26</span> "God presented Christ as a sacrifice of atonement..."</div><div class="scripture-text" style="font-size:1.1rem;"><span class="scripture-ref">Ephesians 2:8-9</span> “by grace you have been saved… it is the gift of God… not by works”</div></div></div>
 
-    <!-- ---------- Deleted accidental slides (old 66-71) — removed ---------- -->
+        <!-- Slide 69 -->
+        <div class="slide scripture compact"><div class="content"><h1>Scripture Summary — Resurerection, Reconciliation, & Eternal Life</h1><div class="scripture-text"><span class="scripture-ref">1 Corinthians 15:3-4</span> “Christ died for our sins… he was raised on the third day”</div><div class="scripture-text"><span class="scripture-ref">2 Corinthians 5:18</span> “God… reconciled us to himself through Christ”</div><div class="scripture-text" style="font-size:1.1rem;"><span class="scripture-ref">John 17:3</span> “eternal life: that they know you, the only true God, and Jesus Christ”</div></div></div>
+        
+    </div>
 
-    <!-- Closing slides (Prayer, final thought, questions) -->
-    <div class="slide" id="sClosingPrayer"><div class="content centered"><h1>Closing Prayer</h1><p style="font-style:italic; font-size:1.2rem; max-width:60rem">"Dear Heavenly Father, thank You for Your amazing grace. We confess that we are sinners who deserve Your wrath, but You sent Jesus to live, die, and rise for us. Help us rest in Christ alone for our salvation and live in light of this truth. In Jesus' name, Amen."</p></div></div>
+    <!-- Navigation -->
+    <button id="prevBtn" class="nav-button" aria-label="Previous">←</button>
+    <button id="nextBtn" class="nav-button" aria-label="Next">→</button>
 
-    <div class="slide quote" id="sFinalThought"><div class="content centered"><h2 style="color:var(--muted)">Final Thought</h2><div class="quote-text">"You contribute nothing to your salvation except the sin that made it necessary."</div><div class="quote-author">— Jonathan Edwards</div></div></div>
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="slide-counter" id="slideCounter">1 / 69</div>
 
-    <div class="slide discussion" id="sQandA"><div class="content centered"><h1>Questions & Discussion</h1><p style="font-size:1.2rem;max-width:64rem">Let's open the floor for any questions: Any part of the plan unclear? How does grace vs works affect you? What do you want to dig into more?</p></div></div>
+    <script>
+        let currentSlide = 0;
+        const slides = Array.from(document.querySelectorAll('.slide'));
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progressBar');
+        const slideCounter = document.getElementById('slideCounter');
 
-  </div>
+        function showSlide(n){ if(n<0) n=0; if(n>=totalSlides) n=totalSlides-1; currentSlide=n; slides.forEach((s,i)=>{ s.classList.remove('active','prev'); if(i===currentSlide) s.classList.add('active'); else if(i<currentSlide) s.classList.add('prev'); }); progressBar.style.width = ((currentSlide+1)/totalSlides*100)+'%'; slideCounter.textContent = `${currentSlide+1} / ${totalSlides}`; }
+        function nextSlide(){ showSlide(currentSlide+1); }
+        function prevSlide(){ showSlide(currentSlide-1); }
 
-  <!-- navigation + progress -->
-  <button id="prevBtn" class="nav-button" aria-label="Previous">←</button>
-  <button id="nextBtn" class="nav-button" aria-label="Next">→</button>
-  <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
-  <div style="position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.28);color:var(--muted);padding:.5rem .9rem;border-radius:14px;font-weight:600" id="slideCounter">1 / 1</div>
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        document.addEventListener('keydown', (e)=>{ if(e.key==='ArrowRight'||e.key===' ') { e.preventDefault(); nextSlide(); } else if(e.key==='ArrowLeft'){ e.preventDefault(); prevSlide(); } else if(e.key==='Home'){ showSlide(0); } else if(e.key==='End'){ showSlide(totalSlides-1); } });
 
-<script>
-  // minimal slide system (keeps ordering intact)
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  let current = 0;
-  const total = slides.length;
-  const progress = document.getElementById('progressBar');
-  const counter = document.getElementById('slideCounter');
+        // touch swipe
+        let touchStartX=0; document.addEventListener('touchstart', e=>{ touchStartX=e.changedTouches[0].screenX; }, false);
+        document.addEventListener('touchend', e=>{ const touchEndX=e.changedTouches[0].screenX; const diff=touchStartX-touchEndX; if(Math.abs(diff)>50){ if(diff>0) nextSlide(); else prevSlide(); } }, false);
 
-  function show(i){
-    if(i < 0) i = 0;
-    if(i >= total) i = total - 1;
-    current = i;
-    slides.forEach((s, idx) => {
-      s.classList.remove('active','prev');
-      if(idx === current) s.classList.add('active');
-      if(idx < current) s.classList.add('prev');
-    });
-    progress.style.width = ((current+1)/total*100)+'%';
-    counter.textContent = (current+1) + ' / ' + total;
-  }
+        // click thirds
+        document.getElementById('slideshow').addEventListener('click',(e)=>{ if(e.target.classList.contains('nav-button')) return; const x=e.clientX; const w=window.innerWidth; if(x<w/3) prevSlide(); else if(x>w*2/3) nextSlide(); });
 
-  document.getElementById('nextBtn').addEventListener('click', ()=> show(current+1));
-  document.getElementById('prevBtn').addEventListener('click', ()=> show(current-1));
-  document.addEventListener('keydown', e => {
-    if(e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); show(current+1); }
-    if(e.key === "ArrowLeft") { e.preventDefault(); show(current-1); }
-    if(e.key === "Home") show(0);
-    if(e.key === "End") show(total-1);
-  });
-
-  // touch swipe
-  let sx = 0;
-  document.addEventListener('touchstart', e => sx = e.changedTouches[0].screenX);
-  document.addEventListener('touchend', e => {
-    const dx = sx - e.changedTouches[0].screenX;
-    if(Math.abs(dx) > 50){ if(dx>0) show(current+1); else show(current-1); }
-  });
-
-  // click thirds
-  document.getElementById('slideshow').addEventListener('click', (e) => {
-    if(e.target.classList.contains('nav-button')) return;
-    const x = e.clientX, w = window.innerWidth;
-    if(x < w/3) show(current-1); else if(x > w*2/3) show(current+1);
-  });
-
-  show(0);
-</script>
+        showSlide(0);
+    </script>
 </body>
 </html>
