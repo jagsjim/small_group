@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prophet, Priest & King - Session 1 Slideshow</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Prophet, Priest &amp; King - Session 1 Slideshow</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,7 +30,7 @@
             display: none;
             width: 100%;
             max-width: 1200px;
-            animation: fadeIn 0.5s;
+            animation: fadeIn 0.45s;
         }
 
         .slide.active {
@@ -44,350 +40,146 @@
             align-items: center;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Title Slide */
-        .title-slide {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+        .title-slide { background: linear-gradient(135deg, #254cfe 0%, #2c039e 100%); }
+        .title-slide h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .title-slide h2 { font-size: 2rem; font-weight: 300; margin-bottom: 2rem; opacity: 0.9; }
+        .title-slide p { font-size: 1.5rem; opacity: 0.8; }
 
-        .title-slide h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .title-slide h2 {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .title-slide p {
-            font-size: 1.5rem;
-            opacity: 0.8;
-        }
-
-        /* Highlight Slide */
-        .highlight-slide {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .highlight-slide h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
+        /* Highlight Slide (Key Truth) */
+        .highlight-slide { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .highlight-slide h2 { font-size: 2.2rem; margin-bottom: 1.2rem; opacity: 0.95; font-weight: 600; }
         .highlight-slide .highlight-text {
-            font-size: 2.5rem;
-            font-weight: 600;
-            line-height: 1.5;
-            max-width: 900px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            padding: 2rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
+            font-size: 2.8rem; font-weight: 600; line-height: 1.4; max-width: 1000px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); padding: 3rem;
+            background: rgba(255,255,255,0.12); border-radius: 24px; border: 2px solid rgba(255,255,255,0.25);
         }
 
-        /* Main Points Slide */
-        .points-slide {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .single-point {
-            text-align: center;
-            max-width: 900px;
-            padding: 3rem;
-        }
-
-        .point-number {
-            font-size: 6rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
-        }
-
-        .point-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
+        /* Points */
+        .points-slide { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .single-point { text-align: center; max-width: 900px; padding: 3rem; }
+        .point-number { font-size: 6rem; font-weight: 700; color: rgba(255,255,255,0.95); margin-bottom: 1rem; text-shadow: 3px 3px 6px rgba(0,0,0,0.2); }
+        .point-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.2rem; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
         .point-description {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            color: #fff;
-            background: rgba(255,255,255,0.15);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid rgba(255,255,255,0.3);
+            font-size: 2.0rem; line-height: 1.6; color: #fff; background: rgba(255,255,255,0.14);
+            padding: 2.5rem; border-radius: 16px; border: 2px solid rgba(255,255,255,0.3); max-width: 1000px;
         }
 
-        /* Segment Question Slides */
-        .segment-slide {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            color: #1a1a1a;
-        }
-
+        /* Segment slides */
+        .segment-slide { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: #1a1a1a; }
         .segment-slide .pause-header {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            background: rgba(0,0,0,0.15);
-            padding: 1rem 2rem;
-            border-radius: 15px;
-            color: #000;
+            font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; display: inline-block;
+            padding: 0.35rem 0.6rem; border-radius: 10px; background: rgba(0,0,0,0.08); color: #111;
+            border: 1px solid rgba(0,0,0,0.06); text-transform: uppercase; letter-spacing: .02em;
         }
-
-        .segment-slide .context {
-            font-size: 1.5rem;
-            font-style: italic;
-            margin-bottom: 2rem;
-            opacity: 0.85;
-            color: #2a2a2a;
-        }
-
+        .segment-slide .context { font-size: 1.6rem; font-style: italic; margin-bottom: 1rem; opacity: 0.9; color: #2a2a2a; max-width: 820px; }
         .segment-slide .question {
-            font-size: 2.2rem;
-            font-weight: 600;
-            line-height: 1.6;
-            max-width: 900px;
-            padding: 2rem;
-            background: rgba(255,255,255,0.5);
-            border-radius: 20px;
-            margin: 2rem 0;
-            color: #000;
-            border: 2px solid rgba(0,0,0,0.1);
+            font-size: 3.0rem; font-weight: 700; line-height: 1.35; max-width: 1100px; padding: 3rem;
+            background: rgba(255,255,255,0.9); border-radius: 28px; margin: 1.2rem 0; color: #000; border: 2px solid rgba(0,0,0,0.1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
+        .segment-slide .instruction { font-size: 1.6rem; margin-top: 1.2rem; padding: 1rem 1.2rem; background: rgba(0,0,0,0.12); border-radius: 10px; color: #000; font-weight: 700; max-width: 760px; }
+        .segment-slide .instruction.next { margin-top: 0.8rem; background: rgba(255,255,255,0.36); border: 2px solid rgba(0,0,0,0.08); }
 
-        .segment-slide .instruction {
-            font-size: 1.4rem;
-            margin-top: 2rem;
-            padding: 1rem;
-            background: rgba(0,0,0,0.15);
-            border-radius: 10px;
-            color: #000;
-            font-weight: 600;
-        }
-
-        .segment-slide .instruction.next {
-            margin-top: 1rem;
-            background: rgba(255,255,255,0.4);
-            border: 2px solid rgba(0,0,0,0.1);
-        }
-
-        /* Overview Question Slides */
-        .overview-slide {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            color: #333;
-        }
-
-        .overview-slide h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #555;
-            font-weight: 300;
-        }
-
+        /* Overview slides (Discussion Questions) */
+        .overview-slide { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; }
+        .overview-slide h2 { font-size: 2.6rem; margin-bottom: 1rem; color: #222; font-weight: 800; letter-spacing: 0.01em; }
         .overview-slide .question {
-            font-size: 2.5rem;
-            font-weight: 600;
-            line-height: 1.6;
-            max-width: 900px;
-            color: #222;
-            padding: 2rem;
-            background: rgba(255,255,255,0.6);
-            border-radius: 20px;
-            border: 3px solid rgba(0,0,0,0.1);
+            font-size: 3.0rem; font-weight: 700; line-height: 1.35; max-width: 1100px; color: #111; padding: 3rem;
+            background: rgba(255,255,255,0.9); border-radius: 28px; border: 3px solid rgba(0,0,0,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.12); margin: 0.8rem 0;
         }
+        .overview-slide .sub-questions { font-size: 1.9rem; margin-top: 1.2rem; text-align: left; max-width: 700px; color: #222; }
+        .overview-slide .sub-questions div { margin: 0.9rem 0; padding-left: 1rem; }
 
-        .overview-slide .sub-questions {
-            font-size: 1.8rem;
-            margin-top: 1.5rem;
-            text-align: left;
-            max-width: 600px;
-        }
-
-        .overview-slide .sub-questions div {
-            margin: 0.8rem 0;
-            padding-left: 1rem;
-        }
-
-        /* Navigation */
+        /* ======= Navigation: compact, centered, pill-shaped ======= */
         .navigation {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: rgba(0,0,0,0.3);
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 10px;
+            padding: 6px;                          /* compact padding around pill container */
+            background: rgba(0,0,0,0.25);
+            border-radius: 999px;                  /* full pill */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            z-index: 999;
+            backdrop-filter: blur(6px);
         }
 
         .nav-button {
-            background: rgba(255,255,255,0.9);
-            color: #333;
+            background: rgba(255,255,255,0.95);
+            color: #222;
             border: none;
-            padding: 1rem 2rem;
-            font-size: 1.3rem;
-            border-radius: 10px;
+            padding: 0.45rem 0.9rem;               /* compact button padding */
+            font-size: 1rem;                       /* smaller font */
+            border-radius: 999px;                  /* pill buttons */
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            min-width: 120px;
+            font-weight: 700;
+            min-width: 68px;                       /* compact width */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform .12s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
 
-        .nav-button:hover {
-            background: #fff;
-            transform: scale(1.05);
-        }
-
-        .nav-button:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
+        .nav-button:hover { transform: translateY(-2px); }
+        .nav-button:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
 
         .slide-counter {
-            font-size: 1.5rem;
-            font-weight: 600;
-            background: rgba(255,255,255,0.2);
-            padding: 0.8rem 1.5rem;
-            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;                  /* pill counter */
+            border: 1px solid rgba(255,255,255,0.08);
+            min-width: 76px;
+            text-align: center;
         }
 
-        /* Touch/Swipe hints */
-        .swipe-hint {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1rem;
-            opacity: 0.6;
-            animation: pulse 2s infinite;
+        .swipe-hint { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); font-size: 1rem; opacity: 0.6; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+
+        /* Mobile scaling */
+        @media (max-width: 1024px) {
+            .segment-slide .question, .overview-slide .question { font-size: 2.4rem; padding: 2rem; }
+            .highlight-slide .highlight-text { font-size: 2.2rem; padding: 2rem; }
+            .point-description { font-size: 1.8rem; padding: 1.8rem; }
+            .overview-slide h2 { font-size: 2rem; }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Mobile Optimization */
         @media (max-width: 768px) {
-            .title-slide h1 {
-                font-size: 2.5rem;
-            }
-
-            .title-slide h2 {
-                font-size: 1.5rem;
-            }
-
-            .title-slide p {
-                font-size: 1.2rem;
-            }
-
-            .highlight-slide .highlight-text {
-                font-size: 1.8rem;
-                padding: 1.5rem;
-            }
-
-            .point-number {
-                font-size: 4.5rem;
-            }
-
-            .point-title {
-                font-size: 2rem;
-            }
-
-            .point-description {
-                font-size: 1.5rem;
-            }
-
-            .segment-slide .pause-header {
-                font-size: 2.2rem;
-            }
-
-            .segment-slide .question {
-                font-size: 1.7rem;
-            }
-
-            .segment-slide .context {
-                font-size: 1.2rem;
-            }
-
-            .segment-slide .instruction {
-                font-size: 1.1rem;
-            }
-
-            .overview-slide .question {
-                font-size: 1.8rem;
-            }
-
-            .overview-slide .sub-questions {
-                font-size: 1.4rem;
-            }
-
-            .nav-button {
-                padding: 0.8rem 1.5rem;
-                font-size: 1.1rem;
-                min-width: 90px;
-            }
-
-            .slide-counter {
-                font-size: 1.2rem;
-            }
+            .title-slide h1 { font-size: 2.5rem; }
+            .segment-slide .pause-header { font-size: 0.9rem; }
+            .segment-slide .question, .overview-slide .question { font-size: 1.9rem; padding: 1.4rem; }
+            .highlight-slide .highlight-text { font-size: 1.6rem; padding: 1.2rem; }
+            .point-number { font-size: 4.5rem; }
+            .point-title { font-size: 2rem; }
+            .point-description { font-size: 1.4rem; padding: 1.2rem; }
+            .overview-slide .sub-questions { font-size: 1.4rem; }
+            /* make nav more compact on small screens */
+            .navigation { bottom: 12px; gap: 8px; padding: 5px; }
+            .nav-button { padding: 0.35rem 0.7rem; font-size: 0.95rem; min-width: 60px; }
+            .slide-counter { font-size: 0.85rem; min-width: 64px; padding: 0.32rem 0.7rem; }
         }
 
         @media (max-width: 480px) {
-            .slide-container {
-                padding: 1rem;
-            }
-
-            .title-slide h1 {
-                font-size: 2rem;
-            }
-
-            .highlight-slide .highlight-text {
-                font-size: 1.5rem;
-            }
-
-            .point-number {
-                font-size: 3.5rem;
-            }
-
-            .point-title {
-                font-size: 1.6rem;
-            }
-
-            .point-description {
-                font-size: 1.3rem;
-                padding: 1.5rem;
-            }
-
-            .segment-slide .pause-header {
-                font-size: 1.8rem;
-            }
-
-            .segment-slide .question {
-                font-size: 1.4rem;
-                padding: 1.5rem;
-            }
-
-            .overview-slide .question {
-                font-size: 1.5rem;
-            }
+            .slide-container { padding: 1rem; }
+            .segment-slide .question, .overview-slide .question { font-size: 1.6rem; padding: 1rem; }
+            .highlight-slide .highlight-text { font-size: 1.3rem; padding: 1rem; }
+            .point-number { font-size: 3.5rem; }
+            .point-title { font-size: 1.6rem; }
+            .point-description { font-size: 1.1rem; padding: 1rem; }
+            .overview-slide h2 { font-size: 1.4rem; }
+            .navigation { gap: 6px; padding: 4px; }
+            .nav-button { padding: 0.28rem 0.6rem; font-size: 0.9rem; min-width: 56px; }
+            .slide-counter { font-size: 0.8rem; min-width: 56px; padding: 0.28rem 0.6rem; }
         }
     </style>
 </head>
@@ -405,159 +197,39 @@
     <!-- Slide 2: First Segment Question -->
     <div class="slide-container segment-slide">
         <div class="slide" id="slide2">
-            <div class="pause-header">⏸ PAUSE VIDEO AT 1:04:47</div>
-            <div class="context">After explaining all three offices and how Jesus fulfilled them in His earthly ministry:</div>
+            <div class="pause-header">⏸ PAUSE VIDEO AT 1:05:11</div>
             <div class="question">
                 What went through your mind when you heard how Jesus fulfilled all three offices—prophet, priest, and king—perfectly when no one else could?
             </div>
-            <div class="instruction">⏯ Resume video after discussion</div>
-            <div class="instruction next">⏸ Next pause at 1:12:02</div>
+            <div class="instruction next">⏸ Next pause at 1:11:55</div>
         </div>
     </div>
 
     <!-- Slide 3: Second Segment Question -->
     <div class="slide-container segment-slide">
         <div class="slide" id="slide3">
-            <div class="pause-header">⏸ PAUSE VIDEO AT 1:12:02</div>
-            <div class="context">After explaining that Jesus uniquely fulfills the offices (He IS the Word, He IS the sacrifice, etc.):</div>
+            <div class="pause-header">⏸ PAUSE VIDEO AT 1:11:55</div>
             <div class="question">
-                What stands out to you most about how Jesus doesn't just fulfill these roles but IS the truth, IS the sacrifice, and IS the servant King?
+                Do you think of salvation mainly as “getting to heaven,” or as “getting Jesus”? How would your view change if heaven had no sin, sickness, or wealth — but God Himself wasn’t there?
             </div>
-            <div class="instruction">⏯ Resume video after discussion</div>
-            <div class="instruction next">⏸ Next pause at 1:17:16</div>
+            <div class="instruction next">⏸ Next pause at 1:22:24</div>
         </div>
     </div>
 
     <!-- Slide 4: Third Segment Question -->
     <div class="slide-container segment-slide">
         <div class="slide" id="slide4">
-            <div class="pause-header">⏸ PAUSE VIDEO AT 1:17:16</div>
-            <div class="context">After the first example of someone accepting Jesus as priest but rejecting Him as prophet and king:</div>
+            <div class="pause-header">⏸ PAUSE VIDEO AT 1:22:24</div>
             <div class="question">
                 Have you ever caught yourself wanting Jesus to be your Savior but not wanting Him to speak truth into your life or rule over certain areas? What was that like?
             </div>
-            <div class="instruction">⏯ Resume video after discussion</div>
             <div class="instruction next">▶ Proceed to end of video</div>
         </div>
     </div>
 
-    <!-- Slide 5: Key Truth -->
-    <div class="slide-container highlight-slide">
-        <div class="slide" id="slide5">
-            <h2>Key Truth</h2>
-            <div class="highlight-text">
-                In the person of Christ we have the fulfillment of not one but all three offices, PPK.
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 6: Main Point 1 -->
-    <div class="slide-container points-slide">
-        <div class="slide" id="slide6">
-            <div class="single-point">
-                <div class="point-number">1</div>
-                <div class="point-title">PPK is revealed in the Old Testament</div>
-                <div class="point-description">
-                    God related to His people through three divinely instituted offices: prophet, priest, and king.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 7: Main Point 2 -->
-    <div class="slide-container points-slide">
-        <div class="slide" id="slide7">
-            <div class="single-point">
-                <div class="point-number">2</div>
-                <div class="point-title">PPK is fulfilled in Christ's earthly ministry</div>
-                <div class="point-description">
-                    Everything Jesus did in His earthly ministry fell into one of these three roles.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 8: Main Point 3 -->
-    <div class="slide-container points-slide">
-        <div class="slide" id="slide8">
-            <div class="single-point">
-                <div class="point-number">3</div>
-                <div class="point-title">PPK is exemplified in Christ's heavenly ministry</div>
-                <div class="point-description">
-                    Jesus was, is, and always will be Prophet, Priest, and King.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 9: Main Point 4 -->
-    <div class="slide-container points-slide">
-        <div class="slide" id="slide9">
-            <div class="single-point">
-                <div class="point-number">4</div>
-                <div class="point-title">Jesus uniquely fulfills all three offices</div>
-                <div class="point-description">
-                    He reveals the truth AND IS the truth; He offers the sacrifice AND IS the sacrifice; He rules as King AND serves as King.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 10: Main Point 5 -->
-    <div class="slide-container points-slide">
-        <div class="slide" id="slide10">
-            <div class="single-point">
-                <div class="point-number">5</div>
-                <div class="point-title">PPK is a model for husbands and fathers</div>
-                <div class="point-description">
-                    It provides a biblical pattern for how men are to spiritually lead their families.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 11: Main Point 6 -->
-    <div class="slide-container points-slide">
-        <div class="slide" id="slide11">
-            <div class="single-point">
-                <div class="point-number">6</div>
-                <div class="point-title">The origin of PPK</div>
-                <div class="point-description">
-                    After the fall, God temporarily met the need for a single Messiah through these three offices.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 12: Main Point 7 -->
-    <div class="slide-container points-slide">
-        <div class="slide" id="slide12">
-            <div class="single-point">
-                <div class="point-number">7</div>
-                <div class="point-title">The fulfillment of PPK</div>
-                <div class="point-description">
-                    Jesus was anointed at His baptism as the ultimate Prophet, Priest, and King.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 13: Main Point 8 -->
-    <div class="slide-container points-slide">
-        <div class="slide" id="slide13">
-            <div class="single-point">
-                <div class="point-number">8</div>
-                <div class="point-title">Why we need all three equally</div>
-                <div class="point-description">
-                    We can't have a partial Messiah—we need Jesus equally as Prophet, Priest, and King.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 14: Overview Question 1 -->
+    <!-- Discussion Questions (moved before Key Truth) -->
     <div class="slide-container overview-slide">
-        <div class="slide" id="slide14">
+        <div class="slide" id="slide5">
             <h2>Discussion Questions (After Video)</h2>
             <div class="question">
                 Can 2-3 people explain in your own words what each office means?
@@ -570,40 +242,56 @@
         </div>
     </div>
 
-    <!-- Slide 15: Overview Question 2 -->
     <div class="slide-container overview-slide">
-        <div class="slide" id="slide15">
+        <div class="slide" id="slide6">
             <h2>Discussion Questions</h2>
-            <div class="question">
-                Which office—prophet, priest, or king—do you favor, and why?
-            </div>
+            <div class="question">Which office—prophet, priest, or king—do you favor, and why?</div>
         </div>
     </div>
 
-    <!-- Slide 16: Overview Question 3 -->
     <div class="slide-container overview-slide">
-        <div class="slide" id="slide16">
+        <div class="slide" id="slide7">
             <h2>Discussion Questions</h2>
-            <div class="question">
-                How could favoring one office over another negatively impact your walk with Christ?
-            </div>
+            <div class="question">How could favoring one office over another negatively impact your walk with Christ?</div>
         </div>
     </div>
 
-    <!-- Slide 17: Overview Question 4 -->
     <div class="slide-container overview-slide">
-        <div class="slide" id="slide17">
+        <div class="slide" id="slide8">
             <h2>Discussion Questions</h2>
-            <div class="question">
-                What's one thing from this message that challenged you or that you want to remember this week?
-            </div>
+            <div class="question">What's one thing from this message that challenged you or that you want to remember this week?</div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <div class="navigation">
+    <!-- Key Truth -->
+    <div class="slide-container highlight-slide">
+        <div class="slide" id="slide9">
+            <h2>Key Truth</h2>
+            <div class="highlight-text">In the person of Christ we have the fulfillment of not one but all three offices, PPK.</div>
+        </div>
+    </div>
+
+    <!-- Main points (10-17) -->
+    <div class="slide-container points-slide"><div class="slide" id="slide10"><div class="single-point"><div class="point-number">1</div><div class="point-title">PPK is revealed in the Old Testament</div><div class="point-description">God related to His people through three divinely instituted offices: prophet, priest, and king.</div></div></div></div>
+
+    <div class="slide-container points-slide"><div class="slide" id="slide11"><div class="single-point"><div class="point-number">2</div><div class="point-title">PPK is fulfilled in Christ's earthly ministry</div><div class="point-description">Everything Jesus did in His earthly ministry fell into one of these three roles.</div></div></div></div>
+
+    <div class="slide-container points-slide"><div class="slide" id="slide12"><div class="single-point"><div class="point-number">3</div><div class="point-title">PPK is exemplified in Christ's heavenly ministry</div><div class="point-description">Jesus was, is, and always will be Prophet, Priest, and King.</div></div></div></div>
+
+    <div class="slide-container points-slide"><div class="slide" id="slide13"><div class="single-point"><div class="point-number">4</div><div class="point-title">Jesus uniquely fulfills all three offices</div><div class="point-description">He reveals the truth AND IS the truth; He offers the sacrifice AND IS the sacrifice; He rules as King AND serves as King.</div></div></div></div>
+
+    <div class="slide-container points-slide"><div class="slide" id="slide14"><div class="single-point"><div class="point-number">5</div><div class="point-title">PPK is a model for husbands and fathers</div><div class="point-description">It provides a biblical pattern for how men are to spiritually lead their families.</div></div></div></div>
+
+    <div class="slide-container points-slide"><div class="slide" id="slide15"><div class="single-point"><div class="point-number">6</div><div class="point-title">The origin of PPK</div><div class="point-description">After the fall, God temporarily met the need for a single Messiah through these three offices.</div></div></div></div>
+
+    <div class="slide-container points-slide"><div class="slide" id="slide16"><div class="single-point"><div class="point-number">7</div><div class="point-title">The fulfillment of PPK</div><div class="point-description">Jesus was anointed at His baptism as the ultimate Prophet, Priest, and King.</div></div></div></div>
+
+    <div class="slide-container points-slide"><div class="slide" id="slide17"><div class="single-point"><div class="point-number">8</div><div class="point-title">Why we need all three equally</div><div class="point-description">We can't have a partial Messiah—we need Jesus equally as Prophet, Priest, and King.</div></div></div></div>
+
+    <!-- Compact pill navigation (centered) -->
+    <div class="navigation" role="navigation" aria-label="Slide navigation">
         <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
-        <div class="slide-counter" id="slideCounter">1 / 10</div>
+        <div class="slide-counter" id="slideCounter">1 / 17</div>
         <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">Next →</button>
     </div>
 
@@ -616,18 +304,17 @@
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');
             const containers = document.querySelectorAll('.slide-container');
-            
+
             if (n > totalSlides) currentSlide = totalSlides;
             if (n < 1) currentSlide = 1;
-            
+
             slides.forEach(slide => slide.classList.remove('active'));
             containers.forEach(container => container.style.display = 'none');
-            
+
             slides[currentSlide - 1].classList.add('active');
             containers[currentSlide - 1].style.display = 'flex';
-            
+
             document.getElementById('slideCounter').textContent = currentSlide + ' / ' + totalSlides;
-            
             document.getElementById('prevBtn').disabled = currentSlide === 1;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
         }
@@ -637,36 +324,22 @@
             showSlide(currentSlide);
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') changeSlide(-1);
             if (e.key === 'ArrowRight') changeSlide(1);
         });
 
-        // Touch/Swipe support
         let touchStartX = 0;
         let touchEndX = 0;
+        document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+        document.addEventListener('touchend', function(e) { touchEndX = e.changedTouches[0].screenX; handleSwipe(); });
+        function handleSwipe() { if (touchEndX < touchStartX - 50) changeSlide(1); if (touchEndX > touchStartX + 50) changeSlide(-1); }
 
-        document.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) changeSlide(1);
-            if (touchEndX > touchStartX + 50) changeSlide(-1);
-        }
-
-        // Initialize
         showSlide(currentSlide);
 
-        // Hide swipe hint after first interaction
         document.addEventListener('click', function() {
-            document.querySelector('.swipe-hint').style.display = 'none';
+            const hint = document.querySelector('.swipe-hint');
+            if (hint) hint.style.display = 'none';
         }, { once: true });
     </script>
 
