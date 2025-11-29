@@ -1,410 +1,704 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Session 2: Jesus the Prophet - Slideshow (Updated)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Prophet Priest King (2 of 5): Jesus the Prophet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700;800&family=Lora:wght@400;500;600&family=Montserrat:wght@700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset and base */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; }
+        :root {
+            --slide-w: 2130px;
+            --slide-h: 1080px;
+            --font-scale: 2.0;
+            --margin-px: clamp(20px, 3vw, 72px);
+            --text-on-dark: #ffffff;
+            --text-dim: rgba(255,255,255,0.9);
+            --pause-banner-bg: rgba(0,0,0,0.7);
+            --pause-banner-text: #FFD866;
+            --bg-1: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --bg-2: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
+            --bg-3: linear-gradient(135deg, #132a13 0%, #31572c 50%, #4f772d 100%);
+            --bg-4: linear-gradient(135deg, #7f2c2c 0%, #a63d3d 50%, #d45050 100%);
+            --bg-5: linear-gradient(135deg, #0a1628 0%, #1a365d 50%, #2c5282 100%);
+            --bg-6: linear-gradient(135deg, #1a4731 0%, #22543d 50%, #276749 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f1724;
-            color: white;
-            overflow: hidden; /* keep presentation feel */
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
+            font-family: 'Lora', Georgia, serif;
+            overflow: hidden;
+            background: #0a0a0a;
+            color: var(--text-on-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: pan-x pan-y;
         }
 
-        /* Container */
         .slide-container {
-            width: 100%;
-            max-width: 1200px;
-            height: 100vh;
+            width: 100vw;
+            height: 100dvh;
+            position: relative;
             display: flex;
-            flex-direction: column;
-            padding: env(safe-area-inset-top,40px) 40px env(safe-area-inset-bottom,120px);
-            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Individual slide */
         .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             display: none;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            padding: var(--margin-px);
+            padding-bottom: calc(var(--margin-px) + 100px);
             text-align: center;
-            flex: 1 1 auto;
-            animation: fadeIn 0.45s ease-in;
-            padding: 10px;
-            gap: 20px;
-        }
-        .slide.active { display: flex; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        /* Scalable type using clamp for better mobile fit */
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .slide.active {
+                animation: none;
+            }
+        }
+
+        /* Background assignments */
+        .title-slide { background: var(--bg-1); }
+        .segment-slide { background: var(--bg-5); }
+        .overview-slide { background: var(--bg-6); }
+        .highlight-slide { background: var(--bg-4); }
+        .points-slide.bg-2 { background: var(--bg-2); }
+        .points-slide.bg-3 { background: var(--bg-3); }
+
+        /* Typography */
         h1 {
-            font-size: clamp(28px, 4.5vw, 48px);
-            margin-bottom: 18px;
-            color: #00d4ff;
-            text-shadow: 0 0 12px rgba(0,212,255,0.35);
+            font-family: 'Poppins', 'Inter', sans-serif;
+            font-size: calc(var(--font-scale) * clamp(28px, 5vw, 64px));
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 0.3em;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
         }
+
         h2 {
-            font-size: clamp(22px, 4vw, 42px);
-            margin-bottom: 14px;
-            color: #ffd700;
-            text-shadow: 0 0 12px rgba(255,215,0,0.35);
+            font-family: 'Poppins', 'Inter', sans-serif;
+            font-size: calc(var(--font-scale) * clamp(20px, 3.5vw, 48px));
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            color: var(--text-on-dark);
         }
+
         .subtitle {
-            font-size: clamp(16px, 3.2vw, 36px);
-            color: #a8dadc;
-            margin-bottom: 12px;
+            font-family: 'Lora', Georgia, serif;
+            font-size: calc(var(--font-scale) * clamp(16px, 2.8vw, 32px));
+            font-weight: 500;
+            color: var(--text-dim);
+            margin-bottom: 1.5em;
         }
 
         .video-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: clamp(10px,2.5vw,25px) clamp(18px,5vw,60px);
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: clamp(16px,3.6vw,32px);
-            font-weight: 700;
-            box-shadow: 0 10px 30px rgba(102,126,234,0.35);
-            transition: transform .25s ease, box-shadow .25s ease;
             display: inline-block;
+            margin-top: 2em;
+            padding: 0.8em 2em;
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: calc(var(--font-scale) * clamp(14px, 2vw, 24px));
+            font-weight: 700;
+            color: #000;
+            background: linear-gradient(135deg, #FFD866 0%, #FFC233 100%);
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(255, 216, 102, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
         }
-        .video-button:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(102,126,234,0.45); }
 
-        .pause-instruction {
-            background: rgba(231,76,60,0.12);
-            border: 2px solid rgba(231,76,60,0.8);
-            border-radius: 14px;
-            padding: clamp(10px,2.5vw,30px);
-            font-size: clamp(16px,3.2vw,36px);
-            color: #e74c3c;
-            font-weight: 700;
-            text-transform: uppercase;
+        .video-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 216, 102, 0.4);
         }
-        .timestamp {
-            color: #00d4ff;
-            font-size: clamp(18px,3.6vw,42px);
+
+        .pause-header {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pause-banner-bg);
+            backdrop-filter: blur(10px);
+            color: var(--pause-banner-text);
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: calc(var(--font-scale) * clamp(14px, 2.2vw, 28px));
             font-weight: 700;
-            text-shadow: 0 0 10px rgba(0,212,255,0.45);
+            padding: 12px 32px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            letter-spacing: 0.05em;
         }
-        .question, .overview-question {
-            font-size: clamp(14px,2.8vw,34px);
-            line-height: 1.5;
-            max-width: 1000px;
+
+        .question {
+            font-family: 'Montserrat', 'Inter', sans-serif;
+            font-size: calc(var(--font-scale) * clamp(18px, 3.2vw, 42px));
+            font-weight: 700;
+            line-height: 1.45;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: clamp(12px,2.5vw,30px);
-            background: rgba(255,255,255,0.06);
-            border-radius: 12px;
-            backdrop-filter: blur(6px);
-            text-align: left;
+            padding: 0 1em;
         }
 
-        .highlight-sentence {
-            font-size: clamp(16px,3.2vw,38px);
-            line-height: 1.5;
-            max-width: 1000px;
-            padding: clamp(12px,2.5vw,40px);
-            background: linear-gradient(135deg, rgba(255,215,0,0.12), rgba(255,107,107,0.08));
-            border-radius: 12px;
-            border: 2px solid rgba(255,215,0,0.18);
-            font-weight: 600;
+        .instruction.next {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: calc(var(--font-scale) * clamp(12px, 1.8vw, 22px));
+            opacity: 0.85;
             font-style: italic;
-            color: #ffd700;
+            color: var(--pause-banner-text);
+        }
+
+        .highlight-text {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: calc(var(--font-scale) * clamp(20px, 3.8vw, 52px));
+            font-weight: 400;
+            line-height: 1.5;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 1em;
+            font-style: italic;
         }
 
         .main-point {
-            font-size: clamp(14px,2.6vw,30px);
-            line-height: 1.45;
-            max-width: 1000px;
+            font-family: 'Lora', Georgia, serif;
+            font-size: calc(var(--font-scale) * clamp(16px, 2.8vw, 38px));
+            line-height: 1.6;
+            max-width: 1500px;
             margin: 0 auto;
-            padding: clamp(10px,2.2vw,30px);
-            background: rgba(255,255,255,0.05);
-            border-left: 6px solid #00d4ff;
-            border-radius: 10px;
-            text-align: left;
-        }
-        .main-point strong {
-            color: #ffd700;
-            display: block;
-            margin-bottom: 10px;
-            font-size: clamp(16px,3vw,34px);
+            padding: 0 1.5em;
         }
 
-        /* Navigation and slide counter */
-        .navigation {
+        .main-point strong {
+            font-family: 'Poppins', sans-serif;
+            display: block;
+            font-size: 1.15em;
+            margin-bottom: 0.4em;
+            color: var(--pause-banner-text);
+        }
+
+        .point-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: calc(var(--font-scale) * clamp(32px, 6vw, 96px));
+            font-weight: 800;
+            color: var(--pause-banner-text);
+            margin-bottom: 0.2em;
+            opacity: 0.3;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
             position: fixed;
-            bottom: env(safe-area-inset-bottom,30px);
-            right: 30px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            gap: 12px;
+            align-items: center;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(20px);
+            padding: 16px 28px;
+            border-radius: 50px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
             z-index: 1000;
         }
-        .nav-button {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.18);
-            color: white;
-            padding: 10px 18px;
-            border-radius: 999px;
-            font-size: clamp(12px,2.6vw,22px);
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: var(--text-on-dark);
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             cursor: pointer;
-            transition: transform .15s ease, background .15s ease;
-            backdrop-filter: blur(6px);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+            min-height: 50px;
         }
-        .nav-button:hover { transform: scale(1.03); background: rgba(255,255,255,0.12); }
+
+        .nav-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
 
         .slide-counter {
-            position: fixed;
-            bottom: env(safe-area-inset-bottom,30px);
-            left: 30px;
-            font-size: clamp(12px,2.4vw,20px);
-            color: rgba(255,255,255,0.8);
-            z-index: 1000;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-on-dark);
+            min-width: 80px;
+            text-align: center;
         }
 
-        /* Small screens adjustments */
-        @media (max-width: 700px) {
-            .slide-container { padding: 18px 18px 100px; }
-            .question, .main-point, .overview-question { text-align: left; }
+        .scale-divider {
+            width: 2px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 8px;
         }
 
-        /* Make slides keyboard-focusable for accessibility */
-        .slide:focus { outline: none; box-shadow: 0 0 0 3px rgba(0,212,255,0.12); }
+        .scale-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: var(--text-on-dark);
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 700;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .scale-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 120px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--pause-banner-text);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 8px rgba(255, 216, 102, 0.5);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--pause-banner-text);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 8px rgba(255, 216, 102, 0.5);
+        }
+
+        /* Accessibility */
+        .nav-btn:focus,
+        .scale-btn:focus,
+        .video-button:focus {
+            outline: 3px solid var(--pause-banner-text);
+            outline-offset: 2px;
+        }
+
+        input[type="range"]:focus {
+            outline: 3px solid var(--pause-banner-text);
+            outline-offset: 2px;
+        }
+
+        input[type="range"]:focus::-webkit-slider-thumb {
+            box-shadow: 0 0 12px rgba(255, 216, 102, 0.8);
+        }
+
+        input[type="range"]:focus::-moz-range-thumb {
+            box-shadow: 0 0 12px rgba(255, 216, 102, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --font-scale: 1.0;
+            }
+
+            .nav-controls {
+                padding: 12px 20px;
+                gap: 12px;
+                flex-wrap: wrap;
+                max-width: 95vw;
+            }
+
+            .nav-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
+
+            .slide-counter {
+                font-size: 16px;
+                min-width: 60px;
+            }
+
+            .scale-divider {
+                display: none;
+            }
+
+            input[type="range"] {
+                width: 100%;
+                order: 10;
+                flex-basis: 100%;
+                margin-top: 8px;
+            }
+
+            .scale-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="slide-container">
-        <!-- SLIDE 1: Title & Video Button -->
-        <div class="slide active" tabindex="0">
-            <h1>Prophet Priest King (2 of 5)</h1>
+    <div class="slide-container" id="slideContainer">
+        <!-- SLIDE 1: Title -->
+        <div class="slide title-slide active" role="region" aria-label="Title slide">
+            <h1>Prophet Priest King<br>(2 of 5)</h1>
             <div class="subtitle">Jesus the Prophet</div>
-            <a href="https://www.youtube.com/live/XdwzssPVXlc?si=w5vErwsAfT9HnRY1&t=2666" class="video-button" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/live/XdwzssPVXlc?si=w5vErwsAfT9HnRY1&t=2666" 
+               class="video-button" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="Watch video on YouTube">
                 ▶ WATCH VIDEO
             </a>
         </div>
 
-        <!-- SLIDE 2 -->
-        <div class="slide" tabindex="0">
-            <div class="pause-instruction">PAUSE VIDEO</div>
-            <div class="timestamp">[52:17]</div>
+        <!-- SLIDES 2-4: Segment Questions -->
+        <div class="slide segment-slide" role="region" aria-label="Discussion question 1">
+            <div class="pause-header">⏸ PAUSE VIDEO AT 52:17</div>
             <div class="question">
                 What went through your mind when you heard that Jesus was acting as a prophet even before his incarnation - speaking to Adam and Eve in the garden, calling Abraham, wrestling with Jacob?
             </div>
-            <div class="next-pause" style="margin-top:12px; font-size:clamp(12px,2.2vw,20px); color:#ffd700; font-style:italic;">Next pause at: 1:13:42</div>
+            <div class="instruction next">⏸ Next pause at 1:13:42</div>
         </div>
 
-        <!-- SLIDE 3 -->
-        <div class="slide" tabindex="0">
-            <div class="pause-instruction">PAUSE VIDEO</div>
-            <div class="timestamp">[1:13:42]</div>
+        <div class="slide segment-slide" role="region" aria-label="Discussion question 2">
+            <div class="pause-header">⏸ PAUSE VIDEO AT 1:13:42</div>
             <div class="question">
                 Have you ever experienced a time when something you'd read in the Bible many times suddenly 'clicked' for you in a new way?
             </div>
-            <div class="next-pause" style="margin-top:12px; font-size:clamp(12px,2.2vw,20px); color:#ffd700; font-style:italic;">Next pause at: 1:26:04</div>
+            <div class="instruction next">⏸ Next pause at 1:26:04</div>
         </div>
 
-        <!-- SLIDE 4 -->
-        <div class="slide" tabindex="0">
-            <div class="pause-instruction">PAUSE VIDEO</div>
-            <div class="timestamp">[1:26:04]</div>
+        <div class="slide segment-slide" role="region" aria-label="Discussion question 3">
+            <div class="pause-header">⏸ PAUSE VIDEO AT 1:26:04</div>
             <div class="question">
                 Why do you think God chooses to work gradually through trials rather than instantly removing our struggles?
             </div>
-            <div class="next-pause" style="margin-top:12px; font-size:clamp(12px,2.2vw,20px); color:#ffd700; font-style:italic;">Resume video for conclusion</div>
+            <div class="instruction next">▶ Proceed to end of video</div>
         </div>
 
-        <!-- SLIDE 5 -->
-        <div class="slide" tabindex="0">
-            <h2>Key Truth</h2>
-            <div class="highlight-sentence">
-                Jesus is not only the ultimate prophet who speaks God's truth - He IS the Living Truth who opens our blind eyes to understand and delight in Him.
-            </div>
-        </div>
-
-        <!-- SLIDE 6 -->
-        <div class="slide" tabindex="0">
-            <h2>Main Points</h2>
-            <div class="subtitle">8 Key Truths from This Message</div>
-        </div>
-
-        <!-- INDIVIDUAL MAIN POINT SLIDES (one per slide) -->
-        <div class="slide" tabindex="0">
-            <div class="main-point">
-                <strong>1. What is a prophet?</strong>
-                A prophet is God's spokesman who communicates divine revelation - not just foretelling the future, but speaking God's authoritative truth to His people.
-            </div>
-        </div>
-
-        <div class="slide" tabindex="0">
-            <div class="main-point">
-                <strong>2. Jesus is a prophet</strong>
-                As the Son of God, Jesus has always been THE Prophet - speaking and revealing God's will from creation through the incarnation and continuing today.
-            </div>
-        </div>
-
-        <div class="slide" tabindex="0">
-            <div class="main-point">
-                <strong>3. Jesus is a prophet like Moses</strong>
-                Both were endangered as babies, tested in the desert, covenant mediators, brought God's Word, performed miracles, and delivered God's people - but Jesus is infinitely superior.
-            </div>
-        </div>
-
-        <div class="slide" tabindex="0">
-            <div class="main-point">
-                <strong>4. Jesus is the unique prophet</strong>
-                Unlike other prophets who only communicated God's content, Jesus originates content as God - He IS the Living Word, the Truth itself, and the One who determines the future.
-            </div>
-        </div>
-
-        <div class="slide" tabindex="0">
-            <div class="main-point">
-                <strong>5. We need Jesus to open our minds</strong>
-                Even after three years with Jesus, the disciples couldn't understand Scripture until Jesus "opened" (dianoigo) their minds - like removing cataracts that we can't remove ourselves.
-            </div>
-        </div>
-
-        <div class="slide" tabindex="0">
-            <div class="main-point">
-                <strong>6. Jesus brings illumination through understanding</strong>
-                He assembles the puzzle pieces of Scripture so we can "get it" - connecting content we knew externally into internal understanding that transforms us.
-            </div>
-        </div>
-
-        <div class="slide" tabindex="0">
-            <div class="main-point">
-                <strong>7. Three signs Jesus is opening your heart</strong>
-                Freshness: Scripture never gets old; familiar passages suddenly reveal new truth. Delight: The Word produces joy in obedience, not just duty. Authority: God's truth produces power for actual change and transformation.
-            </div>
-        </div>
-
-        <div class="slide" tabindex="0">
-            <div class="main-point">
-                <strong>8. Jesus continues this prophetic work today</strong>
-                Through the Holy Spirit and the preaching of His Word, Jesus still actively opens minds, defeats strongholds, and reveals Himself so we can be saved and grow.
-            </div>
-        </div>
-
-        <!-- Discussion / Overview slides -->
-        <div class="slide" tabindex="0">
+        <!-- SLIDES 5-9: Overview Questions -->
+        <div class="slide overview-slide" role="region" aria-label="Post-video discussion questions">
             <h2>Discussion Questions</h2>
             <div class="subtitle">After Video - Reflect Together</div>
         </div>
 
-        <div class="slide" tabindex="0">
-            <h2>Question 1</h2>
-            <div class="overview-question">
+        <div class="slide overview-slide" role="region" aria-label="Discussion question 4">
+            <div class="question">
                 Jesus Christ is Prophet, Priest and King. How does scripture reveal Jesus as the ultimate Prophet? How does he still function in the office of a prophet today in our lives?
             </div>
         </div>
 
-        <div class="slide" tabindex="0">
-            <h2>Question 2</h2>
-            <div class="overview-question">
+        <div class="slide overview-slide" role="region" aria-label="Discussion question 5">
+            <div class="question">
                 The disciples listened to Jesus for three years, yet still needed him to 'open their minds' to the Scriptures after his resurrection. Why do we need this same divine help to understand God's Word, and how have you experienced that need recently?
             </div>
         </div>
 
-        <div class="slide" tabindex="0">
-            <h2>Question 3</h2>
-            <div class="overview-question">
+        <div class="slide overview-slide" role="region" aria-label="Discussion question 6">
+            <div class="question">
                 Can you describe the time in your life when the spiritual cataracts first fell off your eyes? What was that like?
             </div>
         </div>
 
-        <div class="slide" tabindex="0">
-            <h2>Question 4</h2>
-            <div class="overview-question">
+        <div class="slide overview-slide" role="region" aria-label="Discussion question 7">
+            <div class="question">
                 The sermon describes three signs that Jesus is opening your heart: freshness, delight, and authority. Which of these three do you see most in your life right now? Which one feels like it's missing?
             </div>
         </div>
 
-        <div class="slide" tabindex="0">
-            <h2>Question 5</h2>
-            <div class="overview-question">
+        <div class="slide overview-slide" role="region" aria-label="Discussion question 8">
+            <div class="question">
                 What's one small step you could take this week to invite Jesus the Prophet to speak more clearly into your life?
             </div>
         </div>
 
+        <!-- SLIDE 10: Highlight -->
+        <div class="slide highlight-slide" role="region" aria-label="Key truth">
+            <h2>Key Truth</h2>
+            <div class="highlight-text">
+                Jesus is not only the ultimate prophet who speaks God's truth - He IS the Living Truth who opens our blind eyes to understand and delight in Him.
+            </div>
+        </div>
+
+        <!-- SLIDES 11-18: Main Points -->
+        <div class="slide points-slide bg-2" role="region" aria-label="Main point 1">
+            <div class="point-number">1</div>
+            <div class="main-point">
+                <strong>What is a prophet?</strong>
+                A prophet is God's spokesman who communicates divine revelation - not just foretelling the future, but speaking God's authoritative truth to His people.
+            </div>
+        </div>
+
+        <div class="slide points-slide bg-3" role="region" aria-label="Main point 2">
+            <div class="point-number">2</div>
+            <div class="main-point">
+                <strong>Jesus is a prophet</strong>
+                As the Son of God, Jesus has always been THE Prophet - speaking and revealing God's will from creation through the incarnation and continuing today.
+            </div>
+        </div>
+
+        <div class="slide points-slide bg-2" role="region" aria-label="Main point 3">
+            <div class="point-number">3</div>
+            <div class="main-point">
+                <strong>Jesus is a prophet like Moses</strong>
+                Both were endangered as babies, tested in the desert, covenant mediators, brought God's Word, performed miracles, and delivered God's people - but Jesus is infinitely superior.
+            </div>
+        </div>
+
+        <div class="slide points-slide bg-3" role="region" aria-label="Main point 4">
+            <div class="point-number">4</div>
+            <div class="main-point">
+                <strong>Jesus is the unique prophet</strong>
+                Unlike other prophets who only communicated God's content, Jesus originates content as God - He IS the Living Word, the Truth itself, and the One who determines the future.
+            </div>
+        </div>
+
+        <div class="slide points-slide bg-2" role="region" aria-label="Main point 5">
+            <div class="point-number">5</div>
+            <div class="main-point">
+                <strong>We need Jesus to open our minds</strong>
+                Even after three years with Jesus, the disciples couldn't understand Scripture until Jesus "opened" (dianoigo) their minds - like removing cataracts that we can't remove ourselves.
+            </div>
+        </div>
+
+        <div class="slide points-slide bg-3" role="region" aria-label="Main point 6">
+            <div class="point-number">6</div>
+            <div class="main-point">
+                <strong>Jesus brings illumination through understanding</strong>
+                He assembles the puzzle pieces of Scripture so we can "get it" - connecting content we knew externally into internal understanding that transforms us.
+            </div>
+        </div>
+
+        <div class="slide points-slide bg-2" role="region" aria-label="Main point 7">
+            <div class="point-number">7</div>
+            <div class="main-point">
+                <strong>Three signs Jesus is opening your heart</strong>
+                Freshness: Scripture never gets old; familiar passages suddenly reveal new truth. Delight: The Word produces joy in obedience, not just duty. Authority: God's truth produces power for actual change and transformation.
+            </div>
+        </div>
+
+        <div class="slide points-slide bg-3" role="region" aria-label="Main point 8">
+            <div class="point-number">8</div>
+            <div class="main-point">
+                <strong>Jesus continues this prophetic work today</strong>
+                Through the Holy Spirit and the preaching of His Word, Jesus still actively opens minds, defeats strongholds, and reveals Himself so we can be saved and grow.
+            </div>
+        </div>
     </div>
 
-    <!-- Navigation -->
-    <div class="navigation" aria-hidden="false">
-        <button class="nav-button" onclick="previousSlide()" aria-label="Previous slide">◀</button>
-        <button class="nav-button" onclick="nextSlide()" aria-label="Next slide">▶</button>
-    </div>
-
-    <div class="slide-counter" aria-live="polite">
-        <span id="current-slide">1</span> / <span id="total-slides">1</span>
+    <!-- Navigation Controls -->
+    <div class="nav-controls" role="navigation" aria-label="Slide navigation">
+        <button class="nav-btn" id="prevBtn" aria-label="Previous slide">‹</button>
+        <div class="slide-counter" id="slideCounter" aria-live="polite">1 / 18</div>
+        <button class="nav-btn" id="nextBtn" aria-label="Next slide">›</button>
+        <div class="scale-divider"></div>
+        <button class="scale-btn" id="scaleDown" aria-label="Decrease text size">−</button>
+        <input type="range" 
+               id="scaleSlider" 
+               min="0.8" 
+               max="2.5" 
+               step="0.1" 
+               value="2.0"
+               aria-label="Text size slider"
+               aria-valuemin="0.8"
+               aria-valuemax="2.5"
+               aria-valuenow="2.0">
+        <button class="scale-btn" id="scaleUp" aria-label="Increase text size">+</button>
     </div>
 
     <script>
-        // Slide JS - dynamically reads slides so total updates automatically
+        // Slide management
+        const slides = document.querySelectorAll('.slide');
+        const slideCounter = document.getElementById('slideCounter');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const scaleSlider = document.getElementById('scaleSlider');
+        const scaleUp = document.getElementById('scaleUp');
+        const scaleDown = document.getElementById('scaleDown');
         let currentSlide = 0;
-        const slides = Array.from(document.querySelectorAll('.slide'));
         const totalSlides = slides.length;
-        const currentSlideEl = document.getElementById('current-slide');
-        const totalSlidesEl = document.getElementById('total-slides');
 
-        totalSlidesEl.textContent = totalSlides;
-
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + totalSlides) % totalSlides;
-            slides[currentSlide].classList.add('active');
-            currentSlideEl.textContent = currentSlide + 1;
-            // ensure focus for keyboard users / mobile screen readers
-            slides[currentSlide].focus();
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+            
+            // Update ARIA
+            scaleSlider.setAttribute('aria-valuenow', scaleSlider.value);
         }
 
-        function nextSlide() { showSlide(currentSlide + 1); }
-        function previousSlide() { showSlide(currentSlide - 1); }
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Navigation event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
 
         // Keyboard navigation
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowRight' || event.key === ' ') {
-                event.preventDefault();
-                nextSlide();
-            } else if (event.key === 'ArrowLeft') {
-                event.preventDefault();
-                previousSlide();
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    prevSlide();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    currentSlide = 0;
+                    updateSlide();
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    currentSlide = totalSlides - 1;
+                    updateSlide();
+                    break;
             }
         });
 
-        // Touch navigation for mobile
+        // Touch swipe support
         let touchStartX = 0;
         let touchEndX = 0;
-        document.addEventListener('touchstart', function(event) {
-            touchStartX = event.changedTouches[0].screenX;
-        }, {passive:true});
-        document.addEventListener('touchend', function(event) {
-            touchEndX = event.changedTouches[0].screenX;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
-        }, {passive:true});
+        }, { passive: true });
+
         function handleSwipe() {
-            if (touchEndX < touchStartX - 40) nextSlide();
-            if (touchEndX > touchStartX + 40) previousSlide();
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                prevSlide();
+            }
         }
 
-        // Improve accessibility: allow tapping anywhere to advance on narrow screens
-        document.querySelectorAll('.slide').forEach(s => {
-            s.addEventListener('click', function(e) {
-                // prevent clicks that target links or interactive controls
-                if (e.target.closest('a, button, input')) return;
-                nextSlide();
-            });
+        // Scale controls
+        function updateScale() {
+            const scale = scaleSlider.value;
+            document.documentElement.style.setProperty('--font-scale', scale);
+            scaleSlider.setAttribute('aria-valuenow', scale);
+        }
+
+        scaleSlider.addEventListener('input', updateScale);
+
+        scaleUp.addEventListener('click', () => {
+            const currentValue = parseFloat(scaleSlider.value);
+            if (currentValue < 2.5) {
+                scaleSlider.value = Math.min(2.5, currentValue + 0.1);
+                updateScale();
+            }
         });
 
-        // ensure first slide is focused on load
-        slides[0].focus();
+        scaleDown.addEventListener('click', () => {
+            const currentValue = parseFloat(scaleSlider.value);
+            if (currentValue > 0.8) {
+                scaleSlider.value = Math.max(0.8, currentValue - 0.1);
+                updateScale();
+            }
+        });
+
+        // Initialize
+        updateSlide();
     </script>
 </body>
 </html>
