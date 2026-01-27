@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeking God with All Your Heart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=Merriweather:wght@400;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --slide-w: 2130px;
+            --slide-h: 1080px;
+            --font-scale: 2.5;
+            --margin-px: clamp(20px, 3vw, 72px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: #0a0e1a;
+            font-family: Lora, Georgia, serif;
+            color: #ffffff;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .canvas {
+            width: 100vw;
+            max-width: var(--slide-w);
+            aspect-ratio: 2130/1080;
+            height: auto;
+            position: relative;
+            transform-origin: center center;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(10px, 1.2vh, 20px);
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .content {
+            width: calc(100% - (var(--margin-px) * 2));
+            max-width: 1960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .phrase-big {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 700;
+            font-size: clamp(28px, calc(var(--font-scale) * 8vw), 96px);
+            line-height: 1.08;
+            margin: 0.2em 0;
+            width: 100%;
+        }
+
+        .phrase-large {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 600;
+            font-size: clamp(20px, calc(var(--font-scale) * 5.2vw), 56px);
+            line-height: 1.14;
+            margin: 0.25em 0;
+            width: 100%;
+        }
+
+        .phrase-medium {
+            font-family: Lora, Georgia, serif;
+            font-weight: 500;
+            font-size: clamp(16px, calc(var(--font-scale) * 3.4vw), 36px);
+            line-height: 1.18;
+            margin: 0.2em 0;
+            width: 100%;
+        }
+
+        .scripture-block {
+            font-family: Merriweather, Georgia, serif;
+            font-size: clamp(20px, calc(20px * var(--font-scale)), 72px);
+            line-height: 1.22;
+            margin: 0.25rem 0;
+            padding: clamp(8px, calc(10px * var(--font-scale)), 36px);
+            border-radius: calc(12px * var(--font-scale));
+            width: 100%;
+            max-width: 1800px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.06);
+            font-weight: 400;
+            color: #fff;
+            overflow-wrap: break-word;
+            hyphens: none;
+        }
+
+        .scripture-reference {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 700;
+            font-size: clamp(20px, calc(20px * var(--font-scale)), 40px);
+            margin-bottom: calc(6px * var(--font-scale));
+            opacity: 0.95;
+            letter-spacing: 0.6px;
+        }
+
+        @media (min-width: 1600px) {
+            .scripture-block {
+                font-size: clamp(26px, calc(26px * var(--font-scale) + 0.8vw), 96px);
+            }
+            .scripture-reference {
+                font-size: clamp(20px, calc(20px * var(--font-scale) + 0.6vw), 48px);
+            }
+        }
+
+        .discussion-box, .next-steps-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: clamp(14px, 1.8vh, 28px);
+            border: 1px solid rgba(255,255,255,0.06);
+            max-width: 1800px;
+            width: 100%;
+        }
+
+        .discussion-label, .next-steps-label {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 800;
+            font-size: clamp(14px, calc(var(--font-scale) * 1.2vw), 20px);
+            margin-bottom: 0.6em;
+            color: #FFD866;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: rgba(0,0,0,0.22);
+            padding: 6px 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .quote-box {
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border-radius: 14px;
+            padding: clamp(14px, 1.8vh, 28px);
+            border: 1px solid rgba(255,255,255,0.08);
+            max-width: 1800px;
+            width: 100%;
+        }
+
+        .quote-text {
+            font-family: Montserrat, Inter, sans-serif;
+            font-weight: 700;
+            font-size: clamp(18px, calc(var(--font-scale) * 3.8vw), 42px);
+            line-height: 1.2;
+            font-style: italic;
+        }
+
+        .quote-attribution {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 600;
+            font-size: clamp(14px, calc(var(--font-scale) * 2vw), 24px);
+            margin-top: 0.8em;
+            opacity: 0.9;
+        }
+
+        .quote-context {
+            font-family: Inter, sans-serif;
+            font-size: clamp(12px, calc(var(--font-scale) * 1.4vw), 18px);
+            font-style: italic;
+            opacity: 0.75;
+            margin-top: 0.5em;
+            font-weight: 500;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 1.4rem;
+            text-align: left;
+            line-height: 1.4;
+            font-size: clamp(18px, calc(var(--font-scale) * 2.8vw), 32px);
+            font-weight: 500;
+        }
+
+        ul li {
+            margin-bottom: 0.4em;
+        }
+
+        .nav-container {
+            position: fixed;
+            bottom: clamp(12px, 2.5vh, 24px);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 1000;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .nav-container:hover {
+            opacity: 1;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.95);
+            color: #081024;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            font-family: Inter, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.92);
+            padding: 4px 8px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .scale-btn {
+            background: rgba(255,255,255,0.9);
+            color: #081024;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .scale-slider {
+            width: 100px;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 999px;
+            outline: none;
+        }
+
+        .scale-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #FFD866;
+            cursor: pointer;
+        }
+
+        /* 6-Gradient System - Fresh Teal/Coral/Gold Palette */
+        .bg-1 {
+            background: linear-gradient(135deg, #1a5d6a 0%, #2d8f8f 50%, #3db8a0 100%);
+        }
+
+        .bg-2 {
+            background: linear-gradient(135deg, #c04d4d 0%, #e07b5a 50%, #f4a261 100%);
+        }
+
+        .bg-3 {
+            background: linear-gradient(135deg, #2c5f7c 0%, #3a7ca5 50%, #5fb4c9 100%);
+        }
+
+        /* Fixed assignments */
+        .bg-4 {
+            /* Stories/Illustrations - Warm sunset */
+            background: linear-gradient(135deg, #d4772c 0%, #e8a04a 50%, #f5c56d 100%);
+        }
+
+        .bg-5 {
+            /* Scripture - Deep ocean */
+            background: linear-gradient(135deg, #0d2137 0%, #1a4a6e 50%, #2e7da3 100%);
+        }
+
+        .bg-6 {
+            /* Discussion - Rose coral */
+            background: linear-gradient(135deg, #b84a62 0%, #d66a7a 50%, #e89a9a 100%);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.5s ease-out both;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-in {
+                animation: none;
+            }
+            .slide {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas">
+        <!-- Navigation -->
+        <div class="nav-container">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" aria-label="Previous slide">←</button>
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">150</span>
+            </div>
+            <div class="controls">
+                <button class="scale-btn" id="decreaseBtn" aria-label="Decrease font size">−</button>
+                <input type="range" id="scaleSlider" class="scale-slider" min="0.5" max="2.5" step="0.01" value="2.5" aria-label="Font scale" />
+                <button class="scale-btn" id="increaseBtn" aria-label="Increase font size">+</button>
+            </div>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)" aria-label="Next slide">→</button>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active bg-1">
+            <div class="content">
+                <div class="phrase-big animate-in">Seeking God with All Your Heart</div>
+                <div class="phrase-large animate-in" style="animation-delay: 0.08s">When Half-Hearted Won't Do</div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">What Does It Mean to Seek?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The word "seek" appears over 200 times in Scripture.<br>God clearly wants to be sought—but how we seek makes all the difference.</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Jeremiah 29:13 (NIV)</div>
+                    "You will seek me and find me when you seek me with all your heart."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">A Conditional Promise</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Notice the condition: "when you seek me with all your heart."<br>God isn't hiding from us—but He's not rewarding casual interest either.</div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Two Kinds of Seeking</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">There's a difference between wanting to find God<br>and being willing to do whatever it takes to find Him.</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Missing Child 👶</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Imagine your child goes missing at the park.<br>How do you search?</div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">What Wholehearted Looks Like</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">You don't check the swings, shrug, and pull out your phone.<br>You don't think, "I'll look more after lunch." Every second matters.</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Nothing Distracts You</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Your favorite show could come on TV. You wouldn't notice.<br>Your phone could buzz with notifications. You wouldn't care.</div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Total Focus</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Finding your child becomes your single mission.<br>Everything else fades into the background.<br>That's what "all your heart" looks like.</div>
+            </div>
+        </div>
+
+        <!-- Slide 10 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Now Compare That to Sunday Morning 🛋️</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We hit snooze. We scroll our phones.<br>We wonder if we really need to go to church.<br>We're seeking—sort of.</div>
+            </div>
+        </div>
+
+        <!-- Slide 11 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Difference Is Obvious</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">One search consumes every part of us.<br>The other fits around our convenience.</div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Discussion -->
+        <div class="slide bg-6">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">Discussion</div>
+                    <div class="phrase-large">What Gets Your Full Attention?</div>
+                    <div class="phrase-medium" style="margin-top: 0.5em;">Think about the last time you truly searched for something with all your heart.<br>What was it, and what made it so urgent?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Casual Seekers</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Some people seek God like they're browsing a menu.<br>"I'll take what sounds good and pass on the rest."</div>
+            </div>
+        </div>
+
+        <!-- Slide 14 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Convenient Christianity</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We want God's blessings without God's demands.<br>His comfort without His commands.<br>His heaven without His holiness.</div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">1 Samuel 16:7 (NIV)</div>
+                    "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Excuses We Make 🛏️</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Let's be honest about the reasons we give<br>for half-hearted seeking.</div>
+            </div>
+        </div>
+
+        <!-- Slide 17 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">"Church Starts Too Early"</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"I like to stay up late on Saturday."<br>So we've decided that Saturday night entertainment<br>matters more than Sunday morning worship.</div>
+            </div>
+        </div>
+
+        <!-- Slide 18 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Imagine Saying This at Work</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"Sorry, boss—9 AM is just too early for me.<br>I like my Saturday nights."<br>How long would that job last?</div>
+            </div>
+        </div>
+
+        <!-- Slide 19 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">"I Read My Bible"</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">But reading words without understanding them isn't seeking—<br>it's checking a box. Scanning verses isn't studying Scripture.</div>
+            </div>
+        </div>
+
+        <!-- Slide 20 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Real Seeking Pursues Understanding 📖</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">If it takes reading a passage five times, do it.<br>If you need to call someone for help, call.<br>If you need a study guide, buy one.</div>
+            </div>
+        </div>
+
+        <!-- Slide 21 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Whatever It Takes</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">A wholehearted seeker doesn't shrug when confused.<br>They dig until they find what God is saying—because it matters.</div>
+            </div>
+        </div>
+
+        <!-- Slide 22 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Read Less, but Read Deeper</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Let God's Word soak in rather than skimming for completion.<br>Quality over quantity. Understanding over accomplishment.</div>
+            </div>
+        </div>
+
+        <!-- Slide 23: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Job Interview Illustration 📅</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Imagine you have a crucial job interview tomorrow.<br>The opportunity of a lifetime. What would you do to prepare?</div>
+            </div>
+        </div>
+
+        <!-- Slide 24: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Preparation Mode</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">You'd research the company. You'd practice your answers.<br>You'd lay out your clothes the night before.<br>You'd set three alarms.</div>
+            </div>
+        </div>
+
+        <!-- Slide 25: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Nothing Left to Chance</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Because this matters to you. Because you want it.<br>Because you're seeking it with all your heart.</div>
+            </div>
+        </div>
+
+        <!-- Slide 26 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Now Apply That to Prayer</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">How do we prepare for time with the Creator of the universe?<br>Often, we just show up tired and distracted.</div>
+            </div>
+        </div>
+
+        <!-- Slide 27 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The Problem Isn't Technique</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">It's not that we don't know how to seek God.<br>The problem is we don't want Him badly enough.</div>
+            </div>
+        </div>
+
+        <!-- Slide 28 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">A Painful Truth 💔</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">I don't think we've convinced ourselves we're doing fine without God.<br>I think we're convinced we have enough of Him.</div>
+            </div>
+        </div>
+
+        <!-- Slide 29 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Just Enough God</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Enough to feel religious. Enough to calm our conscience.<br>But not so much that He disrupts our lives.</div>
+            </div>
+        </div>
+
+        <!-- Slide 30: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 63:1 (NIV)</div>
+                    "You, God, are my God, earnestly I seek you; I thirst for you, my whole being longs for you, in a dry and parched land where there is no water."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 31 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Physical Language</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">David doesn't just mention God casually.<br>He's thirsting. Longing. His whole being is involved.</div>
+            </div>
+        </div>
+
+        <!-- Slide 32 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">When Have You Felt That Thirst?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Most of us know physical thirst.<br>Have we ever felt spiritual thirst with that same urgency?</div>
+            </div>
+        </div>
+
+        <!-- Slide 33: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 42:1-2 (NIV)</div>
+                    "As the deer pants for streams of water, so my soul pants for you, my God. My soul thirsts for God, for the living God."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 34 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Not a Stroll to the Stream 🦌</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The deer isn't casually wandering toward water.<br>It's panting—desperate, driven, singularly focused.</div>
+            </div>
+        </div>
+
+        <!-- Slide 35 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Seeking on Our Terms</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We want a God who fits our schedule,<br>meets our expectations, and doesn't ask too much.</div>
+            </div>
+        </div>
+
+        <!-- Slide 36 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">But That's Not Seeking—That's Browsing</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Real seeking means we're willing to change our schedule,<br>adjust our expectations, and give whatever it costs.</div>
+            </div>
+        </div>
+
+        <!-- Slide 37: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Matthew 13:44 (NIV)</div>
+                    "The kingdom of heaven is like treasure hidden in a field. When a man found it, he hid it again, and then in his joy went and sold all he had and bought that field."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 38 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">He Sold Everything 💎</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Notice: he didn't negotiate. He didn't keep back his favorite possessions.<br>He sold all he had—and did it with joy.</div>
+            </div>
+        </div>
+
+        <!-- Slide 39 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Joy in the Exchange</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">This wasn't a sacrifice he resented. He understood the treasure's value.<br>Everything else looked worthless by comparison.</div>
+            </div>
+        </div>
+
+        <!-- Slide 40: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Matthew 13:45-46 (NIV)</div>
+                    "Again, the kingdom of heaven is like a merchant looking for fine pearls. When he found one of great value, he went away and sold everything he had and bought it."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 41 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Two Stories, Same Message</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Whether you stumble upon the treasure or spend your life searching,<br>the response is the same: give everything.</div>
+            </div>
+        </div>
+
+        <!-- Slide 42 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">What Are We Holding Back?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Most of us have areas we protect from God.<br>"You can have this part of my life, Lord—but not that."</div>
+            </div>
+        </div>
+
+        <!-- Slide 43: Discussion -->
+        <div class="slide bg-6">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">Discussion</div>
+                    <div class="phrase-large">The Protected Zone</div>
+                    <div class="phrase-medium" style="margin-top: 0.5em;">Is there an area of your life you've been hesitant to fully surrender to God?<br>What makes it so hard to let go?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 44 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Half-Hearted Examples 🎭</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Let's look at some biblical examples of half-hearted seeking—<br>and what went wrong.</div>
+            </div>
+        </div>
+
+        <!-- Slide 45: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Mark 10:21-22 (NIV)</div>
+                    "Jesus looked at him and loved him. 'One thing you lack,' he said. 'Go, sell everything you have and give to the poor.' ... At this the man's face fell. He went away sad."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 46: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">He Came Running</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">This young man ran to Jesus and knelt before Him.<br>He asked the right question: "What must I do to inherit eternal life?"</div>
+            </div>
+        </div>
+
+        <!-- Slide 47: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">He Seemed So Sincere</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">He'd kept the commandments since his youth.<br>He was moral, religious, eager. He looked like a wholehearted seeker.</div>
+            </div>
+        </div>
+
+        <!-- Slide 48: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">But He Had a Limit</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When Jesus asked for everything, the young man discovered his heart was divided.<br>He wanted eternal life—but not that much.</div>
+            </div>
+        </div>
+
+        <!-- Slide 49: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Sadness, Not Surrender</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">He went away sad. Not angry, not defiant—sad.<br>He knew what he was giving up. But he still walked away.</div>
+            </div>
+        </div>
+
+        <!-- Slide 50: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">1 Samuel 15:22 (NIV)</div>
+                    "Does the Lord delight in burnt offerings and sacrifices as much as in obeying the Lord? To obey is better than sacrifice."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 51 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">King Saul's Half-Hearted Obedience</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God told Saul to destroy everything.<br>Saul destroyed most things—but kept the best sheep and spared the king.</div>
+            </div>
+        </div>
+
+        <!-- Slide 52 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Religious Looking, Heart Missing</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Saul planned to sacrifice those sheep to God!<br>Surely that made it okay? But partial obedience is still disobedience.</div>
+            </div>
+        </div>
+
+        <!-- Slide 53: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">1 Samuel 15:23 (NIV)</div>
+                    "Because you have rejected the word of the Lord, he has rejected you as king."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 54 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Cost of Almost</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Saul lost his kingdom not for blatant rebellion,<br>but for thinking "close enough" would satisfy God.</div>
+            </div>
+        </div>
+
+        <!-- Slide 55 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">How Often Do We Do This? 🤔</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We obey where it's convenient. We sacrifice what doesn't cost much.<br>We think God grades on a curve.</div>
+            </div>
+        </div>
+
+        <!-- Slide 56: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Numbers 14:24 (NIV)</div>
+                    "But because my servant Caleb has a different spirit and follows me wholeheartedly, I will bring him into the land."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 57 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Contrast: Caleb's Wholehearted Faith</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God Himself testifies about Caleb's heart.<br>Caleb didn't just obey—he followed wholeheartedly.</div>
+            </div>
+        </div>
+
+        <!-- Slide 58 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">While Others Doubted</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Ten spies saw giants and gave up.<br>Caleb and Joshua saw the same giants but trusted God anyway.</div>
+            </div>
+        </div>
+
+        <!-- Slide 59 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Same Evidence, Different Hearts</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The facts were identical. The difference was faith—<br>a heart fully committed to believing God's promises.</div>
+            </div>
+        </div>
+
+        <!-- Slide 60 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Caleb's Reward</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">At 85 years old, Caleb was still ready to claim his inheritance.<br>Wholehearted faith produces wholehearted living.</div>
+            </div>
+        </div>
+
+        <!-- Slide 61: Discussion -->
+        <div class="slide bg-6">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">Discussion</div>
+                    <div class="phrase-large">Which Pattern Fits You?</div>
+                    <div class="phrase-medium" style="margin-top: 0.5em;">When you look at Saul's partial obedience versus Caleb's wholehearted faith—<br>which pattern do you recognize in yourself?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 62 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Why Wholehearted Matters ❤️</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Let's explore why God insists on our whole heart—<br>not just part of it.</div>
+            </div>
+        </div>
+
+        <!-- Slide 63: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Exodus 20:3 (NIV)</div>
+                    "You shall have no other gods before me."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 64 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Not First on the List</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God doesn't want to be the most important item on your list.<br>He's not first among your priorities.</div>
+            </div>
+        </div>
+
+        <!-- Slide 65 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">He's the Paper the List Is Written On</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Everything else—family, work, health, dreams—<br>gets ordered according to Him.<br>He's not competing; He's foundational.</div>
+            </div>
+        </div>
+
+        <!-- Slide 66: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Exodus 34:14 (NIV)</div>
+                    "Do not worship any other god, for the Lord, whose name is Jealous, is a jealous God."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 67 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">This Jealousy Is Love</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God isn't insecure. His jealousy is the protective love<br>of a husband who won't share his bride with rivals.</div>
+            </div>
+        </div>
+
+        <!-- Slide 68: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">James 1:8 (NIV)</div>
+                    "Such a person is double-minded and unstable in all they do."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 69 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Instability Comes from Division</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When we try to serve two masters, we end up serving neither well.<br>Our loyalties are constantly competing.</div>
+            </div>
+        </div>
+
+        <!-- Slide 70: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Marriage Analogy 💍</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Imagine telling your spouse, "You're my favorite—<br>but I'm going to keep dating other people just in case."</div>
+            </div>
+        </div>
+
+        <!-- Slide 71: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">That's Not Love</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">No healthy spouse would accept that.<br>And God, who loves us infinitely more, won't accept it either.</div>
+            </div>
+        </div>
+
+        <!-- Slide 72: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Revelation 3:15-16 (NIV)</div>
+                    "I know your deeds, that you are neither cold nor hot. I wish you were either one or the other! So, because you are lukewarm—neither hot nor cold—I am about to spit you out of my mouth."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 73 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Strong Words from Jesus</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Lukewarmness makes Jesus sick.<br>He'd rather we be honestly opposed than falsely committed.</div>
+            </div>
+        </div>
+
+        <!-- Slide 74 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Why Lukewarm Fails</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The cold person knows they need saving.<br>The lukewarm person thinks they're fine—<br>and that self-deception is deadly.</div>
+            </div>
+        </div>
+
+        <!-- Slide 75 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">What Steals Our Hearts? 🎯</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Let's identify the common rivals that compete<br>for the devotion God alone deserves.</div>
+            </div>
+        </div>
+
+        <!-- Slide 76 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Comfort</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We want a smooth, pain-free life.<br>When seeking God might cost us comfort, we hesitate.</div>
+            </div>
+        </div>
+
+        <!-- Slide 77 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Control</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We want to be in charge. Truly seeking God means<br>surrendering control—and that terrifies us.</div>
+            </div>
+        </div>
+
+        <!-- Slide 78 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Approval</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We crave what others think.<br>When following God makes us look weird, we tone down our pursuit.</div>
+            </div>
+        </div>
+
+        <!-- Slide 79 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Entertainment 📱</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We're addicted to distraction.<br>Our phones, shows, and hobbies eat the time we could spend seeking God.</div>
+            </div>
+        </div>
+
+        <!-- Slide 80 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Success</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Career advancement, financial goals, achievement—<br>these become our actual treasures.</div>
+            </div>
+        </div>
+
+        <!-- Slide 81 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Relationships</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Even good things—family, friendships, romance—<br>can become idols when we prioritize them over God.</div>
+            </div>
+        </div>
+
+        <!-- Slide 82 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The One Percent Problem 📊</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Let's do some honest math together.</div>
+            </div>
+        </div>
+
+        <!-- Slide 83 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Your Waking Hours</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">You're awake roughly 112 hours each week.<br>That's about 6,700 minutes of conscious life.</div>
+            </div>
+        </div>
+
+        <!-- Slide 84 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Time with God</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">If you give God 75 minutes a week—<br>a Sunday service and maybe a quick devotional—<br>that's barely over 1%.</div>
+            </div>
+        </div>
+
+        <!-- Slide 85 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">What Does 1% Look Like?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Vacuuming just the closet and leaving the house dirty.<br>Cooking by warming up bread and calling it dinner.<br>Studying by reading the chapter title and closing the book.</div>
+            </div>
+        </div>
+
+        <!-- Slide 86 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">1% Effort Guarantees Failure</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Imagine giving 1% effort at your job,<br>in your marriage, or to your health.<br>We all know how that ends.</div>
+            </div>
+        </div>
+
+        <!-- Slide 87 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">And We Give God 1%</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Then we wonder why our faith feels weak,<br>our prayers feel empty, and our spiritual growth has stalled.</div>
+            </div>
+        </div>
+
+        <!-- Slide 88 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">This Isn't Legalism—It's Love</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We're not earning God's favor with more time.<br>But what we give our time to reveals what we truly love.</div>
+            </div>
+        </div>
+
+        <!-- Slide 89: Discussion -->
+        <div class="slide bg-6">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">Discussion</div>
+                    <div class="phrase-large">Your Honest Assessment</div>
+                    <div class="phrase-medium" style="margin-top: 0.5em;">Looking at your actual weekly schedule—not your intentions—<br>what percentage of your waking hours involves seeking God?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 90 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Excuses That Keep Us Stuck 🚧</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We've seen the problem.<br>Now let's confront the excuses we use to stay comfortable.</div>
+            </div>
+        </div>
+
+        <!-- Slide 91 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">"Well, Nobody's Perfect"</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">This is true—but it's not an excuse.<br>It's a cop-out that deflects conviction rather than producing repentance.</div>
+            </div>
+        </div>
+
+        <!-- Slide 92 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Naming Sin, Then Shrugging</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Admitting a problem while refusing to address it isn't humility.<br>It's using grace as a license to stay stuck.</div>
+            </div>
+        </div>
+
+        <!-- Slide 93 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">"We're Just Not Where We Want to Be"</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">But are you moving? A year from now, will anything be different?<br>Or is this just comfortable language for comfortable disobedience?</div>
+            </div>
+        </div>
+
+        <!-- Slide 94: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Romans 6:1-2 (NIV)</div>
+                    "What shall we say, then? Shall we go on sinning so that grace may increase? By no means!"
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 95 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Paul's Strong Response</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"By no means!" Some translations say "God forbid!"<br>This isn't a minor misunderstanding—<br>it's a dangerous distortion of grace.</div>
+            </div>
+        </div>
+
+        <!-- Slide 96 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The Family Defense 👨‍👩‍👧‍👦</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"This is how my family does it."<br>"Everyone I know is the same way."<br>We normalize half-heartedness by surrounding ourselves with it.</div>
+            </div>
+        </div>
+
+        <!-- Slide 97: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Matthew 7:13 (NIV)</div>
+                    "Enter through the narrow gate. For wide is the gate and broad is the road that leads to destruction, and many enter through it."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 98 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">What If They're Wrong?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Just because your family or friends approach faith casually doesn't make it right.<br>What if following their path means following them to destruction?</div>
+            </div>
+        </div>
+
+        <!-- Slide 99 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">This Isn't Judgment—It's Urgency</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We're not condemning anyone.<br>But we must stop using others' mediocrity to excuse our own.</div>
+            </div>
+        </div>
+
+        <!-- Slide 100 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Willful Disobedience Has a Name</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When we know what God wants and choose not to do it—<br>that's not weakness. That's rebellion dressed in comfortable clothes.</div>
+            </div>
+        </div>
+
+        <!-- Slide 101: Discussion -->
+        <div class="slide bg-6">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">Discussion</div>
+                    <div class="phrase-large">Which Excuse Is Yours?</div>
+                    <div class="phrase-medium" style="margin-top: 0.5em;">"Nobody's perfect." "We're not where we want to be." "Everyone does it."<br>Which shield do you hide behind?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 102 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Breaking Free from Half-Hearted Seeking 🔓</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">If conviction is setting in—good.<br>Now let's talk about the path forward.</div>
+            </div>
+        </div>
+
+        <!-- Slide 103 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Step 1: Admit the Problem</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We can't fix what we won't acknowledge.<br>Start by confessing your divided heart to God.</div>
+            </div>
+        </div>
+
+        <!-- Slide 104: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 139:23-24 (NIV)</div>
+                    "Search me, God, and know my heart; test me and know my anxious thoughts. See if there is any offensive way in me."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 105 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Invite God's Examination</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Don't just examine yourself—you're too biased.<br>Ask God to show you where your heart is divided.</div>
+            </div>
+        </div>
+
+        <!-- Slide 106: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Ezekiel 36:26 (NIV)</div>
+                    "I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 107 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Step 2: Ask for a New Heart</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We can't manufacture desire. But we can ask God<br>to change what we want—and He promises to do it.</div>
+            </div>
+        </div>
+
+        <!-- Slide 108 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Pray for Hunger</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Regularly ask God to increase your appetite for Him.<br>Desire itself is a gift He gives.</div>
+            </div>
+        </div>
+
+        <!-- Slide 109 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">A Dangerous Prayer 🔥</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"God, make me want You more than I want anything else."<br>Be warned—He answers this prayer.</div>
+            </div>
+        </div>
+
+        <!-- Slide 110: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 100:2 (NIV)</div>
+                    "Worship the Lord with gladness; come before him with joyful songs."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 111 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Come with Gladness—Even When You Don't Feel Glad</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">This is a command, not a suggestion.<br>Start rejoicing before the feeling arrives. God will meet you there.</div>
+            </div>
+        </div>
+
+        <!-- Slide 112 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Desire Follows Obedience</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We don't wait until we feel like seeking God. We seek, and the desire grows.<br>Obedience leads; feelings follow.</div>
+            </div>
+        </div>
+
+        <!-- Slide 113 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Step 3: Remove the Rivals</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Identify what competes for your heart<br>and take practical steps to dethrone it.</div>
+            </div>
+        </div>
+
+        <!-- Slide 114: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Matthew 5:29 (NIV)</div>
+                    "If your right eye causes you to stumble, gouge it out and throw it away."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 115 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Sometimes Radical Action Is Required 🔥</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Jesus isn't being literal. But He is being serious.<br>Whatever pulls your heart from God—deal with it drastically.</div>
+            </div>
+        </div>
+
+        <!-- Slide 116 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Practical Examples</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Delete the app. Cancel the subscription. End the relationship.<br>Change the habit. Whatever it takes.</div>
+            </div>
+        </div>
+
+        <!-- Slide 117 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Step 4: Create New Patterns</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Desire follows discipline.<br>Build habits that train your heart toward God.</div>
+            </div>
+        </div>
+
+        <!-- Slide 118: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 5:3 (NIV)</div>
+                    "In the morning, Lord, you hear my voice; in the morning I lay my requests before you and wait expectantly."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 119 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Morning First ☀️</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Before you check your phone, check in with your Father.<br>What we do first reveals what we value most.</div>
+            </div>
+        </div>
+
+        <!-- Slide 120 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Practice Presence</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Throughout your day, consciously turn your thoughts toward God.<br>He's with you always—live like it.</div>
+            </div>
+        </div>
+
+        <!-- Slide 121: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Hebrews 10:24-25 (NIV)</div>
+                    "And let us consider how we may spur one another on toward love and good deeds, not giving up meeting together."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 122 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Step 5: Increase Accountability</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We're already in community.<br>Being in a small group isn't enough.<br>Are we actually spurring one another on? Or just attending?</div>
+            </div>
+        </div>
+
+        <!-- Slide 123 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Go Deeper with Each Other</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Text during the week. Ask the hard questions. Confess struggles.<br>Don't let group time be our only connection.</div>
+            </div>
+        </div>
+
+        <!-- Slide 124: Discussion -->
+        <div class="slide bg-6">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">Discussion</div>
+                    <div class="phrase-large">Your Next Step</div>
+                    <div class="phrase-medium" style="margin-top: 0.5em;">Which of these steps do you most need to take?<br>What would doing it this week look like?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 125 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">The Promise Waiting for Us 🎁</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God doesn't just command wholehearted seeking—<br>He rewards it.</div>
+            </div>
+        </div>
+
+        <!-- Slide 126: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Jeremiah 29:13 (NIV)</div>
+                    "You will seek me and find me when you seek me with all your heart."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 127 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Not "You Might Find Me"</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">This is a promise, not a possibility.<br>Wholehearted seekers always find what they're looking for.</div>
+            </div>
+        </div>
+
+        <!-- Slide 128: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Acts 17:27 (NIV)</div>
+                    "God did this so that they would seek him and perhaps reach out for him and find him, though he is not far from any one of us."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 129 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">He's Not Far</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God isn't playing hide and seek.<br>He's close—waiting for those who genuinely want to find Him.</div>
+            </div>
+        </div>
+
+        <!-- Slide 130: Story -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Father Running 🏃</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Remember the prodigal son?<br>The father didn't wait at the door.<br>He ran to meet his returning child.</div>
+            </div>
+        </div>
+
+        <!-- Slide 131: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">James 4:8 (NIV)</div>
+                    "Come near to God and he will come near to you."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 132 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Draw Near</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Every step we take toward God, He takes toward us.<br>He's not distant or reluctant—He's eager.</div>
+            </div>
+        </div>
+
+        <!-- Slide 133: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Hebrews 11:6 (NIV)</div>
+                    "And without faith it is impossible to please God, because anyone who comes to him must believe that he exists and that he rewards those who earnestly seek him."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 134 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">What's the Reward?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The reward isn't just heaven, blessing, or answered prayer.<br>The reward is God Himself.</div>
+            </div>
+        </div>
+
+        <!-- Slide 135 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">God Is the Treasure 💎</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">If we seek God hoping He'll give us stuff, we've missed the point.<br>He Himself is the prize.</div>
+            </div>
+        </div>
+
+        <!-- Slide 136: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 37:4 (NIV)</div>
+                    "Take delight in the Lord, and he will give you the desires of your heart."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 137 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Delight Changes Desire</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When we truly delight in God,<br>our desires start aligning with His will. We want what He wants.</div>
+            </div>
+        </div>
+
+        <!-- Slide 138: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 16:11 (NIV)</div>
+                    "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 139 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Not Grim Obligation</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Wholehearted seeking isn't miserable duty—<br>it leads to fullness of joy and eternal pleasures.</div>
+            </div>
+        </div>
+
+        <!-- Slide 140: Quote -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="quote-box animate-in">
+                    <div class="quote-text">"If we find ourselves with a desire that nothing in this world can satisfy, the most probable explanation is that we were made for another world."</div>
+                    <div class="quote-attribution">— C.S. Lewis, Mere Christianity</div>
+                    <div class="quote-context">Lewis reminds us that our restless seeking points to a home beyond this world—a home found only in God.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 141 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">We Were Made for This</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The longing in your heart isn't a flaw—it's a feature.<br>We're designed to seek and find our satisfaction in God.</div>
+            </div>
+        </div>
+
+        <!-- Slide 142 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">A Final Warning ⚠️</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Half-hearted seeking produces half-hearted results.<br>Worse—it can deceive us into thinking<br>we've found what we never actually sought.</div>
+            </div>
+        </div>
+
+        <!-- Slide 143 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Danger of Almost</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Many people will stand before Jesus convinced they knew Him—<br>only to hear "I never knew you."</div>
+            </div>
+        </div>
+
+        <!-- Slide 144: Quote -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="quote-box animate-in">
+                    <div class="quote-text">"The seeking soul does not generate its own seeking. God awakens the search. He creates the craving. Then He comes to be found."</div>
+                    <div class="quote-attribution">— John Piper</div>
+                    <div class="quote-context">Piper reminds us that even our seeking is initiated by God's grace—we pursue because He first pursued us.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 145: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Philippians 2:13 (NIV)</div>
+                    "For it is God who works in you to will and to act in order to fulfill his good purpose."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 146 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">He's Working in You</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Even your desire to desire Him more<br>is evidence of His grace at work. You're not doing this alone.</div>
+            </div>
+        </div>
+
+        <!-- Slide 147: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Luke 19:10 (NIV)</div>
+                    "For the Son of Man came to seek and to save the lost."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 148 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">We Seek Because He Sought</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Before we ever looked for God, He came looking for us.<br>Our seeking is a response to His.</div>
+            </div>
+        </div>
+
+        <!-- Slide 149 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Start Today</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Not tomorrow. Not when life calms down.<br>Not when you feel more spiritual. Today is the day to seek.</div>
+            </div>
+        </div>
+
+        <!-- Slide 150 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">He Will Be Found</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God doesn't play hard to get.<br>He promises that wholehearted seekers will find Him.<br>Trust that promise.</div>
+            </div>
+        </div>
+
+        <!-- Slide 151: Discussion -->
+        <div class="slide bg-6">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">Discussion</div>
+                    <div class="phrase-large">Your Commitment</div>
+                    <div class="phrase-medium" style="margin-top: 0.5em;">What is one thing you will do differently this week?<br>Who in this group will you ask to hold you accountable?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 152: Scripture -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 27:4 (NIV)</div>
+                    "One thing I ask from the Lord, this only do I seek: that I may dwell in the house of the Lord all the days of my life, to gaze on the beauty of the Lord and to seek him in his temple."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 153 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">One Thing</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">May we be people of "one thing"—<br>single-minded, wholehearted, relentless<br>in pursuing God above all else.</div>
+            </div>
+        </div>
+
+        <!-- Slide 154: Closing -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-big animate-in">Seek Him with All Your Heart ❤️</div>
+                <div class="phrase-large animate-in" style="animation-delay: 0.08s">He is worthy. He will be found.<br>And finding Him is finding everything.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        (function() {
+            const root = document.documentElement;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            const slider = document.getElementById('scaleSlider');
+            let currentSlide = 1;
+            
+            document.getElementById('totalSlides').textContent = totalSlides;
+            
+            function showSlide(n) {
+                if (n < 1) n = totalSlides;
+                if (n > totalSlides) n = 1;
+                
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === n - 1) {
+                        slide.classList.add('active');
+                    }
+                });
+                
+                currentSlide = n;
+                document.getElementById('currentSlide').textContent = n;
+            }
+            
+            window.changeSlide = function(dir) {
+                showSlide(currentSlide + dir);
+            }
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    changeSlide(-1);
+                } else if (e.key === 'ArrowRight' || e.code === 'Space' || e.key === ' ') {
+                    e.preventDefault();
+                    changeSlide(1);
+                } else if (e.key === 'Home') {
+                    showSlide(1);
+                } else if (e.key === 'End') {
+                    showSlide(totalSlides);
+                }
+            });
+            
+            // Touch support
+            let touchStartX = 0;
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].clientX;
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchEndX - touchStartX;
+                if (Math.abs(diff) > 50) {
+                    changeSlide(diff > 0 ? -1 : 1);
+                }
+            });
+            
+            // Scale controls
+            const STORAGE_KEY = 'seeking_wholehearted_font_scale_v1';
+            let stored = parseFloat(localStorage.getItem(STORAGE_KEY) || '') || null;
+            let defaultScale = parseFloat(getComputedStyle(root).getPropertyValue('--font-scale')) || 2.5;
+            let initial = stored || defaultScale;
+            
+            function applyScale(v) {
+                v = Math.max(0.5, Math.min(2.5, Number(v)));
+                root.style.setProperty('--font-scale', String(v));
+                document.querySelectorAll('.scripture-block').forEach(el => el.style.fontSize = '');
+                try {
+                    localStorage.setItem(STORAGE_KEY, String(v));
+                } catch(e) {}
+            }
+            
+            if (slider) {
+                slider.value = String(initial);
+                applyScale(initial);
+                slider.addEventListener('input', function(e) {
+                    applyScale(e.target.value);
+                });
+            }
+            
+            document.getElementById('increaseBtn').addEventListener('click', () => {
+                const current = parseFloat(slider.value);
+                const newVal = Math.min(2.5, current + 0.05);
+                slider.value = newVal;
+                applyScale(newVal);
+            });
+            
+            document.getElementById('decreaseBtn').addEventListener('click', () => {
+                const current = parseFloat(slider.value);
+                const newVal = Math.max(0.5, current - 0.05);
+                slider.value = newVal;
+                applyScale(newVal);
+            });
+            
+            // Initialize
+            showSlide(1);
+        })();
+    </script>
+</body>
+</html>

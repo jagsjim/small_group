@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Seeking God with All Your Heart - Interactive Worksheet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lora:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5d6a;
+            --primary-light: #2d8f8f;
+            --secondary: #d4772c;
+            --secondary-light: #f4a261;
+            --success: #2e7d32;
+            --success-light: #81c784;
+            --bg: #fefefe;
+            --bg-card: #ffffff;
+            --text: #1a1a1a;
+            --text-light: #555;
+            --border: #e0e0e0;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 18px;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            min-height: 100dvh;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+            padding-bottom: 100px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 0 0 8px 0;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--border);
+            border-radius: 20px;
+            height: 12px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        /* Activity Cards */
+        .activity {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .activity-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.fill { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+        .activity-icon.match { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+        .activity-icon.reflect { background: linear-gradient(135deg, #fce4ec, #f8bbd9); }
+        .activity-icon.scramble { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+        .activity-icon.swipe { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
+
+        .activity-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .activity-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 4px 0 0 0;
+        }
+
+        /* Fill in the Blanks */
+        .fill-sentence {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .blank-input {
+            display: inline-block;
+            min-width: 120px;
+            border: none;
+            border-bottom: 2px dashed var(--primary);
+            background: transparent;
+            font-family: inherit;
+            font-size: inherit;
+            color: var(--primary);
+            text-align: center;
+            padding: 2px 8px;
+            margin: 0 4px;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .blank-input:focus {
+            border-bottom-style: solid;
+            background: rgba(26, 93, 106, 0.05);
+        }
+
+        .blank-input.correct {
+            border-color: var(--success);
+            color: var(--success);
+            background: rgba(46, 125, 50, 0.1);
+        }
+
+        .blank-input.incorrect {
+            border-color: #c62828;
+            color: #c62828;
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 12px;
+        }
+
+        .word-chip {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .word-chip:active {
+            transform: scale(0.95);
+        }
+
+        .word-chip.used {
+            opacity: 0.4;
+            text-decoration: line-through;
+        }
+
+        /* Scripture Matching */
+        .match-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .match-item {
+            display: flex;
+            align-items: stretch;
+            gap: 12px;
+        }
+
+        .match-reference {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary);
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 10px;
+            min-width: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .match-select {
+            flex: 1;
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23555' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+        }
+
+        .match-select.correct {
+            border-color: var(--success);
+            background-color: rgba(46, 125, 50, 0.1);
+        }
+
+        .match-select.incorrect {
+            border-color: #c62828;
+        }
+
+        /* Reflection */
+        .reflection-prompt {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .reflection-textarea {
+            width: 100%;
+            min-height: 120px;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            padding: 14px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .reflection-textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .reflection-hint {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        /* Swipe Cards */
+        .swipe-container {
+            position: relative;
+            min-height: 200px;
+        }
+
+        .swipe-card {
+            background: linear-gradient(135deg, #f0f7fa 0%, #e8f4f8 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .swipe-card.hidden {
+            display: none;
+        }
+
+        .swipe-statement {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        .swipe-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .swipe-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .swipe-btn:active {
+            transform: scale(0.9);
+        }
+
+        .swipe-btn.true {
+            background: linear-gradient(135deg, var(--success-light), var(--success));
+            color: white;
+        }
+
+        .swipe-btn.false {
+            background: linear-gradient(135deg, #ef9a9a, #c62828);
+            color: white;
+        }
+
+        .swipe-feedback {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .swipe-feedback.correct {
+            display: block;
+            background: rgba(46, 125, 50, 0.15);
+            color: var(--success);
+        }
+
+        .swipe-feedback.incorrect {
+            display: block;
+            background: rgba(198, 40, 40, 0.15);
+            color: #c62828;
+        }
+
+        .swipe-progress {
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 12px;
+        }
+
+        /* Memory Match */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .memory-card {
+            aspect-ratio: 1.2;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            padding: 10px;
+            font-size: 0.85rem;
+            text-align: center;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+        }
+
+        .memory-card .card-back {
+            font-size: 2rem;
+        }
+
+        .memory-card.flipped {
+            background: white;
+            color: var(--text);
+            border: 2px solid var(--primary);
+        }
+
+        .memory-card.matched {
+            background: linear-gradient(135deg, var(--success-light), var(--success));
+            color: white;
+            cursor: default;
+        }
+
+        .memory-card:active:not(.matched) {
+            transform: scale(0.95);
+        }
+
+        /* Check Button */
+        .check-btn {
+            display: block;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 16px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .check-btn:active {
+            transform: scale(0.98);
+        }
+
+        .check-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Feedback */
+        .feedback {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: rgba(46, 125, 50, 0.15);
+            color: var(--success);
+        }
+
+        .feedback.error {
+            background: rgba(198, 40, 40, 0.15);
+            color: #c62828;
+        }
+
+        /* Completion */
+        .completion {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .completion-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+
+        .completion h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            margin: 0 0 12px 0;
+        }
+
+        .completion p {
+            color: var(--text-light);
+        }
+
+        .score-display {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success);
+            margin: 20px 0;
+        }
+
+        /* Utilities */
+        .hidden {
+            display: none !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Seeking God with All Your Heart</h1>
+            <p class="subtitle">Interactive Learning Worksheet</p>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p class="progress-text" id="progressText">Activity 1 of 6</p>
+
+        <!-- Activity 1: Fill in the Blanks -->
+        <div class="activity" id="activity1">
+            <div class="activity-header">
+                <div class="activity-icon fill">📝</div>
+                <div>
+                    <h2 class="activity-title">Complete the Key Truths</h2>
+                    <p class="activity-subtitle">Fill in the missing words</p>
+                </div>
+            </div>
+
+            <div class="fill-sentence">
+                1. God promises: "You will seek me and find me when you seek me with all your <input type="text" class="blank-input" data-answer="heart" placeholder="___">."
+            </div>
+
+            <div class="fill-sentence">
+                2. The problem isn't that we think we're fine without God—we're convinced we have <input type="text" class="blank-input" data-answer="enough" placeholder="___"> of Him.
+            </div>
+
+            <div class="fill-sentence">
+                3. God isn't first on your list—He's the <input type="text" class="blank-input" data-answer="paper" placeholder="___"> the list is written on.
+            </div>
+
+            <div class="fill-sentence">
+                4. Giving God 75 minutes per week out of 112 waking hours is barely over <input type="text" class="blank-input" data-answer="1%" placeholder="___">.
+            </div>
+
+            <div class="fill-sentence">
+                5. We don't wait until we feel like seeking God. <input type="text" class="blank-input" data-answer="desire" placeholder="___"> follows obedience.
+            </div>
+
+            <div class="word-bank">
+                <span class="word-chip" data-word="heart">heart</span>
+                <span class="word-chip" data-word="enough">enough</span>
+                <span class="word-chip" data-word="paper">paper</span>
+                <span class="word-chip" data-word="1%">1%</span>
+                <span class="word-chip" data-word="desire">desire</span>
+            </div>
+
+            <button class="check-btn" onclick="checkFillBlanks()">Check Answers</button>
+            <div class="feedback" id="feedback1"></div>
+        </div>
+
+        <!-- Activity 2: Scripture Matching -->
+        <div class="activity" id="activity2">
+            <div class="activity-header">
+                <div class="activity-icon match">📖</div>
+                <div>
+                    <h2 class="activity-title">Match the Scripture</h2>
+                    <p class="activity-subtitle">Connect each verse to its theme</p>
+                </div>
+            </div>
+
+            <div class="match-grid">
+                <div class="match-item">
+                    <div class="match-reference">Jeremiah 29:13</div>
+                    <select class="match-select" data-answer="seek">
+                        <option value="">Select theme...</option>
+                        <option value="seek">Wholehearted seeking brings finding</option>
+                        <option value="lukewarm">Lukewarmness makes Jesus sick</option>
+                        <option value="near">Draw near and God draws near</option>
+                        <option value="treasure">Sell everything for the treasure</option>
+                    </select>
+                </div>
+
+                <div class="match-item">
+                    <div class="match-reference">Revelation 3:15-16</div>
+                    <select class="match-select" data-answer="lukewarm">
+                        <option value="">Select theme...</option>
+                        <option value="seek">Wholehearted seeking brings finding</option>
+                        <option value="lukewarm">Lukewarmness makes Jesus sick</option>
+                        <option value="near">Draw near and God draws near</option>
+                        <option value="treasure">Sell everything for the treasure</option>
+                    </select>
+                </div>
+
+                <div class="match-item">
+                    <div class="match-reference">James 4:8</div>
+                    <select class="match-select" data-answer="near">
+                        <option value="">Select theme...</option>
+                        <option value="seek">Wholehearted seeking brings finding</option>
+                        <option value="lukewarm">Lukewarmness makes Jesus sick</option>
+                        <option value="near">Draw near and God draws near</option>
+                        <option value="treasure">Sell everything for the treasure</option>
+                    </select>
+                </div>
+
+                <div class="match-item">
+                    <div class="match-reference">Matthew 13:44</div>
+                    <select class="match-select" data-answer="treasure">
+                        <option value="">Select theme...</option>
+                        <option value="seek">Wholehearted seeking brings finding</option>
+                        <option value="lukewarm">Lukewarmness makes Jesus sick</option>
+                        <option value="near">Draw near and God draws near</option>
+                        <option value="treasure">Sell everything for the treasure</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="check-btn" onclick="checkMatching()">Check Answers</button>
+            <div class="feedback" id="feedback2"></div>
+        </div>
+
+        <!-- Activity 3: True/False Swipe -->
+        <div class="activity" id="activity3">
+            <div class="activity-header">
+                <div class="activity-icon swipe">👆</div>
+                <div>
+                    <h2 class="activity-title">True or False?</h2>
+                    <p class="activity-subtitle">Test your understanding</p>
+                </div>
+            </div>
+
+            <div class="swipe-container" id="swipeContainer">
+                <!-- Cards populated by JS -->
+            </div>
+            <div class="swipe-progress" id="swipeProgress"></div>
+        </div>
+
+        <!-- Activity 4: Memory Match -->
+        <div class="activity" id="activity4">
+            <div class="activity-header">
+                <div class="activity-icon scramble">🧩</div>
+                <div>
+                    <h2 class="activity-title">Memory Match</h2>
+                    <p class="activity-subtitle">Match the concepts to their meanings</p>
+                </div>
+            </div>
+
+            <div class="memory-grid" id="memoryGrid">
+                <!-- Cards populated by JS -->
+            </div>
+            <div class="feedback" id="feedback4"></div>
+        </div>
+
+        <!-- Activity 5: Reflection -->
+        <div class="activity" id="activity5">
+            <div class="activity-header">
+                <div class="activity-icon reflect">💭</div>
+                <div>
+                    <h2 class="activity-title">Personal Reflection</h2>
+                    <p class="activity-subtitle">No right or wrong answers</p>
+                </div>
+            </div>
+
+            <p class="reflection-prompt">"What is one area of your life you've been hesitant to fully surrender to God? What makes it difficult to let go?"</p>
+            
+            <textarea class="reflection-textarea" id="reflection1" placeholder="Take a moment to honestly reflect..."></textarea>
+            <p class="reflection-hint">Your response is private and won't be shared.</p>
+
+            <button class="check-btn" onclick="saveReflection()">Save & Continue</button>
+        </div>
+
+        <!-- Activity 6: Application -->
+        <div class="activity" id="activity6">
+            <div class="activity-header">
+                <div class="activity-icon reflect">🎯</div>
+                <div>
+                    <h2 class="activity-title">My Next Step</h2>
+                    <p class="activity-subtitle">Choose one action for this week</p>
+                </div>
+            </div>
+
+            <p class="reflection-prompt">Based on what you've learned, what is ONE specific thing you will do differently this week to seek God more wholeheartedly?</p>
+            
+            <textarea class="reflection-textarea" id="reflection2" placeholder="Be specific—what, when, and how..."></textarea>
+            <p class="reflection-hint">Example: "I will read my Bible for 15 minutes every morning before checking my phone."</p>
+
+            <button class="check-btn" onclick="completeWorksheet()">Complete Worksheet</button>
+        </div>
+
+        <!-- Completion Screen -->
+        <div class="activity hidden" id="completionScreen">
+            <div class="completion">
+                <div class="completion-icon">🎉</div>
+                <h2>Great Work!</h2>
+                <div class="score-display" id="finalScore"></div>
+                <p>You've completed this week's worksheet on seeking God with all your heart.</p>
+                <p style="margin-top: 20px; font-style: italic; color: var(--primary);">"He is worthy. He will be found. And finding Him is finding everything."</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentActivity = 1;
+        const totalActivities = 6;
+        let score = 0;
+        let maxScore = 0;
+
+        // True/False data
+        const tfStatements = [
+            { statement: "Giving God 1% of your waking hours is a reasonable amount.", answer: false, explanation: "1% is barely more than nothing—like vacuuming only a closet or studying by reading a chapter title." },
+            { statement: "The rich young ruler walked away because he was angry at Jesus.", answer: false, explanation: "He went away SAD, not angry. He knew what he was losing but couldn't let go." },
+            { statement: "Caleb followed God wholeheartedly and was rewarded at age 85.", answer: true, explanation: "God testified that Caleb had 'a different spirit' and followed Him wholeheartedly." },
+            { statement: "'Nobody's perfect' is a valid excuse for not addressing sin.", answer: false, explanation: "It's a cop-out that deflects conviction rather than producing repentance." },
+            { statement: "Desire follows obedience—we don't wait until we feel like seeking God.", answer: true, explanation: "We seek first, and the desire grows. Obedience leads; feelings follow." }
+        ];
+
+        // Memory match pairs
+        const memoryPairs = [
+            { concept: "Half-hearted seeking", meaning: "Fitting God around convenience" },
+            { concept: "Wholehearted seeking", meaning: "Whatever it takes to find God" },
+            { concept: "Saul's mistake", meaning: "Thinking 'close enough' satisfies God" },
+            { concept: "The treasure parable", meaning: "Selling everything with joy" }
+        ];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            initSwipeCards();
+            initMemoryMatch();
+            initWordBank();
+        });
+
+        function updateProgress() {
+            const percent = ((currentActivity - 1) / totalActivities) * 100;
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('progressText').textContent = `Activity ${currentActivity} of ${totalActivities}`;
+        }
+
+        // Word bank click handling
+        function initWordBank() {
+            document.querySelectorAll('.word-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    if (this.classList.contains('used')) return;
+                    
+                    const word = this.dataset.word;
+                    const inputs = document.querySelectorAll('#activity1 .blank-input');
+                    
+                    for (let input of inputs) {
+                        if (input.value === '') {
+                            input.value = word;
+                            this.classList.add('used');
+                            break;
+                        }
+                    }
+                });
+            });
+
+            // Allow clearing inputs
+            document.querySelectorAll('#activity1 .blank-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    updateWordBank();
+                });
+            });
+        }
+
+        function updateWordBank() {
+            const usedWords = [];
+            document.querySelectorAll('#activity1 .blank-input').forEach(input => {
+                if (input.value) usedWords.push(input.value.toLowerCase());
+            });
+
+            document.querySelectorAll('.word-chip').forEach(chip => {
+                if (usedWords.includes(chip.dataset.word.toLowerCase())) {
+                    chip.classList.add('used');
+                } else {
+                    chip.classList.remove('used');
+                }
+            });
+        }
+
+        // Check fill in the blanks
+        function checkFillBlanks() {
+            const inputs = document.querySelectorAll('#activity1 .blank-input');
+            let correct = 0;
+            
+            inputs.forEach(input => {
+                const answer = input.dataset.answer.toLowerCase();
+                const value = input.value.trim().toLowerCase();
+                
+                if (value === answer) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    correct++;
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            });
+
+            maxScore += inputs.length;
+            score += correct;
+
+            const feedback = document.getElementById('feedback1');
+            if (correct === inputs.length) {
+                feedback.textContent = '🎉 Perfect! All answers correct!';
+                feedback.className = 'feedback show success';
+            } else {
+                feedback.textContent = `You got ${correct} out of ${inputs.length}. Review and try the next activity!`;
+                feedback.className = 'feedback show error';
+            }
+
+            setTimeout(() => {
+                currentActivity = 2;
+                updateProgress();
+                document.getElementById('activity2').scrollIntoView({ behavior: 'smooth' });
+            }, 1500);
+        }
+
+        // Check matching
+        function checkMatching() {
+            const selects = document.querySelectorAll('#activity2 .match-select');
+            let correct = 0;
+
+            selects.forEach(select => {
+                const answer = select.dataset.answer;
+                if (select.value === answer) {
+                    select.classList.add('correct');
+                    select.classList.remove('incorrect');
+                    correct++;
+                } else {
+                    select.classList.add('incorrect');
+                    select.classList.remove('correct');
+                }
+            });
+
+            maxScore += selects.length;
+            score += correct;
+
+            const feedback = document.getElementById('feedback2');
+            if (correct === selects.length) {
+                feedback.textContent = '🎉 Excellent! All verses matched correctly!';
+                feedback.className = 'feedback show success';
+            } else {
+                feedback.textContent = `${correct} out of ${selects.length} correct. Keep learning!`;
+                feedback.className = 'feedback show error';
+            }
+
+            setTimeout(() => {
+                currentActivity = 3;
+                updateProgress();
+                document.getElementById('activity3').scrollIntoView({ behavior: 'smooth' });
+            }, 1500);
+        }
+
+        // True/False Swipe Cards
+        let currentTF = 0;
+
+        function initSwipeCards() {
+            renderSwipeCard();
+        }
+
+        function renderSwipeCard() {
+            const container = document.getElementById('swipeContainer');
+            
+            if (currentTF >= tfStatements.length) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <p style="font-size: 1.2rem; color: var(--success);">✓ Section Complete!</p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    currentActivity = 4;
+                    updateProgress();
+                    document.getElementById('activity4').scrollIntoView({ behavior: 'smooth' });
+                }, 1000);
+                return;
+            }
+
+            const item = tfStatements[currentTF];
+            container.innerHTML = `
+                <div class="swipe-card" id="currentCard">
+                    <p class="swipe-statement">${item.statement}</p>
+                    <div class="swipe-buttons">
+                        <button class="swipe-btn false" onclick="answerTF(false)">✗</button>
+                        <button class="swipe-btn true" onclick="answerTF(true)">✓</button>
+                    </div>
+                    <div class="swipe-feedback" id="tfFeedback"></div>
+                </div>
+            `;
+            document.getElementById('swipeProgress').textContent = `${currentTF + 1} of ${tfStatements.length}`;
+        }
+
+        function answerTF(answer) {
+            const item = tfStatements[currentTF];
+            const feedback = document.getElementById('tfFeedback');
+            
+            maxScore++;
+            
+            if (answer === item.answer) {
+                score++;
+                feedback.textContent = '✓ Correct! ' + item.explanation;
+                feedback.className = 'swipe-feedback correct';
+            } else {
+                feedback.textContent = '✗ ' + item.explanation;
+                feedback.className = 'swipe-feedback incorrect';
+            }
+
+            setTimeout(() => {
+                currentTF++;
+                renderSwipeCard();
+            }, 2000);
+        }
+
+        // Memory Match
+        let flippedCards = [];
+        let matchedPairs = 0;
+
+        function initMemoryMatch() {
+            const grid = document.getElementById('memoryGrid');
+            const cards = [];
+
+            memoryPairs.forEach((pair, i) => {
+                cards.push({ type: 'concept', text: pair.concept, pairId: i });
+                cards.push({ type: 'meaning', text: pair.meaning, pairId: i });
+            });
+
+            // Shuffle
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+
+            grid.innerHTML = cards.map((card, index) => `
+                <div class="memory-card" data-index="${index}" data-pair="${card.pairId}" onclick="flipCard(this)">
+                    <span class="card-back">?</span>
+                    <span class="card-front hidden">${card.text}</span>
+                </div>
+            `).join('');
+        }
+
+        function flipCard(card) {
+            if (card.classList.contains('flipped') || card.classList.contains('matched') || flippedCards.length >= 2) return;
+
+            card.classList.add('flipped');
+            card.querySelector('.card-back').classList.add('hidden');
+            card.querySelector('.card-front').classList.remove('hidden');
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                checkMemoryMatch();
+            }
+        }
+
+        function checkMemoryMatch() {
+            const [card1, card2] = flippedCards;
+            const pair1 = card1.dataset.pair;
+            const pair2 = card2.dataset.pair;
+
+            if (pair1 === pair2) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                score += 2;
+                maxScore += 2;
+
+                if (matchedPairs === memoryPairs.length) {
+                    const feedback = document.getElementById('feedback4');
+                    feedback.textContent = '🎉 All pairs matched!';
+                    feedback.className = 'feedback show success';
+                    
+                    setTimeout(() => {
+                        currentActivity = 5;
+                        updateProgress();
+                        document.getElementById('activity5').scrollIntoView({ behavior: 'smooth' });
+                    }, 1500);
+                }
+                flippedCards = [];
+            } else {
+                maxScore += 2;
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.querySelector('.card-back').classList.remove('hidden');
+                    card1.querySelector('.card-front').classList.add('hidden');
+                    card2.querySelector('.card-back').classList.remove('hidden');
+                    card2.querySelector('.card-front').classList.add('hidden');
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // Reflections
+        function saveReflection() {
+            const text = document.getElementById('reflection1').value.trim();
+            if (text.length > 0) {
+                score += 5;
+                maxScore += 5;
+            }
+            
+            currentActivity = 6;
+            updateProgress();
+            document.getElementById('activity6').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function completeWorksheet() {
+            const text = document.getElementById('reflection2').value.trim();
+            if (text.length > 0) {
+                score += 5;
+                maxScore += 5;
+            }
+
+            // Show completion
+            document.querySelectorAll('.activity').forEach(a => a.classList.add('hidden'));
+            document.getElementById('completionScreen').classList.remove('hidden');
+            
+            const percent = maxScore > 0 ? Math.round((score / maxScore) * 100) : 100;
+            document.getElementById('finalScore').textContent = percent + '% Complete';
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Worksheet Complete!';
+        }
+    </script>
+</body>
+</html>
