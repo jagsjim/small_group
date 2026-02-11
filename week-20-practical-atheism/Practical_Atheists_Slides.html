@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living as Practical Atheists</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=Merriweather:wght@400;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --slide-w: 2130px;
+            --slide-h: 1080px;
+            --font-scale: 2.5;
+            --margin-px: clamp(20px, 3vw, 72px);
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: #0a0e1a;
+            font-family: Lora, Georgia, serif;
+            color: #ffffff;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Canvas keeps aspect ratio */
+        .canvas {
+            width: 100vw;
+            max-width: var(--slide-w);
+            aspect-ratio: 2130/1080;
+            height: auto;
+            position: relative;
+            transform-origin: center center;
+        }
+
+        /* Slide styles */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(10px, 1.2vh, 20px);
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Content box */
+        .content {
+            width: calc(100% - (var(--margin-px) * 2));
+            max-width: 1960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .phrase-big {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 700;
+            font-size: clamp(28px, calc(var(--font-scale) * 8vw), 96px);
+            line-height: 1.08;
+            margin: 0.2em 0;
+            width: 100%;
+        }
+
+        .phrase-large {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 600;
+            font-size: clamp(20px, calc(var(--font-scale) * 5.2vw), 56px);
+            line-height: 1.14;
+            margin: 0.25em 0;
+            width: 100%;
+        }
+
+        .phrase-medium {
+            font-family: Lora, Georgia, serif;
+            font-weight: 500;
+            font-size: clamp(16px, calc(var(--font-scale) * 3.4vw), 36px);
+            line-height: 1.18;
+            margin: 0.2em 0;
+            width: 100%;
+        }
+
+        .scripture-block {
+            font-family: Merriweather, Georgia, serif;
+            font-size: clamp(20px, calc(20px * var(--font-scale)), 72px);
+            line-height: 1.22;
+            margin: 0.25rem 0;
+            padding: clamp(8px, calc(10px * var(--font-scale)), 36px);
+            border-radius: calc(12px * var(--font-scale));
+            width: 100%;
+            max-width: 1800px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.06);
+            font-weight: 400;
+            color: #fff;
+            overflow-wrap: break-word;
+            hyphens: none;
+        }
+
+        .scripture-reference {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 700;
+            font-size: clamp(20px, calc(20px * var(--font-scale)), 40px);
+            margin-bottom: calc(6px * var(--font-scale));
+            opacity: 0.95;
+            letter-spacing: 0.6px;
+        }
+
+        @media (min-width: 1600px) {
+            .scripture-block {
+                font-size: clamp(26px, calc(26px * var(--font-scale) + 0.8vw), 96px);
+            }
+            .scripture-reference {
+                font-size: clamp(20px, calc(20px * var(--font-scale) + 0.6vw), 48px);
+            }
+        }
+
+        /* Discussion and Next Steps boxes */
+        .discussion-box, .next-steps-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: clamp(14px, 1.8vh, 28px);
+            border: 1px solid rgba(255,255,255,0.06);
+            max-width: 1800px;
+            width: 100%;
+        }
+
+        .discussion-label, .next-steps-label {
+            font-family: Poppins, Inter, sans-serif;
+            font-weight: 800;
+            font-size: clamp(14px, calc(var(--font-scale) * 1.2vw), 20px);
+            margin-bottom: 0.6em;
+            color: #FFD866;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: rgba(0,0,0,0.22);
+            padding: 6px 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* Quote context */
+        .quote-context {
+            font-family: Inter, sans-serif;
+            font-size: clamp(12px, calc(var(--font-scale) * 1.4vw), 18px);
+            font-style: italic;
+            opacity: 0.8;
+            margin-top: 0.6em;
+            font-weight: 500;
+        }
+
+        /* Lists */
+        ul {
+            list-style: disc;
+            padding-left: 1.4rem;
+            text-align: left;
+            line-height: 1.4;
+            font-size: clamp(18px, calc(var(--font-scale) * 2.8vw), 32px);
+            font-weight: 500;
+        }
+
+        ul li {
+            margin-bottom: 0.4em;
+        }
+
+        /* Navigation - Improved Design */
+        .nav-container {
+            position: fixed;
+            bottom: clamp(12px, 2.5vh, 24px);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 1000;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .nav-container:hover {
+            opacity: 1;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.95);
+            color: #081024;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            font-family: Inter, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.92);
+            padding: 4px 8px;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .scale-btn {
+            background: rgba(255,255,255,0.9);
+            color: #081024;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .scale-slider {
+            width: 100px;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 999px;
+            outline: none;
+        }
+
+        .scale-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #FFD866;
+            cursor: pointer;
+        }
+
+        /* Fresh Color Schemes - Vibrant & Modern (NO PURPLE) */
+        .bg-1 {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #fdc630e9 100%);
+        }
+
+        .bg-2 {
+            background: linear-gradient(135deg, #027d9c 0%, #92fe9de2 100%);
+        }
+
+        .bg-3 {
+            background: linear-gradient(135deg, #E94057 0%, #F27121 100%);
+        }
+
+        .bg-4 {
+            background: linear-gradient(135deg, #0575E6 0%, #021B79 100%);
+        }
+
+        .bg-5 {
+            background: linear-gradient(135deg, #fdc630f0 0%, #F37335 100%);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.5s ease-out both;
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .animate-in {
+                animation: none;
+            }
+            .slide {
+                transition: none;
+            }
+        }
+
+        /* Video button */
+        .video-button {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(90deg, #FDC830, #F37335);
+            color: #042;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            cursor: pointer;
+            margin: 1em auto;
+        }
+
+        .video-note {
+            display: block;
+            margin-bottom: 1em;
+            font-size: clamp(18px, calc(var(--font-scale) * 2.5vw), 24px);
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas">
+        <!-- Navigation -->
+        <div class="nav-container">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" aria-label="Previous slide">←</button>
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">143</span>
+            </div>
+            <div class="controls">
+                <button class="scale-btn" id="decreaseBtn" aria-label="Decrease font size">−</button>
+                <input type="range" id="scaleSlider" class="scale-slider" min="0.5" max="2.5" step="0.01" value="2.5" aria-label="Font scale" />
+                <button class="scale-btn" id="increaseBtn" aria-label="Increase font size">+</button>
+            </div>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)" aria-label="Next slide">→</button>
+        </div>
+
+        <!-- Slide 1 -->
+        <div class="slide active bg-1">
+            <div class="content">
+                <div class="phrase-big animate-in">Living as Practical Atheists</div>
+                <div class="phrase-large animate-in" style="animation-delay: 0.08s">When Faith Doesn't Touch Daily Life</div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Opening Question</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">How often do we claim faith in God<br>yet live as if He doesn't exist?</div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Disconnect</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We believe in theory. We doubt in practice.<br>This is practical atheism.</div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Today's Journey</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Let's explore how we move from practical atheism<br>to practicing faith in everyday life.</div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Scripture Foundation</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Hebrews 11:13-16<br>Our spiritual ancestors lived differently</div>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Hebrews 11:13</div>
+                    "All these people were still living by faith when they died. They did not receive the things promised; they only saw them and welcomed them from a distance, admitting that they were foreigners and strangers on earth."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Hebrews 11:14-16</div>
+                    "People who say such things show that they are looking for a country of their own... Instead, they were longing for a better country—a heavenly one."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Key Truth</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God prepared a city for those who live<br>as foreigners here, citizens there.</div>
+            </div>
+        </div>
+
+        <!-- Slide 9 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">What Is Practical Atheism?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">It's believing God exists intellectually<br>but living daily as if He doesn't.</div>
+            </div>
+        </div>
+
+        <!-- Slide 10 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">The Sunday-Monday Gap</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Sunday morning we sing "God is sovereign!"<br>Monday morning we're paralyzed by anxiety. 😰</div>
+            </div>
+        </div>
+
+        <!-- Slide 11 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">The Prayer Paradox</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We have direct access to the Creator of the universe,<br>yet we exhaust every human solution first.</div>
+            </div>
+        </div>
+
+        <!-- Slide 12 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Story: The Mother's Breakdown</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Rachel prays beautifully at church.<br>At home, she lies awake terrified her teenage son<br>is hanging with the wrong crowd.</div>
+            </div>
+        </div>
+
+        <!-- Slide 13 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Rachel's Realization</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"I was trying to secure his future myself<br>instead of trusting the God who saved me.<br>My fear showed I believed more in the world's power<br>to destroy than God's power to save."</div>
+            </div>
+        </div>
+
+        <!-- Slide 14 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Application:</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Where are you trying to control<br>instead of trust?</div>
+            </div>
+        </div>
+
+        <!-- Slide 15 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">The Core Problem</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We forget heaven is real.<br>We forget this world is temporary.<br>We live like this is all there is.</div>
+            </div>
+        </div>
+
+        <!-- Slide 16 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">C.S. Lewis on Our Blindness</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"If you read history you will find that the Christians who did most for the present world were just those who thought most of the next."</div>
+                <div class="quote-context animate-in" style="animation-delay: 0.16s">*C.S. Lewis — Challenges our earthly focus — Shows eternity-minded living changes today*</div>
+            </div>
+        </div>
+
+        <!-- Slide 17 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">James 2:19</div>
+                    "You believe that there is one God. Good! Even the demons believe that—and shudder."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Knowledge vs. Trust</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Bart Ehrman is a renowned Bible scholar who teaches<br>at major universities and has written bestselling books<br>about Scripture.</div>
+            </div>
+        </div>
+
+        <!-- Slide 19 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Head Knowledge vs. Heart Trust</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Despite being a world-renowned Bible scholar,<br>Ehrman is an atheist. His life demonstrates that<br>head knowledge is not the same as saving faith.</div>
+            </div>
+        </div>
+
+        <!-- Slide 20 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Demons and Scholars</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Demons have perfect theology. Ehrman has vast biblical knowledge.<br>Both lack the one thing that matters: trust.</div>
+            </div>
+        </div>
+
+        <!-- Slide 21 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">DISCUSSION QUESTION</div>
+                    <div class="phrase-medium">Where do you see the biggest gap between<br>your Sunday faith and Monday life?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 22 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-big animate-in">Part 1: Symptoms of Practical Atheism</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Let's get specific about how we live<br>without God in our daily decisions</div>
+            </div>
+        </div>
+
+        <!-- Slide 23 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Symptom #1: Financial Panic</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We say "God will provide" at church.<br>We check our bank balance fifty times on Tuesday.</div>
+            </div>
+        </div>
+
+        <!-- Slide 24 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The 3 AM Wake-Up</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">You know the feeling—bolt awake at 3 AM<br>thinking about bills, medical expenses, retirement.<br>Where's God in that moment?</div>
+            </div>
+        </div>
+
+        <!-- Slide 25 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Matthew 6:25-26</div>
+                    "Therefore I tell you, do not worry about your life... Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they?"
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 26 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">The Worry Test</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Here's the uncomfortable truth: our anxiety level<br>reveals what we really believe about God.</div>
+            </div>
+        </div>
+
+        <!-- Slide 27 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Symptom #2: Horizontal Vision</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When problems arise, we focus all our attention on our problems<br>instead of looking up to our Problem-Solver.</div>
+            </div>
+        </div>
+
+        <!-- Slide 28 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Remember Peter on the Water?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Peter actually walks on water!<br>As long as his eyes stay on Jesus,<br>the impossible becomes possible. 🌊</div>
+            </div>
+        </div>
+
+        <!-- Slide 29 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Matthew 14:30</div>
+                    "But when he saw the wind, he was afraid and, beginning to sink, cried out, 'Lord, save me!' You of little faith, why did you doubt?"
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 30 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Our Daily Waters</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Every problem is our chance to choose:<br>Will we look at the waves or the Wave-Walker?</div>
+            </div>
+        </div>
+
+        <!-- Slide 31 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Symptom #3: Self-Reliance</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We treat God like our emergency backup plan<br>instead of our first response.</div>
+            </div>
+        </div>
+
+        <!-- Slide 32 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Story: The Marriage Crisis</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Tom and Linda's marriage was falling apart.<br>They tried counseling, self-help books, trial separation.<br>Prayer? That came last.</div>
+            </div>
+        </div>
+
+        <!-- Slide 33 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Tom's Admission</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"We spent $5,000 on therapy before we spent<br>five minutes together on our knees."</div>
+            </div>
+        </div>
+
+        <!-- Slide 34 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Proverbs 3:5-6</div>
+                    "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 35 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">The Control Illusion</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We act like we're the captain of our ship,<br>and God is just the emergency rescue service.</div>
+            </div>
+        </div>
+
+        <!-- Slide 36 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Application</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">What problem are you handling alone<br>that you should bring to God first?</div>
+            </div>
+        </div>
+
+        <!-- Slide 37 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The Approval Addiction</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We sacrifice conviction for comfort,<br>truth for acceptance, integrity for inclusion.</div>
+            </div>
+        </div>
+
+        <!-- Slide 38 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Symptom #4: Security in Stuff</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Our peace rises and falls with our bank balance.<br>Our identity comes from our achievements.</div>
+            </div>
+        </div>
+
+        <!-- Slide 39 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Modern Idols</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">
+                    <ul>
+                        <li>Financial security</li>
+                        <li>Children's Achievements</li>
+                        <li>Comfort</li>
+                        <li>Social Media image</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 40 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">The Heart Check</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Want to know what you really worship?<br>Look at your bank statement and calendar.</div>
+            </div>
+        </div>
+
+        <!-- Slide 41 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">DISCUSSION QUESTION</div>
+                    <div class="phrase-medium">Which symptom hits closest to home for you?<br>Why is that area particularly challenging?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 42 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-big animate-in">Part 2: Citizens vs. Sojourners</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Understanding who we really are<br>changes how we really live</div>
+            </div>
+        </div>
+
+        <!-- Slide 43 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">What's a Sojourner?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">A sojourner is someone living temporarily in a place<br>that's not their permanent home—fully present but<br>never fully settled.</div>
+            </div>
+        </div>
+
+        <!-- Slide 44 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">1 Peter 2:11-12</div>
+                    "Dear friends, I urge you, as foreigners and exiles, to abstain from sinful desires which wage war against your soul. Live such good lives among the pagans that they may see your good deeds and glorify God."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 45 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Resident Aliens</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Peter calls us "foreigners and exiles"—<br>we belong here physically, but our true citizenship is elsewhere.</div>
+            </div>
+        </div>
+
+        <!-- Slide 46 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">We Are In the World—But Not Of It</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">This is our identity.<br>This reorders our priorities.</div>
+            </div>
+        </div>
+
+        <!-- Slide 47 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Philippians 3:20</div>
+                    "But our citizenship is in heaven. And we eagerly await a Savior from there..."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 48 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Think About It This Way</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">You're visiting another country when suddenly<br>war breaks out with your homeland.<br>Whose side are you on?</div>
+            </div>
+        </div>
+
+        <!-- Slide 49 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">No Question, Right?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">You'd never fight against your own country,<br>even if you're currently standing on enemy soil.</div>
+            </div>
+        </div>
+
+        <!-- Slide 50 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">The Spiritual War</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We're in enemy territory every day.<br>Every sin is like taking up arms<br>against our true homeland.</div>
+            </div>
+        </div>
+
+        <!-- Slide 51 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Ephesians 6:12</div>
+                    "For our struggle is not against flesh and blood, but against the rulers, against the authorities, against the powers of this dark world and against the spiritual forces of evil in the heavenly realms."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 52 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Choosing Sides Daily</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When we gossip, we side with the enemy.<br>When we forgive, we fight for the Kingdom.</div>
+            </div>
+        </div>
+
+        <!-- Slide 53 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Think About Foreigners</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When you see visitors from another country in your town,<br>you can tell they're different—how they dress, how they speak.<br>You just know they're not from here.</div>
+            </div>
+        </div>
+
+        <!-- Slide 54 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">We Should Look Different Too</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">If we're truly citizens of heaven, people should be able<br>to tell. Our priorities, speech, reactions—all different.</div>
+            </div>
+        </div>
+
+        <!-- Slide 55 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Story: Ava the Refugee</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Ava fled persecution in Iran five years ago.<br>She became a Christian there—a crime punishable by death.<br>She lost everything to follow Jesus.</div>
+            </div>
+        </div>
+
+        <!-- Slide 56 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Standing Out in America</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Now in our city, Ava still stands out.<br>Not just her accent. It's something deeper—<br>she doesn't grumble, she finds gratitude, she forgives immediately.</div>
+            </div>
+        </div>
+
+        <!-- Slide 57 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The Questions Start</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"Why aren't you bitter after what happened?"<br>"How can you be happy after everything you've been through?"<br>"Do you ever regret it?"</div>
+            </div>
+        </div>
+
+        <!-- Slide 58 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Cost She Paid</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Ava's family disowned her. The Iranian government<br>seized her parents' home. Her brother won't speak to her.<br>She can never go back.</div>
+            </div>
+        </div>
+
+        <!-- Slide 59 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Her Response</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"I lost my earthly family to gain God as my Father.<br>I lost my country to gain heaven as my home.<br>I lost my old life to gain eternal life."</div>
+            </div>
+        </div>
+
+        <!-- Slide 60 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">She Lives Like a Sojourner</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Ava works hard. Pays bills. Grocery shops.<br>But everyone knows—she's just passing through.<br>Her treasure is somewhere else. 💎</div>
+            </div>
+        </div>
+
+        <!-- Slide 61 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Then There's Daniel</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Exiled in Babylon. Prominent government official.<br>Prayed three times daily with his window open—<br>everyone could see him worshiping the true God.</div>
+            </div>
+        </div>
+
+        <!-- Slide 62 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Daniel 6:10</div>
+                    "Now when Daniel learned that the decree had been published, he went home to his upstairs room where the windows opened toward Jerusalem. Three times a day he got down on his knees and prayed, giving thanks to his God, just as he had done before."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 63 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">He Knew the Cost</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The decree meant death for anyone who prayed.<br>Daniel prayed anyway—same time, same place, windows open.<br>Not hiding. Not compromising.</div>
+            </div>
+        </div>
+
+        <!-- Slide 64 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Lion's Den</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">They threw him to the lions for his devotion to God.<br>But God shut the lions' mouths.<br>Daniel's faith was vindicated before the whole empire.</div>
+            </div>
+        </div>
+
+        <!-- Slide 65 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Blood Then, Backlash Now</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Ava suffered for Christ. Daniel faced lions.<br>Early Christians were imprisoned and executed.<br>Today: canceling, adoption denials, broken friendships, lawsuits, vandalism.</div>
+            </div>
+        </div>
+
+        <!-- Slide 66 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Where Are Our Lions?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Why Aren't You or I Being Persecuted?<br>Maybe it's because people can't tell the difference<br>between us and the world. We blend in too well.</div>
+            </div>
+        </div>
+
+        <!-- Slide 67 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The Blending Problem</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Same entertainment. Same language. Same priorities.<br>Same anxiety. Same anger. Same gossip.<br>How would anyone know we're different? 🤔</div>
+            </div>
+        </div>
+
+        <!-- Slide 68 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">John 15:18-19</div>
+                    "If the world hates you, keep in mind that it hated me first. If you belonged to the world, it would love you as its own. As it is, you do not belong to the world... That is why the world hates you."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 69 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Unmolested</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">If your faith never makes anyone uncomfortable,<br>if your life never challenges anyone's sin,<br>if your devotion is completely invisible—<br>maybe you've settled too comfortably.</div>
+            </div>
+        </div>
+
+        <!-- Slide 70 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">DISCUSSION QUESTION</div>
+                    <div class="phrase-medium">When was the last time your faith<br>cost you something or made you stand out?<br>What does your answer reveal?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 71 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Two Ways to Live</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Citizens cling to this world.<br>Sojourners prepare for the next.</div>
+            </div>
+        </div>
+
+        <!-- Slide 72 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The Citizen's Investment</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Accumulate wealth. Chase comfort. Seek status.<br>Make this world your treasure.</div>
+            </div>
+        </div>
+
+        <!-- Slide 73 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Sojourner's Investment</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Store up heaven's riches. Make eternal impact.<br>Invest in souls, not stuff.</div>
+            </div>
+        </div>
+
+        <!-- Slide 74 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Actions of a Sojourner</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Our deeds should reflect our "true home."<br>Being resident aliens means engaging the world—<br>but not conforming morally to it.</div>
+            </div>
+        </div>
+
+        <!-- Slide 75 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">1 Peter 2:12</div>
+                    Live such good lives among the pagans that, though they accuse you of doing wrong, they may see your good deeds and glorify God on the day he visits us.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 76 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Living Honorably Among Unbelievers</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Excellence at work—not for promotion, but for witness.<br>Integrity in business—even when it costs.<br>Kindness to enemies—because we know eternity.</div>
+            </div>
+        </div>
+
+        <!-- Slide 77 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Story: The Honest Contractor</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Mike's company could've hidden the mistake.<br>The client would never know. An extra $8,000 in profit—<br>just stay quiet.</div>
+            </div>
+        </div>
+
+        <!-- Slide 78 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Mike's Decision</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">He called the client. Explained the billing error.<br>Refunded the money. His crew thought he was crazy.<br>"Why throw away $8,000?"</div>
+            </div>
+        </div>
+
+        <!-- Slide 79 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Eternal Perspective</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"Because I'm not building my kingdom here.<br>I'm representing Another Kingdom.<br>Eight thousand dollars won't matter in heaven,<br>but my integrity will.<br>I'm not carrying the devil's money into eternity."</div>
+            </div>
+        </div>
+
+        <!-- Slide 80 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">The Ripple Effect</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The client was stunned. Two months later, that client<br>showed up at Mike's church. "I want to know the God<br>who makes people that honest."</div>
+            </div>
+        </div>
+
+        <!-- Slide 81 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Application</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Sojourners act differently—not for temporal gain<br>but because we already have eternal gain.</div>
+            </div>
+        </div>
+
+        <!-- Slide 82 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Abraham's Revolutionary Choice</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Left comfort in Ur for tents in Canaan.<br>Why would anyone do that?</div>
+            </div>
+        </div>
+
+        <!-- Slide 83 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Hebrews 11:10</div>
+                    "For he was looking forward to the city with foundations, whose architect and builder is God."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 84 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Tent Mentality</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Abraham never built a house. Always lived in tents.<br>Ready to move when God said "Go."</div>
+            </div>
+        </div>
+
+        <!-- Slide 85 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Jonathan Edwards on Pilgrims</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"God has redeemed you out of the world, and therefore do not live as though you had your portion in this life. Live as pilgrims and strangers."</div>
+                <div class="quote-context animate-in" style="animation-delay: 0.16s">*Jonathan Edwards — Calls out worldly attachment — Challenges us to live like Abraham, not settlers*</div>
+            </div>
+        </div>
+
+        <!-- Slide 86 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">What Are Your Tents?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">What are you holding loosely?<br>What could you leave behind tomorrow?</div>
+            </div>
+        </div>
+
+        <!-- Slide 87 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Charles Spurgeon on Hurrying Through</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"We are hurrying through this world... we are in this country, not as residents, but only as visitors."</div>
+                <div class="quote-context animate-in" style="animation-delay: 0.16s">*Charles Spurgeon — Emphasizes temporary status — Warns against settling into this world*</div>
+            </div>
+        </div>
+
+        <!-- Slide 88 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">2 Corinthians 4:17-18</div>
+                    "For our light and momentary troubles are achieving for us an eternal glory... So we fix our eyes not on what is seen, but on what is unseen, since what is seen is temporary, but what is unseen is eternal."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 89 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Eternal Math</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Present pain: Light and momentary<br>Future glory: Weighty and eternal<br>Do the math!</div>
+            </div>
+        </div>
+
+        <!-- Slide 90 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Guarding Against Settling</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The temptation is real: make this world our home.<br>Get comfortable. Build our kingdom here.<br>Forget we're just passing through.</div>
+            </div>
+        </div>
+
+        <!-- Slide 91 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Signs We're Settling</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We panic over temporary losses.<br>We sacrifice eternity for comfort now.<br>We forget to ask, "How does this matter in 10,000 years?"</div>
+            </div>
+        </div>
+
+        <!-- Slide 92 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">DISCUSSION QUESTION</div>
+                    <div class="phrase-medium">In what ways might you be "settling" in this world<br>instead of living as a pilgrim?<br>How can you reorient your thoughts toward eternity this week?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 93 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-big animate-in">Part 3: Seeing the Unseen Reality</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Learning to trust what we cannot see<br>more than what we can</div>
+            </div>
+        </div>
+
+        <!-- Slide 94 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Hebrews 11:1</div>
+                    "Now faith is confidence in what we hope for and assurance about what we do not see."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 95 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">The Two Realities</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">There's what our eyes see—bills, sickness, conflict.<br>There's what faith sees—provision, purpose, promises.</div>
+            </div>
+        </div>
+
+        <!-- Slide 96 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">The Elisha Story</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">The king of Aram sends an army to capture one prophet—Elisha.<br>They surround the city at night. Early morning, Elisha's servant<br>sees the enemy. "Oh no, my lord! What shall we do?" 😱</div>
+            </div>
+        </div>
+
+        <!-- Slide 97 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Elisha's Calm Response</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"Don't be afraid. Those who are with us<br>are more than those who are with them."</div>
+            </div>
+        </div>
+
+        <!-- Slide 98 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Elisha's Prayer</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"Open his eyes, Lord, so that he may see."<br>Not "Send help" but "Show the help already here."</div>
+            </div>
+        </div>
+
+        <!-- Slide 99 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Spiritual Reality</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">2 Kings 6:17—"Then the LORD opened the servant's eyes,<br>and he looked and saw the hills full of horses and<br>chariots of fire all around Elisha."</div>
+            </div>
+        </div>
+
+        <!-- Slide 100 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Our Spiritual Blindness</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We see cancer, not God's comfort.<br>We see bankruptcy, not God's provision.<br>We see betrayal, not God's justice coming.</div>
+            </div>
+        </div>
+
+        <!-- Slide 101 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">What If We Could See?</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Angels dispatched at every prayer.<br>God's hand restraining greater disasters.<br>Heaven's armies fighting our battles. 👀</div>
+            </div>
+        </div>
+
+        <!-- Slide 102 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Colossians 3:1-2</div>
+                    "Since, then, you have been raised with Christ, set your hearts on things above... Set your minds on things above, not on earthly things."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 103 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Address Change</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Your body lives on earth.<br>But where does your mind live?<br>Your heart? Your hope?</div>
+            </div>
+        </div>
+
+        <!-- Slide 104 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Story: The Diagnosis</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"The cancer is aggressive," the doctor said.<br>Janet smiled. "So is my God."</div>
+            </div>
+        </div>
+
+        <!-- Slide 105 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Janet's Perspective</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"Cancer can take my body—it's temporary anyway.<br>It can't touch my soul—that belongs to Jesus."<br>Through chemo, she ministered to nurses.<br>Through dying, she showed others how to live.</div>
+            </div>
+        </div>
+
+        <!-- Slide 106 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Romans 8:18</div>
+                    "I consider that our present sufferings are not worth comparing with the glory that will be revealed in us."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 107 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Application</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Compare your pain to coming glory, not to others' lives.<br>It's no contest!</div>
+            </div>
+        </div>
+
+        <!-- Slide 108 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">DISCUSSION QUESTION</div>
+                    <div class="phrase-medium">If you could see the spiritual reality right now,<br>what do you think you'd see?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 109 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-big animate-in">Part 4: From Theory to Practice</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Practical steps to stop living<br>as practical atheists</div>
+            </div>
+        </div>
+
+        <!-- Slide 110 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Six Practical Steps</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">1. Honest Confession<br>2. Daily Remembrance<br>3. Practice His Presence<br>4. Vertical Before Horizontal<br>5. Bank on Promises<br>6. Eternity Perspective</div>
+            </div>
+        </div>
+
+        <!-- Slide 111 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">First: Honest Confession</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">"Lord, I've been living like You're not real.<br>Like heaven's not real. Like this world is everything."</div>
+            </div>
+        </div>
+
+        <!-- Slide 112 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">A Father's Desperation</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">A man brings his demon-possessed son to Jesus.<br>He asked Jesus to help his son.<br>Jesus tells him, "Everything is possible for one who believes."</div>
+            </div>
+        </div>
+
+        <!-- Slide 113 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The Most Honest Prayer in Scripture</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Mark 9:24<br>Immediately the boy's father exclaimed, "I do believe; help me overcome my unbelief!"</div>
+            </div>
+        </div>
+
+        <!-- Slide 114 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Second: Daily Remembrance</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Every morning, before your feet hit the floor:<br>"I'm a citizen of heaven on assignment today."</div>
+            </div>
+        </div>
+
+        <!-- Slide 115 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Make It Visible</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Write "Temporary" on your calendar.<br>Put "Eternal" on your Bible.<br>Which gets more attention?</div>
+            </div>
+        </div>
+
+        <!-- Slide 116 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">How Sojourners Handle Daily Stress</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When you see yourself as a sojourner, stress changes<br>from threat to opportunity. Your worry list gets rewritten.</div>
+            </div>
+        </div>
+
+        <!-- Slide 117 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Citizens Worry About</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Status. Stuff. Image. Comfort.<br>What people think.<br>Basically, Protecting the kingdom they're building here.</div>
+            </div>
+        </div>
+
+        <!-- Slide 118 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Sojourners Worry About</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Faithfulness. Holiness. Others' souls.<br>Am I representing Christ well? Am I investing in what lasts?</div>
+            </div>
+        </div>
+
+        <!-- Slide 119 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Matthew 6:19-21</div>
+                    "Do not store up for yourselves treasures on earth, where moths and vermin destroy... But store up for yourselves treasures in heaven. For where your treasure is, there your heart will be also."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 120 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Third: Practice His Presence</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">God isn't watching from heaven.<br>He's here. In this room. In your car.<br>In that difficult conversation.</div>
+            </div>
+        </div>
+
+        <!-- Slide 121 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Psalm 139:7-8</div>
+                    "Where can I go from your Spirit? Where can I flee from your presence? If I go up to the heavens, you are there; if I make my bed in the depths, you are there."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 122 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Fourth: Vertical Before Horizontal</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">When problems hit, train yourself:<br>Look up before you look around. ⬆️</div>
+            </div>
+        </div>
+
+        <!-- Slide 123 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">The New Reflex</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Old pattern: Problem → Panic → Maybe pray<br>New pattern: Problem → Prayer → Peace</div>
+            </div>
+        </div>
+
+        <!-- Slide 124 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Fifth: Bank on Promises</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Stop treating God's promises like nice poetry.<br>Start treating them like guaranteed checks.</div>
+            </div>
+        </div>
+
+        <!-- Slide 125 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Story: The Single Mom's Faith</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Katie's income: $2,000 monthly. Bills: $2,500.<br>She quoted Philippians 4:19 daily. Every month, somehow,<br>everything got paid. "God's math doesn't follow earth's rules."</div>
+            </div>
+        </div>
+
+        <!-- Slide 126 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Isaiah 41:10</div>
+                    "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 127 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Not Wishful Thinking</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">This is the Creator of the universe<br>making you a personal promise.<br>Will He keep His word?</div>
+            </div>
+        </div>
+
+        <!-- Slide 128 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Sixth: Eternity Perspective</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Before every decision ask:<br>"How will this matter in 10,000 years?"</div>
+            </div>
+        </div>
+
+        <!-- Slide 129 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Forever Filter</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">That hobby that owns you? That grudge you won't drop?<br>Run it through the forever filter.<br>Most things shrink to actual size.</div>
+            </div>
+        </div>
+
+        <!-- Slide 130 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">The Rope Illustration</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">
+                    <span class="video-note">Watch this powerful picture of eternity versus<br>our brief time on earth:</span>
+                    <button class="video-button" onclick="window.open('https://youtu.be/86dsfBbZfWs', '_blank')">▶ Watch Video</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 131 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">1 John 2:17</div>
+                    "The world and its desires pass away, but whoever does the will of God lives forever."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 132 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The Community Factor</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Practical atheism thrives in isolation.<br>Faith grows in community.</div>
+            </div>
+        </div>
+
+        <!-- Slide 133 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="scripture-block animate-in">
+                    <div class="scripture-reference">Hebrews 10:24-25</div>
+                    "Let us consider how we may spur one another on toward love and good deeds, not giving up meeting together... but encouraging one another."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 134 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">The Daily Decision</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Every morning we choose:<br>Live as if God is distant?<br>Or live as if God is here?</div>
+            </div>
+        </div>
+
+        <!-- Slide 135 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="phrase-large animate-in">Remember Who You Are</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">You're not a permanent resident here.<br>You're an ambassador from another Kingdom.</div>
+            </div>
+        </div>
+
+        <!-- Slide 136 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">World Changing Truth</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">This world is not your home.<br>Heaven is real. God is here.<br>Live like you believe it.</div>
+            </div>
+        </div>
+
+        <!-- Slide 137 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">The Choice Before Us</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Keep living as practical atheists—stressed, fearful, grasping?<br>Or start living as practicing believers—peaceful in problems,<br>confident in crisis, secure in the Savior.</div>
+            </div>
+        </div>
+
+        <!-- Slide 138 -->
+        <div class="slide bg-3">
+            <div class="content">
+                <div class="phrase-large animate-in">Your Next Step</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Tomorrow morning, before you do anything else:<br>"Lord, I'm a citizen of heaven. Help me live like it."</div>
+            </div>
+        </div>
+
+        <!-- Slide 139 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Final Thought</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">You're not home yet.<br>The best is still to come.<br>Start living like you believe it. 🏠</div>
+            </div>
+        </div>
+
+        <!-- Slide 140 -->
+        <div class="slide bg-5">
+            <div class="content">
+                <div class="discussion-box animate-in">
+                    <div class="discussion-label">DISCUSSION QUESTION</div>
+                    <div class="phrase-medium">Share one specific way you'll practice<br>faith over fear this week.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 141 -->
+        <div class="slide bg-1">
+            <div class="content">
+                <div class="phrase-large animate-in">Remember</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">Every moment you trust instead of panic,<br>every time you pray instead of worry,<br>you're choosing faith over practical atheism.</div>
+            </div>
+        </div>
+
+        <!-- Slide 142 -->
+        <div class="slide bg-2">
+            <div class="content">
+                <div class="phrase-large animate-in">Until He Returns</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">We wait with hope. We work with purpose.<br>We live as aliens and strangers,<br>because we know we're going home!</div>
+            </div>
+        </div>
+
+        <!-- Slide 143 -->
+        <div class="slide bg-4">
+            <div class="content">
+                <div class="phrase-large animate-in">Thank You</div>
+                <div class="phrase-medium animate-in" style="animation-delay: 0.08s">May God help us live as citizens of heaven<br>while we're still on earth.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+            
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            let currentSlide = 1;
+            
+            const currentEl = document.getElementById('currentSlide');
+            const totalEl = document.getElementById('totalSlides');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slider = document.getElementById('scaleSlider');
+            const root = document.documentElement;
+            
+            totalEl.textContent = totalSlides;
+            
+            const WRAP_AROUND = true;
+            
+            function clampOrWrap(n) {
+                if (WRAP_AROUND) {
+                    n = ((n - 1) % totalSlides + totalSlides) % totalSlides + 1;
+                } else {
+                    n = Math.max(1, Math.min(n, totalSlides));
+                }
+                return n;
+            }
+            
+            function showSlide(n) {
+                n = clampOrWrap(n);
+                currentSlide = n;
+                
+                slides.forEach(s => s.classList.remove('active'));
+                slides[n-1].classList.add('active');
+                
+                // Animate elements
+                const elements = slides[n-1].querySelectorAll('.phrase-big, .phrase-large, .phrase-medium, .scripture-block, .discussion-box, .next-steps-box');
+                elements.forEach((el, i) => {
+                    el.classList.remove('animate-in');
+                    void el.offsetWidth;
+                    el.style.animationDelay = `${i * 0.08}s`;
+                    el.classList.add('animate-in');
+                });
+                
+                currentEl.textContent = n;
+                
+                prevBtn.disabled = (!WRAP_AROUND && n === 1);
+                nextBtn.disabled = (!WRAP_AROUND && n === totalSlides);
+            }
+            
+            window.changeSlide = function(delta) {
+                showSlide(currentSlide + delta);
+            };
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    changeSlide(-1);
+                } else if (e.key === 'ArrowRight' || e.code === 'Space' || e.key === ' ') {
+                    e.preventDefault();
+                    changeSlide(1);
+                } else if (e.key === 'Home') {
+                    showSlide(1);
+                } else if (e.key === 'End') {
+                    showSlide(totalSlides);
+                } else if (e.key === 'Escape') {
+                    // Optional: add fullscreen toggle
+                }
+            });
+            
+            // Touch support
+            let touchStartX = 0;
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].clientX;
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchEndX - touchStartX;
+                if (Math.abs(diff) > 50) {
+                    changeSlide(diff > 0 ? -1 : 1);
+                }
+            });
+            
+            // Scale controls
+            const STORAGE_KEY = 'practical_atheists_font_scale_v1';
+            let stored = parseFloat(localStorage.getItem(STORAGE_KEY) || '') || null;
+            let defaultScale = parseFloat(getComputedStyle(root).getPropertyValue('--font-scale')) || 2.5;
+            let initial = stored || defaultScale;
+            
+            function applyScale(v) {
+                v = Math.max(0.5, Math.min(2.5, Number(v)));
+                root.style.setProperty('--font-scale', String(v));
+                document.querySelectorAll('.scripture-block').forEach(el => el.style.fontSize = '');
+                try {
+                    localStorage.setItem(STORAGE_KEY, String(v));
+                } catch(e) {}
+            }
+            
+            if (slider) {
+                slider.value = String(initial);
+                applyScale(initial);
+                slider.addEventListener('input', function(e) {
+                    applyScale(e.target.value);
+                });
+            }
+            
+            document.getElementById('increaseBtn').addEventListener('click', () => {
+                const current = parseFloat(slider.value);
+                const newVal = Math.min(2.5, current + 0.05);
+                slider.value = newVal;
+                applyScale(newVal);
+            });
+            
+            document.getElementById('decreaseBtn').addEventListener('click', () => {
+                const current = parseFloat(slider.value);
+                const newVal = Math.max(0.5, current - 0.05);
+                slider.value = newVal;
+                applyScale(newVal);
+            });
+            
+            // Initialize
+            showSlide(1);
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living as Practical Atheists - Study Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #E94057;
+            --color-secondary: #0575E6;
+            --color-accent: #FDC830;
+            --color-text: #1a1a1a;
+            --color-text-light: #4a4a4a;
+            --color-bg: #ffffff;
+            --color-bg-subtle: #f8f9fa;
+            --color-border: #e0e0e0;
+            --spacing-unit: 1.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 24px;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: var(--color-bg);
+            padding: 0;
+            max-width: 7in;
+            margin: 0 auto;
+        }
+
+        .container {
+            padding: 2rem 1.5rem;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        /* Scripture Box */
+        .scripture-box {
+            font-family: 'Merriweather', Georgia, serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            border-left: 6px solid var(--color-secondary);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .scripture-reference {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .scripture-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        /* Pull Quote */
+        .pull-quote {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff9e6 0%, #fff5cc 100%);
+            border-left: 6px solid var(--color-accent);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.5;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            font-style: italic;
+        }
+
+        /* Discussion Callout */
+        .discussion-callout {
+            background: linear-gradient(135deg, #fff0f0 0%, #ffe8e8 100%);
+            border: 3px solid var(--color-primary);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(233, 64, 87, 0.15);
+        }
+
+        .discussion-label {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--color-primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .discussion-question {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--color-text);
+        }
+
+        /* Story Box */
+        .story-box {
+            background: var(--color-bg-subtle);
+            border-left: 4px solid var(--color-accent);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .story-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Next Steps */
+        .next-steps {
+            background: linear-gradient(135deg, #e8f5e9 0%, #d4edd6 100%);
+            border: 3px solid #4caf50;
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(76, 175, 80, 0.15);
+        }
+
+        .next-steps-label {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #2e7d32;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            padding: 1rem 0;
+            padding-left: 3rem;
+            position: relative;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(46, 125, 50, 0.2);
+        }
+
+        .next-steps li:last-child {
+            border-bottom: none;
+        }
+
+        .next-steps li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #4caf50;
+            font-size: 1.8rem;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Emphasis box */
+        .emphasis-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #d1e9ff 100%);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+            margin: 3rem 0;
+            border: none;
+        }
+
+        /* Share buttons */
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            font-family: 'Poppins', sans-serif;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 44px;
+            min-height: 44px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), #f27121);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--color-secondary), #021B79);
+            color: white;
+        }
+
+        /* Back to home */
+        .back-home {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 2px solid var(--color-border);
+        }
+
+        .back-home a {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media print {
+            body {
+                font-size: 12pt;
+                max-width: 100%;
+            }
+            .share-buttons, .back-home {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Living as Practical Atheists</h1>
+        <p class="subtitle">When Faith Doesn't Touch Daily Life</p>
+
+        <div class="pull-quote">
+            How often do we <strong>claim faith</strong> in God yet <strong>live as if He doesn't exist</strong>?
+        </div>
+
+        <h2>The Disconnect</h2>
+        <p>We believe in <strong>theory</strong>. We doubt in <strong>practice</strong>. This is <strong>practical atheism</strong>. Today, let's explore how we move from practical atheism to practicing faith in everyday life.</p>
+
+        <h2>Scripture Foundation</h2>
+        <p>Our spiritual ancestors lived differently, and their example shows us the way forward.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Hebrews 11:13</span>
+            <div class="scripture-text">"All these people were still living by <strong>faith</strong> when they died. They did not receive the things promised; they only saw them and welcomed them from a distance, admitting that they were <strong>foreigners and strangers</strong> on earth."</div>
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Hebrews 11:14-16</span>
+            <div class="scripture-text">"People who say such things show that they are looking for a country of their own... Instead, they were longing for a <strong>better country—a heavenly one</strong>."</div>
+        </div>
+
+        <p>God prepared a <strong>city</strong> for those who live as <strong>foreigners here, citizens there</strong>.</p>
+
+        <hr class="section-divider">
+
+        <h2>What Is Practical Atheism?</h2>
+        <p>It's believing God exists <strong>intellectually</strong> but living daily as if <strong>He doesn't</strong>.</p>
+
+        <h3>The Sunday-Monday Gap</h3>
+        <p><strong>Sunday morning</strong> we sing "God is sovereign!" <strong>Monday morning</strong> we're paralyzed by anxiety.</p>
+
+        <h3>The Prayer Paradox</h3>
+        <p>We have direct access to the Creator of the universe, yet we exhaust every human solution first.</p>
+
+        <div class="story-box">
+            <div class="story-title">Story: The Mother's Breakdown</div>
+            <p>Rachel prays beautifully at church. At home, she lies awake terrified her teenage son is hanging with the wrong crowd.</p>
+            <p>"I was trying to secure his future myself instead of trusting the God who saved me. My fear showed I believed more in the world's power to destroy than God's power to save."</p>
+        </div>
+
+        <div class="emphasis-box">
+            <strong>Application:</strong> Where are you trying to control instead of trust?
+        </div>
+
+        <h3>The Core Problem</h3>
+        <p>We forget <strong>heaven is real</strong>. We forget this world is <strong>temporary</strong>. We live like <strong>this is all there is</strong>.</p>
+
+        <div class="pull-quote">
+            "If you read history you will find that the Christians who did most for the present world were just those who thought most of the next." — C.S. Lewis
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">James 2:19</span>
+            <div class="scripture-text">"You believe that there is one God. Good! Even the <strong>demons</strong> believe that—and shudder."</div>
+        </div>
+
+        <h3>Knowledge vs. Trust</h3>
+        <p>Bart Ehrman is a renowned Bible scholar who teaches at major universities and has written bestselling books about Scripture. Despite being a world-renowned Bible scholar, Ehrman is an atheist. His life demonstrates that head knowledge is not the same as saving faith.</p>
+
+        <p>Demons have perfect theology. Ehrman has vast biblical knowledge. Both lack the one thing that matters: <strong>trust</strong>.</p>
+
+        <div class="discussion-callout">
+            <span class="discussion-label">Discussion Question</span>
+            <div class="discussion-question">Where do you see the biggest gap between your Sunday faith and Monday life?</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>Part 1: Symptoms of Practical Atheism</h2>
+        <p>Let's get specific about how we live without God in our daily decisions.</p>
+
+        <h3>Symptom #1: Financial Panic</h3>
+        <p>We say "God will provide" at church. We check our bank balance fifty times on Tuesday.</p>
+
+        <p>You know the feeling—bolt awake at 3 AM thinking about bills, medical expenses, retirement. Where's God in that moment?</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Matthew 6:25-26</span>
+            <div class="scripture-text">"Therefore I tell you, <strong>do not worry</strong> about your life... Look at the birds of the air; they do not sow or reap or store away in barns, and yet your <strong>heavenly Father feeds them</strong>. Are you not much more valuable than they?"</div>
+        </div>
+
+        <p>Here's the uncomfortable truth: our <strong>anxiety level</strong> reveals what we <strong>really believe</strong> about God.</p>
+
+        <h3>Symptom #2: Horizontal Vision</h3>
+        <p>When problems arise, we focus all our attention on our problems instead of looking up to our Problem-Solver.</p>
+
+        <p>Remember Peter on the water? Peter actually walks on water! As long as his eyes stay on Jesus, the impossible becomes possible.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Matthew 14:30</span>
+            <div class="scripture-text">"But when he saw the wind, he was afraid and, beginning to sink, cried out, '<strong>Lord, save me!</strong>' You of little faith, why did you doubt?"</div>
+        </div>
+
+        <p>Every problem is our chance to choose: Will we look at the waves or the Wave-Walker?</p>
+
+        <h3>Symptom #3: Self-Reliance</h3>
+        <p>We treat God like our emergency backup plan instead of our first response.</p>
+
+        <div class="story-box">
+            <div class="story-title">Story: The Marriage Crisis</div>
+            <p>Tom and Linda's marriage was falling apart. They tried counseling, self-help books, trial separation. Prayer? That came last.</p>
+            <p>"We spent $5,000 on therapy before we spent five minutes together on our knees."</p>
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Proverbs 3:5-6</span>
+            <div class="scripture-text">"<strong>Trust in the LORD with all your heart</strong> and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."</div>
+        </div>
+
+        <p>We act like we're the captain of our ship, and God is just the emergency rescue service.</p>
+
+        <div class="emphasis-box">
+            <strong>Application:</strong> What problem are you handling alone that you should bring to God first?
+        </div>
+
+        <h3>Symptom #4: Security in Stuff</h3>
+        <p>Our peace rises and falls with our bank balance. Our identity comes from our achievements. We sacrifice conviction for comfort, truth for acceptance, integrity for inclusion.</p>
+
+        <p><strong>The Modern Idols:</strong></p>
+        <ul>
+            <li>Financial security</li>
+            <li>Children's achievements</li>
+            <li>Comfort</li>
+            <li>Social media image</li>
+        </ul>
+
+        <p>Want to know what you really worship? Look at your bank statement and calendar.</p>
+
+        <div class="discussion-callout">
+            <span class="discussion-label">Discussion Question</span>
+            <div class="discussion-question">Which symptom hits closest to home for you? Why is that area particularly challenging?</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>Part 2: Citizens vs. Sojourners</h2>
+        <p>Understanding who we really are changes how we really live.</p>
+
+        <h3>What's a Sojourner?</h3>
+        <p>A sojourner is someone living <strong>temporarily</strong> in a place that's not their <strong>permanent home</strong>—fully present but never fully settled.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">1 Peter 2:11-12</span>
+            <div class="scripture-text">"Dear friends, I urge you, as foreigners and exiles, to abstain from sinful desires which wage war against your soul. Live such good lives among the pagans that they may see your good deeds and glorify God."</div>
+        </div>
+
+        <p>Peter calls us "<strong>foreigners and exiles</strong>"—we belong here physically, but our <strong>true citizenship is elsewhere</strong>.</p>
+
+        <h3>We Are In the World—But Not Of It</h3>
+        <p>This is our identity. This reorders our priorities.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Philippians 3:20</span>
+            <div class="scripture-text">"But our citizenship is in heaven. And we eagerly await a Savior from there..."</div>
+        </div>
+
+        <h3>The Spiritual War</h3>
+        <p>Think about it this way: You're visiting another country when suddenly war breaks out with your homeland. Whose side are you on? No question, right? You'd never fight against your own country, even if you're currently standing on enemy soil.</p>
+
+        <p>We're in enemy territory every day. Every sin is like taking up arms against our true homeland.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Ephesians 6:12</span>
+            <div class="scripture-text">"For our struggle is not against flesh and blood, but against the rulers, against the authorities, against the powers of this dark world and against the spiritual forces of evil in the heavenly realms."</div>
+        </div>
+
+        <p>When we <strong>gossip</strong>, we side with the enemy. When we <strong>forgive</strong>, we fight for the Kingdom.</p>
+
+        <h3>We Should Look Different</h3>
+        <p>When you see visitors from another country in your town, you can tell they're different—how they dress, how they speak. You just know they're not from here.</p>
+
+        <p>If we're truly <strong>citizens of heaven</strong>, people should be able to tell. Our priorities, speech, reactions—<strong>all different</strong>.</p>
+
+        <div class="story-box">
+            <div class="story-title">Story: Ava the Refugee</div>
+            <p>Ava fled persecution in Iran five years ago. She became a Christian there—a crime punishable by death. She lost everything to follow Jesus.</p>
+            <p>Now in our city, Ava still stands out. Not just her accent. It's something deeper—she doesn't grumble, she finds gratitude, she forgives immediately.</p>
+            <p>"Why aren't you bitter after what happened?" people ask. "How can you be happy after everything you've been through?"</p>
+            <p>Ava's family disowned her. The Iranian government seized her parents' home. Her brother won't speak to her. She can never go back.</p>
+            <p><strong>Her response:</strong> "I lost my earthly family to gain God as my Father. I lost my country to gain heaven as my home. I lost my old life to gain eternal life."</p>
+            <p>Ava works hard. Pays bills. Grocery shops. But everyone knows—she's just passing through. Her treasure is somewhere else.</p>
+        </div>
+
+        <div class="story-box">
+            <div class="story-title">Then There's Daniel</div>
+            <p>Exiled in Babylon. Prominent government official. Prayed three times daily with his window open—everyone could see him worshiping the true God.</p>
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Daniel 6:10</span>
+            <div class="scripture-text">"Now when Daniel learned that the decree had been published, he went home to his upstairs room where the windows opened toward Jerusalem. Three times a day he got down on his knees and prayed, giving thanks to his God, just as he had done before."</div>
+        </div>
+
+        <p>The decree meant death for anyone who prayed. Daniel prayed anyway—same time, same place, windows open. Not hiding. Not compromising. They threw him to the lions for his devotion to God. But God shut the lions' mouths. Daniel's faith was vindicated before the whole empire.</p>
+
+        <h3>Where Are Our Lions?</h3>
+        <p>Ava suffered for Christ. Daniel faced lions. Early Christians were imprisoned and executed. Today: canceling, adoption denials, broken friendships, lawsuits, vandalism.</p>
+
+        <p>Why aren't you or I being persecuted? Maybe it's because people <strong>can't tell the difference</strong> between us and the world. We <strong>blend in too well</strong>.</p>
+
+        <p>Same entertainment. Same language. Same priorities. Same anxiety. Same anger. Same gossip. How would anyone know we're different?</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">John 15:18-19</span>
+            <div class="scripture-text">"If the world hates you, keep in mind that it hated me first. If you belonged to the world, it would love you as its own. As it is, <strong>you do not belong to the world</strong>... That is why the world hates you."</div>
+        </div>
+
+        <p>If your faith never makes anyone uncomfortable, if your life never challenges anyone's sin, if your devotion is completely invisible—maybe you've settled too comfortably.</p>
+
+        <div class="discussion-callout">
+            <span class="discussion-label">Discussion Question</span>
+            <div class="discussion-question">When was the last time your faith cost you something or made you stand out? What does your answer reveal?</div>
+        </div>
+
+        <h3>Two Ways to Live</h3>
+        <p>Citizens cling to this world. Sojourners prepare for the next.</p>
+
+        <p><strong>The Citizen's Investment:</strong> Accumulate wealth. Chase comfort. Seek status. Make this world your treasure.</p>
+
+        <p><strong>The Sojourner's Investment:</strong> Store up heaven's riches. Make eternal impact. Invest in souls, not stuff.</p>
+
+        <p>Our deeds should reflect our "true home." Being resident aliens means engaging the world—but not conforming morally to it.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">1 Peter 2:12</span>
+            <div class="scripture-text">Live such good lives among the pagans that, though they accuse you of doing wrong, they may see your good deeds and glorify God on the day he visits us.</div>
+        </div>
+
+        <p><strong>Living Honorably Among Unbelievers:</strong> Excellence at work—not for promotion, but for witness. Integrity in business—even when it costs. Kindness to enemies—because we know eternity.</p>
+
+        <div class="story-box">
+            <div class="story-title">Story: The Honest Contractor</div>
+            <p>Mike's company could've hidden the mistake. The client would never know. An extra $8,000 in profit—just stay quiet.</p>
+            <p>He called the client. Explained the billing error. Refunded the money. His crew thought he was crazy. "Why throw away $8,000?"</p>
+            <p><strong>The Eternal Perspective:</strong> "Because I'm not building my kingdom here. I'm representing Another Kingdom. Eight thousand dollars won't matter in heaven, but my integrity will. I'm not carrying the devil's money into eternity."</p>
+            <p>The client was stunned. Two months later, that client showed up at Mike's church. "I want to know the God who makes people that honest."</p>
+        </div>
+
+        <p>Sojourners act differently—not for temporal gain but because we already have eternal gain.</p>
+
+        <h3>Abraham's Revolutionary Choice</h3>
+        <p>Left comfort in Ur for tents in Canaan. Why would anyone do that?</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Hebrews 11:10</span>
+            <div class="scripture-text">"For he was looking forward to the city with foundations, whose architect and builder is God."</div>
+        </div>
+
+        <p>Abraham never built a house. Always lived in tents. Ready to move when God said "Go."</p>
+
+        <div class="pull-quote">
+            "God has redeemed you out of the world, and therefore do not live as though you had your portion in this life. Live as pilgrims and strangers." — Jonathan Edwards
+        </div>
+
+        <p>What are you holding loosely? What could you leave behind tomorrow?</p>
+
+        <div class="pull-quote">
+            "We are hurrying through this world... we are in this country, not as residents, but only as visitors." — Charles Spurgeon
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">2 Corinthians 4:17-18</span>
+            <div class="scripture-text">"For our light and momentary troubles are achieving for us an eternal glory... So we fix our eyes not on what is seen, but on what is unseen, since what is seen is temporary, but what is unseen is eternal."</div>
+        </div>
+
+        <p><strong>The Eternal Math:</strong> Present pain—light and momentary. Future glory—weighty and eternal. Do the math!</p>
+
+        <h3>Guarding Against Settling</h3>
+        <p>The temptation is real: make this world our home. Get comfortable. Build our kingdom here. Forget we're just passing through.</p>
+
+        <p><strong>Signs We're Settling:</strong> We panic over temporary losses. We sacrifice eternity for comfort now. We forget to ask, "How does this matter in 10,000 years?"</p>
+
+        <div class="discussion-callout">
+            <span class="discussion-label">Discussion Question</span>
+            <div class="discussion-question">In what ways might you be "settling" in this world instead of living as a pilgrim? How can you reorient your thoughts toward eternity this week?</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>Part 3: Seeing the Unseen Reality</h2>
+        <p>Learning to trust what we cannot see more than what we can.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Hebrews 11:1</span>
+            <div class="scripture-text">"Now faith is confidence in what we hope for and assurance about what we do not see."</div>
+        </div>
+
+        <h3>The Two Realities</h3>
+        <p>There's what our <strong>eyes see</strong>—bills, sickness, conflict. There's what <strong>faith sees</strong>—provision, purpose, promises.</p>
+
+        <div class="story-box">
+            <div class="story-title">The Elisha Story</div>
+            <p>The king of Aram sends an army to capture one prophet—Elisha. They surround the city at night. Early morning, Elisha's servant sees the enemy. "Oh no, my lord! What shall we do?"</p>
+            <p><strong>Elisha's calm response:</strong> "Don't be afraid. Those who are with us are more than those who are with them."</p>
+            <p><strong>Elisha's prayer:</strong> "Open his eyes, Lord, so that he may see." Not "Send help" but "Show the help already here."</p>
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">2 Kings 6:17</span>
+            <div class="scripture-text">"Then the LORD opened the servant's eyes, and he looked and saw the hills full of horses and chariots of fire all around Elisha."</div>
+        </div>
+
+        <h3>Our Spiritual Blindness</h3>
+        <p>We see cancer, not <strong>God's comfort</strong>. We see bankruptcy, not <strong>God's provision</strong>. We see betrayal, not <strong>God's justice coming</strong>.</p>
+
+        <p>What if we could see? Angels dispatched at every prayer. God's hand restraining greater disasters. Heaven's armies fighting our battles.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Colossians 3:1-2</span>
+            <div class="scripture-text">"Since, then, you have been raised with Christ, set your hearts on things above... Set your minds on things above, not on earthly things."</div>
+        </div>
+
+        <p><strong>The Address Change:</strong> Your body lives on earth. But where does your mind live? Your heart? Your hope?</p>
+
+        <div class="story-box">
+            <div class="story-title">Story: The Diagnosis</div>
+            <p>"The cancer is aggressive," the doctor said. Janet smiled. "So is my God."</p>
+            <p>"Cancer can take my body—it's temporary anyway. It can't touch my soul—that belongs to Jesus." Through chemo, she ministered to nurses. Through dying, she showed others how to live.</p>
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Romans 8:18</span>
+            <div class="scripture-text">"I consider that our present sufferings are not worth comparing with the glory that will be revealed in us."</div>
+        </div>
+
+        <p><strong>Application:</strong> Compare your pain to coming glory, not to others' lives. It's no contest!</p>
+
+        <div class="discussion-callout">
+            <span class="discussion-label">Discussion Question</span>
+            <div class="discussion-question">If you could see the spiritual reality right now, what do you think you'd see?</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>Part 4: From Theory to Practice</h2>
+        <p>Practical steps to stop living as practical atheists.</p>
+
+        <h3>Six Practical Steps</h3>
+        <ol>
+            <li>Honest Confession</li>
+            <li>Daily Remembrance</li>
+            <li>Practice His Presence</li>
+            <li>Vertical Before Horizontal</li>
+            <li>Bank on Promises</li>
+            <li>Eternity Perspective</li>
+        </ol>
+
+        <h3>First: Honest Confession</h3>
+        <p>"Lord, I've been living like <strong>You're not real</strong>. Like <strong>heaven's not real</strong>. Like this world is everything."</p>
+
+        <div class="story-box">
+            <div class="story-title">A Father's Desperation</div>
+            <p>A man brings his demon-possessed son to Jesus. He asked Jesus to help his son. Jesus tells him, "Everything is possible for one who believes."</p>
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Mark 9:24 — The Most Honest Prayer in Scripture</span>
+            <div class="scripture-text">Immediately the boy's father exclaimed, "I do believe; help me overcome my unbelief!"</div>
+        </div>
+
+        <h3>Second: Daily Remembrance</h3>
+        <p>Every morning, before your feet hit the floor: "I'm a <strong>citizen of heaven</strong> on assignment today."</p>
+
+        <p>Write "Temporary" on your calendar. Put "Eternal" on your Bible. Which gets more attention?</p>
+
+        <h3>How Sojourners Handle Daily Stress</h3>
+        <p>When you see yourself as a sojourner, stress changes from threat to opportunity. Your worry list gets rewritten.</p>
+
+        <p><strong>Citizens Worry About:</strong> Status. Stuff. Image. Comfort. What people think. Basically, protecting the kingdom they're building here.</p>
+
+        <p><strong>Sojourners Worry About:</strong> Faithfulness. Holiness. Others' souls. Am I representing Christ well? Am I investing in what lasts?</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Matthew 6:19-21</span>
+            <div class="scripture-text">"Do not store up for yourselves treasures on earth, where moths and vermin destroy... But store up for yourselves treasures in heaven. For where your treasure is, there your heart will be also."</div>
+        </div>
+
+        <h3>Third: Practice His Presence</h3>
+        <p>God isn't watching from heaven. He's here. In this room. In your car. In that difficult conversation.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Psalm 139:7-8</span>
+            <div class="scripture-text">"Where can I go from your Spirit? Where can I flee from your presence? If I go up to the heavens, you are there; if I make my bed in the depths, you are there."</div>
+        </div>
+
+        <h3>Fourth: Vertical Before Horizontal</h3>
+        <p>When problems hit, train yourself: <strong>Look up before you look around</strong>.</p>
+
+        <p><strong>The New Reflex:</strong></p>
+        <ul>
+            <li>Old pattern: Problem → Panic → Maybe pray</li>
+            <li>New pattern: Problem → Prayer → Peace</li>
+        </ul>
+
+        <h3>Fifth: Bank on Promises</h3>
+        <p>Stop treating God's promises like nice poetry. Start treating them like <strong>guaranteed checks</strong>.</p>
+
+        <div class="story-box">
+            <div class="story-title">Story: The Single Mom's Faith</div>
+            <p>Katie's income: $2,000 monthly. Bills: $2,500. She quoted Philippians 4:19 daily. Every month, somehow, everything got paid. "God's math doesn't follow earth's rules."</p>
+        </div>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Isaiah 41:10</span>
+            <div class="scripture-text">"So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand."</div>
+        </div>
+
+        <p>This is the Creator of the universe making you a personal promise. Will He keep His word?</p>
+
+        <h3>Sixth: Eternity Perspective</h3>
+        <p>Before every decision ask: "<strong>How will this matter in 10,000 years?</strong>"</p>
+
+        <p>That hobby that owns you? That grudge you won't drop? Run it through the forever filter. Most things shrink to actual size.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">1 John 2:17</span>
+            <div class="scripture-text">"The world and its desires pass away, but whoever does the will of God lives forever."</div>
+        </div>
+
+        <h3>The Community Factor</h3>
+        <p>Practical atheism thrives in isolation. Faith grows in community.</p>
+
+        <div class="scripture-box">
+            <span class="scripture-reference">Hebrews 10:24-25</span>
+            <div class="scripture-text">"Let us consider how we may spur one another on toward love and good deeds, not giving up meeting together... but encouraging one another."</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>The Daily Decision</h2>
+        <p>Every morning we <strong>choose</strong>: Live as if God is distant? Or <strong>live as if God is here</strong>?</p>
+
+        <p>Remember who you are. You're not a permanent resident here. You're an ambassador from another Kingdom.</p>
+
+        <div class="pull-quote">
+            This world is <strong>not your home</strong>. <strong>Heaven is real</strong>. <strong>God is here</strong>. Live like you believe it.
+        </div>
+
+        <h3>The Choice Before Us</h3>
+        <p>Keep living as practical atheists—stressed, fearful, grasping? Or start living as practicing believers—peaceful in problems, confident in crisis, secure in the Savior.</p>
+
+        <div class="next-steps">
+            <span class="next-steps-label">Your Next Steps</span>
+            <ul>
+                <li>Tomorrow morning, before you do anything else: "Lord, I'm a citizen of heaven. Help me live like it."</li>
+                <li>Write "Temporary" on your calendar and "Eternal" on your Bible as visual reminders</li>
+                <li>Choose one problem you've been handling alone and bring it to God first today</li>
+                <li>Before your next major decision, ask: "How will this matter in 10,000 years?"</li>
+                <li>Practice the new reflex: Problem → Prayer → Peace (instead of Problem → Panic → Maybe pray)</li>
+                <li>Identify one area where you're "settling" and commit to living as a pilgrim there this week</li>
+            </ul>
+        </div>
+
+        <h2>Final Thought</h2>
+        <p>You're not home yet. The best is still to come. Start living like you believe it.</p>
+
+        <div class="discussion-callout">
+            <span class="discussion-label">Discussion Question</span>
+            <div class="discussion-question">Share one specific way you'll practice faith over fear this week.</div>
+        </div>
+
+        <div class="pull-quote">
+            Every moment you trust instead of panic, every time you pray instead of worry, you're choosing faith over practical atheism.
+        </div>
+
+        <p><strong>Until He Returns:</strong> We wait with hope. We work with purpose. We live as aliens and strangers, because we know we're going home!</p>
+
+        <div class="share-buttons">
+            <a href="#" class="share-btn btn-primary" onclick="window.print(); return false;">Print This Guide</a>
+            <a href="mailto:?subject=Living%20as%20Practical%20Atheists%20Study%20Guide&body=I%20thought%20you%20might%20find%20this%20study%20guide%20helpful" class="share-btn btn-secondary">Share via Email</a>
+        </div>
+
+        <div class="back-home">
+            <a href="#">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
