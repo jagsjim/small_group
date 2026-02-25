@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Powerful Prophecy about Fear and Anxiety – Voddie Baucham</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-bg: #faf8f5;
+  --color-surface: #ffffff;
+  --color-text: #2d2a26;
+  --color-text-secondary: #5a554e;
+  --color-accent: #b45309;
+  --color-accent-light: #fef3c7;
+  --color-accent-dark: #92400e;
+  --color-scripture-bg: #f0f4f1;
+  --color-scripture-border: #6b8f71;
+  --color-highlight-bg: #fdf6e3;
+  --color-highlight-border: #d4a853;
+  --color-discussion-bg: #eff6ff;
+  --color-discussion-border: #3b82f6;
+  --color-divider: #e8e4de;
+  --font-body: 'Lora', Georgia, serif;
+  --font-heading: 'Poppins', 'Inter', sans-serif;
+  --font-quote: 'Montserrat', 'Inter', sans-serif;
+  --font-scripture: 'Merriweather', Georgia, serif;
+  --radius: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+html { font-size: 18px; scroll-behavior: smooth; }
+
+@media (min-width: 600px) { html { font-size: 20px; } }
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 4rem;
+}
+
+.container {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ——— Header ——— */
+.hero {
+  background: linear-gradient(135deg, #1a2332 0%, #2d3e50 50%, #3a5168 100%);
+  color: #fff;
+  padding: 3rem 1.25rem 2.5rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  text-wrap: balance;
+}
+
+.hero .speaker {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  opacity: 0.85;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.watch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #dc2626;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+}
+
+.watch-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45); }
+
+.watch-btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+/* ——— Sections ——— */
+section { padding: 2rem 0; }
+
+section + section { border-top: 1px solid var(--color-divider); }
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--color-accent-dark);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--color-text);
+}
+
+p { margin-bottom: 1rem; }
+
+/* ——— Highlight Sentence ——— */
+.highlight-box {
+  background: var(--color-highlight-bg);
+  border-left: 5px solid var(--color-highlight-border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.highlight-box p {
+  font-family: var(--font-quote);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--color-accent-dark);
+  margin: 0;
+}
+
+/* ——— Main Points ——— */
+.main-points { counter-reset: points; list-style: none; padding: 0; }
+
+.main-points li {
+  counter-increment: points;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.main-points li + li { border-top: 1px solid var(--color-divider); }
+
+.main-points li::before {
+  content: counter(points);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 50%;
+  margin-top: 0.15rem;
+}
+
+.main-points li strong { font-weight: 700; }
+
+/* ——— Discussion / Question Callouts ——— */
+.discussion-box {
+  background: var(--color-discussion-bg);
+  border-left: 5px solid var(--color-discussion-border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.discussion-box .label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-discussion-border);
+  margin-bottom: 0.5rem;
+}
+
+.discussion-box .timestamp {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-discussion-border);
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.discussion-box .question-text {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Overview questions */
+.overview-list { counter-reset: overview; list-style: none; padding: 0; }
+
+.overview-list li {
+  counter-increment: overview;
+  padding: 0.85rem 0;
+  padding-left: 2.5rem;
+  position: relative;
+  line-height: 1.65;
+}
+
+.overview-list li + li { border-top: 1px solid var(--color-divider); }
+
+.overview-list li::before {
+  content: counter(overview) ".";
+  position: absolute;
+  left: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+/* ——— Scripture Box ——— */
+.scripture-box {
+  background: var(--color-scripture-bg);
+  border-left: 5px solid var(--color-scripture-border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  margin: 0.75rem 0;
+}
+
+.scripture-box .ref {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-scripture-border);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.scripture-box .text {
+  font-family: var(--font-scripture);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.verse-list { list-style: none; padding: 0; }
+
+.verse-list li {
+  padding: 0.6rem 0;
+  font-family: var(--font-scripture);
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.verse-list li + li { border-top: 1px solid var(--color-divider); }
+
+.verse-list .ref-name {
+  font-weight: 700;
+  font-style: italic;
+  color: var(--color-scripture-border);
+}
+
+.verse-list .snippet {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* ——— Transcript ——— */
+.transcript-section {
+  padding-top: 2rem;
+}
+
+.transcript-section details {
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius);
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.transcript-section summary {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.transcript-section summary::-webkit-details-marker { display: none; }
+
+.transcript-section summary::before {
+  content: "▸";
+  font-size: 0.85rem;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.transcript-section details[open] summary::before { transform: rotate(90deg); }
+
+.transcript-section summary .ts {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-accent-light);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.transcript-section .content {
+  padding: 0 1.25rem 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.transcript-section .content p { margin-bottom: 0.85rem; }
+.transcript-section .content p:last-child { margin-bottom: 0; }
+
+.transcript-section .content strong { font-weight: 700; }
+
+.transcript-section .content em { font-style: italic; }
+
+.transcript-section .content blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding: 0.5rem 1rem;
+  margin: 0.75rem 0;
+  background: rgba(180, 83, 9, 0.04);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+}
+
+.transcript-section .content .scripture-inline {
+  font-family: var(--font-scripture);
+  font-style: italic;
+  color: var(--color-scripture-border);
+}
+
+/* ——— Share Buttons ——— */
+.share-section {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.share-section p {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.share-buttons { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+
+.share-buttons a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #fff;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.share-buttons a:hover { transform: translateY(-1px); opacity: 0.9; }
+
+.share-buttons .share-copy { background: #6b7280; }
+.share-buttons .share-text { background: #22c55e; }
+
+/* ——— Footer ——— */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-family: 'Inter', sans-serif;
+}
+
+/* ——— Print ——— */
+@media print {
+  body { font-size: 11pt; background: #fff; }
+  .hero { background: #333 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .watch-btn, .share-section { display: none; }
+  .transcript-section details { break-inside: avoid; }
+  .transcript-section details[open] { break-inside: auto; }
+  section { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <h1>A Powerful Prophecy about Fear and Anxiety</h1>
+  <p class="speaker">Voddie Baucham</p>
+  <a class="watch-btn" href="https://www.youtube.com/watch?v=psraGYL30Fw" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+    WATCH VIDEO
+  </a>
+</header>
+
+<main class="container">
+
+<!-- ============ SUMMARY ============ -->
+<section>
+  <h2>Summary</h2>
+  <p>In this message from Exodus 2:23–25, Voddie Baucham addresses the fear and anxiety that mark our times—from pandemics and wars to personal losses and unanswered prayers. Rather than offering quick fixes or pretending everything is fine, he walks through four words from the text that anchor us in the midst of ongoing suffering: God <strong>heard</strong>, God <strong>remembered</strong>, God <strong>saw</strong>, and God <strong>knew</strong>.</p>
+  <p>These four realities reveal what is happening in the "vertical" even when we can only see the "horizontal"—our pain, our groaning, and our unanswered questions. The sermon culminates at the cross, where God demonstrated once and for all that He hears, remembers, sees, and knows His people, and is so committed to our redemption that He crushed and killed His only Son to guarantee it.</p>
+
+  <div class="highlight-box">
+    <p>In the midst of our deepest fears and anxieties, we can find comfort knowing that God hears our groaning, remembers His covenant, sees our suffering, and knows exactly what we need—even when we can't see His work in our lives.</p>
+  </div>
+</section>
+
+<!-- ============ MAIN POINTS ============ -->
+<section>
+  <h2>Main Points</h2>
+  <ol class="main-points">
+    <li><strong>We shouldn't live like fake Christians who pretend everything is always fine when we're actually suffering.</strong></li>
+    <li>Fear and anxiety are real struggles that won't just disappear tomorrow—we need to learn how to deal with them while they're still present.</li>
+    <li><strong>God hears our groaning even when it feels like He's not listening to our prayers.</strong></li>
+    <li><strong>God remembers His covenant with us, not because we deserve it, but because of His faithfulness.</strong></li>
+    <li>God sees everything that happens to us—He's never absent or distracted during our worst moments.</li>
+    <li><strong>God knows intimately what we're going through and what we truly need, even better than we do.</strong></li>
+    <li><strong>God's sovereignty means He's either in control of everything or nothing—we can't trust Him for salvation if we can't trust Him in suffering.</strong></li>
+    <li><strong>The cross proves God's commitment to us—if He gave His Son for our redemption, He'll bring us through whatever we're facing.</strong></li>
+  </ol>
+</section>
+
+<!-- ============ SEGMENT QUESTIONS ============ -->
+<section>
+  <h2>Segment Questions</h2>
+  <p style="font-size:0.9rem; color:var(--color-text-secondary); margin-bottom:1rem;">Pause the video at these moments to discuss as a group.</p>
+
+  <div class="discussion-box">
+    <div class="label">Pause &amp; Discuss</div>
+    <span class="timestamp">⏸ 15:14</span>
+    <p class="question-text">Have you ever felt pressure to hide your real struggles and act like everything is fine when it really isn't?</p>
+  </div>
+
+  <div class="discussion-box">
+    <div class="label">Pause &amp; Discuss</div>
+    <span class="timestamp">⏸ 23:26</span>
+    <p class="question-text">What stands out to you most about the idea that God doesn't deliver people because they deserve it, but because of His covenant promises?</p>
+  </div>
+
+  <div class="discussion-box">
+    <div class="label">Pause &amp; Discuss</div>
+    <span class="timestamp">⏸ 32:33</span>
+    <p class="question-text">Have you ever felt like God wasn't watching when something bad happened to you?</p>
+  </div>
+</section>
+
+<!-- ============ OVERVIEW QUESTIONS ============ -->
+<section>
+  <h2>Overview Questions</h2>
+  <ol class="overview-list">
+    <li>What would you say to someone who thinks their worry and fear are just normal human responses rather than something that reveals how much we trust God?</li>
+    <li>What would be hard about trusting that God is working everything together for His glory even when you can't see how?</li>
+    <li>How does the idea that God is either sovereign over everything or nothing at all change the way you think about the hard things in your life?</li>
+    <li>What's one small step you could take this week to start believing God hears you when you pray instead of assuming He's not listening?</li>
+  </ol>
+</section>
+
+<!-- ============ BIBLE VERSES ============ -->
+<section>
+  <h2>Bible Verses Quoted</h2>
+  <ul class="verse-list">
+    <li><span class="ref-name">Exodus 2:23–25</span> <span class="snippet">("During those many days the king of Egypt died and the people of Israel groaned because of their slavery…")</span></li>
+    <li><span class="ref-name">Psalm 55:17</span> <span class="snippet">("Evening and morning and at noon I utter my complaint and moan and he hears my voice")</span></li>
+    <li><span class="ref-name">Psalm 121:1–8</span> <span class="snippet">("I lift up my eyes to the hills, from where does my help come…")</span></li>
+    <li><span class="ref-name">Proverbs 15:29</span> <span class="snippet">("The Lord is far from the wicked but he hears the prayer of the righteous")</span></li>
+    <li><span class="ref-name">Jeremiah 29:4</span> <span class="snippet">("Thus says the Lord of hosts the God of Israel to all the exiles whom I have sent into exile…")</span></li>
+    <li><span class="ref-name">Romans 8:18–19</span> <span class="snippet">("For I consider that the sufferings of this present time are not worth comparing with the glory that is to be revealed to us…")</span></li>
+    <li><span class="ref-name">1 John 5:14–15</span> <span class="snippet">("And this is the confidence that we have toward him, that if we ask anything according to his will he hears us…")</span></li>
+  </ul>
+</section>
+
+<!-- ============ TRANSCRIPT (ANNOTATED THEMATIC OUTLINE) ============ -->
+<section class="transcript-section">
+  <h2>Annotated Transcript</h2>
+  <p style="font-size:0.9rem; color:var(--color-text-secondary); margin-bottom:1rem;">Tap a section to expand the full transcript.</p>
+
+  <!-- Section 1: Introduction and Context -->
+  <details>
+    <summary>Introduction and Context <span class="ts">00:00</span></summary>
+    <div class="content">
+      <p>It is good to be here, it is good to be back at TMU, it's been a while. For those of you who weren't here yet last time I was here, welcome because that would mean like you're freshman and you're not. Sorry, if you have your Bibles with you, open them to the book of Exodus, Exodus chapter 2.</p>
+      <p>While you open there, just want to tell you that I bring you greetings from the African Christian University in Lusaka, Zambia. My family and I have, we will have been in Zambia seven years come August. We went there to help start the African Christian University and I have the privilege of serving as the dean of the school of divinity there. It has been a very interesting and challenging and rewarding seven years, but we're grateful for what the Lord is doing there and has done there and continues to do there.</p>
+    </div>
+  </details>
+
+  <!-- Section 2: The Reality of Our Anxious Times -->
+  <details>
+    <summary>The Reality of Our Anxious Times <span class="ts">01:24</span></summary>
+    <div class="content">
+      <p>Exodus chapter 2. You know, these last couple of years have been interesting to say the least. These last couple of years have been filled with many trials, not just the normal trials of life, but also we've had these huge global trials. We went through a pandemic and you know, we were told that millions of people were going die. For the longest time, every time you watch the television, there's a ticker, right? How many cases, how many deaths, how many, just every day. That was our reality and a lot of people suffered a great deal of anxiety because of that.</p>
+      <p><strong>Anxiety is not just on the rise but through the roof.</strong> And you know, as much as you know, Covid was real and Covid was an issue, what a lot of people haven't been talking about is the anxiety related deaths because of how we responded to Covid. A lot of people haven't been talking about, for example, the rise in suicide in general, but especially the rise in suicide among very young people. Very young people who were just terrified and anxious and have taken their own lives, the rise in drug abuse and drug overdoses. People are anxious.</p>
+      <p>And now as we're coming out of the huge scare of this pandemic, there's another war. But not just another war, but this is a war that is involving our arch rival, the Russians. There's fear about whether Europe is going to be embroiled in another world war and whether or not that's going to include us and whether or not people will unleash nuclear weapons if that does happen. And so again, there is this fear and anxiety.</p>
+      <p>You may not know it, but in many ways, Ukraine is considered the Bible Belt of Europe. Many, many Christians there and now they're under attack, huddling underground, hoping to survive another barrage of bombing. And so there's that anxiety for them.</p>
+    </div>
+  </details>
+
+  <!-- Section 3: The Central Question -->
+  <details>
+    <summary>The Central Question <span class="ts">04:31</span></summary>
+    <div class="content">
+      <p>So the question that I want to answer today is <strong><em>what do we do with fear and anxiety?</em></strong> What do we do with fear and anxiety? Because what we, first of all, let me tell you what we don't do. <strong>What we don't do is live like those fake Christians who act like everything is always all right.</strong> If you can't say amen, you ought to say ouch, right? We do not want to live like that.</p>
+      <p>Having the worst day of your life, you get up, you have to wipe tears away from your eyes and you know, and fix your face, and you go outside and you run into somebody and they say "How you doing?" and you smile and say <strong>"Blessed and highly favored." Liar.</strong></p>
+      <p>But what do we do? How do we respond? Well, I think we have an answer to that in Exodus chapter 2.</p>
+    </div>
+  </details>
+
+  <!-- Section 4: The Text and Its Context -->
+  <details>
+    <summary>The Text and Its Context <span class="ts">05:48</span></summary>
+    <div class="content">
+      <p>Look beginning with me in verse 23. Moses is here, Moses is born, Moses is being, has been protected, Moses has grown up. We know Moses is the deliverer, but now Moses is going off the scene.</p>
+      <p>And in verse 23 we read:</p>
+      <blockquote><span class="scripture-inline">"During those many days the king of Egypt died and the people of Israel groaned because of their slavery and cried out for help. Their cry for rescue from slavery came up to God. And God heard their groaning and God remembered his covenant with Abraham, with Isaac and with Jacob. God saw the people of Israel and God knew."</span></blockquote>
+    </div>
+  </details>
+
+  <!-- Section 5: The Long View of Deliverance -->
+  <details>
+    <summary>The Long View of Deliverance <span class="ts">06:59</span></summary>
+    <div class="content">
+      <p>Now as we look at this, I want to remind you, <strong>we're a long way away from the Red Sea.</strong> Their deliverance doesn't come tomorrow. And even when we get to the Red Sea, we're a long way away from Canaan, amen? And even when we get to Canaan, we're a long way away from David and the Golden Age of the Davidic Kingdom, right? And even when we get to David, we're a long way away from the greater David, Jesus. And even when we get to Jesus, we're a long way away from the consummation of all things at the end of the age.</p>
+      <p>So keep that in mind because <strong>what I'm not talking about here is dealing with our fear and our anxiety by believing that tomorrow it's going to be gone.</strong> I'm talking about dealing with it in spite of the fact that tomorrow, unless you go be with the Lord, it won't be gone. It will still be here. <strong>After this crisis, there will be another one.</strong></p>
+    </div>
+  </details>
+
+  <!-- Section 6: The Four Key Words -->
+  <details>
+    <summary>The Four Key Words <span class="ts">08:37</span></summary>
+    <div class="content">
+      <p>So what do we do? Well, there are four words there in the second half of this text. And when you look at this passage, if you look at verse 23, verse 23 is a horizontal perspective. Verse 23 is what the people are seeing. They don't know what's going on beyond verse 23.</p>
+      <p><strong>Verse 23 is you and me in the midst of our crisis.</strong> Verse 23 is you and me when we're watching the ticker and we wake up every morning wanting to see how many cases, how many deaths, how many, right? What have they shut down now? What are they doing now? Who do I know that's sick? Who do I know that's, for right? That's verse 23.</p>
+      <p>Verse 23 is "Wait a minute, Russia really did invade. Wait a minute, they're talking about war in Europe. Wait a minute, we're part of NATO. Wait a minute, what does that mean?" So verse 23 is there in the horizontal.</p>
+      <p>Look at it again: <span class="scripture-inline">"During those many days the king of Egypt died and the people of Israel groan because of their slavery and cried out for help. Their cry for rescue from slavery came up to God."</span> But that's all they know. Is we're slaves, we're being oppressed, and we're crying out for God to save us. But they're not experiencing that salvation right now. <strong>It is incredibly important to keep that in mind.</strong></p>
+    </div>
+  </details>
+
+  <!-- Section 7: The Vertical Perspective -->
+  <details>
+    <summary>The Vertical Perspective <span class="ts">10:28</span></summary>
+    <div class="content">
+      <p>That's what's happening in the horizontal. However, there's something else happening in the vertical that they are not aware of. <strong>And it's always happening and we're not aware of what's happening.</strong> You know, God's providence is an amazing thing. And what's amazing about God's providence from our perspective is that <strong>we only see it in hindsight.</strong> Do you follow that?</p>
+      <p><strong>I can't see God's providence looking from here to tomorrow. I see God's providence looking from here to yesterday.</strong> Because right now I have no idea how God is working all things together for good. I don't know that. All I know is what I'm experiencing, what I'm walking through, what I'm dealing with, what I'm suffering.</p>
+    </div>
+  </details>
+
+  <!-- Section 8: First — God Hears Your Groaning -->
+  <details open>
+    <summary>First: God Hears Your Groaning <span class="ts">11:44</span></summary>
+    <div class="content">
+      <p>And then there are those words in verse 24: <strong>"God heard their groanings, God remembered his covenant with Abraham, Isaac and Jacob, God saw the people of Israel and God knew."</strong> And those four words are the key to us being able to endure in the midst of our fear and anxiety.</p>
+      <p><strong>First, God hears your groaning, amen.</strong> And that's good news. God hears your groaning. Having been in pastoral ministry for many decades now, the one thing that I've heard over and over again from people in the midst of their darkest days is <strong>"It seems like God's not listening."</strong> Ever been there? I can tell by some of your nods. It's like, "No, not been there, brother, am there," right? It seems like God's not listening.</p>
+      <p>Well, <strong>you need to be reminded that God hears your groaning.</strong> The natural tendency of suffering saints is to assume that God doesn't hear, and so we doubt his care for us. We fear the worst, and sometimes we take it a step further. We shake our fists at God and we blame God, and we may even turn away from following God because we're in the midst of whatever it is we're going through. We're crying out to God, we're not experiencing immediate relief, we assume that God is not hearing us. And if God is not going to hear me, why bother?</p>
+      <p><strong>Everyone in Israel who thought that was wrong.</strong> In spite of what they saw and in spite of what they felt, God heard their groanings, whether it felt like it or not, whether it seemed like it or not. The Bible makes this clear.</p>
+    </div>
+  </details>
+
+  <!-- Section 9: Biblical Proof That God Hears -->
+  <details>
+    <summary>Biblical Proof That God Hears <span class="ts">14:07</span></summary>
+    <div class="content">
+      <p>How do we know? You may be asking, "Okay, how do I know? I hear what you're saying, but how do I know?" Well, first of all, you know because <strong>God is the same yesterday, today, and forever, amen.</strong> But secondly, there's a couple of passages of Scripture.</p>
+      <p><em>Psalm 55:17:</em> <span class="scripture-inline">"Evening and morning and at noon I utter my complaint and moan and he hears my voice."</span></p>
+      <p><em>Proverbs 15:29:</em> <span class="scripture-inline">"The Lord is far from the wicked but he hears the prayer of the righteous,"</span> amen, hallelujah, praise the Lord.</p>
+      <p><strong>What are you going to believe, your fear and anxiety, or the word of God?</strong> Because the word of God says he hears.</p>
+      <p><em>1 John 5:14–15:</em> <span class="scripture-inline">"And this is the confidence that we have toward him, that if we ask anything according to his will, he hears us. And if we know that he hears us in whatever we ask, we know that we have the request that we have asked of him."</span></p>
+    </div>
+  </details>
+
+  <!-- Section 10: The Privilege of Being Heard -->
+  <details>
+    <summary>The Privilege of Being Heard <span class="ts">15:15</span></summary>
+    <div class="content">
+      <p><strong>God hears us, and it is a privilege indeed to be heard by God. It is a comfort to be heard by God.</strong> It may not seem like it in and of itself when your circumstances are not changing, but just holding on to that theological reality brings hope.</p>
+      <p><strong>Through prayer we commune with the most high God.</strong> We have intimate fellowship with God through prayer. And whatever we're suffering, we know that number one, it's temporary, and secondly, it is not worth comparing to what awaits us.</p>
+      <p>Paul says it this way in <em>Romans 8:</em> <span class="scripture-inline">"For I consider that the sufferings of this present time are not worth comparing with the glory that is to be revealed to us. For the creation waits with eager longing for the revealing of the sons of God."</span></p>
+    </div>
+  </details>
+
+  <!-- Section 11: Second — God Remembers His Covenant -->
+  <details>
+    <summary>Second: God Remembers His Covenant <span class="ts">16:35</span></summary>
+    <div class="content">
+      <p>Secondly, not only do we know that God hears, but <strong>we know that God remembers.</strong> And what he remembers is his covenant. Our text says he remembered his covenant with Abraham and Isaac and Jacob. This is important to hold on to.</p>
+      <p><strong>God didn't remember Israel because they were the good guys, amen.</strong> And oftentimes, that's the next thing that we go to in the midst of our anxiety and our fear. The first thing that we go to is, "Well, God is not hearing me, God's not listening to me." And then the second thing that we go to is, <strong>"God's not hearing me and he's not listening to me because I must have done something to anger him."</strong></p>
+      <p>"I must not have been good enough, right enough, perfect enough," because we know that's how God operates. He watches us and he sees like if we're being good enough, and if we're good enough and if we're right enough and we're perfect enough, then he says, "Yes, here, I'll give you this." No!</p>
+      <p><strong>Because here's the reality: there is none righteous, no, not one.</strong> You have never in your life, nor will you ever be good enough to earn good from God. <strong>If God ever gives you what you earn, you'll wake up in hell.</strong> All have sinned and fall short of the glory of God.</p>
+    </div>
+  </details>
+
+  <!-- Section 12: Liberation Theology Refuted -->
+  <details>
+    <summary>Liberation Theology Refuted <span class="ts">18:43</span></summary>
+    <div class="content">
+      <p>God doesn't deliver his people because his people deserve deliverance, because no people have ever deserved deliverance. And that's good news, because <strong>what he remembers is not my sin, but his covenant.</strong></p>
+      <p>God looks at Israel in the midst of their suffering and he remembers the covenant that he made with Abraham and with Isaac and with Jacob, in spite of the fact that there was not one person there who deserved to be delivered.</p>
+      <p>And this is an important point in the day and age in which we live, because there are those who are trying to argue from the standpoint of what's called Liberation theology. So Liberation theology would argue that, "No, no, no, God is on the side of the oppressed. God is always on the side of the oppressed, and he's always working to deliver the oppressed because the world is made up of oppressors and the oppressed, not sinners and the righteous, but oppressors and the oppressed. And if you want to find the side that God is on, you just look at the person who's oppressed or look at the group that's oppressed, and there's the answer to your question."</p>
+    </div>
+  </details>
+
+  <!-- Section 13: Jeremiah 29:4 — God's Sovereignty in Oppression -->
+  <details>
+    <summary>Jeremiah 29:4 — God's Sovereignty in Oppression <span class="ts">20:08</span></summary>
+    <div class="content">
+      <p>Turn in your Bibles with me to another passage of scripture, just, you know, quickly. Just let's look at Jeremiah, let's look at Jeremiah 29, right? And I know what you're thinking. I say Jeremiah 29, you're like, "Yeah, Jeremiah 29:11." Nope, not verse 11. Not verse 11. We love that though, don't we? "I know plans that I have for you, plans to prosper you, not to harm you, to give you hope in the future." No.</p>
+      <p>I don't want you to look at verse 11. I want you to look at verse 4: <span class="scripture-inline">"Thus says the Lord of hosts, the God of Israel, to all the exiles whom I have sent into exile from Jerusalem to Babylon."</span></p>
+      <p>How about that? <strong>God says, "The boot of the oppressor is on your neck, and I put it there."</strong> So much for this woke ideology, this Liberation ideology that says that God is always on the side of the oppressed. Nope. <strong>Sometimes God is using the oppressor to oppress the oppressed because of sin.</strong> There is no always, amen? Somebody amen? There is no always.</p>
+      <p>But when it comes to his covenant people, <strong>he remembers his covenant.</strong> And we need to be reminded of that in the midst of our worst days. We cry out to God and we remind ourselves that he hears us, and that even in our worst days, we're in communion with the holy God of the universe, the God who created the world and everything in it. And that he remembers his covenant. And that if we have come to him by faith and through faith in the Lord Jesus Christ, then we are part of his covenant people. And <strong>God remembers his covenant, he never forgets his covenant, he never forsakes his covenant.</strong></p>
+    </div>
+  </details>
+
+  <!-- Section 14: Third — God Sees His People -->
+  <details>
+    <summary>Third: God Sees His People <span class="ts">23:26</span></summary>
+    <div class="content">
+      <p>Thirdly, <strong>God sees his people.</strong> God sees his people. Remember in our text, he heard, he remembered, and then he saw. <strong>This one often bothers us,</strong> because it's almost as though when I'm going through my darkest day, I would kind of feel a little more comforted if I believed that maybe God didn't see what was going on.</p>
+      <p>It's strange from a theological perspective, it's awful, but we would almost rather believe that somehow God got distracted for a moment. You know, he was off doing, like a parent, you know, with the baby on the side of the bed and the baby's doing this and another kid is over here doing that, and you do this and the baby rolls off the side of the bed. Not saying that that ever happened to one of my children, but I'm saying we have nine of them, so it could have, right?</p>
+    </div>
+  </details>
+
+  <!-- Section 15: The Temptation to Believe God Wasn't Watching -->
+  <details>
+    <summary>The Temptation to Believe God Wasn't Watching <span class="ts">25:15</span></summary>
+    <div class="content">
+      <p>And so we would much rather believe that, you know, God's just distracted, because certainly if God was watching what was going on right now, he wouldn't have allowed it. Certainly a God who loves me, and this is the question of theodicy, right? If God is omnipotent, if he's all powerful, and if he's omniscient, he sees everything, then why and how could God allow evil?</p>
+      <p><strong>But the text says to Israel in the midst of their slavery, he hears, he remembers his covenant, and he sees.</strong></p>
+      <p><em>Psalm 121, verses 1–8:</em> <span class="scripture-inline">"I lift up my eyes to the hills, from where does my help come? My help comes from the Lord who made heaven and earth. He will not let your foot be moved. He who keeps you will not slumber. Behold, he who keeps Israel will neither slumber nor sleep. The Lord is your keeper, the Lord is your shade on your right hand. The sun shall not strike you by day, nor the moon by night. The Lord will keep you from all evil, he will keep your life. The Lord will keep your going out and your coming in from this time forth and forevermore."</span> <strong>He doesn't slumber, he doesn't sleep, he misses nothing.</strong></p>
+    </div>
+  </details>
+
+  <!-- Section 16: God Wasn't Surprised by COVID -->
+  <details>
+    <summary>God Wasn't Surprised by COVID <span class="ts">27:00</span></summary>
+    <div class="content">
+      <p>When Covid came, none of the angels had to run up to God and say, "Oh my, you might want to check this out." That's not how it happened. <strong>When Covid came, if anybody was calling anybody, God was calling the angels and he was going, "Watch this, 3, 2, 1, Covid."</strong></p>
+      <p>When you lost your loved one, <strong>God wasn't absent.</strong> When you got your heart broken, <strong>God didn't miss that.</strong> Your parents got divorced, that wasn't because God was being negligent. That class you failed, that time I'm speaking about people at other universities who have that experience.</p>
+    </div>
+  </details>
+
+  <!-- Section 17: Why This Should Be Comforting -->
+  <details>
+    <summary>Why This Should Be Comforting <span class="ts">28:24</span></summary>
+    <div class="content">
+      <p>But why is there comfort in this? Because remember, we're supposed to be talking about how we're comforted. And again, like I said, we don't think about that as comforting. We actually feel a lot more comforted by this idea that maybe, you know, he just missed this one. <strong>Don't do that. Don't do that.</strong></p>
+      <p><strong>Because the moment you start believing that this thing happened to you because God wasn't in control or because God wasn't present, the moment you start believing that, whatever that, that God missed it, you just said you can't trust God to be in control of a broken heart. You can't trust God to be in control of a marriage. You can't trust God to be in control of a pandemic.</strong></p>
+      <p><strong>If you can't trust God to be in control of a pandemic, how do you trust him to get you from here to heaven?</strong> He's either sovereign or he's not. And if he's not sovereign, your salvation is not secure. If he is sovereign, then that means at that worst moment, he wasn't absent.</p>
+    </div>
+  </details>
+
+  <!-- Section 18: Fourth — God Knows -->
+  <details>
+    <summary>Fourth: God Knows <span class="ts">30:02</span></summary>
+    <div class="content">
+      <p>Which brings us to the last one: <strong>God knows.</strong> By the way, this "know" here is not just about having information or access to information. The implication here is that <strong>he loves and pities.</strong> This is intimate knowledge.</p>
+      <p>What does God know? Well, number one, <strong>God knows which circumstances will maximize his glory, amen.</strong> God knows which circumstances will maximize his glory. And in case you're wondering, that's more important than your comfort.</p>
+      <p><strong>God knows what you really need far better than you ever will.</strong> And again, this is providence, so we only see it when we look back. And the longer we live, the more we look back and say, "I can't believe that I was asking God for that and was upset when I didn't get that, because I didn't know that that would have been a hindrance to this."</p>
+      <p><strong>God knows what you can bear.</strong> You don't. You think you do, until you bear what you thought you couldn't bear, and then you learn that you can bear more than you thought you could bear. But God didn't learn that, he showed you.</p>
+      <p><strong>And God also knows your deliverer is coming.</strong> He knows when and he knows how. That was what was happening in the realm that Israel couldn't see, and that's what's always happening with God's people in the realm that they can't see.</p>
+    </div>
+  </details>
+
+  <!-- Section 19: Personal Illustration — The Baby and the Needle -->
+  <details>
+    <summary>Personal Illustration: The Baby and the Needle <span class="ts">32:33</span></summary>
+    <div class="content">
+      <p>It's interesting when I think about this, I always think about a moment in my life that just like marked me and maybe even scarred me a little bit. My wife and I got married the summer between my sophomore and junior year in college. Our first child was born 10 months later, because we were what you call efficient.</p>
+      <p>And so, you know, junior year in college, here's my daughter, and I, you know, we go and we have Jasmine there at the hospital. And after everything is done and the next day, we're taking her home. And I just remember distinctly, I had this feeling, you know, we're packing our stuff up and I'm just looking around, you know, and we're packing her up and we're putting her in her little chair and we're, and I'm just looking around. And in my mind I'm going, <strong>"I can't believe they're about to let us leave with her."</strong> No instruction manual, no, you know.</p>
+      <p>And so we leave and we go home with this precious little girl, and we get to the house and I mean, it's just, you know, it was awesome in every sense of the word and fearful. And then we got a phone call.</p>
+      <p>Well, you know, when babies are born, when they do this little heel prick for blood typing and then they do the little, you know, footprint and all that sort of stuff, well, they had forgotten to do that. So 21-year-old Voddie has to put the baby in the car seat. Mama's not going back, mama's, you know, she's recovering. Take the baby back to the hospital, bring the baby into the hospital, give the baby to the doctor, and watch them stick my baby.</p>
+      <p>And the worst part about it, they stick her and it was that delayed cry. You know what I'm talking about, right? They stick her and she goes... and she looked at me. And with no words, she said, <strong>"Daddy, why?"</strong> And I lost it. I cried all the way back home. She only cried halfway. Right?</p>
+      <p>I get back to the house, my poor wife is like, "What went wrong?" You know, I was like, "And they stuck her and she looked at me and she just," you know, and I just...</p>
+    </div>
+  </details>
+
+  <!-- Section 20: The Application of the Illustration -->
+  <details>
+    <summary>The Application of the Illustration <span class="ts">36:07</span></summary>
+    <div class="content">
+      <p>I think about that in light of text like this. I think about that little baby going through something that she doesn't understand. All she understands is that hurt. And if she could have, if she could have asked, she could have said, "Why did you let that happen to me?" Probably would have even thought that it was indicative of me not loving her. <strong>And she would have been completely and utterly wrong.</strong></p>
+      <p>She couldn't understand, but <strong>I heard, I remembered, I saw, and I knew.</strong> Ever present, never absent.</p>
+      <p>And I want you to know that in the midst of whatever that fear and anxiety is, that <strong>we serve a God who hears and who remembers and who sees and who knows.</strong></p>
+    </div>
+  </details>
+
+  <!-- Section 21: The Cross as the Ultimate Proof -->
+  <details>
+    <summary>The Cross as the Ultimate Proof <span class="ts">38:07</span></summary>
+    <div class="content">
+      <p>And if you ever want a picture of both how this works and why this works, <strong>look to the cross.</strong> Because this God sends his only begotten son to the cross to redeem sinners, and Christ dies on the cross. He suffers on the cross, forsaken there on the cross. And God the Father heard and remembered his covenant and saw and knew, not only from the perspective of Jesus who is enduring the cross, but from the perspective of those of us for whom Christ is enduring the cross.</p>
+      <blockquote><strong><em>And in the cross, God says to us all, no matter what it is that you're enduring, "I hear, I remember, I see, and I know. And I am working out your redemption. And I am so committed to your redemption that I crushed and killed my only begotten son on the cross so that your redemption could be guaranteed."</em></strong></blockquote>
+    </div>
+  </details>
+
+  <!-- Section 22: The Final Assurance -->
+  <details>
+    <summary>The Final Assurance <span class="ts">39:32</span></summary>
+    <div class="content">
+      <p><strong>Whatever it is that you're afraid of, whatever it is that you're enduring, it ain't bigger than a dead Jesus.</strong> And if God can raise Christ from the dead because of and in order to demonstrate his commitment to the redemption of his people, then he can bring you through whatever it is that's causing you this fear and this anxiety.</p>
+      <p><strong>Because God always rescues his people—sometimes from, sometimes through, but always for his glory and for our good.</strong></p>
+    </div>
+  </details>
+
+  <!-- Section 23: Closing Prayer -->
+  <details>
+    <summary>Closing Prayer <span class="ts">40:28</span></summary>
+    <div class="content">
+      <p>Let's pray. Gracious God, our heavenly Father, we thank you for your goodness and kindness and mercy toward us. We thank you that even in the midst of our darkest days that we can be confident that you hear us when we cry out to you, that you remember your covenant and you're faithful to it, that you see and that you know, you love and pity your...</p>
+      <p><em>[Prayer continues]</em></p>
+    </div>
+  </details>
+
+</section>
+
+<!-- ============ SHARE ============ -->
+<section class="share-section">
+  <p>Share this study guide</p>
+  <div class="share-buttons">
+    <a href="sms:?body=Check%20out%20this%20study%20guide%20on%20Fear%20and%20Anxiety%20by%20Voddie%20Baucham%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DpsraGYL30Fw" class="share-text">📱 Text</a>
+    <a href="#" class="share-copy" onclick="navigator.clipboard.writeText(window.location.href).then(()=>this.textContent='✓ Copied!');return false;">📋 Copy Link</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Study guide for group discussion. Content based on Voddie Baucham's sermon on Exodus 2:23–25.
+</footer>
+
+</body>
+</html>

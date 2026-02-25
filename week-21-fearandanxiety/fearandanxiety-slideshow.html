@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Slideshow – A Powerful Prophecy about Fear and Anxiety</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --slide-w: 2130px;
+  --slide-h: 1080px;
+  --font-scale: 2.0;
+  --margin-px: clamp(20px, 3vw, 72px);
+  --bg-1: linear-gradient(135deg, #1a2332 0%, #2d3e50 50%, #3a5168 100%);
+  --bg-2: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
+  --bg-3: linear-gradient(135deg, #132a13 0%, #31572c 50%, #4f772d 100%);
+  --bg-4: linear-gradient(135deg, #7f2c2c 0%, #a63d3d 50%, #d45050 100%);
+  --bg-5: linear-gradient(135deg, #0a1628 0%, #1a365d 50%, #2c5282 100%);
+  --bg-6: linear-gradient(135deg, #1a4731 0%, #22543d 50%, #276749 100%);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Lora', Georgia, serif;
+}
+
+/* ——— Slide Container ——— */
+.slide-container {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  padding: var(--margin-px);
+  padding-bottom: calc(var(--margin-px) + 60px);
+}
+
+.slide.active {
+  display: flex;
+  animation: fadeInUp 0.35s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.active { animation: none; }
+}
+
+/* ——— Background Classes ——— */
+.bg-1 { background: var(--bg-1); }
+.bg-2 { background: var(--bg-2); }
+.bg-3 { background: var(--bg-3); }
+.bg-4 { background: var(--bg-4); }
+.bg-5 { background: var(--bg-5); }
+.bg-6 { background: var(--bg-6); }
+
+/* ——— Typography ——— */
+.phrase-big {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, calc(2.4rem * var(--font-scale) * 0.5), 62px);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.phrase-large {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, calc(1.8rem * var(--font-scale) * 0.5), 48px);
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.phrase-medium {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(16px, calc(1.4rem * var(--font-scale) * 0.5), 38px);
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+.question {
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, calc(1.6rem * var(--font-scale) * 0.5), 44px);
+  line-height: 1.4;
+  text-wrap: balance;
+  max-width: 85%;
+}
+
+/* ——— Pause Banner ——— */
+.pause-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  background: rgba(0, 0, 0, 0.65);
+  color: #FFD866;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(14px, calc(1rem * var(--font-scale) * 0.5), 28px);
+  padding: 12px 24px;
+  text-align: center;
+  border-radius: 0 0 12px 12px;
+  letter-spacing: 0.04em;
+  z-index: 2;
+}
+
+/* ——— Next Instruction ——— */
+.instruction {
+  position: absolute;
+  bottom: 70px;
+  left: 0; right: 0;
+  text-align: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(12px, calc(0.85rem * var(--font-scale) * 0.5), 22px);
+  color: rgba(255, 255, 255, 0.8);
+  z-index: 2;
+}
+
+/* ——— Slide-Specific ——— */
+.title-slide .speaker {
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(14px, calc(1.2rem * var(--font-scale) * 0.5), 32px);
+  opacity: 0.85;
+  margin-top: 0.75em;
+}
+
+.title-slide .subtitle {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: clamp(12px, calc(0.9rem * var(--font-scale) * 0.5), 24px);
+  opacity: 0.65;
+  margin-top: 0.5em;
+}
+
+.highlight-slide .highlight-text {
+  font-family: 'Merriweather', Georgia, serif;
+  font-style: italic;
+  max-width: 85%;
+}
+
+.highlight-slide .label {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(11px, calc(0.7rem * var(--font-scale) * 0.5), 20px);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+  margin-bottom: 1em;
+}
+
+.points-slide .point-number {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(36px, calc(4rem * var(--font-scale) * 0.5), 100px);
+  opacity: 0.3;
+  margin-bottom: 0.2em;
+}
+
+.points-slide .point-text {
+  max-width: 80%;
+}
+
+.overview-slide .section-label {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(11px, calc(0.7rem * var(--font-scale) * 0.5), 20px);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+  margin-bottom: 1em;
+}
+
+/* ——— Navigation ——— */
+.nav-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.nav-bar button {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  min-width: 50px;
+  min-height: 50px;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-bar button:hover { background: rgba(255, 255, 255, 0.25); }
+.nav-bar button:focus-visible { outline: 2px solid #FFD866; outline-offset: 2px; }
+
+.nav-bar .counter {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  min-width: 60px;
+  text-align: center;
+}
+
+.nav-bar .scale-controls {
+  display: flex;
+  gap: 6px;
+  margin-left: 12px;
+}
+
+.nav-bar .scale-controls button {
+  padding: 8px 14px;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 18px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .phrase-big { font-size: clamp(20px, 6vw, 36px); }
+  .phrase-large { font-size: clamp(17px, 5vw, 30px); }
+  .phrase-medium { font-size: clamp(15px, 4vw, 24px); }
+  .question { font-size: clamp(16px, 4.5vw, 28px); max-width: 92%; }
+  .pause-header { font-size: clamp(12px, 3.5vw, 20px); padding: 10px 16px; }
+  .instruction { font-size: clamp(11px, 3vw, 16px); bottom: 65px; }
+  .points-slide .point-number { font-size: clamp(32px, 12vw, 72px); }
+}
+</style>
+</head>
+<body>
+
+<div class="slide-container" id="slides">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide title-slide bg-1 active" role="group" aria-label="Slide 1: Title">
+    <div class="phrase-big">A Powerful Prophecy about Fear and Anxiety</div>
+    <div class="speaker">Voddie Baucham</div>
+    <div class="subtitle">Exodus 2:23–25</div>
+  </div>
+
+  <!-- SLIDE 2: Segment Question 1 -->
+  <div class="slide segment-slide bg-5" role="group" aria-label="Slide 2: Pause at 15:14">
+    <div class="pause-header">⏸ PAUSE VIDEO AT 15:14</div>
+    <div class="question">Have you ever felt pressure to hide your real struggles and act like everything is fine when it really isn't?</div>
+    <div class="instruction">⏸ Next pause at 23:26</div>
+  </div>
+
+  <!-- SLIDE 3: Segment Question 2 -->
+  <div class="slide segment-slide bg-5" role="group" aria-label="Slide 3: Pause at 23:26">
+    <div class="pause-header">⏸ PAUSE VIDEO AT 23:26</div>
+    <div class="question">What stands out to you most about the idea that God doesn't deliver people because they deserve it, but because of His covenant promises?</div>
+    <div class="instruction">⏸ Next pause at 32:33</div>
+  </div>
+
+  <!-- SLIDE 4: Segment Question 3 -->
+  <div class="slide segment-slide bg-5" role="group" aria-label="Slide 4: Pause at 32:33">
+    <div class="pause-header">⏸ PAUSE VIDEO AT 32:33</div>
+    <div class="question">Have you ever felt like God wasn't watching when something bad happened to you?</div>
+    <div class="instruction">▶ Proceed to end of video</div>
+  </div>
+
+  <!-- SLIDE 5: Overview Question 1 -->
+  <div class="slide overview-slide bg-6" role="group" aria-label="Slide 5: Discussion Question 1">
+    <div class="section-label">Discussion Questions</div>
+    <div class="question">What would you say to someone who thinks their worry and fear are just normal human responses rather than something that reveals how much we trust God?</div>
+  </div>
+
+  <!-- SLIDE 6: Overview Question 2 -->
+  <div class="slide overview-slide bg-6" role="group" aria-label="Slide 6: Discussion Question 2">
+    <div class="section-label">Discussion Questions</div>
+    <div class="question">What would be hard about trusting that God is working everything together for His glory even when you can't see how?</div>
+  </div>
+
+  <!-- SLIDE 7: Overview Question 3 -->
+  <div class="slide overview-slide bg-6" role="group" aria-label="Slide 7: Discussion Question 3">
+    <div class="section-label">Discussion Questions</div>
+    <div class="question">How does the idea that God is either sovereign over everything or nothing at all change the way you think about the hard things in your life?</div>
+  </div>
+
+  <!-- SLIDE 8: Overview Question 4 -->
+  <div class="slide overview-slide bg-6" role="group" aria-label="Slide 8: Discussion Question 4">
+    <div class="section-label">Discussion Questions</div>
+    <div class="question">What's one small step you could take this week to start believing God hears you when you pray instead of assuming He's not listening?</div>
+  </div>
+
+  <!-- SLIDE 9: Highlight -->
+  <div class="slide highlight-slide bg-4" role="group" aria-label="Slide 9: Key Truth">
+    <div class="label">Key Truth</div>
+    <div class="highlight-text phrase-large">In the midst of our deepest fears and anxieties, we can find comfort knowing that God hears our groaning, remembers His covenant, sees our suffering, and knows exactly what we need—even when we can't see His work in our lives.</div>
+  </div>
+
+  <!-- SLIDE 10: Main Point 1 -->
+  <div class="slide points-slide bg-2" role="group" aria-label="Slide 10: Main Point 1">
+    <div class="point-number">1</div>
+    <div class="point-text phrase-large">We shouldn't live like fake Christians who pretend everything is always fine when we're actually suffering.</div>
+  </div>
+
+  <!-- SLIDE 11: Main Point 2 -->
+  <div class="slide points-slide bg-3" role="group" aria-label="Slide 11: Main Point 2">
+    <div class="point-number">2</div>
+    <div class="point-text phrase-large">Fear and anxiety are real struggles that won't just disappear tomorrow—we need to learn how to deal with them while they're still present.</div>
+  </div>
+
+  <!-- SLIDE 12: Main Point 3 -->
+  <div class="slide points-slide bg-2" role="group" aria-label="Slide 12: Main Point 3">
+    <div class="point-number">3</div>
+    <div class="point-text phrase-large">God hears our groaning even when it feels like He's not listening to our prayers.</div>
+  </div>
+
+  <!-- SLIDE 13: Main Point 4 -->
+  <div class="slide points-slide bg-3" role="group" aria-label="Slide 13: Main Point 4">
+    <div class="point-number">4</div>
+    <div class="point-text phrase-large">God remembers His covenant with us, not because we deserve it, but because of His faithfulness.</div>
+  </div>
+
+  <!-- SLIDE 14: Main Point 5 -->
+  <div class="slide points-slide bg-2" role="group" aria-label="Slide 14: Main Point 5">
+    <div class="point-number">5</div>
+    <div class="point-text phrase-large">God sees everything that happens to us—He's never absent or distracted during our worst moments.</div>
+  </div>
+
+  <!-- SLIDE 15: Main Point 6 -->
+  <div class="slide points-slide bg-3" role="group" aria-label="Slide 15: Main Point 6">
+    <div class="point-number">6</div>
+    <div class="point-text phrase-large">God knows intimately what we're going through and what we truly need, even better than we do.</div>
+  </div>
+
+  <!-- SLIDE 16: Main Point 7 -->
+  <div class="slide points-slide bg-2" role="group" aria-label="Slide 16: Main Point 7">
+    <div class="point-number">7</div>
+    <div class="point-text phrase-large">God's sovereignty means He's either in control of everything or nothing—we can't trust Him for salvation if we can't trust Him in suffering.</div>
+  </div>
+
+  <!-- SLIDE 17: Main Point 8 -->
+  <div class="slide points-slide bg-3" role="group" aria-label="Slide 17: Main Point 8">
+    <div class="point-number">8</div>
+    <div class="point-text phrase-large">The cross proves God's commitment to us—if He gave His Son for our redemption, He'll bring us through whatever we're facing.</div>
+  </div>
+
+</div>
+
+<!-- ——— Navigation ——— -->
+<nav class="nav-bar" aria-label="Slide navigation">
+  <button id="prevBtn" aria-label="Previous slide" onclick="navigate(-1)">◀</button>
+  <span class="counter" id="counter" aria-live="polite">1 / 17</span>
+  <button id="nextBtn" aria-label="Next slide" onclick="navigate(1)">▶</button>
+  <div class="scale-controls">
+    <button aria-label="Zoom out" onclick="scaleText(-1)">A−</button>
+    <button aria-label="Zoom in" onclick="scaleText(1)">A+</button>
+  </div>
+</nav>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const total = slides.length;
+  let current = 0;
+  let scale = 1;
+
+  function show(idx) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, idx));
+    slides[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+
+  window.navigate = function(dir) { show(current + dir); };
+
+  window.scaleText = function(dir) {
+    scale = Math.max(0.6, Math.min(1.6, scale + dir * 0.1));
+    document.documentElement.style.setProperty('--font-scale', scale * 2);
+  };
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); navigate(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); navigate(-1); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  let touchStartY = 0;
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function(e) {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    const dy = e.changedTouches[0].screenY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      navigate(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
