@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gospel: 16 Stops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Lora:ital,wght@0,400;0,600;1,400&family=Merriweather:ital,wght@0,300;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --slide-w: 2130px;
+      --slide-h: 1080px;
+      --font-scale: 2.0;
+      --margin-px: clamp(20px, 3vw, 72px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%; width: 100%; overflow: hidden;
+      background: #0a0a0a; font-family: 'Lora', Georgia, serif; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Canvas — aspect-ratio drives landscape layout */
+    .canvas {
+      width: 100vw;
+      max-width: var(--slide-w);
+      aspect-ratio: 2130 / 1080;
+      height: auto;
+      position: relative;
+    }
+
+    /* Slides */
+    .slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: clamp(10px,3vh,80px) clamp(10px,4vw,120px) clamp(30px,5vh,120px);
+      text-align: center; opacity: 0; pointer-events: none;
+      transition: opacity .35s ease; overflow: hidden;
+    }
+    .slide.active { opacity: 1; pointer-events: auto; }
+
+    /* Gradient backgrounds */
+    .bg-1 { background: linear-gradient(135deg, #0d1b2a 0%, #1b3a4b 60%, #0f2a1e 100%); }
+    .bg-2 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+    .bg-3 { background: linear-gradient(135deg, #0d2137 0%, #1a4a3a 60%, #0b3020 100%); }
+    .bg-4 { background: linear-gradient(135deg, #7b1515 0%, #b54a00 60%, #d4830a 100%); }
+    .bg-5 { background: linear-gradient(135deg, #050c18 0%, #081628 50%, #0c2040 100%); }
+    .bg-6 { background: linear-gradient(135deg, #5c2a00 0%, #8b4f00 50%, #b07800 100%); }
+
+    /* Core phrase classes — all clamp()-based */
+    .phrase-big {
+      font-family: 'Poppins', sans-serif; font-weight: 800;
+      font-size: clamp(28px, calc(var(--font-scale) * 8vw), 96px);
+      color: #fff; line-height: 1.1; letter-spacing: -.5px; margin-bottom: 24px;
+    }
+    .phrase-large {
+      font-family: 'Poppins', sans-serif; font-weight: 700;
+      font-size: clamp(20px, calc(var(--font-scale) * 5.2vw), 64px);
+      color: #fff; line-height: 1.2; margin-bottom: 20px;
+    }
+    .phrase-medium {
+      font-family: 'Lora', serif;
+      font-size: clamp(15px, calc(var(--font-scale) * 3.6vw), 44px);
+      color: rgba(255,255,255,.88); line-height: 1.55; max-width: 80%; margin: 0 auto;
+    }
+    .phrase-small {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(12px, calc(var(--font-scale) * 2vw), 28px);
+      color: rgba(255,255,255,.5);
+    }
+    .body-text {
+      font-family: 'Lora', serif;
+      font-size: clamp(13px, calc(var(--font-scale) * 3.2vw), 38px);
+      color: rgba(255,255,255,.88); line-height: 1.6; max-width: 80%; margin: 0 auto;
+    }
+    .body-text.mt { margin-top: 24px; }
+    .sub-note {
+      font-size: clamp(11px, calc(var(--font-scale) * 2.2vw), 28px);
+      color: rgba(255,255,255,.55); font-style: italic; margin-bottom: 12px !important;
+    }
+    .dim { color: rgba(255,255,255,.45) !important; }
+    em { font-style: italic; color: rgba(255,255,255,.95); }
+
+    /* Stop banner */
+    .stop-banner {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(11px, calc(var(--font-scale) * 1.8vw), 26px);
+      font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,.45); margin-bottom: 16px;
+    }
+
+    /* Title slide */
+    .title-slide .title-block { text-align: center; }
+    .series-label {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(12px, calc(var(--font-scale) * 2vw), 28px);
+      letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 20px;
+    }
+    .title-main { font-size: clamp(36px, calc(var(--font-scale) * 10vw), 120px); margin-bottom: 16px; }
+    .title-sub {
+      font-family: 'Lora', serif;
+      font-size: clamp(14px, calc(var(--font-scale) * 3vw), 40px);
+      color: rgba(255,255,255,.65); font-style: italic;
+    }
+
+    /* Stop lists */
+    .two-col { display: flex; justify-content: center; margin: 20px 0; }
+    .stop-list {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(13px, calc(var(--font-scale) * 3vw), 36px);
+      color: rgba(255,255,255,.88); line-height: 1.8; text-align: left;
+      list-style-position: inside; padding-left: 20px;
+    }
+    .stop-list li { padding: 4px 0; }
+
+    /* Wrapper: keep centering but constrain width so columns don't get too wide */
+    .two-col {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    /* Two-column, responsive, balanced flow */
+    .stop-list {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(13px, calc(var(--font-scale) * 3vw), 36px);
+      color: rgba(255,255,255,.88);
+      line-height: 1.8;
+      text-align: left;
+
+      /* MULTI-COLUMN */
+      -webkit-column-count: 2;
+      -moz-column-count: 2;
+      column-count: 2;
+
+      -webkit-column-gap: 2.5rem;
+      -moz-column-gap: 2.5rem;
+      column-gap: 2.5rem;
+
+      -webkit-column-fill: balance;
+      column-fill: balance;
+
+      /* spacing / list visuals */
+      list-style-position: inside;
+      margin: 0;
+      padding: 0 1rem;
+    }
+
+    /* keep list items together and add vertical padding */
+    .stop-list li {
+      break-inside: avoid;     /* avoid splitting an li between columns */
+      -webkit-column-break-inside: avoid;
+      padding: 4px 0;
+    }
+
+    /* Small screens: single column so it remains readable */
+    @media (max-width: 720px) {
+      .stop-list {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+        padding: 0 0.5rem;
+      }
+    } 
+    
+    /* Scripture block */
+    .scripture-block {
+      border-left: 6px solid #4a9eca; padding: clamp(12px,2vw,32px) clamp(16px,3vw,48px);
+      background: rgba(255,255,255,.06); border-radius: 0 12px 12px 0;
+      max-width: 85%; text-align: left;
+    }
+    .scripture-text {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(13px, calc(var(--font-scale) * 3vw), 40px);
+      color: #fff; line-height: 1.65; font-style: italic; margin-bottom: 16px;
+    }
+    .scripture-ref {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(11px, calc(var(--font-scale) * 1.8vw), 26px);
+      color: rgba(255,255,255,.45); letter-spacing: 1px; display: block; text-align: right;
+    }
+
+    /* Discussion box */
+    .discussion-box {
+      background: rgba(0,0,0,.25); border: 2px solid rgba(255,255,255,.15);
+      border-radius: 20px; padding: clamp(16px,3vw,48px) clamp(20px,4vw,60px);
+      max-width: 85%; text-align: center;
+    }
+    .disc-icon { font-size: clamp(24px, calc(var(--font-scale) * 4vw), 56px); margin-bottom: 16px; }
+    .discussion-box .phrase-large { margin-bottom: 8px; }
+    .disc-stop {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(11px, calc(var(--font-scale) * 1.8vw), 26px);
+      font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.45); margin-bottom: 16px;
+    }
+    .disc-q {
+      font-family: 'Lora', serif;
+      font-size: clamp(13px, calc(var(--font-scale) * 2.8vw), 36px);
+      color: rgba(255,255,255,.88); line-height: 1.6; font-style: italic;
+    }
+
+    /* Illustration */
+    .illus-header {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(10px, calc(var(--font-scale) * 1.6vw), 24px);
+      font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(255,220,100,.6); margin-bottom: 16px;
+    }
+
+    /* Pivot slide */
+    .pivot-slide { background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%) !important; }
+    .pivot-block { text-align: center; }
+    .pivot-pre {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(12px, calc(var(--font-scale) * 2vw), 30px);
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,.35); margin-bottom: 24px;
+    }
+    .pivot-main {
+      font-size: clamp(32px, calc(var(--font-scale) * 9vw), 112px);
+      line-height: 1.1; color: #fff; margin-bottom: 28px;
+    }
+    .pivot-post {
+      font-family: 'Lora', serif;
+      font-size: clamp(16px, calc(var(--font-scale) * 3.6vw), 48px);
+      color: rgba(255,255,255,.6); font-style: italic;
+    }
+
+    /* Paragraph slides */
+    .para-slide { justify-content: flex-start !important; padding-top: clamp(20px,3vh,60px) !important; }
+    .para-label {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(10px, calc(var(--font-scale) * 1.6vw), 26px);
+      font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(245,200,66,.8); margin-bottom: 12px; text-align: center;
+    }
+    .para-note {
+      font-family: 'Lora', serif;
+      font-size: clamp(11px, calc(var(--font-scale) * 2vw), 28px);
+      font-style: italic; color: rgba(255,255,255,.5); margin-bottom: 16px; text-align: center;
+    }
+    .para-box {
+      background: rgba(0,0,0,.3); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px; padding: clamp(16px,2vw,40px) clamp(20px,3vw,56px);
+      max-width: 95%; text-align: left;
+    }
+    .para-text {
+      font-family: 'Lora', serif;
+      font-size: clamp(11px, calc(var(--font-scale) * 2.5vw), 32px);
+      color: rgba(255,255,255,.85); line-height: 1.8;
+    }
+    .para-preview .para-text { color: rgba(255,255,255,.4); }
+    .para-checkpoint .para-box { border-color: rgba(245,200,66,.2); background: rgba(0,0,0,.35); }
+    .para-full .para-box, .para-reveal .para-box, .para-final .para-box {
+      border-color: rgba(245,200,66,.3); background: rgba(0,0,0,.4);
+    }
+    .para-quiz .para-box { border-color: rgba(255,255,255,.12); }
+
+    /* Keywords and blanks */
+    .kw { color: #f5c842; font-weight: 700; font-style: normal; }
+    .blank {
+      display: inline-block; min-width: 5.5em;
+      background: rgba(245,200,66,.1); border-radius: 6px;
+      border-bottom: 2px solid rgba(245,200,66,.5);
+      color: transparent; padding: 0 .3em; font-style: normal; vertical-align: bottom;
+    }
+
+    /* Nav bar */
+    .nav-bar {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.08); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.12); border-radius: 999px;
+      padding: 10px 20px; z-index: 100;
+    }
+    .nav-btn {
+      width: 50px; height: 50px; border-radius: 50%; border: none;
+      background: rgba(255,255,255,.12); color: #fff; font-size: 20px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .2s; min-width: 50px;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,.25); }
+    .counter {
+      font-family: 'Inter', sans-serif; font-size: 15px;
+      color: rgba(255,255,255,.6); min-width: 70px; text-align: center;
+    }
+    .scale-wrap {
+      display: flex; align-items: center; gap: 8px;
+      margin-left: 8px; padding-left: 12px;
+      border-left: 1px solid rgba(255,255,255,.15);
+    }
+    .scale-btn {
+      width: 36px; height: 36px; border-radius: 50%; border: none;
+      background: rgba(255,255,255,.1); color: #fff; font-size: 18px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .scale-btn:hover { background: rgba(255,255,255,.2); }
+    #scale-slider { width: 80px; accent-color: #f5c842; cursor: pointer; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .slide.active .slide-anim { animation: fadeUp .4s ease forwards; }
+    @media (prefers-reduced-motion: reduce) { .slide.active .slide-anim { animation: none; } }
+</style>
+</head>
+<body>
+
+<div class="canvas" id="canvas">
+<section class="slide bg-1 title-slide"><div class="title-block"><p class="series-label">Small Group</p><h1 class="phrase-big title-main">The Gospel: 16 Stops</h1><p class="title-sub">A recap &mdash; and a different approach</p></div></section>
+<section class="slide bg-1 para-slide para-preview"><p class="para-label">The Gospel in One Paragraph</p><p class="para-note">This is where we’re going tonight. By the end, this paragraph will be yours.</p><div class="para-box"><p class="para-text">God made us good, but Adam broke the rule and two deaths followed—his body and his relationship with God. God is a fair judge who can’t ignore sin, and we’re all guilty kids who keep sinning ourselves. We’re stuck in an unfixable relationship with an unpayable debt, and we’re completely hopeless on our own. But God—rich in mercy—had a rescue plan before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the perfect payment. God raised Him from the dead—resurrection—proving the payment was accepted. Now He calls us to repent &amp; believe into Jesus—and everyone who does receives eternal life.</p></div></section>
+<section class="slide bg-2"><h1 class="phrase-large">The 9 Problems</h1><div class="two-col"><ol class="stop-list"><li>God Made&hellip;</li><li>Broken Rule</li><li>Two Deaths</li><li>Fair Judge</li><li>Guilty Kids</li><li>Keep Sinning</li><li>Unfixable Relationship</li><li>Unpayable Debt</li><li>Hopeless</li></ol></div><p class="phrase-small dim">Stops 1&ndash;9 &bull; The Problem</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">The 7 Answers</h1><div class="two-col"><ol class="stop-list" start="10"><li>But God&hellip;</li><li>Rescue Plan</li><li>Jesus Life/Death</li><li>Perfect Payment</li><li>Resurrection</li><li>Repent &amp; Believe Into</li><li>Eternal Life</li></ol></div><p class="phrase-small dim">Stops 10&ndash;16 &bull; The Solution</p></section>
+<section class="slide bg-1"><div class="stop-banner">Stop 1</div><h1 class="phrase-big">God Made&hellip;</h1><p class="phrase-medium">&ldquo;God made&hellip;&rdquo; &mdash; the world, Adam, everything. Before light, before time, there was God. He chose to create &mdash; and everything He made was very good.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“In the beginning, God created the heavens and the earth.”</p><span class="scripture-ref">Genesis 1:1</span></div></section>
+<section class="slide bg-2"><h1 class="phrase-large">He Made Adam &mdash; Differently</h1><p class="body-text">God didn’t create Adam the way He made trees or animals. He breathed life directly into him. Adam was made to know God, walk with God, and talk with God face to face.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“And the Lord God commanded the man, “You may surely eat of every tree of the garden, but of the tree of the knowledge of good and evil you shall not eat, for in the day that you eat of it you shall surely die.””</p><span class="scripture-ref">Genesis 2:16&ndash;17</span></div></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 1 &mdash; God Made&hellip;</p><p class="disc-q">Complete this out loud: “God made…” Tell the group what He made, why it mattered, and what life looked like before sin. 3&ndash;4 sentences.</p></div></section>
+<section class="slide bg-2"><div class="stop-banner">Stop 2</div><h1 class="phrase-big">Broken Rule</h1><p class="phrase-medium">They knew the rule. They knew the consequence. They broke it anyway. The rule wasn’t to make them miserable &mdash; it was to give them a real choice to trust Him. And they chose not to.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">&ldquo;Did God Really Say&hellip;?&rdquo;</h1><p class="body-text">The enemy’s first move was to create doubt about God’s word. <em>Maybe the rule isn’t as serious as He said. Maybe God is holding out on you.</em> Every temptation since has started the same way.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“So when the woman saw that the tree was good for food, and that it was a delight to the eyes, and that the tree was to be desired to make one wise, she took of its fruit and ate, and she also gave some to her husband who was with her, and he ate.”</p><span class="scripture-ref">Genesis 3:6</span></div></section>
+<section class="slide bg-1"><h1 class="phrase-large">Why This Wasn’t a Small Mistake</h1><p class="body-text">They didn’t just break a rule &mdash; they rejected God’s authority. They decided they knew better than God. Every sin since then is the same act: choosing our will over His.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 2 &mdash; Broken Rule</p><p class="disc-q">What was the rule? What did God say would happen? Why does it matter that they knew the consequence and broke it anyway?</p></div></section>
+<section class="slide bg-2"><div class="stop-banner">Stop 3</div><h1 class="phrase-big">Two Deaths</h1><p class="phrase-medium">&ldquo;You shall surely die&rdquo; meant two things: Adam’s body would eventually die, and his close relationship with God was broken that very day.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">Death #1 &mdash; The Body</h1><p class="body-text">Before the fall, death wasn’t in the design. After the broken rule, decay entered. Bodies now age, break down, and die. We see this every day. This is not how it was supposed to be.</p></section>
+<section class="slide bg-1"><h1 class="phrase-large">Death #2 &mdash; The Relationship</h1><p class="body-text">Something changed immediately &mdash; before the body ever died. They hid from God. The open, face-to-face relationship they had with Him was broken. That hiding <em>is</em> spiritual death.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“And they heard the sound of the Lord God walking in the garden in the cool of the day, and the man and his wife hid themselves from the presence of the Lord God among the trees of the garden.”</p><span class="scripture-ref">Genesis 3:8</span></div></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“And you were dead in the trespasses and sins in which you once walked…”</p><span class="scripture-ref">Ephesians 2:1</span></div><p class="body-text mt">Paul doesn’t say “sick.” He doesn’t say “wounded.” Dead. Without rescue, spiritual separation from God isn’t just damaged — it’s fatal.</p></section>
+<section class="slide bg-4"><div class="illus-header">Illustration</div><h1 class="phrase-large">Unplugged</h1><p class="body-text">A lamp unplugged from the wall still looks like a lamp — shade, bulb, cord. But it has no power. Spiritual death is being cut off from the source of life, while looking completely fine from the outside.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 3 &mdash; Two Deaths</p><p class="disc-q">Which death happened immediately? Which one comes later? Why are both part of what God warned about when He said “you shall surely die”?</p></div></section>
+<section class="slide bg-3"><div class="stop-banner">Stop 4</div><h1 class="phrase-big">Fair Judge</h1><p class="phrase-medium">God must judge fairly &mdash; He cannot overlook sin. A God who ignores evil isn’t good. He’s corrupt. A fair judge cannot pretend the crime didn’t happen.</p></section>
+<section class="slide bg-4"><div class="illus-header">Illustration</div><h1 class="phrase-large">The Wrong Kind of Judge</h1><p class="body-text">Imagine a judge who lets the man who murdered your family member walk free &mdash; because he also coached Little League and donated to charity. We’d call that judge wicked. Fairness requires that sin be dealt with. God is not that judge.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“And just as it is appointed for man to die once, and after that comes judgment…”</p><span class="scripture-ref">Hebrews 9:27</span></div><p class="body-text mt">This isn’t a maybe. Every person who has ever lived will stand before a perfectly fair judge. No technicalities. No charm. No good deeds on the other side of the scale.</p></section>
+<section class="slide bg-2"><h1 class="phrase-large">The Problem for Us</h1><p class="body-text">A fair judge is exactly what we want when someone wrongs us. It’s exactly what we <em>don’t</em> want when we’re the ones who broke the rule. And we all broke the rule.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 4 &mdash; Fair Judge</p><p class="disc-q">Why is it actually good that God is a fair judge? And why does that same fact create a serious problem for us?</p></div></section>
+<section class="slide bg-1"><div class="stop-banner">Stop 5</div><h1 class="phrase-big">Guilty Kids</h1><p class="phrase-medium">We don’t just become guilty when we sin personally. We are born guilty &mdash; carrying the weight of Adam’s broken rule. Adam was the representative of the whole human race.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">Adam Was Our Representative</h1><p class="body-text">When a president signs a treaty, the whole country is bound by it. Adam sinned as the head of humanity. Every person born after him enters the world already carrying a broken relationship with God.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“For as by the one man’s disobedience the many were made sinners, so by the one man’s obedience the many will be made righteous.”</p><span class="scripture-ref">Romans 5:19</span></div></section>
+<section class="slide bg-4"><div class="illus-header">Illustration</div><h1 class="phrase-large">The Inheritance</h1><p class="body-text">If your grandfather declared bankruptcy, you might inherit his debts through no action of your own. We inherited Adam’s broken standing before God. The debt came with the birth.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 5 &mdash; Guilty Kids</p><p class="disc-q">Explain why we are born guilty before we’ve personally done anything wrong. What does it mean that Adam was our representative?</p></div></section>
+<section class="slide bg-2"><div class="stop-banner">Stop 6</div><h1 class="phrase-big">Keep Sinning</h1><p class="phrase-medium">It isn’t just Adam’s guilt we carry &mdash; it’s our own personal record of every sin we’ve added since. We have fully and willingly joined the rebellion.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">We Come Into the World Already Bent</h1><p class="body-text">Nobody has to teach a child to be selfish, to lie, or to demand their own way. Those things come naturally. We are born with a nature already turned away from God &mdash; and then we act on it.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“…for all have sinned and fall short of the glory of God.”</p><span class="scripture-ref">Romans 3:23</span></div><p class="body-text mt">Not “some.” Not “most.” All. The standard is God’s own holiness &mdash; and every person falls short.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 6 &mdash; Keep Sinning</p><p class="disc-q">How is Stop 6 different from Stop 5? What does it mean that it’s not just Adam’s sin — but our own? Why can’t we just decide to stop sinning and fix the problem?</p></div></section>
+<section class="slide bg-1"><div class="stop-banner">Stop 7</div><h1 class="phrase-big">Unfixable Relationship</h1><p class="phrase-medium">No good deeds. No church attendance. No being “a good person.” The broken relationship between us and God is not something we have the power to repair from our side.</p></section>
+<section class="slide bg-2"><h1 class="phrase-large">Why “Being Good” Doesn’t Fix It</h1><p class="body-text">People naturally think: “If I do more good than bad, God will accept me.” But that’s not how a broken relationship works. A judge can’t be bribed with good behavior after the crime is committed.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“We have all become like one who is unclean, and all our righteous deeds are like a polluted garment…”</p><span class="scripture-ref">Isaiah 64:6</span></div><p class="body-text mt">Even our best efforts — our most sincere good deeds — don’t meet God’s standard. Our goodness is real, but it isn’t clean enough for a perfect court.</p></section>
+<section class="slide bg-4"><div class="illus-header">Illustration</div><h1 class="phrase-large">The Bottomless Canyon</h1><p class="body-text">Imagine standing at the edge of a bottomless canyon with no way across. You could jump with everything you have &mdash; it would never be enough. No good deed closes the gap. We made it ourselves, and we can’t cross it.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 7 &mdash; Unfixable Relationship</p><p class="disc-q">Why don’t good deeds fix the relationship with God? What’s wrong with the idea of earning your way back to Him?</p></div></section>
+<section class="slide bg-3"><div class="stop-banner">Stop 8</div><h1 class="phrase-big">Unpayable Debt</h1><p class="phrase-medium">Our sin against God is not just a mistake to overlook &mdash; it is a debt owed. The payment required is the shedding of blood. And we have nothing that qualifies.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“…and without the shedding of blood there is no forgiveness of sins.”</p><span class="scripture-ref">Hebrews 9:22</span></div><p class="body-text mt">God set the payment terms. Sin requires blood. The whole Old Testament sacrificial system was one long picture pointing to this truth.</p></section>
+<section class="slide bg-1"><h1 class="phrase-large">Why We Can’t Pay It</h1><p class="body-text">To pay someone else’s debt, you’d have to have no debt of your own. But we’re all guilty. We can’t pay off our debt to God while we’re still adding to it with every sin.</p></section>
+<section class="slide bg-4"><div class="illus-header">Illustration</div><h1 class="phrase-large">Wrong Currency</h1><p class="body-text">Imagine you owe a million dollars and you hand over a bag of foreign coins. It doesn’t matter how much you have — it’s the wrong currency entirely. Our good deeds are the wrong currency. God’s court only accepts one kind of payment.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 8 &mdash; Unpayable Debt</p><p class="disc-q">Explain why sin creates a debt, why payment requires blood, and why we personally can’t make that payment.</p></div></section>
+<section class="slide bg-2"><div class="stop-banner">Stop 9</div><h1 class="phrase-big">Hopeless</h1><p class="phrase-medium">Guilty from birth. Keep sinning. Can’t fix the relationship. Can’t pay the debt. Standing before a fair judge with nothing to offer. There is no human solution.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">Don’t Rush Past This One</h1><p class="body-text">We need to feel the weight of “hopeless” before the rescue makes sense. The gospel doesn’t land the way it should until we’ve honestly sat with the reality that we cannot save ourselves.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“…remember that you were at that time separated from Christ… having no hope and without God in the world.”</p><span class="scripture-ref">Ephesians 2:12</span></div></section>
+<section class="slide bg-1 para-slide para-checkpoint"><p class="para-label">The Problem — In One Paragraph</p><p class="para-note">Nine stops. One paragraph. This is the problem the gospel solves.</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="kw">broke the rule</span> and <span class="kw">two deaths</span> followed—his body and his relationship with God. God is a <span class="kw">fair judge</span> who can’t ignore sin, and we’re all <span class="kw">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="kw">unfixable relationship</span> with an <span class="kw">unpayable debt</span>, and we’re completely <span class="kw">hopeless</span> on our own.</p></div></section>
+<section class="slide bg-1 pivot-slide"><div class="pivot-block"><p class="pivot-pre">Nine stops. One verdict.</p><h1 class="phrase-big pivot-main">We cannot save ourselves.</h1><p class="pivot-post">Then &mdash; two words arrive that change everything.</p></div></section>
+<section class="slide bg-2"><div class="stop-banner">Stop 10</div><h1 class="phrase-big">But God&hellip;</h1><p class="phrase-medium">Two words. After all the darkness &mdash; the guilt, the broken relationship, the debt, the hopelessness &mdash; God decides to move. Not because we deserved it. Because He is love.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“But God, being rich in mercy, because of the great love with which he loved us, even when we were dead in our trespasses, made us alive together with Christ &mdash; by grace you have been saved.”</p><span class="scripture-ref">Ephesians 2:4&ndash;5 &nbsp;&middot;&nbsp; ESV</span></div></section>
+<section class="slide bg-3"><h1 class="phrase-large">He Moved While We Were Still Dead</h1><p class="body-text">God didn’t wait for us to clean ourselves up or find our way back. While we were dead in sin &mdash; hiding, broken, guilty &mdash; He moved toward us. That’s what makes it grace.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“…but God shows his love for us in that while we were still sinners, Christ died for us.”</p><span class="scripture-ref">Romans 5:8</span></div></section>
+<section class="slide bg-4"><div class="illus-header">Illustration</div><h1 class="phrase-large">The Paid Debt</h1><p class="body-text">Imagine waking up to find that every debt you owed — every one — had been paid off while you slept. Before you asked. Before you even knew someone was willing. That is “But God” in one moment.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 10 &mdash; But God&hellip;</p><p class="disc-q">Why are “But God” the most important pivot in the gospel? What makes grace feel surprising — even shocking?</p></div></section>
+<section class="slide bg-1"><div class="stop-banner">Stop 11</div><h1 class="phrase-big">Rescue Plan</h1><p class="phrase-medium">He had a plan before He created man. The rescue wasn’t invented after the fall. God designed it before creation began. He knew we would fall &mdash; and already had the answer ready.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“…the Lamb who was slain from the foundation of the world.”</p><span class="scripture-ref">Revelation 13:8</span></div><p class="body-text mt">The rescue was written into the plan before the wreck happened. This was never an emergency response.</p></section>
+<section class="slide bg-2"><h1 class="phrase-large">The First Hint &mdash; Genesis 3</h1><p class="body-text">In the same chapter as the fall &mdash; the very day everything broke &mdash; God gave the first hint of the plan. He told the serpent that a son of Eve would one day crush his head. The rescue begins in the wreckage.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 11 &mdash; Rescue Plan</p><p class="disc-q">What does it mean that the rescue plan existed before creation? Why does it matter that God planned it rather than reacted to the fall?</p></div></section>
+<section class="slide bg-3"><div class="stop-banner">Stop 12</div><h1 class="phrase-big">Jesus Life / Death</h1><p class="phrase-medium">The life came first &mdash; and it mattered just as much. Jesus had to live the perfect life we owed God before He could die the death we deserved.</p></section>
+<section class="slide bg-1"><h1 class="phrase-large">Why the Virgin Birth?</h1><p class="body-text">Jesus was born of a virgin not as a symbol, but for a specific reason. Without a human father, He didn’t inherit Adam’s sin guilt. He entered life with a clean record. That was the plan.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“The angel answered her, “The Holy Spirit will come upon you, and the power of the Most High will overshadow you; therefore the child to be born will be called holy — the Son of God.””</p><span class="scripture-ref">Luke 1:35</span></div></section>
+<section class="slide bg-2"><h1 class="phrase-large">The Life We Couldn’t Live</h1><p class="body-text">For thirty-three years, Jesus faced every temptation we face &mdash; hunger, rejection, betrayal, loneliness &mdash; and never sinned once. He lived the perfect life that we owe God but cannot produce.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“For we do not have a high priest who is unable to sympathize with our weaknesses, but one who in every respect has been tempted as we are, yet without sin.”</p><span class="scripture-ref">Hebrews 4:15</span></div></section>
+<section class="slide bg-3"><h1 class="phrase-large">But the Life Alone Wasn’t Enough</h1><p class="body-text sub-note">This is the part people miss.</p><p class="body-text">A perfect life <em>qualified</em> Jesus to be the sacrifice. But to actually pay for our sins, He still had to die. The life gave Him the right to be our substitute. The death was the payment.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“When Jesus had received the sour wine, he said, “It is finished,” and he bowed his head and gave up his spirit.”</p><span class="scripture-ref">John 19:30</span></div></section>
+<section class="slide bg-1"><h1 class="phrase-large">Tetelestai &mdash; Paid in Full</h1><p class="body-text">“It is finished” is one Greek word: <em>tetelestai</em>. It was stamped on paid bills in the ancient world. Jesus wasn’t just saying it was over. He was declaring: the debt is paid in full.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 12 &mdash; Jesus Life / Death</p><p class="disc-q">Walk through the whole sequence: virgin birth &rarr; no inherited sin &rarr; perfect life &rarr; still had to die. What did the life accomplish? What did the death accomplish?</p></div></section>
+<section class="slide bg-2"><div class="stop-banner">Stop 13</div><h1 class="phrase-big">Perfect Payment</h1><p class="phrase-medium">Only God could satisfy God. No human could do it. No angel could do it. The infinite debt of sin against an infinite God required an infinite sacrifice.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">The Great Exchange</h1><p class="body-text">At the cross, the most extraordinary transaction in history took place. Jesus took our sin, our guilt, our record &mdash; and gave us His righteousness, His perfect standing, His clean record before God.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God.”</p><span class="scripture-ref">2 Corinthians 5:21</span></div></section>
+<section class="slide bg-1"><h1 class="phrase-large">Justice Was Not Ignored</h1><p class="body-text">God didn’t look the other way to save us. He satisfied His own justice to save us. The fair judge didn’t close His eyes &mdash; He stepped down from the bench and paid the bill Himself.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 13 &mdash; Perfect Payment</p><p class="disc-q">Explain why only God could satisfy God. What is the great exchange? Why does it matter that justice was fulfilled — not ignored?</p></div></section>
+<section class="slide bg-3"><div class="stop-banner">Stop 14</div><h1 class="phrase-big">Resurrection</h1><p class="phrase-medium">The resurrection shows God accepted the payment. If Jesus stays in the tomb, nothing works. The empty tomb is God’s declaration: the sacrifice was sufficient. The debt is permanently settled.</p></section>
+<section class="slide bg-2"><h1 class="phrase-large">The Empty Tomb Is a Receipt</h1><p class="body-text">When you pay a debt, you get a receipt as proof the payment went through. The resurrection is God’s receipt &mdash; proof that the sacrifice Jesus made was fully accepted.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“…who was delivered up for our trespasses and raised for our justification.”</p><span class="scripture-ref">Romans 4:25</span></div></section>
+<section class="slide bg-1"><h1 class="phrase-large">This Actually Happened</h1><p class="body-text">The resurrection isn’t a metaphor or a feeling. It happened in a body, in a tomb, on a Sunday morning. Over 500 people saw the risen Jesus &mdash; and many of them died defending that testimony.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“And if Christ has not been raised, your faith is futile and you are still in your sins.”</p><span class="scripture-ref">1 Corinthians 15:17</span></div></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 14 &mdash; Resurrection</p><p class="disc-q">Why is the resurrection proof that God accepted the payment? What would it mean if Jesus had stayed in the tomb? Why is the resurrection not optional theology?</p></div></section>
+<section class="slide bg-2"><div class="stop-banner">Stop 15</div><h1 class="phrase-big">Repent &amp; Believe Into</h1><p class="phrase-medium">The rescue has to be personally received. History alone doesn’t save you. That happens through repentance and faith &mdash; and both words mean something specific.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">What Does “Repent” Mean?</h1><p class="body-text">Repent means to <em>turn</em> &mdash; not just feel bad, but feel bad enough to actually change direction. You stop walking away from God and turn toward Him. It involves your mind, your will, and your feet.</p></section>
+<section class="slide bg-1"><h1 class="phrase-large">Remorse vs. Repentance</h1><p class="body-text sub-note">Feeling bad is not the same as turning around.</p><p class="body-text">You can feel terrible about something and never change direction. True repentance is the will turning &mdash; not just the emotions softening. Judas felt remorse. Peter repented. The difference mattered eternally.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">““The time is fulfilled, and the kingdom of God is at hand; repent and believe in the gospel.””</p><span class="scripture-ref">Mark 1:15</span></div><p class="body-text mt">This was Jesus’ opening message. Not “be good.” Not “try harder.” Repent and believe.</p></section>
+<section class="slide bg-2"><h1 class="phrase-large">“Believe Into” &mdash; Not Just “Believe About”</h1><p class="body-text">You can believe <em>about</em> Jesus the same way you believe about George Washington &mdash; as historical fact. That is not saving faith. “Believe into” means trusting Him completely with your past, present, and future.</p></section>
+<section class="slide bg-4"><div class="illus-header">Illustration</div><h1 class="phrase-large">The Parachute</h1><p class="body-text">Knowing a parachute works is not the same as strapping it on and jumping. “Believe into” is the jump &mdash; putting your full weight on Jesus, not just agreeing He exists. The difference between knowing and trusting.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">Two Sides of One Turn</h1><p class="body-text">Repentance is turning away from sin and self. Faith is turning toward Jesus. You can’t do one without the other. A real turn away is always simultaneously a turn toward.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 15 &mdash; Repent &amp; Believe Into</p><p class="disc-q">What is the difference between believing <em>about</em> Jesus and believing <em>into</em> Jesus? What is true repentance? Why are both necessary?</p></div></section>
+<section class="slide bg-1"><div class="stop-banner">Stop 16</div><h1 class="phrase-big">Eternal Life</h1><p class="phrase-medium">Our bodies die &mdash; but our souls live forever in one of two places. Both destinations are real. Both are permanent. Stop 15 is the only thing that determines which one.</p></section>
+<section class="slide bg-2"><h1 class="phrase-large">Two Destinations &mdash; Real and Permanent</h1><p class="body-text">Jesus talked more about hell than He did about heaven. Both are real. We don’t get to keep one and discard the other. The soul does not stop existing when the body dies.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“Whoever believes in the Son has eternal life; whoever does not obey the Son shall not see life, but the wrath of God remains on him.”</p><span class="scripture-ref">John 3:36</span></div></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.”</p><span class="scripture-ref">Romans 6:23 &mdash; The Full Verse</span></div><p class="body-text mt">We read the first half at Stop 8. Now the whole verse. The contrast is everything: what sin earns — and what God gives freely.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">Eternal Life Starts Now</h1><p class="body-text">Eternal life isn’t something that kicks in at death. Jesus says in John 17:3 that eternal life <em>is</em> knowing God &mdash; a relationship that begins the moment you repent and believe. We are already in it.</p></section>
+<section class="slide bg-6"><div class="discussion-box"><div class="disc-icon">&#128483;</div><h2 class="phrase-large">In Your Own Words</h2><p class="disc-stop">Stop 16 &mdash; Eternal Life</p><p class="disc-q">Explain the two destinations. What is the difference between eternal life and simply “living forever”? When does it start?</p></div></section>
+<section class="slide bg-1 para-slide para-full"><p class="para-label">The Gospel in One Paragraph — All 16 Stops</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="kw">broke the rule</span> and <span class="kw">two deaths</span> followed—his body and his relationship with God. God is a <span class="kw">fair judge</span> who can’t ignore sin, and we’re all <span class="kw">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="kw">unfixable relationship</span> with an <span class="kw">unpayable debt</span>, and we’re completely <span class="kw">hopeless</span> on our own. <span class="kw">But God</span>—rich in mercy—had a <span class="kw">rescue plan</span> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <span class="kw">perfect payment</span>. God raised Him from the dead—<span class="kw">resurrection</span>—proving the payment was accepted. Now He calls us to <span class="kw">repent&nbsp;&amp;&nbsp;believe&nbsp;into</span> Jesus—and everyone who does receives <span class="kw">eternal life</span>.</p></div></section>
+<section class="slide bg-2"><h1 class="phrase-large">The Paragraph in Three Rounds</h1><p class="body-text">Same paragraph each time. Different words blanked. Talk through each blank as a group &mdash; then we’ll reveal the answers.</p><p class="body-text dim">The goal isn’t the stops. It’s the story.</p></section>
+<section class="slide bg-1 para-slide para-quiz"><p class="para-label">Round 1 — Fill the Blanks</p><p class="para-note">Four words are missing. They’re all from the problem half.</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="blank">broke the rule</span> and <span class="blank">two deaths</span> followed—his body and his relationship with God. God is a <span class="kw">fair judge</span> who can’t ignore sin, and we’re all <span class="blank">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="kw">unfixable relationship</span> with an <span class="blank">unpayable debt</span>, and we’re completely <span class="kw">hopeless</span> on our own. <span class="kw">But God</span>—rich in mercy—had a <span class="kw">rescue plan</span> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <span class="kw">perfect payment</span>. God raised Him from the dead—<span class="kw">resurrection</span>—proving the payment was accepted. Now He calls us to <span class="kw">repent&nbsp;&amp;&nbsp;believe&nbsp;into</span> Jesus—and everyone who does receives <span class="kw">eternal life</span>.</p></div></section>
+<section class="slide bg-1 para-slide para-reveal"><p class="para-label">Round 1 — Revealed</p><p class="para-note">broke the rule &bull; two deaths &bull; guilty kids &bull; unpayable debt</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="kw">broke the rule</span> and <span class="kw">two deaths</span> followed—his body and his relationship with God. God is a <span class="kw">fair judge</span> who can’t ignore sin, and we’re all <span class="kw">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="kw">unfixable relationship</span> with an <span class="kw">unpayable debt</span>, and we’re completely <span class="kw">hopeless</span> on our own. <span class="kw">But God</span>—rich in mercy—had a <span class="kw">rescue plan</span> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <span class="kw">perfect payment</span>. God raised Him from the dead—<span class="kw">resurrection</span>—proving the payment was accepted. Now He calls us to <span class="kw">repent&nbsp;&amp;&nbsp;believe&nbsp;into</span> Jesus—and everyone who does receives <span class="kw">eternal life</span>.</p></div></section>
+<section class="slide bg-1 para-slide para-quiz"><p class="para-label">Round 2 — Fill the Blanks</p><p class="para-note">Four words are missing. They’re all from the answer half.</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="kw">broke the rule</span> and <span class="kw">two deaths</span> followed—his body and his relationship with God. God is a <span class="kw">fair judge</span> who can’t ignore sin, and we’re all <span class="kw">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="kw">unfixable relationship</span> with an <span class="kw">unpayable debt</span>, and we’re completely <span class="kw">hopeless</span> on our own. <span class="kw">But God</span>—rich in mercy—had a <span class="blank">rescue plan</span> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <span class="blank">perfect payment</span>. God raised Him from the dead—<span class="blank">resurrection</span>—proving the payment was accepted. Now He calls us to <span class="blank">repent &amp; believe into</span> Jesus—and everyone who does receives <span class="kw">eternal life</span>.</p></div></section>
+<section class="slide bg-1 para-slide para-reveal"><p class="para-label">Round 2 — Revealed</p><p class="para-note">rescue plan &bull; perfect payment &bull; resurrection &bull; repent &amp; believe into</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="kw">broke the rule</span> and <span class="kw">two deaths</span> followed—his body and his relationship with God. God is a <span class="kw">fair judge</span> who can’t ignore sin, and we’re all <span class="kw">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="kw">unfixable relationship</span> with an <span class="kw">unpayable debt</span>, and we’re completely <span class="kw">hopeless</span> on our own. <span class="kw">But God</span>—rich in mercy—had a <span class="kw">rescue plan</span> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <span class="kw">perfect payment</span>. God raised Him from the dead—<span class="kw">resurrection</span>—proving the payment was accepted. Now He calls us to <span class="kw">repent&nbsp;&amp;&nbsp;believe&nbsp;into</span> Jesus—and everyone who does receives <span class="kw">eternal life</span>.</p></div></section>
+<section class="slide bg-1 para-slide para-quiz"><p class="para-label">Round 3 — Hardest Yet</p><p class="para-note">Four words missing. Mixed. These are the ones people forget first.</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="kw">broke the rule</span> and <span class="kw">two deaths</span> followed—his body and his relationship with God. God is a <span class="blank">fair judge</span> who can’t ignore sin, and we’re all <span class="kw">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="blank">unfixable relationship</span> with an <span class="kw">unpayable debt</span>, and we’re completely <span class="blank">hopeless</span> on our own. <span class="kw">But God</span>—rich in mercy—had a <span class="kw">rescue plan</span> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <span class="kw">perfect payment</span>. God raised Him from the dead—<span class="kw">resurrection</span>—proving the payment was accepted. Now He calls us to <span class="kw">repent&nbsp;&amp;&nbsp;believe&nbsp;into</span> Jesus—and everyone who does receives <span class="blank">eternal life</span>.</p></div></section>
+<section class="slide bg-1 para-slide para-reveal"><p class="para-label">Round 3 — Revealed</p><p class="para-note">fair judge &bull; unfixable relationship &bull; hopeless &bull; eternal life</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="kw">broke the rule</span> and <span class="kw">two deaths</span> followed—his body and his relationship with God. God is a <span class="kw">fair judge</span> who can’t ignore sin, and we’re all <span class="kw">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="kw">unfixable relationship</span> with an <span class="kw">unpayable debt</span>, and we’re completely <span class="kw">hopeless</span> on our own. <span class="kw">But God</span>—rich in mercy—had a <span class="kw">rescue plan</span> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <span class="kw">perfect payment</span>. God raised Him from the dead—<span class="kw">resurrection</span>—proving the payment was accepted. Now He calls us to <span class="kw">repent&nbsp;&amp;&nbsp;believe&nbsp;into</span> Jesus—and everyone who does receives <span class="kw">eternal life</span>.</p></div></section>
+<section class="slide bg-6"><div class="discussion-box"><h2 class="phrase-large">The Hardest Stop to Believe</h2><p class="disc-q">Which of the 16 stops is the most confusing for you? Which one would be the hardest for someone outside the faith to accept? Take a few minutes to discuss.</p></div></section>
+<section class="slide bg-2"><h1 class="phrase-large">Practice This Week</h1><p class="body-text">Run through the paragraph yourself. Try it with your spouse. Ask a co-worker if you can practice with them &mdash; it might give you a real reason and a real moment to share it with someone who needs to hear it.</p></section>
+<section class="slide bg-3"><h1 class="phrase-large">A Word for Anyone Who Isn’t Sure</h1><p class="body-text">If you’re not sure whether you’ve truly repented and believed &mdash; tonight is a good night to settle it. Stop 15 is not something to leave vague. Talk to someone before you leave.</p></section>
+<section class="slide bg-5"><div class="scripture-block"><p class="scripture-text">“For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast.”</p><span class="scripture-ref">Ephesians 2:8&ndash;9</span></div></section>
+<section class="slide bg-1 para-slide para-final"><p class="para-label">9 Problems. 7 Answers. One Story.</p><p class="para-note">This is the gospel. Keep coming back to this paragraph. Keep practicing it. Keep telling it.</p><div class="para-box"><p class="para-text"><span class="kw">God made</span> us good, but Adam <span class="kw">broke the rule</span> and <span class="kw">two deaths</span> followed—his body and his relationship with God. God is a <span class="kw">fair judge</span> who can’t ignore sin, and we’re all <span class="kw">guilty kids</span> who <span class="kw">keep sinning</span> ourselves. We’re stuck in an <span class="kw">unfixable relationship</span> with an <span class="kw">unpayable debt</span>, and we’re completely <span class="kw">hopeless</span> on our own. <span class="kw">But God</span>—rich in mercy—had a <span class="kw">rescue plan</span> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <span class="kw">perfect payment</span>. God raised Him from the dead—<span class="kw">resurrection</span>—proving the payment was accepted. Now He calls us to <span class="kw">repent&nbsp;&amp;&nbsp;believe&nbsp;into</span> Jesus—and everyone who does receives <span class="kw">eternal life</span>.</p></div></section>
+
+</div>
+
+<nav class="nav-bar" aria-label="Slide navigation">
+  <button class="nav-btn" id="prev" aria-label="Previous slide">&#8592;</button>
+  <span class="counter" id="counter" aria-live="polite">1 / 107</span>
+  <button class="nav-btn" id="next" aria-label="Next slide">&#8594;</button>
+  <div class="scale-wrap">
+    <button class="scale-btn" id="scale-down" aria-label="Decrease text size">&#8722;</button>
+    <input type="range" id="scale-slider" min="0.5" max="4.0" step="0.05" value="2.0" aria-label="Text size">
+    <button class="scale-btn" id="scale-up" aria-label="Increase text size">&#43;</button>
+  </div>
+</nav>
+
+<script>
+
+    const root = document.documentElement;
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+    const slider  = document.getElementById('scale-slider');
+    let cur = 0;
+    let fontScale = parseFloat(
+      localStorage.getItem('gospel-scale') ||
+      getComputedStyle(root).getPropertyValue('--font-scale') ||
+      '2.0'
+    );
+
+    function applyScale() {
+      root.style.setProperty('--font-scale', String(fontScale));
+      slider.value = fontScale;
+      localStorage.setItem('gospel-scale', fontScale);
+    }
+
+    function go(n) {
+      slides[cur].classList.remove('active');
+      cur = (n + slides.length) % slides.length;
+      slides[cur].classList.add('active');
+      counter.textContent = (cur + 1) + ' / ' + slides.length;
+    }
+
+    document.getElementById('prev').onclick    = () => go(cur - 1);
+    document.getElementById('next').onclick    = () => go(cur + 1);
+    document.getElementById('scale-down').onclick = () => {
+      fontScale = Math.max(0.5, +(fontScale - 0.1).toFixed(2)); applyScale();
+    };
+    document.getElementById('scale-up').onclick = () => {
+      fontScale = Math.min(4.0, +(fontScale + 0.1).toFixed(2)); applyScale();
+    };
+    slider.oninput = () => { fontScale = parseFloat(slider.value); applyScale(); };
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(cur + 1); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); go(cur - 1); }
+      if (e.key === 'Home')       { e.preventDefault(); go(0); }
+      if (e.key === 'End')        { e.preventDefault(); go(slides.length - 1); }
+    });
+
+    let startX = 0;
+    document.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+    document.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) go(dx < 0 ? cur + 1 : cur - 1);
+    }, {passive:true});
+
+    slides[0].classList.add('active');
+    counter.textContent = '1 / ' + slides.length;
+    applyScale();
+
+</script>
+
+</body>
+</html>

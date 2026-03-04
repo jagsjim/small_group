@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Gospel: 16 Stops &mdash; Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Lora:ital,wght@0,400;1,400&family=Merriweather:ital,wght@0,300;1,300&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:18px;-webkit-text-size-adjust:100%}
+  body{font-family:'Lora',Georgia,serif;background:#f7f4ef;color:#1a1a1a;
+    max-width:680px;margin:0 auto;padding:0 0 60px}
+  
+  /* Header */
+  .sg-header{background:linear-gradient(135deg,#0d1b2a 0%,#1b3a4b 60%,#0f2a1e 100%);
+    color:#fff;padding:48px 28px 40px;text-align:center}
+  .sg-series{font-family:'Inter',sans-serif;font-size:.85rem;letter-spacing:.2em;
+    text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px}
+  .sg-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:2.2rem;
+    line-height:1.2;color:#fff;margin-bottom:8px}
+  .sg-subtitle{font-family:'Lora',serif;font-style:italic;font-size:1.05rem;
+    color:rgba(255,255,255,.65)}
+  
+  /* Nav pills */
+  .sg-toc{background:#fff;padding:20px 24px;border-bottom:1px solid #e8e2d8}
+  .sg-toc-label{font-family:'Inter',sans-serif;font-size:.8rem;font-weight:700;
+    letter-spacing:.15em;text-transform:uppercase;color:#888;margin-bottom:10px}
+  .sg-toc-pills{display:flex;flex-wrap:wrap;gap:8px}
+  .sg-toc-pills a{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;
+    padding:6px 12px;border-radius:999px;background:#f0ece4;color:#333;
+    text-decoration:none;transition:background .2s}
+  .sg-toc-pills a:hover{background:#d4a017;color:#fff}
+  
+  /* Paragraph hero */
+  .sg-para-hero{background:linear-gradient(135deg,#0d1b2a,#1b3a4b);
+    margin:0;padding:32px 28px;border-bottom:4px solid #d4a017}
+  .sg-para-label{font-family:'Inter',sans-serif;font-size:.8rem;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:#d4a017;margin-bottom:14px}
+  .sg-para-text{font-family:'Lora',Georgia,serif;font-size:1.05rem;line-height:1.8;
+    color:rgba(255,255,255,.88)}
+  .sg-para-text strong{color:#f5c842;font-weight:700}
+  .sg-para-note{font-family:'Inter',sans-serif;font-size:.8rem;color:rgba(255,255,255,.4);
+    margin-top:14px;font-style:italic}
+  
+  /* 9+7 lists */
+  .sg-map{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#fff;
+    border-bottom:1px solid #e8e2d8}
+  .sg-map-col{padding:24px 20px}
+  .sg-map-col:first-child{border-right:1px solid #e8e2d8}
+  .sg-map-col-label{font-family:'Inter',sans-serif;font-size:.75rem;font-weight:700;
+    letter-spacing:.15em;text-transform:uppercase;color:#888;margin-bottom:10px}
+  .sg-map-col ol{font-family:'Inter',sans-serif;font-size:.9rem;line-height:2;
+    color:#333;padding-left:18px}
+  .sg-map-col li{padding:1px 0}
+  
+  /* Stops */
+  .sg-stop{background:#fff;margin:12px 0 0;padding:28px 24px;
+    border-left:4px solid transparent;border-bottom:1px solid #eee}
+  .sg-stop:nth-child(odd){border-left-color:#1b3a4b}
+  .sg-stop:nth-child(even){border-left-color:#d4a017}
+  .sg-stop-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .sg-stop-num{font-family:'Inter',sans-serif;font-size:.75rem;font-weight:700;
+    letter-spacing:.15em;text-transform:uppercase;
+    background:#f0ece4;color:#666;padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .sg-stop-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.3rem;color:#111}
+  .sg-body{font-family:'Lora',serif;font-size:1rem;line-height:1.75;color:#2a2a2a;
+    margin-bottom:16px}
+  
+  /* Scripture box */
+  .sg-scripture{border-left:4px solid #1b3a4b;padding:14px 18px;
+    background:#f0f5fa;border-radius:0 8px 8px 0;margin:16px 0}
+  .sg-scripture-text{font-family:'Merriweather',serif;font-size:.95rem;
+    line-height:1.7;font-style:italic;color:#111;margin-bottom:8px}
+  .sg-scripture-ref{font-family:'Inter',sans-serif;font-size:.78rem;
+    color:#666;display:block;text-align:right;font-weight:600}
+  
+  /* Illustration */
+  .sg-illustration{background:#fff8ec;border:1px solid #e8d4a0;border-radius:10px;
+    padding:16px 18px;margin:16px 0}
+  .sg-ill-label{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;
+    letter-spacing:.15em;text-transform:uppercase;color:#b07800;margin-bottom:6px}
+  .sg-ill-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;
+    color:#5c3a00;margin-bottom:8px}
+  
+  /* Discussion */
+  .sg-discussion{background:#f0f7f0;border:1px solid #b8d4b8;border-radius:10px;
+    padding:16px 18px;margin:16px 0 0}
+  .sg-disc-label{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;
+    letter-spacing:.15em;text-transform:uppercase;color:#2d6a2d;margin-bottom:8px}
+  .sg-disc-q{font-family:'Lora',serif;font-size:.95rem;font-style:italic;
+    line-height:1.65;color:#1a3a1a}
+  
+  /* Practice box */
+  .sg-practice{background:#0d1b2a;color:#fff;margin:12px 0 0;padding:28px 24px}
+  .sg-practice-label{font-family:'Inter',sans-serif;font-size:.8rem;font-weight:700;
+    letter-spacing:.15em;text-transform:uppercase;color:#d4a017;margin-bottom:14px}
+  .sg-practice-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.2rem;
+    color:#fff;margin-bottom:16px}
+  .sg-practice-body{font-family:'Lora',serif;font-size:1rem;line-height:1.75;
+    color:rgba(255,255,255,.82)}
+  .sg-practice-body strong{color:#f5c842}
+  .sg-blank-line{display:block;border-bottom:1px solid rgba(255,255,255,.3);
+    margin:20px 0;height:1px}
+  
+  /* Footer */
+  .sg-footer{text-align:center;padding:32px 24px;font-family:'Inter',sans-serif;
+    font-size:.8rem;color:#999;background:#f7f4ef}
+  
+  @media(max-width:400px){
+    .sg-title{font-size:1.8rem}
+    .sg-map{grid-template-columns:1fr}
+    .sg-map-col:first-child{border-right:none;border-bottom:1px solid #e8e2d8}
+  }
+</style>
+</head>
+<body>
+
+<header class="sg-header">
+  <p class="sg-series">Small Group Study Guide</p>
+  <h1 class="sg-title">The Gospel: 16 Stops</h1>
+  <p class="sg-subtitle">A recap &mdash; and a different approach</p>
+</header>
+
+<div class="sg-toc">
+  <p class="sg-toc-label">Jump to a stop</p>
+  <div class="sg-toc-pills"><a href="#stop-1">1. God Made…</a><a href="#stop-2">2. Broken Rule</a><a href="#stop-3">3. Two Deaths</a><a href="#stop-4">4. Fair Judge</a><a href="#stop-5">5. Guilty Kids</a><a href="#stop-6">6. Keep Sinning</a><a href="#stop-7">7. Unfixable Relationship</a><a href="#stop-8">8. Unpayable Debt</a><a href="#stop-9">9. Hopeless</a><a href="#stop-10">10. But God…</a><a href="#stop-11">11. Rescue Plan</a><a href="#stop-12">12. Jesus Life/Death</a><a href="#stop-13">13. Perfect Payment</a><a href="#stop-14">14. Resurrection</a><a href="#stop-15">15. Repent &amp; Believe Into</a><a href="#stop-16">16. Eternal Life</a></div>
+</div>
+
+<div class="sg-para-hero">
+  <p class="sg-para-label">The Gospel in One Paragraph &mdash; Memorize This</p>
+  <p class="sg-para-text"><strong>God made</strong> us good, but Adam <strong>broke the rule</strong> and <strong>two deaths</strong> followed—his body and his relationship with God. God is a <strong>fair judge</strong> who can’t ignore sin, and we’re all <strong>guilty kids</strong> who <strong>keep sinning</strong> ourselves. We’re stuck in an <strong>unfixable relationship</strong> with an <strong>unpayable debt</strong>, and we’re completely <strong>hopeless</strong> on our own. <strong>But God</strong>—rich in mercy—had a <strong>rescue plan</strong> before He ever created us. He sent Jesus, who was born without inherited sin, lived the perfect life we couldn’t, and still had to die as our substitute—the <strong>perfect payment</strong>. God raised Him from the dead—<strong>resurrection</strong>—proving the payment was accepted. Now He calls us to <strong>repent and believe into</strong> Jesus—and everyone who does receives <strong>eternal life</strong>.</p>
+  <p class="sg-para-note">The 16 stop names are highlighted in gold. Use this paragraph as your practice tool &mdash; not the stop list.</p>
+</div>
+
+<div class="sg-map">
+  <div class="sg-map-col">
+    <p class="sg-map-col-label">The 9 Problems</p>
+    <ol>
+      <li>God Made&hellip;</li>
+      <li>Broken Rule</li>
+      <li>Two Deaths</li>
+      <li>Fair Judge</li>
+      <li>Guilty Kids</li>
+      <li>Keep Sinning</li>
+      <li>Unfixable Relationship</li>
+      <li>Unpayable Debt</li>
+      <li>Hopeless</li>
+    </ol>
+  </div>
+  <div class="sg-map-col">
+    <p class="sg-map-col-label">The 7 Answers</p>
+    <ol start="10">
+      <li>But God&hellip;</li>
+      <li>Rescue Plan</li>
+      <li>Jesus Life/Death</li>
+      <li>Perfect Payment</li>
+      <li>Resurrection</li>
+      <li>Repent &amp; Believe Into</li>
+      <li>Eternal Life</li>
+    </ol>
+  </div>
+</div>
+
+<div class="sg-stop" id="stop-1">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 1</span><h2 class="sg-stop-title">God Made…</h2></div>
+<p class="sg-body">Before anything existed, there was God. He chose to create—the world, Adam, everything—and everything He made was very good. Adam was uniquely made in God’s image, breathed into life directly, designed to know God and walk with Him face to face. One rule was given: don’t eat from one tree. The rule wasn’t meant to restrict them—it was to give them a real choice to trust Him.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“In the beginning, God created the heavens and the earth.”</p><span class="sg-scripture-ref">Genesis 1:1</span></div>
+<div class="sg-scripture"><p class="sg-scripture-text">“And the Lord God commanded the man, “You may surely eat of every tree of the garden, but of the tree of the knowledge of good and evil you shall not eat, for in the day that you eat of it you shall surely die.””</p><span class="sg-scripture-ref">Genesis 2:16–17</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">In your own words: “God made…” What did He make? Why did it matter? What did life look like before sin entered?</p></div>
+</div>
+<div class="sg-stop" id="stop-2">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 2</span><h2 class="sg-stop-title">Broken Rule</h2></div>
+<p class="sg-body">God didn’t hide the rule or trick them. He told them exactly what would happen. The rule wasn’t to make them miserable—it was to give them a real choice to trust Him. The enemy’s first move was to create doubt: “Did God really say…?” They saw, they desired, they chose. They didn’t just break a rule—they rejected God’s authority. Every sin since then is the same act: choosing our will over His.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“So when the woman saw that the tree was good for food, and that it was a delight to the eyes, and that the tree was to be desired to make one wise, she took of its fruit and ate, and she also gave some to her husband who was with her, and he ate.”</p><span class="sg-scripture-ref">Genesis 3:6</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">What was the rule? What did God say would happen? Why does it matter that they knew the consequence and chose to break it anyway?</p></div>
+</div>
+<div class="sg-stop" id="stop-3">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 3</span><h2 class="sg-stop-title">Two Deaths</h2></div>
+<p class="sg-body">When God warned “you shall surely die,” He meant two things. Death #1—the body: decay entered creation. Bodies now age, break down, and die. This was not the original design. Death #2—the relationship: before the body ever died, something changed immediately. They hid from God. The open, face-to-face relationship was broken that very day. Paul says we were “dead in trespasses and sins”—not sick, not wounded. Dead.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“And they heard the sound of the Lord God walking in the garden in the cool of the day, and the man and his wife hid themselves from the presence of the Lord God among the trees of the garden.”</p><span class="sg-scripture-ref">Genesis 3:8</span></div>
+<div class="sg-scripture"><p class="sg-scripture-text">“And you were dead in the trespasses and sins in which you once walked…”</p><span class="sg-scripture-ref">Ephesians 2:1</span></div>
+<div class="sg-illustration"><div class="sg-ill-label">Illustration</div><p class="sg-ill-title">Unplugged</p><p class="sg-body">A lamp unplugged from the wall still looks like a lamp—shade, bulb, cord. But it has no power. Spiritual death is being cut off from the source of life, while looking completely fine from the outside.</p></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Which death happened immediately? Which comes later? Why are both part of what God warned about?</p></div>
+</div>
+<div class="sg-stop" id="stop-4">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 4</span><h2 class="sg-stop-title">Fair Judge</h2></div>
+<p class="sg-body">Some people wish God would look the other way at sin. But a God who ignores evil isn’t good—He’s corrupt. A fair judge cannot pretend the crime didn’t happen. Imagine a judge who lets the man who murdered your family member walk free because he also coached Little League and donated to charity. We’d call that judge wicked. God is not that judge. Fairness requires that sin be dealt with. Every person who has ever lived will stand before this judge—no technicalities, no charm, no good deeds on the scale.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“And just as it is appointed for man to die once, and after that comes judgment…”</p><span class="sg-scripture-ref">Hebrews 9:27</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Why is it actually good that God is a fair judge? And why does that same fact create a serious problem for us?</p></div>
+</div>
+<div class="sg-stop" id="stop-5">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 5</span><h2 class="sg-stop-title">Guilty Kids</h2></div>
+<p class="sg-body">We don’t just become guilty when we sin personally. We are born guilty—carrying the weight of Adam’s broken rule. Adam was the representative of the whole human race. When a president signs a treaty, the whole country is bound by it. Adam sinned as the head of humanity, and every person born after him enters the world already carrying a broken relationship with God. The debt came with the birth.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“For as by the one man’s disobedience the many were made sinners, so by the one man’s obedience the many will be made righteous.”</p><span class="sg-scripture-ref">Romans 5:19</span></div>
+<div class="sg-illustration"><div class="sg-ill-label">Illustration</div><p class="sg-ill-title">The Inheritance</p><p class="sg-body">If your grandfather declared bankruptcy, you might inherit his debts through no action of your own. We inherited Adam’s broken standing before God.</p></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Why are we born guilty before we’ve personally done anything wrong? What does it mean that Adam was our representative?</p></div>
+</div>
+<div class="sg-stop" id="stop-6">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 6</span><h2 class="sg-stop-title">Keep Sinning</h2></div>
+<p class="sg-body">It isn’t just Adam’s guilt we carry—it’s our own personal record of every sin we’ve added since. Nobody has to teach a child to be selfish, to lie, or to demand their own way. Those things come naturally. We are born with a nature already turned away from God—and then we act on it. We have fully and willingly joined the rebellion. Not “some.” Not “most.” All.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“…for all have sinned and fall short of the glory of God.”</p><span class="sg-scripture-ref">Romans 3:23</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">How is Stop 6 different from Stop 5? Why can’t we just decide to stop sinning and fix the problem ourselves?</p></div>
+</div>
+<div class="sg-stop" id="stop-7">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 7</span><h2 class="sg-stop-title">Unfixable Relationship</h2></div>
+<p class="sg-body">No good deeds. No church attendance. No being “a good person.” The broken relationship between us and God is not something we have the power to repair from our side. People naturally think: “If I do more good than bad, God will accept me.” But a judge can’t be bribed with good behavior after the crime is committed. Even our best efforts—our most sincere good deeds—don’t meet God’s standard. Imagine a bottomless canyon with no bridge. No matter how far you jump, you can’t cross it.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“We have all become like one who is unclean, and all our righteous deeds are like a polluted garment…”</p><span class="sg-scripture-ref">Isaiah 64:6</span></div>
+<div class="sg-illustration"><div class="sg-ill-label">Illustration</div><p class="sg-ill-title">The Bottomless Canyon</p><p class="sg-body">Imagine standing at the edge of a bottomless canyon with no way across. You could jump with everything you have—it would never be enough. No good deed closes the gap. We made it ourselves, and we can’t cross it.</p></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Why don’t good deeds fix our relationship with God? What’s wrong with the idea of earning your way back to Him?</p></div>
+</div>
+<div class="sg-stop" id="stop-8">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 8</span><h2 class="sg-stop-title">Unpayable Debt</h2></div>
+<p class="sg-body">Our sin against God is not just a mistake to overlook—it is a debt owed. The payment required is the shedding of blood. The whole Old Testament sacrificial system was one long picture pointing to this truth. To pay someone else’s debt, you’d have to have no debt of your own. But we’re all guilty. Our good deeds are also the wrong currency entirely—like handing a bag of foreign coins when you owe a million dollars. God’s court only accepts one kind of payment.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“…and without the shedding of blood there is no forgiveness of sins.”</p><span class="sg-scripture-ref">Hebrews 9:22</span></div>
+<div class="sg-scripture"><p class="sg-scripture-text">“For the wages of sin is death…”</p><span class="sg-scripture-ref">Romans 6:23 (first half)</span></div>
+<div class="sg-illustration"><div class="sg-ill-label">Illustration</div><p class="sg-ill-title">Wrong Currency</p><p class="sg-body">Imagine you owe a million dollars and you hand over a bag of foreign coins. It doesn’t matter how much you have—it’s the wrong currency. Our good deeds are the wrong currency. God’s court only accepts one kind of payment.</p></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Explain why sin creates a debt, why payment requires blood, and why we personally can’t make that payment.</p></div>
+</div>
+<div class="sg-stop" id="stop-9">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 9</span><h2 class="sg-stop-title">Hopeless</h2></div>
+<p class="sg-body">Put it all together: guilty from birth, keep sinning, can’t fix the relationship, can’t pay the debt, standing before a fair judge with nothing to offer. There is no human solution. We need to feel the weight of “hopeless” before the rescue makes sense. The gospel doesn’t land the way it should until we’ve honestly sat with the reality that we cannot save ourselves.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“…remember that you were at that time separated from Christ… having no hope and without God in the world.”</p><span class="sg-scripture-ref">Ephesians 2:12</span></div>
+</div>
+<div class="sg-stop" id="stop-10">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 10</span><h2 class="sg-stop-title">But God…</h2></div>
+<p class="sg-body">Two words. After all the darkness—the guilt, the broken relationship, the debt, the hopelessness—God decides to move. Not because we deserved it. Because He is love. God didn’t wait for us to clean ourselves up or find our way back. While we were dead in sin—hiding, broken, guilty—He moved toward us. That’s what makes it grace. Imagine waking up to find that every debt you owed had been paid off while you slept—before you asked, before you even knew someone was willing. That is “But God” in one moment.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“But God, being rich in mercy, because of the great love with which he loved us, even when we were dead in our trespasses, made us alive together with Christ—by grace you have been saved.”</p><span class="sg-scripture-ref">Ephesians 2:4–5 (ESV)</span></div>
+<div class="sg-scripture"><p class="sg-scripture-text">“…but God shows his love for us in that while we were still sinners, Christ died for us.”</p><span class="sg-scripture-ref">Romans 5:8</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Why are “But God” the most important pivot in the gospel? What makes grace feel surprising—even shocking?</p></div>
+</div>
+<div class="sg-stop" id="stop-11">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 11</span><h2 class="sg-stop-title">Rescue Plan</h2></div>
+<p class="sg-body">He had a plan before He created man. The rescue wasn’t invented after the fall. God designed it before creation began. He knew we would fall—and already had the answer ready before Adam drew his first breath. Jesus is called “the Lamb slain from the foundation of the world.” This was never an emergency response. And the first hint came in the very chapter of the fall—God told the serpent that a son of Eve would one day crush his head. The rescue begins in the wreckage.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“…the Lamb who was slain from the foundation of the world.”</p><span class="sg-scripture-ref">Revelation 13:8</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">What does it mean that the rescue plan existed before creation? Why does it matter that God planned it rather than reacted to the fall?</p></div>
+</div>
+<div class="sg-stop" id="stop-12">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 12</span><h2 class="sg-stop-title">Jesus Life/Death</h2></div>
+<p class="sg-body">The life came first—and it mattered just as much as the death. Jesus was born of a virgin: without a human father, He didn’t inherit Adam’s sin guilt. He entered life with a clean record. For thirty-three years, He faced every temptation we face—hunger, rejection, betrayal, loneliness—and never sinned once. He lived the perfect life we owe God but cannot produce. But a perfect life alone wasn’t enough. It qualified Him to be the sacrifice. The death was the actual payment. “It is finished”—tetelestai—was stamped on paid bills in the ancient world. The debt is paid in full.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“The angel answered her, “The Holy Spirit will come upon you, and the power of the Most High will overshadow you; therefore the child to be born will be called holy—the Son of God.””</p><span class="sg-scripture-ref">Luke 1:35</span></div>
+<div class="sg-scripture"><p class="sg-scripture-text">“For we do not have a high priest who is unable to sympathize with our weaknesses, but one who in every respect has been tempted as we are, yet without sin.”</p><span class="sg-scripture-ref">Hebrews 4:15</span></div>
+<div class="sg-scripture"><p class="sg-scripture-text">“When Jesus had received the sour wine, he said, “It is finished,” and he bowed his head and gave up his spirit.”</p><span class="sg-scripture-ref">John 19:30</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Walk through the whole sequence: virgin birth → no inherited sin → perfect life → still had to die. What did the life accomplish? What did the death accomplish?</p></div>
+</div>
+<div class="sg-stop" id="stop-13">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 13</span><h2 class="sg-stop-title">Perfect Payment</h2></div>
+<p class="sg-body">Only God could satisfy God. No human could do it. No angel could do it. The infinite debt of sin against an infinite God required an infinite sacrifice. At the cross, the most extraordinary transaction in history took place: Jesus took our sin, our guilt, our record—and gave us His righteousness, His perfect standing, His clean record before God. God didn’t look the other way to save us. He satisfied His own justice. The fair judge stepped down from the bench and paid the bill Himself.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God.”</p><span class="sg-scripture-ref">2 Corinthians 5:21</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Explain why only God could satisfy God. What is the great exchange? Why does it matter that justice was fulfilled—not ignored?</p></div>
+</div>
+<div class="sg-stop" id="stop-14">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 14</span><h2 class="sg-stop-title">Resurrection</h2></div>
+<p class="sg-body">The resurrection shows God accepted the payment. If Jesus stays in the tomb, nothing works. The empty tomb is God’s declaration: the sacrifice was sufficient. The debt is permanently settled. The resurrection is God’s receipt—proof the payment went through. It happened in a body, in a tomb, on a Sunday morning. Over 500 people saw the risen Jesus—and many of them died defending that testimony. Paul says: if Christ has not been raised, your faith is futile and you are still in your sins.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“…who was delivered up for our trespasses and raised for our justification.”</p><span class="sg-scripture-ref">Romans 4:25</span></div>
+<div class="sg-scripture"><p class="sg-scripture-text">“And if Christ has not been raised, your faith is futile and you are still in your sins.”</p><span class="sg-scripture-ref">1 Corinthians 15:17</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Why is the resurrection proof that God accepted the payment? What would it mean if Jesus had stayed in the tomb?</p></div>
+</div>
+<div class="sg-stop" id="stop-15">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 15</span><h2 class="sg-stop-title">Repent &amp; Believe Into</h2></div>
+<p class="sg-body">The rescue has to be personally received. History alone doesn’t save you. Repent means to turn—not just feel bad, but feel bad enough to actually change direction. Remorse is feeling terrible without changing direction. Repentance is the will turning. Judas felt remorse. Peter repented. The difference mattered eternally. “Believe into” is different from “believe about.” You can believe about Jesus the way you believe about George Washington. Saving faith is trusting Him completely with your past, present, and future—like strapping on a parachute and jumping, not just knowing it works.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">““The time is fulfilled, and the kingdom of God is at hand; repent and believe in the gospel.””</p><span class="sg-scripture-ref">Mark 1:15</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">What is the difference between believing about Jesus and believing into Jesus? What does true repentance actually involve?</p></div>
+</div>
+<div class="sg-stop" id="stop-16">
+<div class="sg-stop-header"><span class="sg-stop-num">Stop 16</span><h2 class="sg-stop-title">Eternal Life</h2></div>
+<p class="sg-body">Our bodies die—but our souls live forever in one of two places. Both destinations are real. Both are permanent. Stop 15—repent and believe into—is the only thing that determines which one. Jesus talked more about hell than He did about heaven. We don’t get to keep one and discard the other. Eternal life also doesn’t kick in at death—it begins the moment you repent and believe. Knowing God is eternal life. And the full verse of Romans 6:23 tells us everything: what sin earns versus what God gives freely.</p>
+<div class="sg-scripture"><p class="sg-scripture-text">“Whoever believes in the Son has eternal life; whoever does not obey the Son shall not see life, but the wrath of God remains on him.”</p><span class="sg-scripture-ref">John 3:36</span></div>
+<div class="sg-scripture"><p class="sg-scripture-text">“For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.”</p><span class="sg-scripture-ref">Romans 6:23</span></div>
+<div class="sg-discussion"><div class="sg-disc-label">&#128483; In Your Own Words</div><p class="sg-disc-q">Explain the two destinations. What is the difference between eternal life and simply “living forever”? When does it start?</p></div>
+</div>
+
+<div class="sg-practice">
+  <p class="sg-practice-label">Practice &mdash; Fill in the Paragraph</p>
+  <p class="sg-practice-title">Say the gospel out loud &mdash; in one paragraph</p>
+  <p class="sg-practice-body">
+    <strong>God made</strong> us good, but Adam _____________ and two _____________ followed.
+    God is a _____________ who can&rsquo;t ignore sin, and we&rsquo;re all _____________
+    who keep sinning ourselves. We&rsquo;re stuck in an _____________ with an _____________,
+    and we&rsquo;re completely _____________ on our own.
+    <span class="sg-blank-line"></span>
+    <strong>But God</strong>&mdash;rich in mercy&mdash;had a _____________ before He ever created us.
+    He sent Jesus, who was born without inherited sin, lived the perfect life we couldn&rsquo;t,
+    and still had to die as our substitute&mdash;the _____________.
+    God raised Him from the dead&mdash;_____________&mdash;proving the payment was accepted.
+    Now He calls us to _____________ Jesus&mdash;
+    and everyone who does receives _____________.
+  </p>
+</div>
+
+<footer class="sg-footer">
+  <p>The Gospel: 16 Stops &bull; Small Group Study Guide</p>
+</footer>
+
+</body>
+</html>
